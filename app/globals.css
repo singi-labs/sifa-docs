@@ -119,7 +119,7 @@
 }
 
 /* Sidebar section headers (e.g. "Getting started", "Features").
-   Fumadocs renders them as plain <p> in #nd-sidebar — same visual weight as
+   Fumadocs renders them as plain <p> in #nd-sidebar, same visual weight as
    page links, which is wrong. Set them in Flexoki Purple (Sifa's secondary
    brand colour from @singi-labs/sifa-sdk/tokens, distinct from the primary
    Flexoki Blue used for links) and add a thin top border so each section
