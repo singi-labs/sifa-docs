@@ -16,6 +16,12 @@ const sections = [
     href: '/docs/import-linkedin',
   },
   {
+    title: 'What is the Atmosphere?',
+    description:
+      'New to the AT Protocol? Start here. The open network Sifa is built on, in five short pages.',
+    href: '/docs/what-is-the-atmosphere',
+  },
+  {
     title: 'Activity feed',
     description:
       'How Sifa decides what shows up on your profile — articles, reviews, and other work you create, not likes or bookmarks.',

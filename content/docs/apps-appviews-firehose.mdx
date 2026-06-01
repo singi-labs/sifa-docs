@@ -1,0 +1,62 @@
+---
+title: Apps, AppViews, and the firehose
+description: How the same data gets read by multiple Atmosphere apps. Why Sifa shows you a different view of your activity than Bluesky does.
+---
+
+The Atmosphere is **one network of data, many apps reading it**. Bluesky, Sifa, Tangled, Leaflet, and the rest all read from the same pool of records and render them however they like.
+
+Three pieces make this work: apps, AppViews, and the firehose.
+
+## Apps
+
+An app is what you use. The Bluesky web app, the Sifa web app, a third-party desktop client — these are all apps.
+
+Apps usually do three things:
+
+1. **Read** records from the network and render them on screen.
+2. **Write** records on your behalf when you do things (post a message, edit your profile, give an endorsement).
+3. **Authenticate** as you with your provider when writing.
+
+A single app can be specialised: Bluesky focuses on microblog posts, Sifa focuses on professional identity, Tangled on Git repositories. Each app reads the records that matter to it and ignores the rest.
+
+## AppViews — the index layer
+
+Reading records straight from millions of providers, one at a time, would be slow. So apps almost always have an **AppView**: a service that indexes the network into a database optimised for the questions that app needs to answer.
+
+Sifa runs its own AppView at `sifa.id`. It indexes the records it cares about — your `id.sifa.*` profile records, the `app.bsky.*` activity that shows up on your profile, the `forum.barazo.*` posts that flow through Sifa's community feed.
+
+The AppView is what makes your profile load fast. Without it, every page view would have to ask hundreds of providers for the latest data.
+
+Important: **the AppView is a cache, not the source of truth.** Your records live on your provider. The AppView is Sifa's index of them. If you delete a record from your provider, it disappears from Sifa within seconds.
+
+## The firehose
+
+How does an AppView find new records to index? It subscribes to the **firehose** — a real-time stream of every record created or modified on the entire Atmosphere network.
+
+Anyone can read the firehose. Sifa reads it; Bluesky reads it; the next app launching tomorrow reads it. They each pick out the record types they care about and ignore the rest.
+
+That is why a post you write on Bluesky can appear in your Sifa activity feed without any explicit cross-posting: Bluesky writes the post to your provider, the firehose broadcasts the new record, Sifa's AppView indexes it, and your profile updates.
+
+## Why Sifa and Bluesky show different views
+
+The same records, two different apps, two different presentations. Specifically:
+
+- Bluesky shows **everything** — posts, likes, reposts, follows — because Bluesky is a social timeline.
+- Sifa shows **only the work you create** — articles, repos, RSVPs, reviews — because Sifa is a professional profile. See [Activity feed](/docs/activity-feed) for the exact allow-list.
+
+Neither view is the "real" one. They are both honest renderings of the same underlying records, filtered for different purposes. If you want to see your full firehose activity, an app called [PDS Reader](https://pdsls.dev) shows everything on your account.
+
+## Why this design matters
+
+You may have noticed the pattern. Twitter, LinkedIn, Facebook each store your data, decide how to display it, and charge advertisers for access. The data and the app are the same company.
+
+The Atmosphere splits them apart. Your data lives on your provider (or your own server, if you self-host). Apps read your data and render it. If you don't like how an app renders, switch to another app — your data is unchanged. If an app shuts down, your data is still there.
+
+This is the same shape as email: your inbox lives on your mail server, your mail client just reads it. You can switch from Apple Mail to Thunderbird without losing your inbox.
+
+## Want to go deeper
+
+- [Your data on a provider](/docs/your-data-on-a-provider) — what records look like, where they live.
+- [DIDs, handles, and providers](/docs/dids-handles-providers) — the parts of your identity.
+- [Activity feed](/docs/activity-feed) — exactly which records Sifa shows on your profile.
+- [Atom feeds](/docs/atom-feeds) — another way to consume your Sifa activity, with no Atmosphere account needed.
