@@ -137,11 +137,11 @@
 /* Underlined prose links in the MDX content body, matching sifa-web's style:
    text-primary + underline + underline-offset-4. Scoped to .prose so we
    don't hit the sidebar, footer, or the homepage cards. */
-.prose :where(a):not(:has(code)) {
+.prose :where(a):not(:has(code)):not([data-card]) {
   color: var(--color-fd-primary);
   text-decoration: underline;
   text-underline-offset: 4px;
 }
-.prose :where(a):not(:has(code)):hover {
+.prose :where(a):not(:has(code)):not([data-card]):hover {
   text-decoration-thickness: 2px;
 }
