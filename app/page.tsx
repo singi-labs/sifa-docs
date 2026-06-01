@@ -4,6 +4,18 @@ import { SiteFooter } from '../components/site-footer'
 
 const sections = [
   {
+    title: 'Create an account',
+    description:
+      'Sign in with your existing Bluesky, Eurosky, or other Atmosphere account — or create one in a minute.',
+    href: '/docs/create-account',
+  },
+  {
+    title: 'Import from LinkedIn',
+    description:
+      'Bring your positions, education, and skills across. Your LinkedIn ZIP is extracted in your browser and never leaves your device.',
+    href: '/docs/import-linkedin',
+  },
+  {
     title: 'Activity feed',
     description:
       'How Sifa decides what shows up on your profile — articles, reviews, and other work you create, not likes or bookmarks.',
@@ -50,7 +62,7 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="mt-12 grid w-full max-w-3xl gap-4 sm:grid-cols-3">
+        <div className="mt-12 grid w-full max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {sections.map((section) => (
             <Link
               key={section.href}

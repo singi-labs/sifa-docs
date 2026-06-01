@@ -1,0 +1,53 @@
+---
+title: Create a Sifa account
+description: How to sign in to Sifa with your existing Atmosphere account, or create one if you don't have one yet.
+---
+
+Sifa runs on the Atmosphere network (also known as the AT Protocol). Your Sifa account _is_ an Atmosphere account — Sifa does not run its own login system. If you already use Bluesky, Tangled, Leaflet, Eurosky, or any of the other Atmosphere apps, you already have an account, and you can sign in to Sifa with it.
+
+## I already have a Bluesky (or other Atmosphere) account
+
+1. Go to [sifa.id/login](https://sifa.id/login).
+2. Enter your Atmosphere username — for most people this is the `jay.bsky.social` form, or the custom domain you've set up as your handle.
+3. Click **Sign in to Sifa**.
+4. You'll be redirected to your home PDS (the server that holds your account, typically Bluesky's PDS at `bsky.social`) to authorise Sifa. Approve the request.
+5. Back on Sifa, your professional profile is created automatically and you land on your profile page.
+
+That's it. There is no separate sign-up flow on Sifa, no email confirmation, no password to remember. Your existing Atmosphere identity is the account.
+
+## I don't have an Atmosphere account yet
+
+You need an Atmosphere account before you can use Sifa. You don't have to create it through Sifa — pick whichever entry point you prefer; the account works across the whole network.
+
+**Easiest path:**
+
+1. Open [bsky.app](https://bsky.app) and create an account there (free, takes a minute).
+2. Come back to [sifa.id/login](https://sifa.id/login) and sign in with that account.
+
+**If you want an EU-hosted PDS:**
+
+If you'd rather your data live on European infrastructure rather than on Bluesky's US-hosted PDS, create the account on [Eurosky](https://eurosky.social) instead. Once the account exists, sign in to Sifa the same way.
+
+Other Atmosphere providers (Northsky, Blacksky, Skylight, and others) work the same — pick whichever fits, then sign in to Sifa with the resulting handle.
+
+You can move your account between PDSes later without losing any of your Sifa data. That's the point of building on an open protocol.
+
+## What "Atmosphere account" means
+
+An Atmosphere account is a portable identity on the AT Protocol. Concretely it gives you:
+
+- **A DID** (decentralised identifier) — the permanent ID for your account. Looks like `did:plc:abc123…`.
+- **A handle** — the human-readable name, like `alice.bsky.social` or `alice.com`.
+- **A PDS** (Personal Data Server) — the server that stores your records.
+
+When you sign in to Sifa, Sifa reads from and writes to your PDS using AT Protocol APIs. Sifa does not have its own copy of your account; if you switch PDSes, delete records, or move to a different Atmosphere app, your data is yours and travels with you.
+
+## What happens to your profile when you first sign in
+
+The first time you sign in:
+
+- Sifa fetches your existing public Atmosphere data — posts, follows, repos, articles, RSVPs, anything your PDS already stores.
+- Sifa creates an `id.sifa.profile.self` record on your PDS. This is the professional-profile entry: the equivalent of a LinkedIn "about" section, with positions, education, skills, and projects.
+- The profile starts empty. You can fill it in by hand on Sifa, or [import from a LinkedIn data export](/docs/import-linkedin).
+
+Your profile is public by default. Anyone can view it without a Sifa account; bots and AI agents can read it. There's no "logged-out view" that hides part of the data — what you put on your profile is what the world sees. That is intentional.
