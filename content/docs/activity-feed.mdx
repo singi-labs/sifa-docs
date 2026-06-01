@@ -3,9 +3,9 @@ title: Activity feed
 description: What Sifa shows on your profile and why we leave most of your AT Protocol activity out.
 ---
 
-The activity feed on your Sifa profile is opinionated. We do not show everything you do on the AT Protocol. We show the things you made, not the things you reacted to.
+The activity feed on your Sifa profile is opinionated. We don't show everything you do on the AT Protocol. We show the things you made, not the things you reacted to.
 
-The exact rules come from a taxonomy in the Sifa SDK. The tables below are generated from that taxonomy when this page is built, so they cannot drift out of sync with what the product actually does.
+The rules come from a taxonomy in the Sifa SDK. The tables below are generated from that taxonomy when this page is built, so they can't drift out of sync with what the product actually does.
 
 ## What we show: "Made"
 
@@ -15,16 +15,16 @@ These are the record types Sifa treats as your work. They show up on your public
 
 ## What we leave out: "Did"
 
-These are things you did on the network — likes, follows, reposts, RSVPs. We keep them off your public profile so the page stays a record of work, not a record of taps. The Bluesky app and the originating apps already show this side of you.
+Things you did on the network: likes, follows, reposts, RSVPs. We keep these off your public profile so the page stays a record of work, not a record of taps. The Bluesky app and the originating apps already show this side of you.
 
 <ActivityRegistry tier="action" />
 
-A third tier (`filtered`) covers configuration records, moderation records, and other infrastructure that we hide from every Sifa surface. Those records still live on your PDS; we just do not render them.
+A third tier (`filtered`) covers configuration records, moderation records, and other infrastructure that we hide from every Sifa surface. Those records still live on your PDS, we just don't render them.
 
-## Why it is set up this way
+## Why it's set up this way
 
-Most professional networks rank, score, or pad your profile with engagement metrics. We do not. Your profile is a record of work you did. If you want to know if someone is good at what they say they do, click through to the actual work.
+Most professional networks rank, score, or pad your profile with engagement metrics. We don't. Your profile is a record of work you did. If you want to know if someone is good at what they say they do, click through to the actual work.
 
 ## Want a different filter?
 
-You cannot currently customise which categories show up on your profile. If there is a record type you think we should add — or remove — open an issue against [sifa-sdk](https://github.com/singi-labs/sifa-sdk) with a link to the lexicon and a short reason.
+You can't currently customise which categories show up on your profile. If there's a record type you think we should add or remove, open an issue against [sifa-sdk](https://github.com/singi-labs/sifa-sdk) with a link to the lexicon and a short reason.

@@ -7,9 +7,9 @@ A **lexicon** is the schema for one type of Atmosphere record. It says, in machi
 
 ## Why lexicons matter
 
-Lexicons are the contract between apps. When Sifa publishes the `id.sifa.profile.position` lexicon, it is committing to: "any record in this collection will look like this." Other apps can read those records confidently, build features on top of them, and not have to ask Sifa for permission.
+Lexicons are the contract between apps. When Sifa publishes the `id.sifa.profile.position` lexicon, it's committing to: "any record in this collection will look like this." Other apps can read those records confidently, build features on top of them, and skip asking Sifa for permission.
 
-This is the part that makes the open network actually open. Without published schemas, apps would have to reverse-engineer each other's data, and the moment one app changed a field name everything would break. With lexicons, every change is versioned, public, and signposted.
+That's the part that makes an open network actually open. Without published schemas, apps would have to reverse-engineer each other's data, and the moment one app renamed a field everything would break. With lexicons, every change is versioned, public, and signposted.
 
 ## Where Sifa's lexicons live
 
@@ -18,11 +18,11 @@ All Sifa schemas live in [singi-labs/sifa-lexicons](https://github.com/singi-lab
 The namespace is `id.sifa.*`. Currently published:
 
 - `id.sifa.profile.self` and 12 sub-types covering positions, education, skills, certifications, projects, volunteering, publications, courses, honors, languages, external accounts, and the user's location.
-- `id.sifa.project.*` — projects with multiple contributors.
-- `id.sifa.endorsement` — peer endorsements based on real-world interactions.
-- `id.sifa.graph.follow` and `id.sifa.graph.connection` — the Sifa-specific follow / connection graph.
-- `id.sifa.auth*` — auth flows for Sifa's meet feature.
-- `id.sifa.meeting` — meeting records from the handshake / meet flow.
+- `id.sifa.project.*`: projects with multiple contributors.
+- `id.sifa.endorsement`: peer endorsements based on real-world interactions.
+- `id.sifa.graph.follow` and `id.sifa.graph.connection`: the Sifa-specific follow / connection graph.
+- `id.sifa.auth*`: auth flows for Sifa's meet feature.
+- `id.sifa.meeting`: meeting records from the handshake / meet flow.
 
 The exact list and schema details are in the repo. We don't restate them here because the repo is the source of truth.
 
@@ -30,30 +30,30 @@ The exact list and schema details are in the repo. We don't restate them here be
 
 Because the schemas are public, any Atmosphere app can read or write them. Today:
 
-- **Sifa itself** — the primary writer; everything in your profile editor produces `id.sifa.*` records.
-- **pdsls.dev** — generic record browser, displays any lexicon including `id.sifa.*`.
-- **Atmosphere browser extensions** — some show your Sifa profile inline when you hover over an Atmosphere handle anywhere on the web.
+- **Sifa itself**: the primary writer. Everything in your profile editor produces `id.sifa.*` records.
+- **pdsls.dev**: generic record browser, displays any lexicon including `id.sifa.*`.
+- **Atmosphere browser extensions**: some show your Sifa profile inline when you hover over an Atmosphere handle anywhere on the web.
 
 We expect more over time. If you build something that reads or writes `id.sifa.*` records, [open an issue](https://github.com/singi-labs/sifa-lexicons/issues) and we'll add it here.
 
 ## Lexicons Sifa reads (but doesn't own)
 
-Sifa is not just a publisher. It also reads from other apps' lexicons to render your activity feed and rich profile data. The main ones:
+Sifa isn't just a publisher. It also reads from other apps' lexicons to render your activity feed and rich profile data. The main ones:
 
-- `app.bsky.*` — Bluesky posts, follows, reposts, profile data.
-- `forum.barazo.*` — Barazo forum posts and reactions (Sifa surfaces the Barazo activity that's relevant to a profile).
-- `sh.tangled.*` — Tangled repos, issues, pull requests.
-- `events.smokesignal.*` — Smoke Signal calendar events you've RSVP'd to.
-- `pub.leaflet.*` — Leaflet publications and articles.
-- `whtwnd.blog.*` — WhiteWind blog posts.
-- `community.lexicon.calendar.rsvp`, `community.lexicon.location.*` — shared community lexicons.
-- `site.standard.publication` — Standard.site publication records (see [Standard.site cards](/docs/standard-site-cards)).
-- ...and more as new Atmosphere apps launch.
+- `app.bsky.*`: Bluesky posts, follows, reposts, profile data.
+- `forum.barazo.*`: Barazo forum posts and reactions (Sifa surfaces the Barazo activity that's relevant to a profile).
+- `sh.tangled.*`: Tangled repos, issues, pull requests.
+- `events.smokesignal.*`: Smoke Signal calendar events you've RSVP'd to.
+- `pub.leaflet.*`: Leaflet publications and articles.
+- `whtwnd.blog.*`: WhiteWind blog posts.
+- `community.lexicon.calendar.rsvp`, `community.lexicon.location.*`: shared community lexicons.
+- `site.standard.publication`: Standard.site publication records (see [Standard.site cards](/docs/standard-site-cards)).
+- …and more as new Atmosphere apps launch.
 
-The full list of record types that Sifa treats as "activity" (and how each is categorised) lives in [`@singi-labs/sifa-sdk/tokens`](https://github.com/singi-labs/sifa-sdk). The [Activity feed](/docs/activity-feed) page renders that list dynamically — when sifa-sdk adds support for a new app, the page updates automatically.
+The full list of record types Sifa treats as "activity" (and how each is categorised) lives in [`@singi-labs/sifa-sdk/tokens`](https://github.com/singi-labs/sifa-sdk). The [Activity feed](/docs/activity-feed) page renders that list dynamically. When sifa-sdk adds support for a new app, the page updates automatically.
 
 ## Want to go deeper
 
-- [Your data on a provider](/docs/your-data-on-a-provider) — how lexicons connect to actual stored records.
-- [Apps, AppViews, and the firehose](/docs/apps-appviews-firehose) — how an app turns raw records into a rendered page.
-- [What is the Atmosphere?](/docs/what-is-the-atmosphere) — the bigger picture.
+- [Your data on a provider](/docs/your-data-on-a-provider): how lexicons connect to actual stored records.
+- [Apps, AppViews, and the firehose](/docs/apps-appviews-firehose): how an app turns raw records into a rendered page.
+- [What is the Atmosphere?](/docs/what-is-the-atmosphere): the bigger picture.

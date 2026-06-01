@@ -3,30 +3,30 @@ title: Move your account to another provider
 description: Migrate your Atmosphere account from one provider to another without losing followers, posts, profile data, or Sifa records. The full process.
 ---
 
-Your provider is the company storing your account data. If you don't like them anymore — performance, jurisdiction, pricing, policy — you can move to a different provider and keep everything. Your DID, your followers, your posts, your Sifa profile records all come with you.
+Your provider is the company storing your account data. Don't like them anymore (performance, jurisdiction, pricing, policy)? Move to a different provider and keep everything. Your DID, followers, posts, and Sifa profile records all come with you.
 
-This is one of the differentiating features of the Atmosphere. It also takes a bit of care to do right.
+This is one of the things that sets the Atmosphere apart. It also takes a bit of care to do right.
 
 ## What "moving" actually means
 
 Three things happen during a provider migration:
 
-1. **Your records are exported from the old provider** as a CAR file (a content-addressed archive of every record on your account).
-2. **Your records are imported into the new provider**, which becomes the new home for everything.
+1. **Records are exported from the old provider** as a CAR file (a content-addressed archive of every record on your account).
+2. **Records are imported into the new provider**, which becomes the new home for everything.
 3. **Your DID document is updated** to point identity-resolution requests at the new provider instead of the old one.
 
-Your **DID does not change**. Your handle may need re-pointing if you used a provider-issued subdomain (`alice.bsky.social` doesn't work once you're not on Bluesky). If you set up [your own domain as your handle](/docs/use-your-own-domain), that part is unaffected.
+Your **DID doesn't change**. Your handle may need re-pointing if you used a provider-issued subdomain (`alice.bsky.social` doesn't work once you're not on Bluesky). If you set up [your own domain as your handle](/docs/use-your-own-domain), that part is unaffected.
 
 ## Before you start
 
-- Know **which provider you're moving to**. The popular alternatives to Bluesky are [Eurosky](https://eurosky.social) (EU-hosted, GDPR-aware), [Tangled](https://tangled.org) (EU, developer-focused), and [Blacksky](https://blacksky.community).
-- Have an account ready on the new provider. Some providers (like Eurosky) require an invite; check their signup page.
-- Pick a moment when you can afford some downtime. The migration itself takes minutes but DNS propagation and re-signing into apps can take longer.
-- Back up first. Even though the protocol is designed for safe migration, mistakes happen — keep a CAR-file export of your old provider before you start.
+- Know **which provider you're moving to**. Popular alternatives to Bluesky: [Eurosky](https://eurosky.social) (EU-hosted, GDPR-aware), [Tangled](https://tangled.org) (EU, developer-focused), and [Blacksky](https://blacksky.community).
+- Have an account ready on the new provider. Some providers (like Eurosky) require an invite. Check their signup page.
+- Pick a moment when you can afford some downtime. The migration itself takes minutes, but DNS propagation and re-signing into apps can take longer.
+- Back up first. The protocol is built for safe migration, but mistakes happen. Keep a CAR-file export of your old provider before you start.
 
 ## The migration tool
 
-We strongly recommend using [`goat`](https://github.com/bluesky-social/indigo/tree/main/cmd/goat) — the official AT Protocol command-line tool maintained by Bluesky. It implements the full migration flow including the DID-document update, which is the part most likely to go wrong if done by hand.
+Use [`goat`](https://github.com/bluesky-social/indigo/tree/main/cmd/goat), the official AT Protocol command-line tool maintained by Bluesky. It implements the full migration flow including the DID-document update, which is the part most likely to go wrong if done by hand.
 
 ```bash
 goat account migrate \
@@ -35,7 +35,7 @@ goat account migrate \
   --new-password '<set-on-new-provider>'
 ```
 
-You'll be prompted for your old-account password and asked to confirm. `goat` then:
+It prompts you for your old-account password and asks you to confirm. `goat` then:
 
 1. Creates the account on the new provider.
 2. Exports every record from the old provider.
@@ -43,48 +43,48 @@ You'll be prompted for your old-account password and asked to confirm. `goat` th
 4. Requests a signed PLC operation to update your DID document.
 5. Activates the new account and deactivates the old one.
 
-The whole flow usually takes 1–5 minutes depending on how many records you have.
+The whole flow usually takes 1 to 5 minutes depending on how many records you have.
 
-## During the migration — what happens to apps
+## During the migration: what happens to apps
 
 While the migration is in progress, apps you're signed into (Sifa, Bluesky, others) **may show stale data for a few minutes**. They cache identity-resolution responses for short periods. Once the cache expires they pick up the new provider automatically.
 
 After migration, you may have to **sign out and sign back in** to Sifa to refresh the app's session. The session token was issued by your old provider, so it stops working when that provider releases your account.
 
-## After the migration — checklist
+## After the migration: checklist
 
 Run through these to verify the move worked end-to-end:
 
 - **Resolve your handle.** `curl -s "https://api.bsky.app/xrpc/com.atproto.identity.resolveHandle?handle=alice.eurosky.social"` should return your DID.
 - **Inspect your new PDS.** `curl -s "https://eurosky.social/xrpc/com.atproto.repo.listRecords?repo=<your-did>&collection=id.sifa.profile.position"` should return your Sifa positions.
-- **Sign into Sifa with the new handle.** Your profile should render exactly as before.
-- **Check your Bluesky timeline.** Your posts, follows, and followers should be intact.
+- **Sign into Sifa with the new handle.** Profile should render exactly as before.
+- **Check your Bluesky timeline.** Posts, follows, and followers should be intact.
 - **Check your Atom feed.** [`https://sifa.id/p/<new-handle>/activity.atom`](https://sifa.id/p/alice.eurosky.social/activity.atom) should resolve and show the same entries as before.
 
-If you used a custom domain as your handle (`alice.com`), the domain still works — you don't need to update DNS unless you also changed your underlying handle. The DID lookup follows the same TXT record or `.well-known/atproto-did` file you set up originally.
+If you used a custom domain as your handle (`alice.com`), the domain still works. You don't need to update DNS unless you also changed your underlying handle. The DID lookup follows the same TXT record or `.well-known/atproto-did` file you set up originally.
 
 ## What can go wrong (and how to fix it)
 
-**"My handle resolution fails."**
-DNS caches sometimes hold on to the old record. Wait 10–15 minutes and retry. If it still fails, the PLC update may not have applied — see [PLC directory](https://web.plc.directory) and look up your DID to confirm the operation went through.
+**"My handle resolution fails."**  
+DNS caches sometimes hold on to the old record. Wait 10 to 15 minutes and retry. If it still fails, the PLC update may not have applied. Look up your DID on the [PLC directory](https://web.plc.directory) to confirm the operation went through.
 
-**"Sifa shows my profile as empty after migration."**
+**"Sifa shows my profile as empty after migration."**  
 Your AppView session needs to refresh. Sign out and back in. If it persists for more than 30 minutes, [open an issue](https://github.com/singi-labs/sifa-workspace/issues).
 
-**"Some records didn't transfer."**
-Rare but possible if your old provider had a record the protocol considers invalid. The `goat` CLI prints a list of skipped records at the end; you can look at them on pdsls.dev under your old DID and re-create them by hand on the new provider.
+**"Some records didn't transfer."**  
+Rare, but possible if your old provider had a record the protocol considers invalid. The `goat` CLI prints a list of skipped records at the end. Look at them on pdsls.dev under your old DID and re-create them by hand on the new provider.
 
-**"I want to roll back."**
-You can. As long as your old provider hasn't deleted the deactivated account, you can re-activate it via the protocol. Contact your old provider's support; the operation is reversible for a limited window.
+**"I want to roll back."**  
+You can. As long as your old provider hasn't deleted the deactivated account, you can re-activate it via the protocol. Contact your old provider's support. The operation is reversible for a limited window.
 
 ## Sifa-specific notes
 
 - Sifa's AppView reads everything by DID. Since your DID doesn't change, your profile URL (`https://sifa.id/p/<your-did>` or the handle-based equivalent) stays the same.
 - Endorsements you've received reference your DID. They survive the migration intact.
-- The [Activity feed](/docs/activity-feed) recomputes from the firehose; any in-flight events during migration may be missed but new ones land normally.
+- The [Activity feed](/docs/activity-feed) recomputes from the firehose. Any in-flight events during migration may be missed, but new ones land normally.
 
 ## Want to go deeper
 
-- [Your data on a provider](/docs/your-data-on-a-provider) — where your records actually live and how to inspect them.
-- [DIDs, handles, and providers](/docs/dids-handles-providers) — the model that makes migration safe.
-- [What is the Atmosphere?](/docs/what-is-the-atmosphere) — the bigger reason this works.
+- [Your data on a provider](/docs/your-data-on-a-provider): where your records actually live and how to inspect them.
+- [DIDs, handles, and providers](/docs/dids-handles-providers): the model that makes migration safe.
+- [What is the Atmosphere?](/docs/what-is-the-atmosphere): the bigger reason this works.

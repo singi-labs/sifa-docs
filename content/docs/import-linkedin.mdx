@@ -3,54 +3,54 @@ title: Import from LinkedIn
 description: How to bring your positions, education, skills, and other professional history from LinkedIn into Sifa using LinkedIn's data export.
 ---
 
-LinkedIn lets you download your entire profile as a ZIP file. Sifa's importer reads that ZIP and turns it into AT Protocol records on your own PDS — meaning the same data becomes portable, readable by any app, and survives any future move away from Sifa or LinkedIn.
+LinkedIn lets you download your whole profile as a ZIP. Sifa's importer reads that ZIP and turns it into AT Protocol records on your own PDS. The same data becomes portable, any app can read it, and it survives a future move away from Sifa or LinkedIn.
 
-The whole import runs in your browser. Sifa's servers never receive the LinkedIn ZIP itself.
+The import runs entirely in your browser. Sifa's servers never see the LinkedIn ZIP.
 
 ## Before you start
 
 You need:
 
 - A Sifa account ([sign in](/docs/create-account) first if you haven't).
-- A LinkedIn account in the same name as the profile you want to import.
+- A LinkedIn account in the name of the profile you want to import.
 
-A few minutes of patience: LinkedIn does not give you the ZIP instantly. It emails you a download link, usually within 10 minutes, sometimes longer.
+And a few minutes of patience. LinkedIn doesn't hand you the ZIP instantly. It emails you a link, usually within 10 minutes, sometimes longer.
 
-## Step 1 — Request your data archive from LinkedIn
+## Step 1: request your data archive from LinkedIn
 
 1. Open [LinkedIn's "Download my data" page](https://www.linkedin.com/mypreferences/d/download-my-data).
 2. Select **Download larger data archive** (the first option).
 3. Click **Request archive**.
-4. LinkedIn will email you when the archive is ready. The email subject is _"Your LinkedIn data archive is ready to download"_.
-5. Follow the link, sign in, and download the ZIP. **Do not unzip it** — Sifa wants the ZIP as-is.
+4. LinkedIn emails you when the archive is ready. Subject line: _"Your LinkedIn data archive is ready to download"_.
+5. Follow the link, sign in, download the ZIP. **Don't unzip it.** Sifa wants the ZIP as-is.
 
-LinkedIn splits exports into batches. **Batch 1** (the one Sifa needs) usually arrives within 10 minutes; later batches contain ads data and similar that Sifa does not use.
+LinkedIn splits exports into batches. **Batch 1** is the one Sifa needs, usually within 10 minutes. Later batches contain ads data and similar things Sifa doesn't use.
 
-## Step 2 — Upload the ZIP to Sifa
+## Step 2: upload the ZIP to Sifa
 
 1. Go to [sifa.id/import](https://sifa.id/import).
 2. Drag the ZIP onto the upload area, or click to browse and pick the file.
 3. The ZIP is extracted in your browser. Nothing is uploaded to Sifa's servers at this stage.
 
-If the page rejects the file, see [troubleshooting](#troubleshooting).
+If the page rejects the file, jump to [troubleshooting](#troubleshooting).
 
-## Step 3 — Review what will be imported
+## Step 3: review what will be imported
 
-After parsing, Sifa shows you a review screen with everything it found in the archive. Things to check before continuing:
+After parsing, Sifa shows a review screen with everything it found in the archive. Check before continuing:
 
 - **Positions** (current and past jobs). Title, company, dates, description.
 - **Education**. Schools, degrees, fields of study, dates.
-- **Skills**. Each skill becomes a separate record.
+- **Skills**. Each one becomes a separate record.
 - **Certifications**. Issuer, date, expiration.
-- **Projects, publications, volunteering, honours, languages, courses** — anything LinkedIn lets you list, Sifa imports.
+- **Projects, publications, volunteering, honours, languages, courses**. Anything LinkedIn lets you list, Sifa imports.
 
-Anything you do not want public, deselect now.
+Anything you don't want public, deselect now.
 
-> **Everything you import will be publicly visible.** Unlike LinkedIn — where some fields are hidden from logged-out visitors — Sifa profiles are fully public. Logged-out humans, search engines, and AI agents all see the same thing you do. There is no half-public mode.
+> **Everything you import will be publicly visible.** On LinkedIn some fields are hidden from logged-out visitors. On Sifa profiles are fully public. Logged-out humans, search engines, AI agents all see the same thing you do. No half-public mode.
 
-This is deliberate. The point of a portable professional profile is that it works as a reference anyone can link to. If you want to keep something private, leave it off.
+That's on purpose. A portable professional profile only works if anyone can link to it. If you want to keep something private, leave it off.
 
-## Step 4 — Import
+## Step 4: import
 
 Click **Import**. Sifa writes one AT Protocol record per item to your PDS:
 
@@ -59,34 +59,34 @@ Click **Import**. Sifa writes one AT Protocol record per item to your PDS:
 - `id.sifa.profile.skill` for each skill
 - …and so on for the rest.
 
-The records live on your PDS, not on Sifa's servers. Sifa reads from your PDS to render your profile. If you sign in to a different Atmosphere app tomorrow, the same records are visible there too.
+The records live on your PDS, not on Sifa's servers. Sifa reads from your PDS to render your profile. Sign in to a different Atmosphere app tomorrow and the same records are visible there too.
 
-You can edit, delete, or re-order anything from your Sifa profile editor afterwards.
+You can edit, delete, or re-order anything from the Sifa profile editor afterwards.
 
 ## Troubleshooting
 
 **"This doesn't look like a LinkedIn export."**  
-You probably selected _Fast file (only your profile)_ instead of _Download larger data archive_. The larger archive is what Sifa needs because it contains the structured CSVs. Request it again and wait for the email.
+You probably picked _Fast file (only your profile)_ instead of _Download larger data archive_. Sifa needs the larger archive because it contains the structured CSVs. Request it again and wait for the email.
 
 **"The ZIP is too big."**  
-LinkedIn exports can be large if you have years of activity. Sifa's browser-side extractor handles ZIPs up to a few hundred MB; if your file is larger, open it locally, find the `Profile.csv`, `Positions.csv`, `Education.csv` (and similar) files in the root, and zip those up on their own. Upload that smaller ZIP.
+LinkedIn exports get large if you've been there for years. Sifa's browser-side extractor handles a few hundred MB. If yours is bigger, open it locally, grab the `Profile.csv`, `Positions.csv`, `Education.csv` (and similar) files in the root, and zip those on their own. Upload the smaller ZIP.
 
 **"Some of my positions are missing dates."**  
-LinkedIn occasionally omits end dates for current roles. Sifa interprets the missing end date as "still current" — that's the behaviour you want for an active job. For past roles missing dates, fix them on LinkedIn before re-exporting, or edit them on Sifa after import.
+LinkedIn sometimes omits end dates for current roles. Sifa reads a missing end date as "still current", which is what you want for an active job. For past roles missing dates, fix them on LinkedIn before re-exporting, or edit them on Sifa after import.
 
 **"My LinkedIn name doesn't match my AT Protocol handle."**  
-That's fine. Sifa does not match identities by name; it writes everything to whichever PDS you're signed in with. You can have `myhandle.bsky.social` on Sifa and any name on LinkedIn — they don't need to agree.
+Fine. Sifa doesn't match identities by name. It writes everything to whichever PDS you're signed in with. You can be `myhandle.bsky.social` on Sifa and any name on LinkedIn. They don't need to agree.
 
 ## What Sifa doesn't import
 
 - Connections / followers list. Your Sifa graph is separate (and lives on your PDS as standard AT Protocol follow records).
 - Messages (DMs).
 - Recommendations written by other people. Use [endorsements](/docs/activity-feed) once your profile is up.
-- Likes, comments, and other engagement signals — Sifa is a record-of-work, not an engagement feed.
+- Likes, comments, and other engagement signals. Sifa is a record of work, not an engagement feed.
 
 ## Privacy summary
 
-- Your LinkedIn ZIP is **extracted in your browser**. Sifa's servers do not see the ZIP, the file contents, or any field you choose not to import.
-- After you click Import, the records you selected are written to **your PDS** via AT Protocol's authenticated APIs. Sifa's AppView reads them back to render your profile.
-- If you delete Sifa later, your imported records stay on your PDS unless you explicitly delete them too. They become readable by any other Atmosphere app.
-- LinkedIn itself is not touched. Sifa never logs in to LinkedIn or scrapes it; the import is one-way from the ZIP you supplied.
+- The LinkedIn ZIP is **extracted in your browser**. Sifa's servers don't see the ZIP, the file contents, or any field you choose not to import.
+- When you click Import, the records you selected are written to **your PDS** via AT Protocol's authenticated APIs. Sifa's AppView reads them back to render your profile.
+- Delete Sifa later and the imported records stay on your PDS unless you explicitly delete them too. They become readable by any other Atmosphere app.
+- LinkedIn itself is untouched. Sifa never logs in to LinkedIn or scrapes it. The import is one-way, from the ZIP you supplied.

@@ -3,7 +3,7 @@ title: Privacy and data
 description: What's public, what's on your provider, what's in Sifa's database, and what happens when you delete. The full picture of where your data lives and who can see it.
 ---
 
-Sifa is a professional network, so the design assumption is "people will look at this." Your profile is public by default — but the _full_ picture of where data lives and who can see it has more nuance than that. This page is the reference.
+Sifa is a professional network, so the design assumption is "people will look at this." Your profile is public by default. The full picture of where data lives and who can see it has more nuance though. This page is the reference.
 
 ## What's public
 
@@ -14,19 +14,19 @@ Sifa is a professional network, so the design assumption is "people will look at
 - AI agents and crawlers can read it. The page returns 200 to anyone.
 - Logged-out humans see the same thing logged-in humans see. No "hide some fields from non-members" mode.
 
-This is intentional. The point of a portable professional profile is that it works as a public reference — somewhere you can link to from your CV, your email signature, your conference bio. If you wanted half-public, LinkedIn already does that.
+This is on purpose. A portable professional profile only works as a public reference, somewhere you can link to from your CV, your email signature, your conference bio. If you wanted half-public, LinkedIn already does that.
 
-If you want to keep something private, **leave it off your profile.** Records you don't create can't be displayed.
+Want to keep something private? **Leave it off your profile.** Records you don't create can't be displayed.
 
 ## What's _not_ public
 
-Some things you do on Sifa are not surfaced on your public profile:
+Some things you do on Sifa aren't surfaced on your public profile:
 
-- **Likes / reposts / follows.** These get written to your provider but Sifa doesn't render them on your profile — see [Activity feed](/docs/activity-feed) for which record types Sifa treats as "Did" rather than "Made".
+- **Likes / reposts / follows.** These get written to your provider but Sifa doesn't render them on your profile. See [Activity feed](/docs/activity-feed) for which record types Sifa treats as "Did" rather than "Made".
 - **Drafts** in the profile editor before you save.
 - **Blocks and mutes.** Stored on your account, used by Sifa to filter what you see, but not surfaced on your profile.
 
-Note: just because Sifa doesn't render them, doesn't mean they're secret. Many of these (likes, follows, blocks) are written to your provider as standard AT Protocol records and **are visible** to any other Atmosphere app that wants to look. The privacy story comes from the protocol, not from Sifa.
+A heads-up though: just because Sifa doesn't render them doesn't mean they're secret. Many of these (likes, follows, blocks) are written to your provider as standard AT Protocol records and **are visible** to any other Atmosphere app that wants to look. The privacy story comes from the protocol, not from Sifa.
 
 ## Where data lives
 
@@ -40,7 +40,7 @@ Note: just because Sifa doesn't render them, doesn't mean they're secret. Many o
 | Email address (if you provided one)        | Sifa's database, encrypted at rest                               | Only Sifa's server; never displayed; used for transactional email |
 | Analytics on your visits                   | Sifa's database (aggregate only); GlitchTip for error monitoring | Sifa's team                                                       |
 
-The AppView is a **cache, not the source of truth.** If a record is deleted from your provider, the AppView removes it from its index within seconds (via the firehose). Sifa does not retain copies after deletion.
+The AppView is a **cache, not the source of truth.** Delete a record from your provider and the AppView removes it from its index within seconds (via the firehose). Sifa doesn't retain copies after deletion.
 
 ## What Sifa stores beyond your records
 
@@ -48,23 +48,23 @@ Sifa's own database holds things that aren't AT Protocol records:
 
 - **Session tokens** (hashed) so you stay logged in.
 - **OAuth grant metadata** so Sifa knows what you authorised.
-- **Anti-abuse signals** — rate-limit counters, sybil-detection scores, moderation labels. These are private to Sifa.
-- **Analytics** — page-view counts, search-query frequencies, aggregated only. No per-user logs of "Alice viewed Bob's profile."
-- **Error monitoring** — when a request fails, Sifa sends a Sentry-compatible error report to its [GlitchTip](https://errors.sifa.id) instance. Reports may include the page URL and an error stack trace; we strip PII before send.
+- **Anti-abuse signals**: rate-limit counters, sybil-detection scores, moderation labels. Private to Sifa.
+- **Analytics**: page-view counts, search-query frequencies. Aggregated only. No per-user logs of "Alice viewed Bob's profile."
+- **Error monitoring**: when a request fails, Sifa sends a Sentry-compatible error report to its [GlitchTip](https://errors.sifa.id) instance. Reports may include the page URL and an error stack trace. PII is stripped before send.
 
-None of this is exposed via the public profile. None of it leaves the Sifa AppView's database (no third-party trackers, no advertising pixels, no Google Analytics).
+None of this is exposed via the public profile. None of it leaves the Sifa AppView's database. No third-party trackers, no advertising pixels, no Google Analytics.
 
 ## Deleting things
 
 Three levels of "delete":
 
-**Delete one record.** Open the relevant item in your profile editor and remove it. The `id.sifa.profile.*` record is deleted from your provider; the AppView sees the deletion on the firehose and removes it from your profile within seconds.
+**Delete one record.** Open the item in your profile editor and remove it. The `id.sifa.profile.*` record is deleted from your provider. The AppView sees the deletion on the firehose and removes it from your profile within seconds.
 
-**Delete everything Sifa-specific.** Account settings has a delete-Sifa-data button that walks all `id.sifa.*` collections on your account and removes each record. Your underlying Atmosphere account (Bluesky, Eurosky, etc.) is untouched — only the records in the Sifa namespace are removed.
+**Delete everything Sifa-specific.** Account settings has a delete-Sifa-data button that walks all `id.sifa.*` collections on your account and removes each record. Your underlying Atmosphere account (Bluesky, Eurosky, etc.) is untouched. Only the records in the Sifa namespace go.
 
 **Delete your Atmosphere account.** This is a provider-level action. You do it on your provider's settings page, not on Sifa. Your DID is deactivated, all your records (across all apps) are released. Sifa's AppView sees the deactivation and stops rendering your profile.
 
-The first two are reversible — re-add the data and it's back. The third is irreversible after a grace period that varies by provider.
+The first two are reversible: re-add the data and it's back. The third is irreversible after a grace period that varies by provider.
 
 ## What survives if you leave Sifa
 
@@ -72,27 +72,27 @@ If you delete your Sifa-specific records but keep your Atmosphere account:
 
 - Your Sifa profile (`https://sifa.id/p/<handle>`) returns 404 once the `id.sifa.profile.self` record is gone.
 - Your AT Protocol identity (DID, handle, all other records) is untouched.
-- Endorsements other people gave you are owned by _their_ provider; they don't disappear from those people's accounts when you leave Sifa.
+- Endorsements other people gave you are owned by _their_ provider. They don't disappear from those accounts when you leave Sifa.
 
 ## What survives if Sifa shuts down
 
 If Sifa as a company / project goes away:
 
-- Your `id.sifa.*` records remain on your provider, fully readable, indefinitely.
+- Your `id.sifa.*` records stay on your provider, fully readable, indefinitely.
 - The `sifa.id` website goes dark, so the profile URLs stop loading.
-- The AT Protocol lexicons we published (`id.sifa.*`) remain valid open schemas. Any other app can adopt them and render the same records — meaning a successor profile site can read your existing Sifa data without you doing anything.
+- The AT Protocol lexicons we published (`id.sifa.*`) remain valid open schemas. Any other app can adopt them and render the same records, so a successor profile site can read your existing Sifa data without you doing anything.
 - The lexicon repo ([singi-labs/sifa-lexicons](https://github.com/singi-labs/sifa-lexicons)) is MIT-licensed and would persist as long as GitHub does.
 
-This is the "your data is not held hostage" promise, made concrete.
+That's the "your data isn't held hostage" promise, made concrete.
 
 ## Requesting your data
 
-You don't need to request it — it's already on your provider, where you have direct access. See [Your data on a provider](/docs/your-data-on-a-provider) for how to inspect or export it via pdsls.dev or the AT Protocol API.
+No need to request it. It's already on your provider, where you have direct access. See [Your data on a provider](/docs/your-data-on-a-provider) for how to inspect or export it via pdsls.dev or the AT Protocol API.
 
-If you need a copy of any Sifa-side metadata (session logs, analytics) for compliance reasons, [open an issue](https://github.com/singi-labs/sifa-workspace/issues) or email the team. EU users have GDPR rights of access and erasure — we honour both.
+Need a copy of any Sifa-side metadata (session logs, analytics) for compliance reasons? [Open an issue](https://github.com/singi-labs/sifa-workspace/issues) or email the team. EU users have GDPR rights of access and erasure. We honour both.
 
 ## Want to go deeper
 
-- [Your data on a provider](/docs/your-data-on-a-provider) — the concrete shape of records and how to inspect them.
-- [Move your account to another provider](/docs/move-account) — taking your data elsewhere.
-- [Lexicons and integrations](/docs/lexicons-and-integrations) — the open schemas that make data portable.
+- [Your data on a provider](/docs/your-data-on-a-provider): the concrete shape of records and how to inspect them.
+- [Move your account to another provider](/docs/move-account): taking your data elsewhere.
+- [Lexicons and integrations](/docs/lexicons-and-integrations): the open schemas that make data portable.

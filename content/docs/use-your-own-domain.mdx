@@ -1,13 +1,13 @@
 ---
 title: Use your own domain as your handle
-description: Replace `alice.bsky.social` with `alice.com` — your own domain becomes your Atmosphere identity. The setup lives on your provider (or via DNS), not on Sifa.
+description: Replace `alice.bsky.social` with `alice.com`. Your own domain becomes your Atmosphere identity. Setup happens on your provider (or via DNS), not on Sifa.
 ---
 
-By default, your Atmosphere handle ends in your provider's domain — `alice.bsky.social` if you're on Bluesky, `alice.eurosky.social` on Eurosky. You can replace that with your own domain (`alice.com`, `me.example.org`) so your professional identity isn't tied to a provider's name.
+Your Atmosphere handle defaults to ending in your provider's domain: `alice.bsky.social` on Bluesky, `alice.eurosky.social` on Eurosky. You can swap that for your own domain (`alice.com`, `me.example.org`) so your professional identity isn't tied to a provider's name.
 
-The setup happens at the **AT Protocol level**, on your provider. Sifa does not offer this as a hosted service — we don't run a whitelabel handle service. What we offer is the profile that uses whatever handle you've configured upstream.
+The setup happens at the **AT Protocol level**, on your provider. Sifa doesn't run a whitelabel handle service. What Sifa gives you is the profile that uses whichever handle you've configured upstream.
 
-Once your handle is set, your Sifa profile URL automatically becomes `https://sifa.id/p/alice.com`. No further configuration needed on Sifa.
+Once your handle is set, your Sifa profile URL becomes `https://sifa.id/p/alice.com` automatically. No further configuration on Sifa.
 
 ## What you need before you start
 
@@ -15,13 +15,13 @@ Once your handle is set, your Sifa profile URL automatically becomes `https://si
 - A domain you control.
 - Either the ability to add DNS TXT records to that domain, or the ability to serve a single file at `https://<your-domain>/.well-known/atproto-did`.
 
-If you control DNS but not `.well-known/`, use the DNS method. If you control `.well-known/` (most hosting platforms) but not DNS, use the file method. Either works.
+Control DNS but not `.well-known/`? Use the DNS method. Control `.well-known/` (most hosting platforms) but not DNS? Use the file method. Either works.
 
-## Step 1 — find your DID
+## Step 1: find your DID
 
 Your DID is the permanent ID for your account. You need its value to point your domain at it.
 
-In the Bluesky app: **Settings → Account → Advanced → Decentralised Identity (DID)**. Copy the long string that starts with `did:plc:`.
+In the Bluesky app: **Settings → Account → Advanced → Decentralised Identity (DID)**. Copy the long string starting with `did:plc:`.
 
 In Sifa: open your profile page and look in the settings panel.
 
@@ -31,14 +31,14 @@ From the command line:
 curl -s "https://bsky.social/xrpc/com.atproto.identity.resolveHandle?handle=<your-current-handle>" | jq -r .did
 ```
 
-Substitute your provider's hostname if you're not on Bluesky.
+Swap `bsky.social` for your provider's hostname if you're not on Bluesky.
 
-## Step 2 (option A) — set a DNS TXT record
+## Step 2, option A: set a DNS TXT record
 
-On your DNS provider (Cloudflare, Hetzner, Route 53, your registrar's panel — wherever you manage records for the domain):
+On your DNS provider (Cloudflare, Hetzner, Route 53, your registrar's panel, wherever you manage records for the domain):
 
 - **Type:** TXT
-- **Name:** `_atproto.<your-domain>` (so for `alice.com`, the name is literally `_atproto.alice.com`. Some DNS UIs ask you to enter just `_atproto` and they append the domain automatically — both are correct.)
+- **Name:** `_atproto.<your-domain>`. For `alice.com`, that's literally `_atproto.alice.com`. Some DNS UIs ask for just `_atproto` and append the domain automatically. Both forms are correct.
 - **Value:** `did=did:plc:<your-did-here>`
 - **TTL:** 300 is fine.
 
@@ -51,21 +51,21 @@ dig +short TXT _atproto.alice.com
 # should return: "did=did:plc:abc123..."
 ```
 
-## Step 2 (option B) — serve a `.well-known/atproto-did` file
+## Step 2, option B: serve a `.well-known/atproto-did` file
 
-If you can't set DNS TXT records (managed hosts sometimes block this), serve a plain-text file at:
+If you can't set DNS TXT records (some managed hosts block them), serve a plain-text file at:
 
 ```
 https://<your-domain>/.well-known/atproto-did
 ```
 
-The file's contents are a single line: your DID. Nothing else.
+The file is a single line: your DID. Nothing else.
 
 ```
 did:plc:abc123def456...
 ```
 
-The response must be served with `Content-Type: text/plain` and respond to HTTPS. Most static hosts (GitHub Pages, Netlify, Cloudflare Pages, plain nginx) let you serve files at any path. Ghost Pro, some managed WordPress, and a handful of SaaS site builders block `/.well-known/` — in that case you must use the DNS method or move hosts.
+The response must be served with `Content-Type: text/plain` and respond over HTTPS. Most static hosts (GitHub Pages, Netlify, Cloudflare Pages, plain nginx) let you serve files at any path. Ghost Pro, some managed WordPress, and a handful of SaaS site builders block `/.well-known/`. In that case use the DNS method or move hosts.
 
 Verify:
 
@@ -74,29 +74,29 @@ curl -s https://alice.com/.well-known/atproto-did
 # should print: did:plc:abc123...
 ```
 
-## Step 3 — update your handle on your provider
+## Step 3: update your handle on your provider
 
-With the DNS or well-known set, tell your provider you want to change your handle.
+With DNS or well-known in place, tell your provider you want to change your handle.
 
-**On Bluesky:** Settings → Account → Handle → I have my own domain. Enter `alice.com`. The Bluesky app runs the verification; if it sees your DNS record or fetches your well-known file successfully, the handle is updated.
+**On Bluesky:** Settings → Account → Handle → I have my own domain. Enter `alice.com`. The Bluesky app runs the verification. If it finds your DNS record or fetches your well-known file, the handle is updated.
 
 **On Eurosky / Tangled / Blacksky:** roughly the same flow under Settings or Account.
 
-If the verification fails, double-check the steps above. DNS sometimes takes a few minutes to propagate; if `dig +short TXT _atproto.<domain>` returns the right value but your provider says no, wait 5 minutes and retry.
+If verification fails, double-check the steps above. DNS sometimes takes a few minutes to propagate. If `dig +short TXT _atproto.<domain>` returns the right value but your provider says no, wait 5 minutes and retry.
 
-## Step 4 — verify on Sifa
+## Step 4: verify on Sifa
 
 Sign out of Sifa and sign back in with your new handle. Your profile page is now `https://sifa.id/p/alice.com`.
 
-Old links pointing at `https://sifa.id/p/alice.bsky.social` continue to resolve — the AppView indexes by DID, not handle, so any path that maps to your DID renders the same profile.
+Old links pointing at `https://sifa.id/p/alice.bsky.social` still resolve. The AppView indexes by DID, not by handle, so any path that maps to your DID renders the same profile.
 
 ## Why do this
 
-- **Independence from your provider.** If you ever move from Bluesky to Eurosky, your domain handle stays. People who linked to `alice.com` don't lose anything.
-- **Personal-brand surface.** A short, memorable handle that matches your website. `sifa.id/p/alice.com` reads as your CV the same way `alice.com` reads as your blog.
-- **It's a one-time setup.** DNS records and well-known files don't decay. Set once, runs for years.
+- **Independence from your provider.** Move from Bluesky to Eurosky later, and your domain handle stays. People who linked to `alice.com` don't lose anything.
+- **Personal-brand surface.** A short, memorable handle that matches your website. `sifa.id/p/alice.com` reads as your CV the way `alice.com` reads as your blog.
+- **One-time setup.** DNS records and well-known files don't decay. Set once, runs for years.
 
 ## Want to go deeper
 
-- [DIDs, handles, and providers](/docs/dids-handles-providers) — what each piece is for. The DID is what makes handle changes work without breaking anything.
-- [Move your account to another provider](/docs/move-account) — handles paired with provider migration: you can keep your custom domain while switching where your data lives.
+- [DIDs, handles, and providers](/docs/dids-handles-providers): what each piece is for. The DID is what makes handle changes work without breaking anything.
+- [Move your account to another provider](/docs/move-account): handles paired with provider migration. You can keep your custom domain while switching where your data lives.
