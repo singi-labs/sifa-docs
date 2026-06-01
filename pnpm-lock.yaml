@@ -11,6 +11,9 @@ importers:
       '@radix-ui/colors':
         specifier: 3.0.0
         version: 3.0.0
+      '@singi-labs/sifa-sdk':
+        specifier: 0.9.18
+        version: 0.9.18(react@19.2.4)
       fumadocs-core:
         specifier: 16.6.5
         version: 16.6.5(@mdx-js/mdx@3.1.1)(@types/estree-jsx@1.0.5)(@types/hast@3.0.4)(@types/mdast@4.0.4)(@types/react@19.2.14)(lucide-react@0.570.0(react@19.2.4))(next@16.1.6(@babel/core@7.29.7)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(zod@4.3.6)
@@ -1146,6 +1149,18 @@ packages:
   '@simple-libs/stream-utils@1.2.0':
     resolution: {integrity: sha512-KxXvfapcixpz6rVEB6HPjOUZT22yN6v0vI0urQSk1L8MlEWPDFCZkhw2xmkyoTGYeFw7tWTZd7e3lVzRZRN/EA==}
     engines: {node: '>=18'}
+
+  '@singi-labs/sifa-sdk@0.9.18':
+    resolution: {integrity: sha512-Q2ko2seafY+C9gHQKb5J9V+EvwGVGmEsVFt+CAAPlqugSGQcbiJHE30myNkQwKUGAW2j7Mw2IqHI18oTKkV/Pg==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      '@tanstack/react-query': ^5.100.0
+      react: '>=19'
+    peerDependenciesMeta:
+      '@tanstack/react-query':
+        optional: true
+      react:
+        optional: true
 
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
@@ -3698,6 +3713,9 @@ packages:
   zod@4.3.6:
     resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
 
+  zod@4.4.3:
+    resolution: {integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==}
+
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
@@ -4719,6 +4737,12 @@ snapshots:
       '@simple-libs/stream-utils': 1.2.0
 
   '@simple-libs/stream-utils@1.2.0': {}
+
+  '@singi-labs/sifa-sdk@0.9.18(react@19.2.4)':
+    dependencies:
+      zod: 4.4.3
+    optionalDependencies:
+      react: 19.2.4
 
   '@standard-schema/spec@1.1.0': {}
 
@@ -7912,5 +7936,7 @@ snapshots:
       zod: 4.3.6
 
   zod@4.3.6: {}
+
+  zod@4.4.3: {}
 
   zwitch@2.0.4: {}

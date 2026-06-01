@@ -3,26 +3,23 @@ title: Activity feed
 description: What Sifa shows on your profile and why we leave most of your AT Protocol activity out.
 ---
 
-The activity feed on your Sifa profile is opinionated. We do not show everything you do on the AT Protocol. We show the things that make sense in a professional context — work you created, not things you reacted to.
+The activity feed on your Sifa profile is opinionated. We do not show everything you do on the AT Protocol. We show the things you made, not the things you reacted to.
 
-## What we show
+The exact rules come from a taxonomy in the Sifa SDK. The tables below are generated from that taxonomy when this page is built, so they cannot drift out of sync with what the product actually does.
 
-- Articles you publish (WhiteWind, Smoke Signal long-form, and similar)
-- Reviews you write (movies, books, etc.)
-- Videos you upload
-- Projects and other long-form artefacts you create
+## What we show: "Made"
 
-The exact list comes from an allow-list in our code. It changes as new AT Protocol record types appear.
+These are the record types Sifa treats as your work. They show up on your public profile.
 
-## What we leave out
+<ActivityRegistry tier="creation" />
 
-- Likes
-- Reposts
-- Bookmarks
-- Microblog posts (the ones that look like tweets)
-- Comments and replies
+## What we leave out: "Did"
 
-The reason is not that those activities are unimportant. They just do not say much about your professional work, and if we showed them your profile would drown in noise. The Bluesky app already shows that side of you. We focus on the part that does not have a good home yet.
+These are things you did on the network — likes, follows, reposts, RSVPs. We keep them off your public profile so the page stays a record of work, not a record of taps. The Bluesky app and the originating apps already show this side of you.
+
+<ActivityRegistry tier="action" />
+
+A third tier (`filtered`) covers configuration records, moderation records, and other infrastructure that we hide from every Sifa surface. Those records still live on your PDS; we just do not render them.
 
 ## Why it is set up this way
 
@@ -30,4 +27,4 @@ Most professional networks rank, score, or pad your profile with engagement metr
 
 ## Want a different filter?
 
-You cannot currently customise which categories show up on your profile. If there is a record type you think we should add — or remove — open an issue with a link to the lexicon and a short reason.
+You cannot currently customise which categories show up on your profile. If there is a record type you think we should add — or remove — open an issue against [sifa-sdk](https://github.com/singi-labs/sifa-sdk) with a link to the lexicon and a short reason.
