@@ -5,6 +5,7 @@
     "---Getting started---",
     "create-account",
     "import-linkedin",
+    "use-your-own-domain",
     "---Atmosphere basics---",
     "what-is-the-atmosphere",
     "dids-handles-providers",
@@ -14,6 +15,10 @@
     "---Features---",
     "activity-feed",
     "atom-feeds",
-    "standard-site-cards"
+    "external-accounts",
+    "standard-site-cards",
+    "---Account management---",
+    "move-account",
+    "privacy-and-data"
   ]
 }
