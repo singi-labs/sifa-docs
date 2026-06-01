@@ -1,0 +1,96 @@
+---
+title: Your data on a provider
+description: What "your account stores it" means in practice. Where your Sifa records actually live, how to inspect them, and what happens if you delete an app.
+---
+
+When this site says "your data lives on your provider, not in Sifa's database", that is a literal description of how the system works. This page makes it concrete.
+
+## Records — the unit of storage
+
+Everything on the Atmosphere is a **record**. A post is a record. A follow is a record. A Sifa profile entry — your current job, your education, an endorsement — is a record. Each one is a small JSON object stored on your provider.
+
+Records have three coordinates that locate them:
+
+1. **Your DID** — whose account they belong to.
+2. **A collection** — what type of record it is (`app.bsky.feed.post`, `id.sifa.profile.position`, etc.).
+3. **An rkey** — a unique key within that collection (something like `3lc4apsq2nx2k`).
+
+Combined, they form an **AT URI**:
+
+```
+at://did:plc:abc123/id.sifa.profile.position/3lc4apsq2nx2k
+```
+
+That URI is the canonical address of one particular record on the network. Any Atmosphere app can fetch it directly from your provider, no Sifa involved.
+
+## Where Sifa's records live in your account
+
+When you fill in your Sifa profile, you create records in the `id.sifa.*` collections:
+
+| Collection                        | What it stores                               |
+| --------------------------------- | -------------------------------------------- |
+| `id.sifa.profile.self`            | The main profile entry (name, headline, bio) |
+| `id.sifa.profile.position`        | Each job you've held                         |
+| `id.sifa.profile.education`       | Each school                                  |
+| `id.sifa.profile.skill`           | Each skill                                   |
+| `id.sifa.profile.certification`   | Each certification                           |
+| `id.sifa.profile.project`         | Each project                                 |
+| `id.sifa.profile.volunteering`    | Each volunteering role                       |
+| `id.sifa.profile.publication`     | Each publication                             |
+| `id.sifa.profile.course`          | Each course                                  |
+| `id.sifa.profile.honor`           | Each honor or award                          |
+| `id.sifa.profile.language`        | Each language                                |
+| `id.sifa.profile.externalAccount` | Each external account (blog, GitHub, etc.)   |
+| `id.sifa.endorsement`             | Each endorsement given or received           |
+
+There is one record per item. One job equals one record. Edit the job on Sifa and the record on your provider updates. Delete the job and the record is deleted.
+
+## Inspecting your own records
+
+You can look at your records directly, without going through Sifa. Two ways:
+
+**Browser:** [pdsls.dev](https://pdsls.dev) is a public viewer for any Atmosphere account. Enter your handle, browse collections, see the raw JSON.
+
+**Command line:** call your provider's HTTP API. To list all Sifa positions on your account:
+
+```bash
+curl -s "https://bsky.social/xrpc/com.atproto.repo.listRecords?repo=<your-handle>&collection=id.sifa.profile.position" | jq .
+```
+
+(Swap `bsky.social` for your provider's hostname if you're not on Bluesky.)
+
+The JSON you see is exactly what Sifa reads. Sifa adds no secret fields and stores no parallel copy.
+
+## What happens if Sifa shuts down
+
+Your records do not go anywhere. They live on your provider.
+
+If Sifa shuts down tomorrow:
+
+- Your `id.sifa.profile.*` records remain readable on your provider.
+- The `sifa.id` AppView (the index + web app) goes dark, so the docs.sifa.id and profile pages stop loading.
+- Any other Atmosphere app that wants to read the same records can. The data is open.
+- Your career history, in other words, is not held hostage by us.
+
+## What happens if you delete Sifa
+
+If you decide to leave Sifa but stay on the Atmosphere, you can delete your `id.sifa.*` records from your provider. Two ways:
+
+- **From Sifa:** account settings has a delete-everything button that walks all `id.sifa.*` collections on your account and removes each record.
+- **From outside Sifa:** any tool that talks to AT Protocol's `com.atproto.repo.deleteRecord` endpoint can delete records directly. pdsls.dev lets you do this in the browser. The `goat` CLI can do it from the terminal.
+
+Either way, Sifa's AppView sees the deletions on the firehose within seconds and removes them from its index, so your profile page becomes empty (or 404, if you also delete `id.sifa.profile.self`).
+
+Records in other collections (your Bluesky posts, Tangled repos, anything else) are untouched. Sifa only owns the `id.sifa.*` namespace.
+
+## What happens if you move providers
+
+Your records come with you. The migration process exports every record from your old provider, including every `id.sifa.*` record, and writes them to the new provider. Your DID stays the same; your AT URIs change only in that the underlying provider hostname changes, but the AppView keeps reading them via your DID and the profile keeps working.
+
+See [Move your account to another provider](/docs/move-account) (forthcoming) for the step-by-step.
+
+## Want to go deeper
+
+- [Lexicons and integrations](/docs/lexicons-and-integrations) — the schemas that define what each record type must contain.
+- [Apps, AppViews, and the firehose](/docs/apps-appviews-firehose) — how Sifa reads these records and renders them.
+- [DIDs, handles, and providers](/docs/dids-handles-providers) — the parts of your identity.

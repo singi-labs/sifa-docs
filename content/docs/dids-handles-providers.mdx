@@ -1,0 +1,78 @@
+---
+title: DIDs, handles, and providers
+description: The three parts of every Atmosphere account, what each one is for, and how they fit together.
+---
+
+Every Atmosphere account has three pieces:
+
+- **A DID** — a permanent ID for you, never changes.
+- **A handle** — a human-readable name, can change anytime.
+- **A provider** (also called a PDS) — the server that stores your data.
+
+The three pieces work together. You don't usually think about them directly; apps like Sifa hide them most of the time. But knowing what each one does makes the rest of the network easier to understand.
+
+## DID — your permanent ID
+
+A DID is a long string that looks like:
+
+```
+did:plc:abcdef1234567890
+```
+
+It is your **account's true name**. The handle you use day-to-day is just a friendly alias. The DID is what Sifa stores when it writes records about you, what other Atmosphere apps refer to you by, and what stays the same when you move providers, change your handle, or rename your custom domain.
+
+You will rarely see your DID unless you ask for it. Sifa shows it in profile settings and on the developer-facing parts of the AT Protocol. You don't memorise it; you copy-paste it if something needs it.
+
+The DID **never changes**. The whole point of the Atmosphere is that your identity is portable, and the DID is what makes that work.
+
+## Handle — your friendly name
+
+A handle is what people actually call you. Two common shapes:
+
+- **Provider subdomain**: `alice.bsky.social` (handle issued by Bluesky), `alice.eurosky.social` (handle issued by Eurosky).
+- **Your own domain**: `alice.com`, `alice.example.org`. You set this up by adding a DNS record or a `/.well-known/atproto-did` file on your own site.
+
+Handles can change. If you stop liking `alice.bsky.social`, you can switch to `alice.com` tomorrow — your DID stays the same, your followers stay the same, your Sifa profile stays the same. People who linked to your old handle will be redirected.
+
+If you want your handle to be your own domain, see [Use your own domain as your handle](/docs/use-your-own-domain) (forthcoming).
+
+## Provider — where your account data lives
+
+A provider is the company or organisation running the server that stores your records. In AT Protocol jargon, the server is called a **PDS** (Personal Data Server); the company running it is the provider.
+
+Current providers include:
+
+- **Bluesky** (`bsky.social`) — the original, US-hosted.
+- **Eurosky** (`eurosky.social`) — EU-hosted, GDPR-aware.
+- **Tangled** (`tangled.org`) — EU-hosted, run for developers.
+- **Blacksky** (`blacksky.community`) — community-run.
+- ...and others.
+
+Sifa is **not** a provider. Sifa is an app that reads from and writes to your provider on your behalf. Your career history, posts, and profile records live in your account on your provider, not in Sifa's database.
+
+You can change providers without losing anything. Migrate your account from Bluesky to Eurosky, and your followers, posts, profile data, and Sifa records come with you. The DID stays the same; the handle may need re-pointing if you used a provider subdomain.
+
+## How they fit together — a worked example
+
+Say you create a Bluesky account today. Behind the scenes:
+
+1. Bluesky's PDS assigns you a DID like `did:plc:abc123`. Permanent.
+2. You pick a handle: `alice.bsky.social`. Friendly, changeable.
+3. Your records — posts, follows, profile — live on Bluesky's PDS.
+
+You sign in to Sifa with `alice.bsky.social`. Sifa looks up your DID, reads your existing records from Bluesky's PDS, and creates new Sifa-specific records (positions, education, skills) — also on Bluesky's PDS.
+
+A year later you decide you want your data on EU infrastructure. You migrate to Eurosky:
+
+1. Eurosky becomes your new provider.
+2. Your DID (`did:plc:abc123`) does not change.
+3. Your handle becomes `alice.eurosky.social` (or you point your own `alice.com` at the new provider).
+4. All your records, including Sifa records, move with you.
+
+Sifa works the same as before. You don't have to re-import or re-create anything. That's the point.
+
+## Want to go deeper
+
+- [Your data on a provider](/docs/your-data-on-a-provider) — what records look like, where they live, how to inspect them.
+- [Apps, AppViews, and the firehose](/docs/apps-appviews-firehose) — how Sifa reads your records and shows them on your profile.
+- [What is the Atmosphere?](/docs/what-is-the-atmosphere) — the bigger picture.
