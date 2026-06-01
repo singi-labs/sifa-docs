@@ -1,6 +1,9 @@
 import { ImageResponse } from 'next/og'
 import { colors } from '@singi-labs/sifa-sdk/tokens'
 
+// Required for `output: 'export'` (static export). Generates the PNG at build time.
+export const dynamic = 'force-static'
+
 export const alt = 'Sifa Docs — documentation for Sifa on the AT Protocol'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
