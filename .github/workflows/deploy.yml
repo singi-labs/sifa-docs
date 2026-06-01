@@ -1,9 +1,8 @@
 name: Build & Deploy
 
-# Manual trigger only until docs.sifa.id DNS + VPS secrets (VPS_HOST,
-# VPS_USER, VPS_SSH_KEY) are configured. Flip to `push: branches: [main]`
-# once the deploy target is live.
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 concurrency:
