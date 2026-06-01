@@ -120,18 +120,24 @@
 
 /* Sidebar section headers (e.g. "Getting started", "Features").
    Fumadocs renders them as plain <p> in #nd-sidebar — same visual weight as
-   page links, which is wrong. Make them small, uppercase, muted to clearly
-   set them apart from interactive items. */
+   page links, which is wrong. Set them in Flexoki Purple (Sifa's secondary
+   brand colour from @singi-labs/sifa-sdk/tokens, distinct from the primary
+   Flexoki Blue used for links) and add a thin top border so each section
+   reads as a clearly bounded block. */
 #nd-sidebar p {
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-fd-muted-foreground);
+  color: #8b7ec8;
   margin-top: 1.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-fd-border);
 }
 #nd-sidebar p:first-of-type {
   margin-top: 0.5rem;
+  padding-top: 0;
+  border-top: none;
 }
 
 /* Underlined prose links in the MDX content body, matching sifa-web's style:
