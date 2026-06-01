@@ -22,10 +22,10 @@ const sections = [
     href: '/docs/activity-feed',
   },
   {
-    title: 'Adam feeds',
+    title: 'Atom feeds',
     description:
-      'Curated feeds of professional content on the network. How they work and how to block topics you do not want to see.',
-    href: '/docs/adam-feeds',
+      'Every Sifa profile publishes an Atom feed. Subscribe in NetNewsWire, Reeder, Feedly, or any reader — no Sifa account needed.',
+    href: '/docs/atom-feeds',
   },
   {
     title: 'Standard.site cards',
