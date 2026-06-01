@@ -117,3 +117,31 @@
     font-family: var(--font-display);
   }
 }
+
+/* Sidebar section headers (e.g. "Getting started", "Features").
+   Fumadocs renders them as plain <p> in #nd-sidebar — same visual weight as
+   page links, which is wrong. Make them small, uppercase, muted to clearly
+   set them apart from interactive items. */
+#nd-sidebar p {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-fd-muted-foreground);
+  margin-top: 1.5rem;
+}
+#nd-sidebar p:first-of-type {
+  margin-top: 0.5rem;
+}
+
+/* Underlined prose links in the MDX content body, matching sifa-web's style:
+   text-primary + underline + underline-offset-4. Scoped to .prose so we
+   don't hit the sidebar, footer, or the homepage cards. */
+.prose :where(a):not(:has(code)) {
+  color: var(--color-fd-primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.prose :where(a):not(:has(code)):hover {
+  text-decoration-thickness: 2px;
+}
