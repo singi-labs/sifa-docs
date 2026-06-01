@@ -49,6 +49,7 @@ const iaWriterQuattro = localFont({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://docs.sifa.id'),
   title: {
     default: 'Sifa Docs',
     template: '%s | Sifa Docs',
