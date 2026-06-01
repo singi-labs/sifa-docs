@@ -1,0 +1,76 @@
+---
+title: External accounts
+description: Link your blog, GitHub, ORCID, and other profiles to Sifa so the work you publish elsewhere shows up on your professional page. Auto-discovers RSS feeds.
+---
+
+Sifa's strength is your activity on the Atmosphere — what you post on Bluesky, what you publish on Leaflet, the repos you maintain on Tangled. But most professionals also publish elsewhere: a personal blog, a GitHub account, an ORCID profile for academic work, a Mastodon presence.
+
+**External accounts** let you add those to your Sifa profile. Sifa stores the link, sometimes discovers an RSS feed automatically, and renders the externally-published work alongside your Atmosphere activity.
+
+## What you can link
+
+Sifa supports these platforms today:
+
+| Platform    | What Sifa does with it                                                                                                     |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `rss`       | Generic RSS / Atom feed. Items appear in your activity feed.                                                               |
+| `website`   | Your personal site. Sifa tries to auto-discover a feed from the page.                                                      |
+| `substack`  | Substack newsletter. Auto-discovers the public RSS feed.                                                                   |
+| `fediverse` | Mastodon / Pleroma / GoToSocial account. Auto-discovers the user feed.                                                     |
+| `github`    | GitHub account. Sifa runs an initial scan of your public repos.                                                            |
+| `orcid`     | ORCID academic profile. Sifa syncs your publications nightly.                                                              |
+| `keyoxide`  | Keyoxide identity verification profile.                                                                                    |
+| `youtube`   | YouTube channel. Link only.                                                                                                |
+| `twitter`   | Twitter / X handle. Link only.                                                                                             |
+| `instagram` | Instagram profile. Link only.                                                                                              |
+| `linkedin`  | LinkedIn profile. Link only (we recommend importing your data instead, see [Import from LinkedIn](/docs/import-linkedin)). |
+| `other`     | Any other URL. Link only.                                                                                                  |
+
+"Link only" means Sifa shows the URL on your profile but does not poll it for activity.
+
+## How to add one
+
+In Sifa, open your profile and go to **External accounts**. Add a new account with:
+
+- **Platform** — picked from the list above.
+- **URL** — the canonical address of the account or feed.
+- **Label** (optional) — a custom display name. Sifa uses the platform's default if you leave it blank.
+- **Feed URL** (optional) — if Sifa cannot auto-discover the RSS or Atom feed, paste it here. Most of the time you can leave it blank.
+
+Save. Sifa writes an `id.sifa.profile.externalAccount` record to your provider. The record is owned by you, lives on your provider, and is readable by any other app that reads `id.sifa.*` lexicons.
+
+## How feed discovery works
+
+When you add a `website`, `substack`, `fediverse`, or `rss` account without specifying `feedUrl`, Sifa fetches the URL and looks for a feed. The discovery follows the standard auto-discovery rules:
+
+1. `<link rel="alternate" type="application/atom+xml">` or `application/rss+xml` in the page head.
+2. Well-known feed paths (`/feed`, `/feed.xml`, `/atom.xml`, `/rss.xml`).
+3. Platform-specific rules — Substack always lives at `<subdomain>.substack.com/feed`, Mastodon at `<server>/users/<handle>.atom`.
+
+Once a feed is found, Sifa polls it on a daily schedule and surfaces new items in your [Activity feed](/docs/activity-feed). The feed URL is stored alongside the account so subsequent polls go directly to it without re-discovery.
+
+## ORCID — academic publications
+
+If you add an ORCID account, Sifa pulls your publications from the ORCID API on a daily sync. Each publication becomes an `id.sifa.profile.publication` record on your provider — meaning your publications are now portable Atmosphere records, not just a list locked inside ORCID.
+
+Sifa accepts both the full URL (`https://orcid.org/0000-0002-1825-0097`) and the bare ID (`0000-0002-1825-0097`); the input is normalised before validation.
+
+## GitHub — initial repo scan
+
+If you add a GitHub account, Sifa runs an initial scan of your public repositories and contributions. The scan is one-shot; subsequent updates flow through the GitHub firehose / public events stream where available, or through periodic re-scans.
+
+## Verification
+
+For some platforms (the ones the protocol can verify — GitHub, ORCID, others), Sifa attempts to confirm that the account you've added is actually yours by checking for a back-link or a specific identifier. Verified accounts show a small checkmark on your profile. Un-verified accounts work the same way for content; the verification badge is informational.
+
+## Removing or editing an external account
+
+In Sifa's profile editor, you can edit the URL, change the label, or delete the account entirely. Deletion removes the `id.sifa.profile.externalAccount` record from your provider and removes the surfaced items from your activity feed.
+
+Records on the external service itself (your blog posts, your GitHub repos) are not affected. Sifa only manages the link record on your provider.
+
+## Want to go deeper
+
+- [Activity feed](/docs/activity-feed) — where external-feed items show up alongside your Atmosphere activity.
+- [Atom feeds](/docs/atom-feeds) — Sifa publishes its own Atom feed of your activity, so other readers can subscribe the same way.
+- [Your data on a provider](/docs/your-data-on-a-provider) — what an external-account record looks like on your provider.
