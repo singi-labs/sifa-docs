@@ -1,4 +1,13 @@
 {
   "title": "Documentation",
-  "pages": ["index", "activity-feed", "adam-feeds", "standard-site-cards"]
+  "pages": [
+    "index",
+    "---Getting started---",
+    "create-account",
+    "import-linkedin",
+    "---Features---",
+    "activity-feed",
+    "adam-feeds",
+    "standard-site-cards"
+  ]
 }
