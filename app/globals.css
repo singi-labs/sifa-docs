@@ -1,0 +1,96 @@
+@import 'tailwindcss';
+@import '@radix-ui/colors/slate.css';
+@import '@radix-ui/colors/slate-dark.css';
+@import '@radix-ui/colors/cyan.css';
+@import '@radix-ui/colors/cyan-dark.css';
+@import '@radix-ui/colors/purple.css';
+@import '@radix-ui/colors/purple-dark.css';
+@import '@radix-ui/colors/green.css';
+@import '@radix-ui/colors/green-dark.css';
+@import '@radix-ui/colors/orange.css';
+@import '@radix-ui/colors/orange-dark.css';
+@import '@radix-ui/colors/red.css';
+@import '@radix-ui/colors/red-dark.css';
+@import 'fumadocs-ui/css/preset.css';
+
+@source '../node_modules/fumadocs-ui/dist/**/*.js';
+
+/**
+ * Barazo Docs Theme
+ * Maps Radix Colors + Flexoki accent hues to Fumadocs CSS variables.
+ * @see decisions/frontend.md
+ */
+
+@theme {
+  /* Typography -- system font stack for body, Source Code Pro for code */
+  --font-mono: var(--font-source-code);
+
+  /* Light mode - Fumadocs color mapping */
+  --color-fd-background: var(--slate-1);
+  --color-fd-foreground: var(--slate-12);
+  --color-fd-muted: var(--slate-3);
+  --color-fd-muted-foreground: var(--slate-11);
+  --color-fd-popover: var(--slate-2);
+  --color-fd-popover-foreground: var(--slate-12);
+  --color-fd-card: var(--slate-2);
+  --color-fd-card-foreground: var(--slate-12);
+  --color-fd-border: var(--slate-6);
+  --color-fd-primary: var(--cyan-9);
+  --color-fd-primary-foreground: #1c2024;
+  --color-fd-secondary: var(--slate-3);
+  --color-fd-secondary-foreground: var(--slate-12);
+  --color-fd-accent: var(--cyan-4);
+  --color-fd-accent-foreground: var(--cyan-12);
+  --color-fd-ring: var(--cyan-8);
+  --color-fd-overlay: hsla(0, 0%, 0%, 0.2);
+}
+
+.dark {
+  --color-fd-background: var(--slate-dark-1);
+  --color-fd-foreground: var(--slate-dark-12);
+  --color-fd-muted: var(--slate-dark-3);
+  --color-fd-muted-foreground: var(--slate-dark-11);
+  --color-fd-popover: var(--slate-dark-2);
+  --color-fd-popover-foreground: var(--slate-dark-12);
+  --color-fd-card: var(--slate-dark-2);
+  --color-fd-card-foreground: var(--slate-dark-12);
+  --color-fd-border: var(--slate-dark-6);
+  --color-fd-primary: var(--cyan-dark-9);
+  --color-fd-primary-foreground: var(--slate-dark-1);
+  --color-fd-secondary: var(--slate-dark-3);
+  --color-fd-secondary-foreground: var(--slate-dark-12);
+  --color-fd-accent: var(--cyan-dark-4);
+  --color-fd-accent-foreground: var(--cyan-dark-12);
+  --color-fd-ring: var(--cyan-dark-8);
+  --color-fd-overlay: hsla(0, 0%, 0%, 0.4);
+}
+
+.dark #nd-sidebar {
+  --color-fd-muted: var(--slate-dark-4);
+  --color-fd-secondary: var(--slate-dark-4);
+  --color-fd-muted-foreground: var(--slate-dark-11);
+}
+
+@theme static {
+  /* Semantic callout colors mapped to Barazo palette */
+  --color-fd-info: var(--purple-9);
+  --color-fd-warning: var(--orange-9);
+  --color-fd-error: var(--red-9);
+  --color-fd-success: var(--green-9);
+  --color-fd-idea: var(--cyan-9);
+  --color-fd-diff-remove: rgba(200, 10, 100, 0.12);
+  --color-fd-diff-remove-symbol: rgb(230, 10, 100);
+  --color-fd-diff-add: rgba(14, 180, 100, 0.1);
+  --color-fd-diff-add-symbol: rgb(10, 200, 100);
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--cyan-4);
+  color: var(--cyan-12);
+}
+
+.dark ::selection {
+  background-color: var(--cyan-dark-4);
+  color: var(--cyan-dark-12);
+}
