@@ -1,16 +1,201 @@
 ---
 title: Standard.site cards
-description: Make your own website render as a rich card on Sifa, Bluesky, and other AT Protocol apps.
+description: How to make links to your own site render as rich publication cards on Sifa, Bluesky, and other AT Protocol apps — colours, icon, troubleshooting.
 ---
 
-When you share a link on Sifa or Bluesky, the app tries to render a preview card: title, description, image, author. The look of that card is controlled by your site, not by us. If you own the site, you can make the card say what you want it to say.
+When you share a link on Sifa or Bluesky, the app tries to render a rich preview card: title, reading time, author, site name, accent colour, and an action button. The contents and look of that card come from a `site.standard.publication` record on the publisher's PDS, not from the page being linked to. If you control that record, you control the card.
 
-Sifa uses the [Standard.site](https://standard.site) spec for link metadata. It is the open card format adopted across the AT Protocol ecosystem.
+This page covers how to get the card to appear, how to set its colours and icon, and the gotchas that bite people who try to verify the wrong way.
 
-## Why this matters on Sifa
+## What you actually need
 
-On Sifa, the card you publish _is_ the marketing for your work. If you write articles on your own site instead of on a hosted platform, the card decides whether a casual reader bothers to click. A site without proper metadata renders as a bare URL on Sifa, Bluesky, and any other AT Protocol app — your work shows up looking like a stub.
+**One `site.standard.publication` record on your PDS whose `url` field matches the URL you're linking to.**
 
-## Where to start
+That is the whole mechanism. Bluesky's AppView indexes Standard.site records from the firehose and matches them to post links by URL ([matching logic](https://github.com/bluesky-social/atproto/blob/main/packages/bsky/src/util/standard-site.ts)). Sifa does the same. No DNS records, no `/.well-known/` files, no page metadata required for the card itself.
 
-If you have not done anything yet, start with the [Standard.site quickstart](https://standard.site). Then come back here for the Sifa-specific notes.
+## Three ways to get the record
+
+You don't need to publish the record by hand. Most people don't.
+
+1. **Use a Standard.site app** — Leaflet, pckt.blog, or Offprint create and maintain the record for you when you set up a publication on their platform. The publication's `url` lives on that platform (`yourname.leaflet.pub`, etc.), so links to that URL get the card. The card's action button shows **"Subscribe on Leaflet"** (or pckt / Offprint) because Bluesky's social-app ships a hardcoded allowlist for those three hosts.
+
+2. **WordPress with the [ATmosphere](https://wordpress.org/plugins/atmosphere/) plugin** — installing it gives your WordPress site a publication record automatically, with `url` set to your blog. The card's button reads **"View publication"** with a generic arrow icon (your domain isn't on the hardcoded allowlist, so no platform branding). Functionally identical otherwise.
+
+3. **Roll your own** — if you have your own AT Protocol account and a static blog, publish a `site.standard.publication` record on your PDS pointing to your domain. Steve Simkins' Sequoia CLI is the most common tool. The card again reads "View publication." Hannah Shelley's [Neocities walkthrough](https://hannah.makes.software/2026/05/22/putting-my-neocities-blog-on-atproto/) is a good real-world example of the roll-your-own path.
+
+In all three cases, the card appears on Bluesky and Sifa once the AppView has indexed the record, usually within seconds.
+
+If you have nothing set up yet, start with the [Standard.site implementations guide](https://standard.site) and get the publication record in place first. The rest of this page (making the card look good) only matters once the record exists.
+
+## You do not need DNS TXT or `/.well-known/` for the card
+
+Community write-ups sometimes suggest you do. You don't. These files are real, but they serve different purposes:
+
+| File / record                                         | What it does                                                                                                                              |
+| ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| **DNS TXT `_atproto.<domain>`** with `did=<your-did>` | AT Protocol handle resolution. Makes a custom domain work as a Bluesky / Sifa handle.                                                     |
+| **`/.well-known/atproto-did`** (plain-text DID)       | Same purpose as the TXT record — handle resolution. Useful when you can't set TXT records, or for handles too long for DNS.               |
+| **`/.well-known/site.standard.publication`** (AT-URI) | Standard.site verification: proves your domain controls the publication record. A strict reader can refuse to trust an unverified record. |
+
+None of these get the card to render. The AppView doesn't fetch your website; it reads from the PDS.
+
+### Hosts that block `/.well-known/`
+
+Ghost Pro, some managed WordPress hosts, and certain SaaS site builders block the `/.well-known/` path or don't let you set DNS TXT records. That does not affect the card — it will still appear as long as the publication record exists with a matching `url`.
+
+What you do lose on those hosts:
+
+- Using your custom domain as a Bluesky / Sifa handle.
+- Standard.site verification, which strict consumers (Sequoia, some third-party readers) may require.
+
+If those matter, move to a host where you control DNS or `/.well-known/`. Most static hosts (GitHub Pages, Netlify, Cloudflare Pages, plain nginx) let you serve files at any path.
+
+## Setting the card's button colour
+
+The button colour comes from the publication record's `basicTheme` block, not from your site.
+
+If you publish through Leaflet, pckt, or Offprint, the platform sets it for you. For roll-your-own and ATmosphere WordPress setups, you set it yourself.
+
+**Easiest route: edit the record on [pdsls.dev](https://pdsls.dev).**
+
+pdsls.dev is a web UI for browsing and editing AT Protocol records. Log in with your handle + an app password (Bluesky → Settings → App Passwords), navigate to your `site.standard.publication` record, and paste this `basicTheme` block into the existing JSON:
+
+```json
+"basicTheme": {
+  "$type": "site.standard.theme.basic",
+  "accent":           {"$type": "site.standard.theme.color#rgb", "r": 49,  "g": 116, "b": 143},
+  "accentForeground": {"$type": "site.standard.theme.color#rgb", "r": 255, "g": 255, "b": 255},
+  "background":       {"$type": "site.standard.theme.color#rgb", "r": 255, "g": 255, "b": 255},
+  "foreground":       {"$type": "site.standard.theme.color#rgb", "r": 0,   "g": 0,   "b": 0}
+}
+```
+
+| Field              | Used for                                                                   |
+| ------------------ | -------------------------------------------------------------------------- |
+| `accent`           | Button background                                                          |
+| `accentForeground` | Button text                                                                |
+| `background`       | Card body background (not used by Bluesky's renderer yet; Sifa may use it) |
+| `foreground`       | Card body text (same)                                                      |
+
+Replace the RGB values with your brand colours. Only `accent` and `accentForeground` change anything visible on Bluesky today. The renderer derives hover (5% darker) and disabled (5% lighter) states automatically from `accent`, so you don't specify those.
+
+All four colours are **required by the lexicon**, even the ones the current Bluesky card ignores. The PDS rejects the record without them. Other Standard.site renderers use the full set for the publication page, and the card may extend to use them later.
+
+Save the record. Within seconds the AppView indexes the new version; your next link on Bluesky or Sifa shows the coloured button.
+
+## Setting the card's icon
+
+The icon shown on the card (square, at least 256×256, max 1 MB) is a `blob` reference on the record. Two paths:
+
+### Reuse a blob you already have
+
+In AT Protocol, blobs are content-addressed by hash and reusable across records on the same PDS. If you already uploaded an image to Bluesky as your profile avatar, banner, or a post image, paste that exact blob object into the publication record's `icon` field. No upload step.
+
+Fetch your profile record:
+
+```bash
+curl -s "https://bsky.social/xrpc/com.atproto.repo.getRecord?repo=<your-handle>&collection=app.bsky.actor.profile&rkey=self" | jq .value.avatar
+```
+
+The output looks like:
+
+```json
+{
+  "$type": "blob",
+  "ref": {
+    "$link": "bafkreih7flx4skmjivhxle5eqod6jo44k4ux4ewvkbjq6ycha4iwb27j7y"
+  },
+  "size": 466276,
+  "mimeType": "image/jpeg"
+}
+```
+
+Copy the whole object, open your `site.standard.publication` record on pdsls.dev, paste it as the `icon` field, save.
+
+The same trick works for your banner or any image you've posted. Whatever blob is already on your PDS is fair game.
+
+### Upload a new image
+
+pdsls.dev intentionally doesn't expose blob upload, so for a fresh image you need a CLI or a small script.
+
+**With `goat`:**
+
+```bash
+goat blob upload your-icon.png
+goat record update --rkey <your-publication-rkey>
+```
+
+**Plain bash + curl + jq:**
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+HANDLE="your.handle"
+IMAGE="${1:?usage: ./set-icon.sh path/to/image.png}"
+RKEY="<your-publication-rkey>"
+COLLECTION="site.standard.publication"
+PDS="https://bsky.social"   # or your own PDS endpoint
+
+read -srp "App password: " APP_PW; echo
+MIME=$(file -b --mime-type "$IMAGE")
+
+SESSION=$(curl -sS -X POST "$PDS/xrpc/com.atproto.server.createSession" \
+  -H "Content-Type: application/json" \
+  -d "{\"identifier\":\"$HANDLE\",\"password\":\"$APP_PW\"}")
+JWT=$(echo "$SESSION" | jq -r .accessJwt)
+DID=$(echo "$SESSION" | jq -r .did)
+
+BLOB=$(curl -sS -X POST "$PDS/xrpc/com.atproto.repo.uploadBlob" \
+  -H "Authorization: Bearer $JWT" -H "Content-Type: $MIME" \
+  --data-binary "@$IMAGE" | jq -c .blob)
+
+CURRENT=$(curl -sS "$PDS/xrpc/com.atproto.repo.getRecord?repo=$DID&collection=$COLLECTION&rkey=$RKEY" | jq .value)
+NEW=$(echo "$CURRENT" | jq --argjson blob "$BLOB" '. + {icon: $blob}')
+
+curl -sS -X POST "$PDS/xrpc/com.atproto.repo.putRecord" \
+  -H "Authorization: Bearer $JWT" -H "Content-Type: application/json" \
+  -d "$(jq -n --arg repo "$DID" --arg coll "$COLLECTION" --arg rkey "$RKEY" --argjson record "$NEW" \
+        '{repo:$repo,collection:$coll,rkey:$rkey,record:$record}')" | jq .
+```
+
+Edit `HANDLE`, `RKEY`, and `PDS`, then run:
+
+```bash
+chmod +x set-icon.sh
+./set-icon.sh ~/path/to/your-avatar.png
+```
+
+The script logs into your PDS, uploads the image, fetches the publication record, adds the `icon` blob ref, and writes the record back.
+
+### Finding your `rkey`
+
+In pdsls.dev, your publication record's URL ends in something like `.../site.standard.publication/3mgfeypogdk2r`. The string after the last `/` is the `rkey`.
+
+Or list your records via the API:
+
+```bash
+curl -s "https://bsky.social/xrpc/com.atproto.repo.listRecords?repo=<your-handle>&collection=site.standard.publication" | jq .
+```
+
+## Verifying it works
+
+Post a link to your publication URL on Bluesky and watch the embed render. If the card doesn't appear:
+
+- Confirm a `site.standard.publication` record exists on your account's PDS (browse via pdsls.dev).
+- Confirm the record's `url` field matches the URL you're linking to. The AppView canonicalises host case and trailing slash, drops query and fragment, but otherwise needs an exact match. Leaflet/pckt/Offprint also accept subpaths.
+- Give the firehose a minute to propagate.
+
+## One record, every AT Protocol app
+
+The `site.standard.publication` record lives on your PDS as a plain AT Protocol record. Bluesky is one app reading it. Sifa is another. Any app that indexes the firehose can render your publication however it likes — you do not sign up for anything.
+
+![Sifa rendering the gui.do Standard.site publication: a "Basic link card" with just the URL, next to a richer "Publication card" with title, description, gui.do avatar, and a "View publication" button.](/screenshots/sifa-standard-site.webp)
+
+Same data, different readers, each taking the parts it cares about. Set the record once and you're done — that is the point of publishing to an open protocol instead of one platform's API.
+
+## Lexicon caveats worth knowing
+
+- Bluesky raised its own profile-avatar upload limit to 2 MB in v1.121 (April 2026). The `site.standard.publication` lexicon still caps the publication icon at **1 MB**. The PDS validates against the lexicon, so anything larger gets rejected at record write.
+- All four `basicTheme` colours are required even though Bluesky's current card only uses `accent` and `accentForeground`. The lexicon validator does not let you drop the others.
+- The well-known verification file is recommended for production. Bluesky's card doesn't check it; Sequoia and some readers do.
