@@ -6,7 +6,7 @@ const sections = [
   {
     title: 'Create an account',
     description:
-      'Sign in with your existing Bluesky, Eurosky, or other Atmosphere account — or create one in a minute.',
+      'Sign in with your existing Bluesky, Eurosky, or other Atmosphere account, or create one in a minute.',
     href: '/docs/create-account',
   },
   {
@@ -24,13 +24,13 @@ const sections = [
   {
     title: 'Activity feed',
     description:
-      'How Sifa decides what shows up on your profile — articles, reviews, and other work you create, not likes or bookmarks.',
+      'How Sifa decides what shows up on your profile: articles, reviews, and other work you create, not likes or bookmarks.',
     href: '/docs/activity-feed',
   },
   {
     title: 'Atom feeds',
     description:
-      'Every Sifa profile publishes an Atom feed. Subscribe in NetNewsWire, Reeder, Feedly, or any reader — no Sifa account needed.',
+      'Every Sifa profile publishes an Atom feed. Subscribe in NetNewsWire, Reeder, Feedly, or any reader. No Sifa account needed.',
     href: '/docs/atom-feeds',
   },
   {

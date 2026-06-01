@@ -37,7 +37,7 @@ export function ActivityRegistry({ tier }: ActivityRegistryProps) {
             {rows.map(({ nsid, entry }) => (
               <tr key={nsid} className="border-b border-fd-border/50">
                 <td className="py-2 pr-4 font-mono text-xs">{nsid}</td>
-                <td className="py-2 pr-4 text-fd-muted-foreground">{entry.app ?? '—'}</td>
+                <td className="py-2 pr-4 text-fd-muted-foreground">{entry.app ?? '-'}</td>
                 <td className="py-2 text-fd-muted-foreground">{entry.notes ?? ''}</td>
               </tr>
             ))}
