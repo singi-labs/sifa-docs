@@ -13,6 +13,12 @@ Sifa runs on the Atmosphere (the [AT Protocol](https://atproto.com)). Your Sifa 
 4. You'll bounce to your home PDS (the server that holds your account, usually `bsky.social`) to authorise Sifa. Approve.
 5. Back on Sifa, your profile is created automatically and you land on your profile page.
 
+<Screenshot
+  src="login-page.png"
+  alt="Sifa login page. A single text field labelled 'Your Atmosphere username' with placeholder text 'jay.bsky.social', and a 'Sign in to Sifa' button below it. Above the field: 'What is an Atmosphere account?' link and a row of provider icons (Bluesky, Eurosky, Tangled, Leaflet, and others)."
+  caption="The Sifa login page."
+/>
+
 No separate sign-up, no email confirmation, no password to remember. Your existing Atmosphere identity is the account.
 
 ## I don't have an Atmosphere account yet
@@ -49,5 +55,11 @@ The first time you sign in:
 - Sifa fetches your existing public Atmosphere data: posts, follows, repos, articles, RSVPs, anything your PDS already stores.
 - Sifa creates an `id.sifa.profile.self` record on your PDS. That's the professional-profile entry, like a LinkedIn "about" section, with positions, education, skills, and projects.
 - The profile starts empty. Fill it in by hand on Sifa, or [import from a LinkedIn data export](/docs/import-linkedin).
+
+<Screenshot
+  src="public-profile.png"
+  alt="A populated Sifa profile page. Header card with name, handle (@gui.do), pronouns, short tagline, location, and a follow button. Below: section navigation (About, Career, Education, Projects, Credentials, Publications, Volunteering, Awards) on the left, biography text on the right, and an Activity heatmap visualising posts and contributions over the last year."
+  caption="A populated Sifa profile, shown as it appears to anyone signed in or out. Example profile: gui.do."
+/>
 
 Your profile is public by default. Anyone can view it without a Sifa account, and bots and AI agents can read it. There's no "logged-out view" hiding parts of the data: what you put on your profile is what the world sees. That's intentional.
