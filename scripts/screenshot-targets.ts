@@ -39,8 +39,7 @@ export const targets: ScreenshotTarget[] = [
   },
   {
     name: 'public-profile-activity-feed',
-    url: 'https://sifa.id/p/{{handle}}',
-    actions: [{ type: 'scroll', y: 800 }],
-    clip: '[data-section="activity-feed"]',
+    url: 'https://sifa.id/p/{{handle}}/activity',
+    actions: [{ type: 'wait', selector: '#activity-feed-panel' }],
   },
 ]
