@@ -4,6 +4,9 @@ on:
   issues:
     types: [opened, transferred]
 
+permissions:
+  contents: read
+
 jobs:
   add-to-project:
     runs-on: ubuntu-latest
@@ -25,7 +28,7 @@ jobs:
 
       - name: Add to project
         if: steps.check.outputs.status == 'open'
-        uses: actions/add-to-project@v1.0.2
+        uses: actions/add-to-project@244f685bbc3b7adfa8466e08b698b5577571133e # v1.0.2
         with:
           project-url: https://github.com/orgs/singi-labs/projects/2
           github-token: ${{ secrets.PROJECT_BOARD_TOKEN }}
