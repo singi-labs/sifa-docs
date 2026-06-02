@@ -1,38 +1,71 @@
 ---
 title: What is the Atmosphere?
-description: The open network of apps that Sifa lives on. One account works across Sifa, Bluesky, and dozens of others, and you can move it between providers without losing anything.
+description: The open network Sifa runs on. One account works across Sifa, Bluesky, and dozens of others. Move providers, keep your handle, keep your followers, keep your work.
 ---
 
-If Sifa is your first Atmosphere app, start here.
+Sifa is one app inside the **Atmosphere**: an open network of apps and services that all share the same account system. Bluesky, Tangled, Leaflet, Eurosky, Smoke Signal, Sifa, and however many more launch this year. They speak the same protocol (the [AT Protocol](https://atproto.com), if you want the technical name) and read from the same pool of data.
 
-The **Atmosphere** is an open network of apps that all speak the same protocol: the [AT Protocol](https://atproto.com). "Atmosphere" is the friendly label, "AT Protocol" is the technical one. Same thing.
+If you have a Bluesky account, you have a Sifa account. Sign in once, you're home everywhere. Sifa doesn't run its own login.
 
-What makes the Atmosphere different from a regular social platform: every app shares **one account system**. Create an Atmosphere account with any provider (Bluesky, Eurosky, Tangled, Blacksky, or any of the others) and that same account works on **every other Atmosphere app**. Sifa included.
+## Walled garden vs shared foundation
 
-You log in to Sifa with the account you already have, or one you create somewhere else. Sifa doesn't run its own login.
+A regular social platform is a walled garden: your account, your posts, your followers all live inside one company's database. Move to a competitor and you start over.
 
-## What you get
+The Atmosphere swaps that for a shared foundation. Your account, your posts, your followers, your professional history all live in a place you control. Apps read from it and write to it on your behalf. Sifa is one of those apps. So is Bluesky. So is the next app launching tomorrow.
 
-- **One account, many apps.** Sign in once, use Sifa, Bluesky, Tangled, Leaflet, Smoke Signal, and however many more launch this year. No re-registering, no fragmented identity.
-- **Your data is yours.** Career history, posts, follows: it all lives in your account, not in Sifa's database. Sifa shuts down tomorrow and your profile keeps working in any other app that reads the same records.
-- **Switch providers without losing anything.** The company storing your account today doesn't have to be the same one storing it next year. You move, your followers, posts, and history come with you.
-- **Apps you've never heard of can render your work.** A personal dashboard, a custom CV generator, a long-form reader: all of them can read your Sifa profile because the data is publicly accessible through the protocol.
+## Your followers are yours, not rented from a platform
 
-## The trade-off
+When you build an audience on LinkedIn, that audience is LinkedIn's. Stop paying LinkedIn, lose access to its app, get suspended by LinkedIn moderation, and you can't take your network with you.
 
-Open networks take a bit more to wrap your head around than walled gardens. Bluesky hides most of this, and so does Sifa for the common cases, but the model is different from "sign up with email and password":
+On the Atmosphere, your followers are stored on your account. They follow your **DID** (a permanent identifier), not your handle, not the app you're using. Move from Sifa to a different professional-network app tomorrow and the same followers are there, ready to see your work. You can't lose them unless you delete them yourself.
 
-- You have a **handle** (like `alice.bsky.social` or `alice.com`), not just a username.
-- You have a **provider** (sometimes called a PDS, Personal Data Server) where your account data lives.
-- You have a **DID** (a permanent identifier) that follows you around even when your handle or provider changes.
+## Post once, show everywhere
 
-If that feels abstract, don't worry. The next pages walk through each piece.
+When you publish on the Atmosphere, the record goes to your account. Any app that reads that record type can render it however it wants.
 
-## Where to learn more
+Concretely on Sifa:
 
-- [DIDs, handles, and providers](/docs/dids-handles-providers): the three parts of an Atmosphere identity, explained.
-- [Apps, AppViews, and the firehose](/docs/apps-appviews-firehose): how the same data shows up in multiple apps.
-- [Your data on a provider](/docs/your-data-on-a-provider): what "your account stores it" means in practice.
-- [Lexicons and integrations](/docs/lexicons-and-integrations): the open schemas that hold it all together.
+- A blog post you publish on [Leaflet](https://leaflet.pub) or [WhiteWind](https://whtwnd.com) appears in your Sifa activity feed without you cross-posting.
+- A project you list in your Sifa profile is readable by any app that wants to build a CV generator, a portfolio page, a job board.
+- An endorsement you give on Sifa is its own record on your account. A third-party reader could surface it, embed it, or fact-check it.
 
-Outside this site, [atmosphereaccount.com](https://atmosphereaccount.com) is a good entry-level intro to the network.
+You write once, every Atmosphere app gets the same source of truth.
+
+## Choose your provider, switch any time
+
+Your account data lives with a **provider** (sometimes called a PDS, Personal Data Server). The provider runs the server that stores your records and keeps them available to every app.
+
+You pick the provider:
+
+- **Bluesky** (US-hosted, the default for most people today).
+- **Eurosky** (EU-hosted, GDPR-aware).
+- **Tangled** (EU-hosted, developer-focused).
+- **Blacksky** (community-run).
+- ...or [self-host](https://atproto.com/guides/self-hosting) on your own server.
+
+The provider isn't tied to the app. You can have a Bluesky account hosted on Eurosky's provider. Or a Sifa profile hosted on your own server. And you can move between providers at any time without losing followers, posts, or any other data. The protocol is built for migration; we have a [walkthrough](/docs/move-account) when you're ready.
+
+## Three concepts to learn
+
+Open networks have a bit more surface area than walled gardens. Three terms come up often. The next page explains each in plain language:
+
+- A **handle** (`alice.bsky.social`, or `alice.com` if you own a domain).
+- A **provider** (where your data lives, see above).
+- A **DID** (the permanent ID under your handle, never changes).
+
+Apps like Sifa hide them most of the time, but knowing what each is unlocks the rest of the network.
+
+## Locked open by design
+
+The Atmosphere isn't owned by any single company. Account ownership, app choice, moderation choice, provider choice: all of them are in your hands by design, not as a favour from a platform that could revoke it tomorrow.
+
+That's the bet Sifa is built on. Your professional identity should outlast the apps you use to show it.
+
+## Where to next
+
+- [DIDs, handles, and providers](/docs/dids-handles-providers): the three parts of an Atmosphere identity.
+- [Apps, AppViews, and the firehose](/docs/apps-appviews-firehose): how multiple apps render the same data differently.
+- [Your data on a provider](/docs/your-data-on-a-provider): what records look like and how to inspect them.
+- [Lexicons and integrations](/docs/lexicons-and-integrations): the open schemas that hold it together.
+
+Outside this site, [atmosphereaccount.com](https://atmosphereaccount.com) is a general-audience intro to the network. Sifa-specific guidance lives here.
