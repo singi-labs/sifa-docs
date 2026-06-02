@@ -44,7 +44,7 @@ The AppView is a **cache, not the source of truth.** Delete a record from your p
 
 ## What Sifa stores beyond your records
 
-Sifa's own database holds things that aren't AT Protocol records:
+Sifa's own database holds things that aren't [AT Protocol](https://atproto.com) records:
 
 - **Session tokens** (hashed) so you stay logged in.
 - **OAuth grant metadata** so Sifa knows what you authorised.
@@ -60,7 +60,7 @@ Three levels of "delete":
 
 **Delete one record.** Open the item in your profile editor and remove it. The `id.sifa.profile.*` record is deleted from your provider. The AppView sees the deletion on the firehose and removes it from your profile within seconds.
 
-**Delete everything Sifa-specific.** Account settings has a delete-Sifa-data button that walks all `id.sifa.*` collections on your account and removes each record. Your underlying Atmosphere account (Bluesky, Eurosky, etc.) is untouched. Only the records in the Sifa namespace go.
+**Delete everything Sifa-specific.** Account settings has a delete-Sifa-data button that walks all `id.sifa.*` collections on your account and removes each record. Your underlying Atmosphere account ([Bluesky](https://bsky.app), [Eurosky](https://eurosky.social), etc.) is untouched. Only the records in the Sifa namespace go.
 
 **Delete your Atmosphere account.** This is a provider-level action. You do it on your provider's settings page, not on Sifa. Your DID is deactivated, all your records (across all apps) are released. Sifa's AppView sees the deactivation and stops rendering your profile.
 
@@ -87,7 +87,7 @@ That's the "your data isn't held hostage" promise, made concrete.
 
 ## Requesting your data
 
-No need to request it. It's already on your provider, where you have direct access. See [Your data on a provider](/docs/your-data-on-a-provider) for how to inspect or export it via pdsls.dev or the AT Protocol API.
+No need to request it. It's already on your provider, where you have direct access. See [Your data on a provider](/docs/your-data-on-a-provider) for how to inspect or export it via [pdsls.dev](https://pdsls.dev) or the AT Protocol API.
 
 Need a copy of any Sifa-side metadata (session logs, analytics) for compliance reasons? [Open an issue](https://github.com/singi-labs/sifa-workspace/issues) or email the team. EU users have GDPR rights of access and erasure. We honour both.
 

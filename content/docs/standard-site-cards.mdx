@@ -3,7 +3,7 @@ title: Standard.site cards
 description: How to make links to your own site render as rich publication cards on Sifa, Bluesky, and other AT Protocol apps. Colours, icon, troubleshooting.
 ---
 
-When you share a link on Sifa or Bluesky, the app tries to render a rich preview card: title, reading time, author, site name, accent colour, action button. The contents and look of that card come from a `site.standard.publication` record on the publisher's PDS, not from the page being linked to. Control that record, control the card.
+When you share a link on Sifa or [Bluesky](https://bsky.app), the app tries to render a rich preview card: title, reading time, author, site name, accent colour, action button. The contents and look of that card come from a `site.standard.publication` record on the publisher's PDS, not from the page being linked to. Control that record, control the card.
 
 This page covers how to get the card to appear, how to set its colours and icon, and the gotchas that bite people who try to verify the wrong way.
 
@@ -17,11 +17,11 @@ That's the whole mechanism. Bluesky's AppView indexes Standard.site records from
 
 You don't need to publish the record by hand. Most people don't.
 
-1. **Use a Standard.site app**: Leaflet, pckt.blog, or Offprint create and maintain the record for you when you set up a publication on their platform. The publication's `url` lives on that platform (`yourname.leaflet.pub`, etc.), so links to that URL get the card. The card's action button shows **"Subscribe on Leaflet"** (or pckt / Offprint) because Bluesky's social-app ships a hardcoded allowlist for those three hosts.
+1. **Use a Standard.site app**: [Leaflet](https://leaflet.pub), [pckt.blog](https://pckt.blog), or [Offprint](https://offprint.pub) create and maintain the record for you when you set up a publication on their platform. The publication's `url` lives on that platform (`yourname.leaflet.pub`, etc.), so links to that URL get the card. The card's action button shows **"Subscribe on Leaflet"** (or pckt / Offprint) because Bluesky's social-app ships a hardcoded allowlist for those three hosts.
 
 2. **WordPress with the [ATmosphere](https://wordpress.org/plugins/atmosphere/) plugin**: installing it gives your WordPress site a publication record automatically, with `url` set to your blog. The card's button reads **"View publication"** with a generic arrow icon (your domain isn't on the hardcoded allowlist, so no platform branding). Functionally identical otherwise.
 
-3. **Roll your own**: if you have your own AT Protocol account and a static blog, publish a `site.standard.publication` record on your PDS pointing to your domain. Steve Simkins' Sequoia CLI is the most common tool. The card again reads "View publication." Hannah Shelley's [Neocities walkthrough](https://hannah.makes.software/2026/05/22/putting-my-neocities-blog-on-atproto/) is a good real-world example of the roll-your-own path.
+3. **Roll your own**: if you have your own [AT Protocol](https://atproto.com) account and a static blog, publish a `site.standard.publication` record on your PDS pointing to your domain. Steve Simkins' Sequoia CLI is the most common tool. The card again reads "View publication." Hannah Shelley's [Neocities walkthrough](https://hannah.makes.software/2026/05/22/putting-my-neocities-blog-on-atproto/) is a good real-world example of the roll-your-own path.
 
 In all three cases the card appears on Bluesky and Sifa once the AppView has indexed the record, usually within seconds.
 

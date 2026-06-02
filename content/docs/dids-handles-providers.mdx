@@ -21,7 +21,7 @@ did:plc:abcdef1234567890
 
 It's your **account's true name**. The handle you use day to day is a friendly alias on top. The DID is what Sifa stores when it writes records about you, what other Atmosphere apps refer to you by, and what stays the same when you move providers, change your handle, or repoint your custom domain.
 
-You rarely see your DID unless you ask for it. Sifa shows it in profile settings and on the developer-facing parts of the AT Protocol. You don't memorise it. You copy-paste it if something needs it.
+You rarely see your DID unless you ask for it. Sifa shows it in profile settings and on the developer-facing parts of the [AT Protocol](https://atproto.com). You don't memorise it. You copy-paste it if something needs it.
 
 The DID **never changes**. The whole point of the Atmosphere is that your identity is portable, and the DID is what makes that work.
 
@@ -29,7 +29,7 @@ The DID **never changes**. The whole point of the Atmosphere is that your identi
 
 A handle is what people actually call you. Two common shapes:
 
-- **Provider subdomain**: `alice.bsky.social` (handle issued by Bluesky), `alice.eurosky.social` (handle issued by Eurosky).
+- **Provider subdomain**: `alice.bsky.social` (handle issued by [Bluesky](https://bsky.app)), `alice.eurosky.social` (handle issued by [Eurosky](https://eurosky.social)).
 - **Your own domain**: `alice.com`, `alice.example.org`. Set up by adding a DNS record or a `/.well-known/atproto-did` file on your own site.
 
 Handles can change. If you stop liking `alice.bsky.social`, switch to `alice.com` tomorrow. Your DID stays the same, your followers stay the same, your Sifa profile stays the same. People who linked to your old handle get redirected.
@@ -44,8 +44,8 @@ Some current ones:
 
 - **Bluesky** (`bsky.social`): the original, US-hosted.
 - **Eurosky** (`eurosky.social`): EU-hosted, GDPR-aware.
-- **Tangled** (`tangled.org`): EU-hosted, run for developers.
-- **Blacksky** (`blacksky.community`): community-run.
+- **[Tangled](https://tangled.org)** (`tangled.org`): EU-hosted, run for developers.
+- **[Blacksky](https://blacksky.community)** (`blacksky.community`): community-run.
 - …and others.
 
 Sifa is **not** a provider. Sifa is an app that reads from and writes to your provider on your behalf. Your career history, posts, and profile records live on your provider, not in Sifa's database.
