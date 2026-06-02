@@ -57,7 +57,7 @@ You can look at your records directly, without going through Sifa. Two ways:
 curl -s "https://bsky.social/xrpc/com.atproto.repo.listRecords?repo=<your-handle>&collection=id.sifa.profile.position" | jq .
 ```
 
-(Swap `bsky.social` for your provider's hostname if you're not on Bluesky.)
+(Swap `bsky.social` for your provider's hostname if you're not on [Bluesky](https://bsky.app).)
 
 The JSON you see is exactly what Sifa reads. No secret fields, no parallel copy.
 
@@ -77,11 +77,11 @@ If Sifa shuts down tomorrow:
 If you decide to leave Sifa but stay on the Atmosphere, delete your `id.sifa.*` records from your provider. Two ways:
 
 - **From Sifa:** account settings has a delete-everything button that walks all `id.sifa.*` collections on your account and removes each record.
-- **From outside Sifa:** any tool that talks to AT Protocol's `com.atproto.repo.deleteRecord` endpoint can delete records directly. pdsls.dev does it in the browser. The `goat` CLI does it from the terminal.
+- **From outside Sifa:** any tool that talks to [AT Protocol](https://atproto.com)'s `com.atproto.repo.deleteRecord` endpoint can delete records directly. pdsls.dev does it in the browser. The `goat` CLI does it from the terminal.
 
 Either way, Sifa's AppView sees the deletions on the firehose within seconds and removes them from its index. Your profile page becomes empty (or 404, if you also delete `id.sifa.profile.self`).
 
-Records in other collections (your Bluesky posts, Tangled repos, anything else) are untouched. Sifa only owns the `id.sifa.*` namespace.
+Records in other collections (your Bluesky posts, [Tangled](https://tangled.org) repos, anything else) are untouched. Sifa only owns the `id.sifa.*` namespace.
 
 ## What happens if you move providers
 

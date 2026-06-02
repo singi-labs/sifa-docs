@@ -28,7 +28,7 @@ Your **DID doesn't change**. Your handle may need re-pointing if you used a prov
 
 You've got three options, ordered from easiest to most technical. Pick whichever fits.
 
-### Option 1: PDSmoover (browser-based, no install)
+### Option 1: [PDSmoover](https://pdsmoover.com) (browser-based, no install)
 
 [PDSmoover](https://pdsmoover.com/moover) is a community-maintained browser tool by [@baileytownsend.dev](https://bsky.app/profile/baileytownsend.dev) that walks through the entire migration in your browser. No CLI, no install. It's the easiest path for most users moving between any two providers.
 
@@ -49,7 +49,7 @@ A few caveats:
 
 Some providers ship their own browser-based migration tool, no third-party software needed. Currently:
 
-- **Eurosky** has a portal at [portal.eurosky.tech](https://portal.eurosky.tech) that handles signup + migration in-browser. If you're going to Eurosky, that's the one to use.
+- **[Eurosky](https://eurosky.social)** has a portal at [portal.eurosky.tech](https://portal.eurosky.tech) that handles signup + migration in-browser. If you're going to Eurosky, that's the one to use.
 
 The user experience is similar to PDSmoover: you give the portal your old credentials and a new handle, the portal does the work. The advantage over a third-party tool is that you're trusting the same organisation you're moving to.
 
@@ -57,7 +57,7 @@ Other providers may add similar flows. Check the target provider's docs.
 
 ### Option 3: `goat` CLI (for developers)
 
-If you'd rather drive the migration from a terminal, use [`goat`](https://github.com/bluesky-social/indigo/tree/main/cmd/goat), the official AT Protocol command-line tool maintained by Bluesky.
+If you'd rather drive the migration from a terminal, use [`goat`](https://github.com/bluesky-social/indigo/tree/main/cmd/goat), the official [AT Protocol](https://atproto.com) command-line tool maintained by Bluesky.
 
 ```bash
 goat account migrate \
@@ -89,7 +89,7 @@ Whichever tool you used, run through these to verify the move worked end-to-end:
 - **Resolve your handle.** `curl -s "https://api.bsky.app/xrpc/com.atproto.identity.resolveHandle?handle=alice.eurosky.social"` should return your DID.
 - **Inspect your new PDS.** `curl -s "https://eurosky.social/xrpc/com.atproto.repo.listRecords?repo=<your-did>&collection=id.sifa.profile.position"` should return your Sifa positions.
 - **Sign into Sifa with the new handle.** Profile should render exactly as before.
-- **Check your Bluesky timeline.** Posts, follows, and followers should be intact.
+- **Check your [Bluesky](https://bsky.app) timeline.** Posts, follows, and followers should be intact.
 - **Check your Atom feed.** [`https://sifa.id/p/<new-handle>/activity.atom`](https://sifa.id/p/alice.eurosky.social/activity.atom) should resolve and show the same entries as before.
 
 If you used a custom domain as your handle (`alice.com`), the domain still works. You don't need to update DNS unless you also changed your underlying handle. The DID lookup follows the same TXT record or `.well-known/atproto-did` file you set up originally.
@@ -103,7 +103,7 @@ DNS caches sometimes hold on to the old record. Wait 10 to 15 minutes and retry.
 Your AppView session needs to refresh. Sign out and back in. If it persists for more than 30 minutes, [open an issue](https://github.com/singi-labs/sifa-workspace/issues).
 
 **"Some records didn't transfer."**  
-Rare, but possible if your old provider had a record the protocol considers invalid. Most migration tools print a list of skipped records at the end. Look at them on pdsls.dev under your old DID and re-create them by hand on the new provider.
+Rare, but possible if your old provider had a record the protocol considers invalid. Most migration tools print a list of skipped records at the end. Look at them on [pdsls.dev](https://pdsls.dev) under your old DID and re-create them by hand on the new provider.
 
 **"I want to roll back."**  
 You can. As long as your old provider hasn't deleted the deactivated account, you can re-activate it via the protocol. Contact your old provider's support. The operation is reversible for a limited window.

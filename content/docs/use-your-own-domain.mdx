@@ -5,13 +5,13 @@ description: Replace `alice.bsky.social` with `alice.com`. Your own domain becom
 
 Your Atmosphere handle defaults to ending in your provider's domain: `alice.bsky.social` on Bluesky, `alice.eurosky.social` on Eurosky. You can swap that for your own domain (`alice.com`, `me.example.org`) so your professional identity isn't tied to a provider's name.
 
-The setup happens at the **AT Protocol level**, on your provider. Sifa doesn't run a whitelabel handle service. What Sifa gives you is the profile that uses whichever handle you've configured upstream.
+The setup happens at the **[AT Protocol](https://atproto.com) level**, on your provider. Sifa doesn't run a whitelabel handle service. What Sifa gives you is the profile that uses whichever handle you've configured upstream.
 
 Once your handle is set, your Sifa profile URL becomes `https://sifa.id/p/alice.com` automatically. No further configuration on Sifa.
 
 ## What you need before you start
 
-- An Atmosphere account on any provider (Bluesky, Eurosky, etc).
+- An Atmosphere account on any provider ([Bluesky](https://bsky.app), [Eurosky](https://eurosky.social), etc).
 - A domain you control.
 - Either the ability to add DNS TXT records to that domain, or the ability to serve a single file at `https://<your-domain>/.well-known/atproto-did`.
 
@@ -80,7 +80,7 @@ With DNS or well-known in place, tell your provider you want to change your hand
 
 **On Bluesky:** Settings → Account → Handle → I have my own domain. Enter `alice.com`. The Bluesky app runs the verification. If it finds your DNS record or fetches your well-known file, the handle is updated.
 
-**On Eurosky / Tangled / Blacksky:** roughly the same flow under Settings or Account.
+**On Eurosky / [Tangled](https://tangled.org) / [Blacksky](https://blacksky.community):** roughly the same flow under Settings or Account.
 
 If verification fails, double-check the steps above. DNS sometimes takes a few minutes to propagate. If `dig +short TXT _atproto.<domain>` returns the right value but your provider says no, wait 5 minutes and retry.
 
