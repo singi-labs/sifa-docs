@@ -30,6 +30,10 @@ export const DEMO_HANDLE = 'guido.gui.do'
 
 export const targets: ScreenshotTarget[] = [
   {
+    name: 'sifa-homepage',
+    url: 'https://sifa.id/',
+  },
+  {
     name: 'login-page',
     url: 'https://sifa.id/login',
   },
