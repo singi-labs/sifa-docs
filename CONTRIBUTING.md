@@ -43,7 +43,7 @@ Frontmatter every page needs:
 ```mdx
 ---
 title: Short page title
-description: One sentence. Used as <meta name="description"> and og:description. Plain text only — no markdown links here, they render literal in meta tags.
+description: One sentence. Used as <meta name="description"> and og:description. Plain text only. No markdown links here, they render literal in meta tags.
 ---
 
 Body content in MDX.
@@ -108,13 +108,13 @@ GitHub deliberately stays unlinked (too ubiquitous).
 
 The site uses a few build-time components to anchor docs to source of truth instead of hand-maintained text. Examples already in tree:
 
-- `<ActivityRegistry tier="creation" />` — renders the `ACTIVITY_TIERS` taxonomy from `@singi-labs/sifa-sdk` as a table.
-- `<SdkVersion />` — renders the currently-pinned SDK version from `package.json`.
-- `<SdkColors />` — renders the brand-color tokens from `@singi-labs/sifa-sdk/tokens`.
-- `<SdkTypography />` — renders the font tokens.
-- `<SdkIconWeights />` — renders the icon-weight convention.
-- `<Example path="01-fetch-activity-tiers.ts" />` — reads an example file from `examples/` and renders it as a syntax-highlighted code block.
-- `<Screenshot src caption alt />` — renders a Playwright-captured screenshot from `public/screenshots/`.
+- `<ActivityRegistry tier="creation" />` renders the `ACTIVITY_TIERS` taxonomy from `@singi-labs/sifa-sdk` as a table.
+- `<SdkVersion />` renders the currently-pinned SDK version from `package.json`.
+- `<SdkColors />` renders the brand-color tokens from `@singi-labs/sifa-sdk/tokens`.
+- `<SdkTypography />` renders the font tokens.
+- `<SdkIconWeights />` renders the icon-weight convention.
+- `<Example path="01-fetch-activity-tiers.ts" />` reads an example file from `examples/` and renders it as a syntax-highlighted code block.
+- `<Screenshot src caption alt />` renders a Playwright-captured screenshot from `public/screenshots/`.
 
 To add a new component:
 
@@ -175,7 +175,7 @@ External-audience MDX pages on docs.sifa.id (anything under `content/docs/`) are
 
 Tight constraints worth knowing:
 
-- **No em-dashes** (`—`) anywhere. Use a colon, comma, semicolon, or restructure. CI does not enforce this; reviewers should.
+- **No em-dashes** (the wide horizontal one) anywhere. Use a colon, comma, semicolon, or restructure. CI does not enforce this; reviewers should.
 - **No AI-trope phrases**: avoid "It's not just X, it's Y", "didn't just...also", "isn't X. It's Y", "Here's the thing", "Let me tell you", "In conclusion".
 - **No throat-clearing**: if a sentence's only job is to announce what comes next, delete it.
 - **Contractions throughout**: "I'm", "don't", "it's", "you're". Never spell out.
@@ -188,10 +188,10 @@ Full reference: `~/Documents/CoreNotes/Workspaces/writing/writing-style-2.md`.
 
 Every PR runs these (in order):
 
-1. `pnpm format:check` — prettier 3.8.1, strict.
-2. `pnpm build` — Next.js static export. Fails if any route handler under `app/` lacks `export const dynamic = 'force-static'`.
-3. `pnpm lint` — eslint. Fails on unescaped apostrophes in JSX (`react/no-unescaped-entities`); use `&apos;`.
-4. `pnpm examples:typecheck` — `tsc --noEmit` against `examples/tsconfig.json`. Fails if any `.ts` file under `examples/` doesn't compile against the pinned SDK.
+1. `pnpm format:check`: prettier 3.8.1, strict.
+2. `pnpm build`: Next.js static export. Fails if any route handler under `app/` lacks `export const dynamic = 'force-static'`.
+3. `pnpm lint`: eslint. Fails on unescaped apostrophes in JSX (`react/no-unescaped-entities`); use `&apos;`.
+4. `pnpm examples:typecheck`: `tsc --noEmit` against `examples/tsconfig.json`. Fails if any `.ts` file under `examples/` doesn't compile against the pinned SDK.
 
 Deploy CI runs the same plus rsync to sifa-prod after merge to main.
 
@@ -218,7 +218,7 @@ gh workflow run screenshots.yml -R singi-labs/sifa-docs   # if your change wants
 | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `react/no-unescaped-entities` lint error                       | Replace `'` with `&apos;` in the JSX text                                                                                                                   |
 | `export const dynamic = "force-static"...not configured`       | Add `export const dynamic = 'force-static'` to the new route handler                                                                                        |
-| Frontmatter description shows `[Foo](url)` literally on Google | Strip markdown links from frontmatter — use plain text only                                                                                                 |
+| Frontmatter description shows `[Foo](url)` literally on Google | Strip markdown links from frontmatter; use plain text only                                                                                                  |
 | Live site shows old content                                    | HTML caches for 5 min. Hard-refresh, or wait                                                                                                                |
 | Dark mode breaks                                               | CSP got tightened; restore `'unsafe-inline'` in script-src on the Caddyfile (see `~/Documents/CoreNotes/Workspaces/Sifa/decisions/2026-06-02-docs-site.md`) |
 | 404 page renders Next.js stock instead of the Sifa-branded one | Confirm `app/not-found.tsx` is in tree and the Caddyfile has the `handle_errors` block                                                                      |
