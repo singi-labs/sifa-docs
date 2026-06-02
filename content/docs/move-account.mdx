@@ -1,6 +1,6 @@
 ---
 title: Move your account to another provider
-description: Migrate your Atmosphere account from one provider to another without losing followers, posts, profile data, or Sifa records. The full process.
+description: Migrate your Atmosphere account from one provider to another without losing followers, posts, profile data, or Sifa records. Browser tools and CLI options.
 ---
 
 Your provider is the company storing your account data. Don't like them anymore (performance, jurisdiction, pricing, policy)? Move to a different provider and keep everything. Your DID, followers, posts, and Sifa profile records all come with you.
@@ -20,13 +20,44 @@ Your **DID doesn't change**. Your handle may need re-pointing if you used a prov
 ## Before you start
 
 - Know **which provider you're moving to**. Popular alternatives to Bluesky: [Eurosky](https://eurosky.social) (EU-hosted, GDPR-aware), [Tangled](https://tangled.org) (EU, developer-focused), and [Blacksky](https://blacksky.community).
-- Have an account ready on the new provider. Some providers (like Eurosky) require an invite. Check their signup page.
+- Some providers require an **invite code**. Check the target provider's signup page first and grab one if you need it.
 - Pick a moment when you can afford some downtime. The migration itself takes minutes, but DNS propagation and re-signing into apps can take longer.
 - Back up first. The protocol is built for safe migration, but mistakes happen. Keep a CAR-file export of your old provider before you start.
 
-## The migration tool
+## How to actually do it
 
-Use [`goat`](https://github.com/bluesky-social/indigo/tree/main/cmd/goat), the official AT Protocol command-line tool maintained by Bluesky. It implements the full migration flow including the DID-document update, which is the part most likely to go wrong if done by hand.
+You've got three options, ordered from easiest to most technical. Pick whichever fits.
+
+### Option 1: PDSmoover (browser-based, no install)
+
+[PDSmoover](https://pdsmoover.com/moover) is a community-maintained browser tool by [@baileytownsend.dev](https://bsky.app/profile/baileytownsend.dev) that walks through the entire migration in your browser. No CLI, no install. It's the easiest path for most users moving between any two providers.
+
+The flow on the page:
+
+1. Enter your **old handle** and **old password**. PDSmoover notes that the old password also becomes your new password.
+2. Enter the **new PDS URL** (the target provider's address), a **new email**, your **new handle**, and an **invite code** if the target needs one.
+3. Tick the "I understand" risk acknowledgement.
+4. Hit **MOOve**.
+
+A few caveats:
+
+- It's third-party software. Source is on [tangled.org](https://tangled.org/@baileytownsend.dev/pds-moover) if you want to read it before trusting it with your credentials.
+- The page asks for your real password (not an app password), so use it on a device and network you trust.
+- Roll-back works the same way as the other options (see [What can go wrong](#what-can-go-wrong) below).
+
+### Option 2: your target provider's own migration flow
+
+Some providers ship their own browser-based migration tool, no third-party software needed. Currently:
+
+- **Eurosky** has a portal at [portal.eurosky.tech](https://portal.eurosky.tech) that handles signup + migration in-browser. If you're going to Eurosky, that's the one to use.
+
+The user experience is similar to PDSmoover: you give the portal your old credentials and a new handle, the portal does the work. The advantage over a third-party tool is that you're trusting the same organisation you're moving to.
+
+Other providers may add similar flows. Check the target provider's docs.
+
+### Option 3: `goat` CLI (for developers)
+
+If you'd rather drive the migration from a terminal, use [`goat`](https://github.com/bluesky-social/indigo/tree/main/cmd/goat), the official AT Protocol command-line tool maintained by Bluesky.
 
 ```bash
 goat account migrate \
@@ -49,11 +80,11 @@ The whole flow usually takes 1 to 5 minutes depending on how many records you ha
 
 While the migration is in progress, apps you're signed into (Sifa, Bluesky, others) **may show stale data for a few minutes**. They cache identity-resolution responses for short periods. Once the cache expires they pick up the new provider automatically.
 
-After migration, you may have to **sign out and sign back in** to Sifa to refresh the app's session. The session token was issued by your old provider, so it stops working when that provider releases your account.
+After migration you may have to **sign out and sign back in** to Sifa to refresh the app's session. The session token was issued by your old provider, so it stops working when that provider releases your account.
 
 ## After the migration: checklist
 
-Run through these to verify the move worked end-to-end:
+Whichever tool you used, run through these to verify the move worked end-to-end:
 
 - **Resolve your handle.** `curl -s "https://api.bsky.app/xrpc/com.atproto.identity.resolveHandle?handle=alice.eurosky.social"` should return your DID.
 - **Inspect your new PDS.** `curl -s "https://eurosky.social/xrpc/com.atproto.repo.listRecords?repo=<your-did>&collection=id.sifa.profile.position"` should return your Sifa positions.
@@ -63,7 +94,7 @@ Run through these to verify the move worked end-to-end:
 
 If you used a custom domain as your handle (`alice.com`), the domain still works. You don't need to update DNS unless you also changed your underlying handle. The DID lookup follows the same TXT record or `.well-known/atproto-did` file you set up originally.
 
-## What can go wrong (and how to fix it)
+## What can go wrong
 
 **"My handle resolution fails."**  
 DNS caches sometimes hold on to the old record. Wait 10 to 15 minutes and retry. If it still fails, the PLC update may not have applied. Look up your DID on the [PLC directory](https://web.plc.directory) to confirm the operation went through.
@@ -72,7 +103,7 @@ DNS caches sometimes hold on to the old record. Wait 10 to 15 minutes and retry.
 Your AppView session needs to refresh. Sign out and back in. If it persists for more than 30 minutes, [open an issue](https://github.com/singi-labs/sifa-workspace/issues).
 
 **"Some records didn't transfer."**  
-Rare, but possible if your old provider had a record the protocol considers invalid. The `goat` CLI prints a list of skipped records at the end. Look at them on pdsls.dev under your old DID and re-create them by hand on the new provider.
+Rare, but possible if your old provider had a record the protocol considers invalid. Most migration tools print a list of skipped records at the end. Look at them on pdsls.dev under your old DID and re-create them by hand on the new provider.
 
 **"I want to roll back."**  
 You can. As long as your old provider hasn't deleted the deactivated account, you can re-activate it via the protocol. Contact your old provider's support. The operation is reversible for a limited window.
