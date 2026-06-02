@@ -23,7 +23,8 @@
     "format:check": "prettier --check .",
     "prepare": "husky",
     "screenshots:capture": "tsx scripts/screenshot-runner.ts",
-    "screenshots:diff": "tsx scripts/screenshot-diff.ts"
+    "screenshots:diff": "tsx scripts/screenshot-diff.ts",
+    "screenshots:validate": "tsx scripts/validate-screenshot-refs.ts"
   },
   "dependencies": {
     "@radix-ui/colors": "3.0.0",
