@@ -12,7 +12,7 @@
  *   date=YYYY-MM-DD         used for PR title
  */
 import { execFileSync } from 'node:child_process'
-import { existsSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
 import pixelmatch from 'pixelmatch'
 import { PNG } from 'pngjs'
@@ -21,6 +21,7 @@ const THRESHOLD_PCT = 1.5
 const PIXEL_THRESHOLD = 0.1
 
 const SCREENSHOTS_DIR = 'public/screenshots'
+const DIFFS_DIR = 'screenshot-diffs'
 
 function git(...args: string[]): string {
   return execFileSync('git', args, { encoding: 'utf8' }).trim()
@@ -80,7 +81,8 @@ function diffOne(file: string): DiffResult {
   const pct = (changed / (width * height)) * 100
   let diffPath: string | null = null
   if (pct > THRESHOLD_PCT) {
-    diffPath = file.replace(/\.png$/, '.diff.png')
+    mkdirSync(DIFFS_DIR, { recursive: true })
+    diffPath = path.join(DIFFS_DIR, path.basename(file).replace(/\.png$/, '.diff.png'))
     writeFileSync(diffPath, PNG.sync.write(diff))
   }
   return { file, pctChanged: pct, diffPath }
@@ -91,7 +93,7 @@ function setOutput(key: string, value: string): void {
   if (out) {
     writeFileSync(out, `${key}=${value}\n`, { flag: 'a' })
   }
-  console.log(`::set-output name=${key}::${value}`)
+  console.log(`output: ${key}=${value}`)
 }
 
 function main(): void {

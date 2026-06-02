@@ -50,6 +50,15 @@ jobs:
           git commit -m 'chore(screenshots): sub-threshold drift from nightly run'
           git push origin main
 
+      - name: Upload diff artifact
+        if: steps.diff.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshot-diffs-${{ github.run_id }}
+          path: screenshot-diffs/
+          if-no-files-found: ignore
+          retention-days: 30
+
       - name: Open PR on meaningful change
         if: steps.diff.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v6
@@ -60,7 +69,8 @@ jobs:
           body: |
             Auto-captured screenshot diff. Review and merge if the changes are real.
 
-            Diff PNGs (`*.diff.png`) sit next to each changed screenshot for side-by-side review.
+            Diff PNGs are uploaded as the `screenshot-diffs-${{ github.run_id }}` artifact on
+            [this workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).
           commit-message: 'chore(screenshots): update from nightly run'
           add-paths: |
             public/screenshots/

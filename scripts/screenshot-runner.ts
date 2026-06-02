@@ -33,7 +33,7 @@ function interpolate(url: string, vars: Record<string, string>): string {
 }
 
 async function signIn(page: Page, handle: string, password: string): Promise<void> {
-  await page.goto('https://sifa.id/login', { waitUntil: 'networkidle' })
+  await page.goto('https://sifa.id/login', { waitUntil: 'load' })
   await page.fill('input[name="handle"], input[type="text"]', handle)
   await page.click('button[type="submit"]')
   // OAuth handoff to PDS — Bluesky login form.
@@ -73,7 +73,7 @@ async function captureOne(
   await page.emulateMedia({ colorScheme: target.scheme ?? 'light' })
 
   const url = interpolate(target.url, templateVars)
-  await page.goto(url, { waitUntil: 'networkidle' })
+  await page.goto(url, { waitUntil: 'load' })
   if (target.actions) {
     await runActions(page, target.actions)
   }
