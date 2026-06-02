@@ -1,0 +1,88 @@
+name: SDK released
+
+# Triggered by sifa-sdk's release workflow when a new version is
+# published to npm. Bumps the @singi-labs/sifa-sdk pin in this repo,
+# regenerates the lockfile, typechecks examples against the new version,
+# and opens a PR. CI on that PR confirms the docs site still builds and
+# the examples still compile.
+#
+# Manual trigger is also exposed via workflow_dispatch (handy for
+# testing or to force a rebump if the PR was closed without merging).
+
+on:
+  repository_dispatch:
+    types: [sifa-sdk-released]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'SDK version to pin (exact, no caret)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sdk-released
+  cancel-in-progress: false
+
+jobs:
+  bump-and-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Resolve target version
+        id: ver
+        run: |
+          if [ -n "${{ github.event.client_payload.version }}" ]; then
+            echo "version=${{ github.event.client_payload.version }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "version=${{ inputs.version }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Bump @singi-labs/sifa-sdk pin
+        run: |
+          VERSION="${{ steps.ver.outputs.version }}"
+          node -e "const p=require('./package.json'); p.dependencies['@singi-labs/sifa-sdk']='${VERSION}'; require('fs').writeFileSync('./package.json', JSON.stringify(p, null, 2) + '\n');"
+          echo "Pinned @singi-labs/sifa-sdk to ${VERSION}"
+
+      - name: Regenerate lockfile
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Typecheck repo
+        run: pnpm typecheck
+
+      - name: Typecheck examples against new SDK
+        run: pnpm examples:typecheck
+
+      - name: Open PR
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.SDK_BUMP_PR_TOKEN }}
+          branch: chore/bump-sifa-sdk-${{ steps.ver.outputs.version }}
+          title: 'chore(deps): bump @singi-labs/sifa-sdk to ${{ steps.ver.outputs.version }}'
+          commit-message: 'chore(deps): bump @singi-labs/sifa-sdk to ${{ steps.ver.outputs.version }}'
+          body: |
+            Auto-generated bump triggered by [sifa-sdk release](https://github.com/singi-labs/sifa-sdk/releases).
+
+            The new SDK version typechecks against this repo's `examples/` and the docs site builds clean.
+            Merge to deploy a fresh build of `docs.sifa.id` with the updated API reference.
+
+            If this PR sits open for a while, the next release will open a new one, superseding it. Old branches are deleted on merge.
+          add-paths: |
+            package.json
+            pnpm-lock.yaml
+          delete-branch: true

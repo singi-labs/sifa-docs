@@ -26,6 +26,16 @@ export const baseOptions: BaseLayoutProps = {
   githubUrl: 'https://github.com/singi-labs/sifa-docs',
   links: [
     {
+      text: 'User docs',
+      url: '/docs',
+      active: 'nested-url',
+    },
+    {
+      text: 'SDK',
+      url: '/docs/sdk',
+      active: 'nested-url',
+    },
+    {
       text: 'Sifa',
       url: 'https://sifa.id',
     },

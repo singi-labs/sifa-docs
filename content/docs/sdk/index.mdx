@@ -1,0 +1,38 @@
+---
+title: SDK overview
+description: The Sifa SDK is the TypeScript package that powers sifa-web and the planned sifa-app. Use it to read and write id.sifa.* records, query the AppView, or build your own Sifa-aware client.
+---
+
+The Sifa SDK ([`@singi-labs/sifa-sdk`](https://www.npmjs.com/package/@singi-labs/sifa-sdk)) is published to public npm and source-licensed MIT. It contains:
+
+- **Types and Zod schemas** for every `id.sifa.*` record.
+- **Taxonomies** that decide what counts as "Made" vs "Did" activity (the same data the Activity feed allow-list is built from).
+- **Formatters and predicates** that operate on profile data without reaching the network.
+- **A TanStack Query layer** under `/query` with fetchers and React hooks for the [Sifa AppView](https://docs.sifa.id) API.
+- **Design tokens** under `/tokens` (Flexoki primary/secondary colours, typography settings).
+- **An AT Protocol service wrapper** under `/atproto` that takes an authenticated agent and turns it into Sifa-flavoured read/write operations.
+
+Current published version: <SdkVersion />.
+
+## When to use it
+
+- You're building a **third-party Sifa client** (mobile, desktop, alternative web) and you want the same business logic Sifa Web ships with.
+- You're building **automation or analytics** on top of Sifa records and you want type-safe parsing.
+- You're integrating a **non-Sifa app** with the `id.sifa.*` lexicons (a Tangled-style code host, a Leaflet-style publisher, etc.) and you want the canonical schemas without reinventing them.
+
+You **don't** need the SDK to read a Sifa profile in HTML, JSON-LD, or [Atom](/docs/atom-feeds): every doc page is already crawlable. The SDK matters when you're writing code that needs typed access.
+
+## Where this section comes from
+
+Everything on these pages is generated against a pinned version of the SDK. The API reference is built from the actual TypeScript source at build time (`fumadocs-typescript`), and every code example is a real `.ts` file that gets typechecked on every CI run. If sifa-sdk publishes a breaking change and we don't update an example, the build fails.
+
+When the SDK ships a new release on npm, a [cross-repo workflow](https://github.com/singi-labs/sifa-sdk/blob/main/.github/workflows/release.yml) tells this docs site to rebuild. The reference pages here reflect whatever the pinned version exposes.
+
+## Want to go deeper
+
+- [Getting started](/docs/sdk/getting-started): install, configure, fetch your first record.
+- [Concepts](/docs/sdk/concepts): how the SDK is structured and the boundary with the AppView.
+- [Activity taxonomy](/docs/sdk/reference/activity-tiers): the canonical Made/Did/filtered classification.
+- [Colors](/docs/sdk/reference/colors): brand tokens (Flexoki Blue / Purple).
+
+User-facing docs (how Sifa works, account creation, profile features) live in the [User docs section](/docs).
