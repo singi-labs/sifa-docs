@@ -43,13 +43,17 @@ interface Reference {
 function extractReferences(file: string): Reference[] {
   const text = readFileSync(file, 'utf8')
   const out: Reference[] = []
-  // <Screenshot ...> tags are prettier-formatted across multiple lines, so
-  // we scan with /s and resolve the source-line number from the match index.
-  const pattern = /<Screenshot\b[^>]*?\bsrc\s*=\s*["']([^"']+)["'][^>]*?\/?\s*>/gs
+  // <Screenshot ...> tags are prettier-formatted across multiple lines. Use
+  // [\s\S]*? instead of .*? + /s so the regex stays compatible with ES2017
+  // (which the project's tsconfig targets). Source-line number is resolved
+  // from the match index.
+  const pattern = /<Screenshot\b[\s\S]*?\bsrc\s*=\s*["']([^"']+)["'][\s\S]*?\/?\s*>/g
   let match: RegExpExecArray | null
   while ((match = pattern.exec(text)) !== null) {
+    const src = match[1]
+    if (!src) continue
     const line = text.slice(0, match.index).split('\n').length
-    out.push({ file, line, src: match[1] })
+    out.push({ file, line, src })
   }
   return out
 }
