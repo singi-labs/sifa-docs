@@ -44,8 +44,8 @@ export default function NotFound() {
           <p className="font-mono text-xs uppercase tracking-wider text-fd-muted-foreground">404</p>
           <h1 className="font-display text-3xl font-bold tracking-tight">Page not found</h1>
           <p className="text-fd-muted-foreground">
-            The page you&apos;re looking for doesn&apos;t exist on docs.sifa.id. It may have moved, the URL
-            may have a typo, or it may never have existed in the first place.
+            The page you&apos;re looking for doesn&apos;t exist on docs.sifa.id. It may have moved,
+            the URL may have a typo, or it may never have existed in the first place.
           </p>
           <Link
             href="/"
