@@ -28,17 +28,23 @@ function git(...args: string[]): string {
 }
 
 function listChangedPngs(): { modified: string[]; added: string[] } {
-  // --porcelain output: " M path", "?? path", "A  path"
-  const out = git('status', '--porcelain', '--', SCREENSHOTS_DIR)
+  // Porcelain v1 format: 2-char XY status, then a single space, then path.
+  // Don't trim the git output (a leading " M" first line would lose its space
+  // and shift slice(3) by one). Use NUL-terminated output instead, which is
+  // unambiguous and unaffected by leading whitespace.
+  const raw = execFileSync('git', ['status', '--porcelain', '-z', '--', SCREENSHOTS_DIR], {
+    encoding: 'utf8',
+  })
   const modified: string[] = []
   const added: string[] = []
-  for (const line of out.split('\n').filter(Boolean)) {
-    const status = line.slice(0, 2)
-    const file = line.slice(3).trim()
+  for (const entry of raw.split('\0').filter(Boolean)) {
+    if (entry.length < 4) continue
+    const status = entry.slice(0, 2)
+    const file = entry.slice(3)
     if (!file.endsWith('.png')) continue
     if (status.includes('?')) added.push(file)
-    else if (status.includes('M')) modified.push(file)
     else if (status.includes('A')) added.push(file)
+    else if (status.includes('M')) modified.push(file)
   }
   return { modified, added }
 }
