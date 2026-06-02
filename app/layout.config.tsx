@@ -35,9 +35,5 @@ export const baseOptions: BaseLayoutProps = {
       url: '/docs/sdk',
       active: 'nested-url',
     },
-    {
-      text: 'Sifa',
-      url: 'https://sifa.id',
-    },
   ],
 }
