@@ -1,5 +1,8 @@
 import type { MetadataRoute } from 'next'
 
+// Required for `output: 'export'` (static export).
+export const dynamic = 'force-static'
+
 const SITE = 'https://docs.sifa.id'
 
 export default function robots(): MetadataRoute.Robots {
