@@ -66,7 +66,7 @@ jobs:
         if: steps.diff.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
-          token: ${{ secrets.SCREENSHOTS_PR_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           branch: chore/screenshots-${{ github.run_id }}
           title: 'chore(screenshots): nightly diff ${{ steps.diff.outputs.date }}'
           body: |
