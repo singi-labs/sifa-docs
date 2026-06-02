@@ -55,6 +55,14 @@ export const metadata: Metadata = {
     template: '%s | Sifa Docs',
   },
   description: 'Documentation for Sifa, the decentralized professional network on the AT Protocol',
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    url: '/',
+    siteName: 'Sifa Docs',
+  },
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {

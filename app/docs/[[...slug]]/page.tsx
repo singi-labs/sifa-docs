@@ -33,5 +33,18 @@ export async function generateMetadata(props: { params: Promise<{ slug?: string[
   return {
     title: page.data.title,
     description: page.data.description,
+    alternates: {
+      canonical: page.url,
+    },
+    openGraph: {
+      title: page.data.title,
+      description: page.data.description,
+      url: page.url,
+      type: 'article',
+    },
+    twitter: {
+      title: page.data.title,
+      description: page.data.description,
+    },
   }
 }
