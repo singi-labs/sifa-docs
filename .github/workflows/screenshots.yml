@@ -38,9 +38,6 @@ jobs:
       - run: pnpm exec playwright install chromium
 
       - name: Capture screenshots
-        env:
-          SCREENSHOT_HANDLE: ${{ secrets.SCREENSHOT_HANDLE }}
-          SCREENSHOT_PASSWORD: ${{ secrets.SCREENSHOT_PASSWORD }}
         run: pnpm tsx scripts/screenshot-runner.ts
 
       - name: Diff and decide

@@ -90,11 +90,15 @@ Use the MDX `<Screenshot>` component to embed:
 />
 ```
 
-Required GitHub secrets (set in repo settings):
+v1 captures signed-out surfaces only — no account, no password, no secrets
+beyond a PR-opening PAT.
 
-- `SCREENSHOT_HANDLE` — handle of the long-lived test account (e.g. `docs-screenshots.sifa.id`)
-- `SCREENSHOT_PASSWORD` — Bluesky app password for that account
+Required GitHub secret:
+
 - `SCREENSHOTS_PR_TOKEN` — PAT with `repo` + `pull-requests:write` for opening review PRs
+
+The demo handle used in `/p/{handle}` shots is set in
+`scripts/screenshot-targets.ts` (`DEMO_HANDLE`).
 
 See [CONTRIBUTING.md](https://github.com/singi-labs/.github/blob/main/CONTRIBUTING.md) for contribution guidelines.
 
