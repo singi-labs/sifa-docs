@@ -4,6 +4,8 @@ import { ActivityRegistry } from './components/activity-registry'
 import { Example } from './components/example'
 import { Screenshot } from './components/screenshot'
 import { SdkColors } from './components/sdk-colors'
+import { SdkIconWeights } from './components/sdk-icon-weights'
+import { SdkTypography } from './components/sdk-typography'
 import { SdkVersion } from './components/sdk-version'
 
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
@@ -13,6 +15,8 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     Example,
     Screenshot,
     SdkColors,
+    SdkIconWeights,
+    SdkTypography,
     SdkVersion,
     ...components,
   }
