@@ -26,7 +26,7 @@ export const DEFAULT_VIEWPORT = { width: 1280, height: 800 } as const
  * Picked because the profile is real, public, and unlikely to be deleted.
  * Change here to swap to a different demo profile.
  */
-export const DEMO_HANDLE = 'guido.gui.do'
+export const DEMO_HANDLE = 'gui.do'
 
 export const targets: ScreenshotTarget[] = [
   {
