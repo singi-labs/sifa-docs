@@ -90,12 +90,11 @@ Use the MDX `<Screenshot>` component to embed:
 />
 ```
 
-v1 captures signed-out surfaces only — no account, no password, no secrets
-beyond a PR-opening PAT.
-
-Required GitHub secret:
-
-- `SCREENSHOTS_PR_TOKEN` — PAT with `repo` + `pull-requests:write` for opening review PRs
+v1 captures signed-out surfaces only — no account, no password, no secrets.
+The bot uses the built-in `GITHUB_TOKEN` to open review PRs. Tradeoff:
+`pull_request`-triggered workflows don't run on the bot's PRs (GitHub
+limitation), but for screenshot-only PRs there's nothing CI would catch
+anyway.
 
 The demo handle used in `/p/{handle}` shots is set in
 `scripts/screenshot-targets.ts` (`DEMO_HANDLE`).
