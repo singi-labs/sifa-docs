@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# screenshot pipeline (workflow artifact, not committed)
+/screenshot-diffs/

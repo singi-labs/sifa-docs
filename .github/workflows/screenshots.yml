@@ -1,0 +1,79 @@
+name: Screenshots
+
+on:
+  schedule:
+    - cron: '0 4 * * *' # 04:00 UTC daily
+  workflow_dispatch:
+  repository_dispatch:
+    types: [sifa-web-released]
+
+concurrency:
+  group: screenshots
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  capture:
+    # Self-hosted runner on singi-ci. Chromium apt deps are pre-installed
+    # on the host (see Singi Labs/infrastructure/ci-runner.md). Playwright
+    # 1.60 doesn't recognise Ubuntu 26.04, so PLAYWRIGHT_HOST_PLATFORM_OVERRIDE
+    # forces it to use the ubuntu22.04 browser build, which runs fine.
+    runs-on: [self-hosted, self-hosted-sifa-docs]
+    env:
+      PLAYWRIGHT_HOST_PLATFORM_OVERRIDE: ubuntu22.04-x64
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install chromium
+
+      - name: Capture screenshots
+        run: pnpm tsx scripts/screenshot-runner.ts
+
+      - name: Diff and decide
+        id: diff
+        run: pnpm tsx scripts/screenshot-diff.ts
+
+      - name: Commit sub-threshold drift silently
+        if: steps.diff.outputs.silent == 'true'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/screenshots/
+          git commit -m 'chore(screenshots): sub-threshold drift from nightly run'
+          git push origin main
+
+      - name: Upload diff artifact
+        if: steps.diff.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshot-diffs-${{ github.run_id }}
+          path: screenshot-diffs/
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Open PR on meaningful change
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.SCREENSHOTS_PR_TOKEN }}
+          branch: chore/screenshots-${{ github.run_id }}
+          title: 'chore(screenshots): nightly diff ${{ steps.diff.outputs.date }}'
+          body: |
+            Auto-captured screenshot diff. Review and merge if the changes are real.
+
+            Diff PNGs are uploaded as the `screenshot-diffs-${{ github.run_id }}` artifact on
+            [this workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).
+          commit-message: 'chore(screenshots): update from nightly run'
+          add-paths: |
+            public/screenshots/

@@ -67,6 +67,39 @@ pnpm typecheck    # TypeScript strict mode
 pnpm format       # Prettier write
 ```
 
+### Automated screenshots
+
+Tutorial pages embed screenshots captured by Playwright on a nightly schedule
+and on each `sifa-web` release. Targets live in
+[`scripts/screenshot-targets.ts`](scripts/screenshot-targets.ts); the runner
+writes PNGs into `public/screenshots/` and the diff step decides what to do:
+
+| Pixel change | Outcome                                      |
+| ------------ | -------------------------------------------- |
+| 0%           | revert (no commit)                           |
+| 0 – 1.5%     | commit directly to `main` (anti-alias drift) |
+| > 1.5%       | open `chore(screenshots): nightly diff …` PR |
+
+Use the MDX `<Screenshot>` component to embed:
+
+```mdx
+<Screenshot
+  src="create-account-login-page.png"
+  alt="Sifa login page with a single handle input and a sign-in button."
+  caption="The Sifa login page."
+/>
+```
+
+v1 captures signed-out surfaces only — no account, no password, no secrets
+beyond a PR-opening PAT.
+
+Required GitHub secret:
+
+- `SCREENSHOTS_PR_TOKEN` — PAT with `repo` + `pull-requests:write` for opening review PRs
+
+The demo handle used in `/p/{handle}` shots is set in
+`scripts/screenshot-targets.ts` (`DEMO_HANDLE`).
+
 See [CONTRIBUTING.md](https://github.com/singi-labs/.github/blob/main/CONTRIBUTING.md) for contribution guidelines.
 
 ---
