@@ -1,0 +1,66 @@
+name: Screenshots
+
+on:
+  schedule:
+    - cron: '0 4 * * *' # 04:00 UTC daily
+  workflow_dispatch:
+  repository_dispatch:
+    types: [sifa-web-released]
+
+concurrency:
+  group: screenshots
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+
+      - name: Capture screenshots
+        env:
+          SCREENSHOT_HANDLE: ${{ secrets.SCREENSHOT_HANDLE }}
+          SCREENSHOT_PASSWORD: ${{ secrets.SCREENSHOT_PASSWORD }}
+        run: pnpm tsx scripts/screenshot-runner.ts
+
+      - name: Diff and decide
+        id: diff
+        run: pnpm tsx scripts/screenshot-diff.ts
+
+      - name: Commit sub-threshold drift silently
+        if: steps.diff.outputs.silent == 'true'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/screenshots/
+          git commit -m 'chore(screenshots): sub-threshold drift from nightly run'
+          git push origin main
+
+      - name: Open PR on meaningful change
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.SCREENSHOTS_PR_TOKEN }}
+          branch: chore/screenshots-${{ github.run_id }}
+          title: 'chore(screenshots): nightly diff ${{ steps.diff.outputs.date }}'
+          body: |
+            Auto-captured screenshot diff. Review and merge if the changes are real.
+
+            Diff PNGs (`*.diff.png`) sit next to each changed screenshot for side-by-side review.
+          commit-message: 'chore(screenshots): update from nightly run'
+          add-paths: |
+            public/screenshots/

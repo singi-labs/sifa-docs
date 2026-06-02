@@ -1,0 +1,49 @@
+export type ScreenshotAction =
+  | { type: 'click'; selector: string }
+  | { type: 'scroll'; y: number }
+  | { type: 'wait'; selector: string }
+  | { type: 'fill'; selector: string; value: string }
+
+export interface ScreenshotTarget {
+  /** Output filename in public/screenshots/, no extension. */
+  name: string
+  /** Absolute URL to navigate to. `{{handle}}` is substituted with SCREENSHOT_HANDLE. */
+  url: string
+  /** Viewport size. Defaults to 1280×800. */
+  viewport?: { width: number; height: number }
+  /** Color scheme. Defaults to light. */
+  scheme?: 'light' | 'dark'
+  /** Sign in as the test account before navigating. */
+  authenticated?: boolean
+  /** Pre-capture interactions. */
+  actions?: ScreenshotAction[]
+  /** CSS selector to clip the screenshot to. Omit for full viewport. */
+  clip?: string
+}
+
+export const DEFAULT_VIEWPORT = { width: 1280, height: 800 } as const
+
+export const targets: ScreenshotTarget[] = [
+  {
+    name: 'create-account-login-page',
+    url: 'https://sifa.id/login',
+    authenticated: false,
+  },
+  {
+    name: 'create-account-signed-in-profile',
+    url: 'https://sifa.id/p/{{handle}}',
+    authenticated: true,
+  },
+  {
+    name: 'import-linkedin-upload-screen',
+    url: 'https://sifa.id/import',
+    authenticated: true,
+  },
+  {
+    name: 'profile-activity-feed',
+    url: 'https://sifa.id/p/{{handle}}',
+    authenticated: true,
+    actions: [{ type: 'scroll', y: 800 }],
+    clip: '[data-section="activity-feed"]',
+  },
+]
