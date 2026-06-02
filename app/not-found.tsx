@@ -44,8 +44,8 @@ export default function NotFound() {
           <p className="font-mono text-xs uppercase tracking-wider text-fd-muted-foreground">404</p>
           <h1 className="font-display text-3xl font-bold tracking-tight">Page not found</h1>
           <p className="text-fd-muted-foreground">
-            The page you're looking for doesn't exist on docs.sifa.id. It may have moved, the URL
-            may have a typo, or it may never have existed in the first place.
+            The page you&apos;re looking for doesn&apos;t exist on docs.sifa.id. It may have moved,
+            the URL may have a typo, or it may never have existed in the first place.
           </p>
           <Link
             href="/"
@@ -72,7 +72,7 @@ export default function NotFound() {
             ))}
           </ul>
           <p className="mt-6 text-center text-sm text-fd-muted-foreground">
-            Still can't find what you're looking for?{' '}
+            Still can&apos;t find what you&apos;re looking for?{' '}
             <a
               href="https://github.com/singi-labs/sifa-docs/issues"
               target="_blank"
