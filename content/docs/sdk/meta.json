@@ -1,0 +1,12 @@
+{
+  "title": "SDK Reference",
+  "root": true,
+  "pages": [
+    "index",
+    "getting-started",
+    "concepts",
+    "---Reference---",
+    "reference/activity-tiers",
+    "reference/colors"
+  ]
+}

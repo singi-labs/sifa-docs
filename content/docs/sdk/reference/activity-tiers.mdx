@@ -1,0 +1,86 @@
+---
+title: Activity taxonomy
+description: The Made / Did / filtered classification for every record type Sifa indexes. Live data from sifa-sdk.
+---
+
+The activity taxonomy classifies every AT Protocol record type Sifa knows about into one of three **tiers**, determining whether and how the record surfaces on a profile. This page renders the live data from `@singi-labs/sifa-sdk@<SdkVersion inline />`.
+
+## Tiers
+
+<ActivityRegistry tier="creation" />
+
+<ActivityRegistry tier="action" />
+
+A third tier (`filtered`) covers configuration records, moderation records, and other infrastructure that we hide from every Sifa surface.
+
+## Types
+
+The exported shapes consumers can rely on. Re-exported from `examples/sdk-types.ts` so any rename in the SDK fails CI before this page can ship stale.
+
+### `ActivityTier`
+
+```ts
+type ActivityTier = 'creation' | 'action' | 'filtered'
+```
+
+A single union of the three classifications. Use this as the parameter type for functions that take a tier name.
+
+### `TierMeta`
+
+```ts
+interface TierMeta {
+  /** Human-readable label, e.g. "Made". Null on the filtered tier. */
+  label: string | null
+  /** Sentence-length description of what the tier covers. */
+  description: string
+  /** True if records in this tier surface on the public profile. */
+  shownOnPublicProfile: boolean
+}
+```
+
+### `LexiconEntry`
+
+```ts
+interface LexiconEntry {
+  /** Which tier this record type falls into. */
+  tier: ActivityTier
+  /** Originating app slug, e.g. "bluesky", "tangled". Optional for community lexicons. */
+  app?: string
+  /** Free-text caveats or rationale notes. Optional. */
+  notes?: string
+}
+```
+
+### `ActivityTaxonomy`
+
+```ts
+interface ActivityTaxonomy {
+  /** Semantic version of the taxonomy. */
+  version: string
+  /** ISO date of the last update, e.g. "2026-05-28". */
+  updated: string
+  /** Tier-level metadata, keyed by tier name. */
+  tiers: Record<ActivityTier, TierMeta>
+  /** All known record types, keyed by AT Protocol NSID. */
+  lexicons: Record<string, LexiconEntry>
+}
+```
+
+## Functions
+
+The SDK exports a handful of pure helpers around the taxonomy. None touch the network.
+
+| Function                     | Signature                                    | Purpose                                                                                   |
+| ---------------------------- | -------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `getActivityTier`            | `(nsid: string) => ActivityTier`             | Look up the tier for a given NSID. Returns `'filtered'` for unknown NSIDs (safe default). |
+| `getLexiconEntry`            | `(nsid: string) => LexiconEntry \| null`     | Get the full entry (tier + app + notes), or `null` if unknown.                            |
+| `getTierMeta`                | `(tier: ActivityTier) => TierMeta`           | Get tier metadata (label, description, public visibility).                                |
+| `getActivityTaxonomyVersion` | `() => { version: string; updated: string }` | Diagnostics for version-skew detection.                                                   |
+
+The full taxonomy is also exposed as the readonly export `ACTIVITY_TIERS`.
+
+## Reading from your own code
+
+<Example path="01-fetch-activity-tiers.ts" />
+
+For an end-user explanation of which records show up where, see [Activity feed](/docs/activity-feed).

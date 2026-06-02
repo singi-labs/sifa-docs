@@ -1,0 +1,54 @@
+---
+title: Concepts
+description: How the SDK is structured, what each subpath is for, and where the SDK ends and the Sifa AppView begins.
+---
+
+The SDK is **deliberately not a client**. It doesn't manage your auth, doesn't store tokens, doesn't make decisions about what to render. What it does:
+
+- Defines the **shapes** of every `id.sifa.*` record (Zod schemas + TypeScript types).
+- Defines the **taxonomies** that decide how records get classified.
+- Provides **pure functions** that operate on those shapes (formatters, predicates, normalisers).
+- Exposes a **thin AT Protocol wrapper** that takes your agent and gives you typed read/write operations.
+- Exposes a **TanStack Query layer** for talking to the Sifa AppView's HTTP API.
+
+Everything else (OAuth, browser vs Expo storage, routing, UI) belongs to your app.
+
+## Subpaths
+
+| Subpath                        | Purpose                                                           | Peer deps                                              |
+| ------------------------------ | ----------------------------------------------------------------- | ------------------------------------------------------ |
+| `@singi-labs/sifa-sdk` (root)  | Types, Zod schemas, taxonomies, formatters, predicates            | none                                                   |
+| `@singi-labs/sifa-sdk/query`   | TanStack Query fetchers + React hooks for the Sifa AppView        | `@tanstack/react-query@^5`, `react@^18` or `react@^19` |
+| `@singi-labs/sifa-sdk/tokens`  | Design tokens (colors, typography)                                | none                                                   |
+| `@singi-labs/sifa-sdk/atproto` | Typed wrapper over `@atproto/api` for writing `id.sifa.*` records | `@atproto/api@^0` (you supply the agent)               |
+
+The root subpath is dependency-free, so you can pull it into a CLI, an analytics worker, an SSR backend, or a browser bundle without dragging React or TanStack Query along.
+
+## Where the SDK ends
+
+The SDK is one of three layers in a typical Sifa-aware app:
+
+1. **The SDK** (this thing): types and pure logic, plus optional fetchers and writers.
+2. **The Sifa AppView** at `sifa.id`: indexes the AT Protocol firehose into a database and exposes HTTP endpoints. See [Apps, AppViews, and the firehose](/docs/apps-appviews-firehose) for what an AppView is in this protocol.
+3. **Your app**: the UI, the OAuth client, the storage strategy, the moderation decisions.
+
+The SDK talks to the AppView via its `/query` layer. It does **not** talk directly to user PDSes for read operations (the AppView's index is faster and consistent). It **does** talk directly to user PDSes for write operations via the `/atproto` layer (writes have to land on the user's home server, not on Sifa's index).
+
+## Why no client?
+
+Two reasons:
+
+- **Auth varies by platform.** Browser apps use OAuth, mobile apps use the same OAuth flow but with MMKV storage, server apps may use app passwords. Bundling auth into the SDK forces a choice; leaving it out lets each platform pick.
+- **State management varies by app.** Some apps want TanStack Query, some want SWR, some want raw fetch. The SDK ships TanStack Query as one option (`/query`) and exposes the underlying fetchers so other state libraries can wrap them.
+
+## Versioning
+
+The SDK follows **semver**, but it's currently pre-1.0. Patch bumps are the default for additive changes (new exports, new types). Minor bumps for substantial milestones. Until 1.0, treat `0.x` minor bumps as potentially-breaking and read the [CHANGELOG](https://github.com/singi-labs/sifa-sdk/blob/main/CHANGELOG.md) before upgrading.
+
+When the SDK publishes a new version, [sifa-sdk's release workflow](https://github.com/singi-labs/sifa-sdk/blob/main/.github/workflows/release.yml) dispatches an event to this docs repo to rebuild. The version stamp on the [SDK overview page](/docs/sdk) shows what's currently rendered against.
+
+## Want to go deeper
+
+- [Getting started](/docs/sdk/getting-started): install + first calls.
+- [Activity taxonomy](/docs/sdk/reference/activity-tiers): the Made/Did/filtered classification.
+- [Colors](/docs/sdk/reference/colors): brand tokens.

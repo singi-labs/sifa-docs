@@ -1,0 +1,42 @@
+---
+title: Getting started
+description: Install the SDK, configure it for your AT Protocol session, and make your first call.
+---
+
+The SDK is **TypeScript-first** but ships dual ESM + CJS, so any modern Node, Bun, Deno, or browser bundler can consume it.
+
+## Install
+
+```bash
+pnpm add @singi-labs/sifa-sdk
+# or
+npm install @singi-labs/sifa-sdk
+# or
+bun add @singi-labs/sifa-sdk
+```
+
+Peer dependencies: `@tanstack/react-query@^5` if you use the `/query` subpath. The `/tokens` and `/atproto` subpaths have no peer deps.
+
+## Read-only example: fetch the activity-tier taxonomy
+
+The taxonomy is bundled in the package and resolved without network. Useful as a smoke test.
+
+<Example path="01-fetch-activity-tiers.ts" />
+
+The exported `ACTIVITY_TIERS` is what every Sifa app uses to decide whether a record like `app.bsky.feed.post` shows up on a profile. See the [Activity taxonomy reference](/docs/sdk/reference/activity-tiers) for the full structure.
+
+## Authenticated example: write a position record to a user's PDS
+
+Writing records requires an authenticated `@atproto/api` agent. The SDK doesn't construct the agent itself: you bring your own (browser-side, you'll use OAuth; server-side, you might use an app password during development).
+
+<Example path="02-write-position.ts" />
+
+The wrapper accepts the agent as a parameter so your app stays in control of identity, storage, and session refresh. The SDK provides the typed write surface and the Zod validation; you provide the network.
+
+## Where to next
+
+- [Concepts](/docs/sdk/concepts): the architecture, where the SDK ends and the AppView begins.
+- [Activity taxonomy reference](/docs/sdk/reference/activity-tiers): canonical Made/Did classification.
+- [Colors](/docs/sdk/reference/colors): brand tokens.
+
+Looking for user-facing docs instead? [Start here](/docs).
