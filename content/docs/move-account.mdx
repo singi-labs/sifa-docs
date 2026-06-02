@@ -92,6 +92,12 @@ Whichever tool you used, run through these to verify the move worked end-to-end:
 - **Check your [Bluesky](https://bsky.app) timeline.** Posts, follows, and followers should be intact.
 - **Check your Atom feed.** [`https://sifa.id/p/<new-handle>/activity.atom`](https://sifa.id/p/alice.eurosky.social/activity.atom) should resolve and show the same entries as before.
 
+<Screenshot
+  src="public-profile-activity-feed.png"
+  alt="Sifa activity feed for a profile: a chronological list of posts, articles, and other Atmosphere records, each annotated with the source app. Items include forum posts, articles, saved links, and event RSVPs from different providers across the network."
+  caption="The activity feed after a move. Same DID, same entries. Only the underlying PDS changed."
+/>
+
 If you used a custom domain as your handle (`alice.com`), the domain still works. You don't need to update DNS unless you also changed your underlying handle. The DID lookup follows the same TXT record or `.well-known/atproto-did` file you set up originally.
 
 ## What can go wrong
