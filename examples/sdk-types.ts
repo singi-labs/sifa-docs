@@ -16,13 +16,31 @@
 
 export type { ActivityTier, ActivityTaxonomy, TierMeta, LexiconEntry } from '@singi-labs/sifa-sdk'
 
-import type { colors as RuntimeColors } from '@singi-labs/sifa-sdk/tokens'
+import type {
+  colors as RuntimeColors,
+  fonts as RuntimeFonts,
+  fontFallbackStacks as RuntimeFontFallbackStacks,
+  iconSet as RuntimeIconSet,
+  iconWeights as RuntimeIconWeights,
+} from '@singi-labs/sifa-sdk/tokens'
 
 /**
  * Brand-color constants from the Flexoki palette. Exported as a const
  * object at runtime; this is the inferred type for documentation.
  */
 export type Colors = typeof RuntimeColors
+
+/** Font family names (without fallbacks). */
+export type Fonts = typeof RuntimeFonts
+
+/** Full font-family strings with fallback chains, paste-ready into CSS. */
+export type FontFallbackStacks = typeof RuntimeFontFallbackStacks
+
+/** The icon-library identifier the SDK endorses. */
+export type IconSetConst = typeof RuntimeIconSet
+
+/** Phosphor weight mapping per UI context. */
+export type IconWeightsConst = typeof RuntimeIconWeights
 
 import {
   getActivityTier,
