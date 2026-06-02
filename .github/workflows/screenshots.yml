@@ -17,7 +17,13 @@ permissions:
 
 jobs:
   capture:
-    runs-on: ubuntu-latest
+    # Self-hosted runner on singi-ci. Chromium apt deps are pre-installed
+    # on the host (see Singi Labs/infrastructure/ci-runner.md). Playwright
+    # 1.60 doesn't recognise Ubuntu 26.04, so PLAYWRIGHT_HOST_PLATFORM_OVERRIDE
+    # forces it to use the ubuntu22.04 browser build, which runs fine.
+    runs-on: [self-hosted, self-hosted-sifa-docs]
+    env:
+      PLAYWRIGHT_HOST_PLATFORM_OVERRIDE: ubuntu22.04-x64
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -29,7 +35,7 @@ jobs:
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile
-      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm exec playwright install chromium
 
       - name: Capture screenshots
         env:
