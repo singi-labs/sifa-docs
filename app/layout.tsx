@@ -98,6 +98,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             defaultTheme: 'dark',
             enableSystem: true,
           }}
+          search={{
+            // Static export: the search index is built at compile time
+            // and fetched as JSON from /api/search. See
+            // app/api/search/route.ts.
+            options: {
+              type: 'static',
+            },
+          }}
         >
           {children}
         </RootProvider>
