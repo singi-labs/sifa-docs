@@ -58,6 +58,11 @@ exclude = [
   # localhost / local dev.
   "^https?://localhost",
   "^https?://127\\.0\\.0\\.1",
+  # Next.js image-optimization URLs. Under output: 'export' the
+  # /_next/image route is not statically rendered, so any reference to
+  # an optimized image URL 404s on the live site. The original asset
+  # at /public/screenshots/*.png is checked separately.
+  "^https?://docs\\.sifa\\.id/_next/image",
   # Hosts that 403 / 999 / rate-limit CI IPs aggressively. Verified in
   # practice; allowlist only what's blocking, not whole TLDs.
   "^https?://(www\\.)?linkedin\\.com",
@@ -80,6 +85,11 @@ exclude = [
 # URLs and resolves them against the base, which produces false 404s
 # because the real screenshot URLs are at /screenshots/x.png.
 exclude_path = ["out/raw"]
+
+# Resolve absolute https://docs.sifa.id/ URLs against the local build
+# instead of hitting the live site. Otherwise a PR that adds a new page
+# fails link-check because the live site doesn't have that page yet.
+remap = ["https://docs.sifa.id/ file://./out/"]
 
 # Internal links (rooted with "/") should resolve to a file in out/.
 # lychee does this automatically when given a directory.
