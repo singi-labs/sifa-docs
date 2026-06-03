@@ -1,0 +1,88 @@
+# lychee link-checker configuration for sifa-docs.
+#
+# Run locally with: lychee --config .lychee.toml out/
+# CI runs it after `pnpm build` so every link rendered into the static
+# export gets checked (prose links, generated URLs, OG meta, sitemap).
+
+# Verify TLS but allow self-signed for local testing.
+insecure = false
+
+# Cache so repeat runs (and PR rebases) skip recently-checked URLs.
+cache = true
+max_cache_age = "1d"
+
+# Follow redirects (most short URLs and migrations need this).
+max_redirects = 5
+
+# Reasonable per-request timeout. Slow servers fail loud rather than
+# stalling the whole run.
+timeout = 20
+
+# Concurrent requests. High enough to be fast, low enough to be polite.
+max_concurrency = 16
+
+# Retries with exponential backoff for transient network errors.
+max_retries = 2
+retry_wait_time = 2
+
+# Treat 200-399 as success. Some hosts return 403/405 to HEAD requests
+# even when the URL is valid; lychee retries with GET automatically.
+accept = ["200..=299", "301", "302", "307", "308"]
+
+# Skip URLs that are not real links (mailto, javascript, anchors that
+# don't have an HTML target, and example placeholders).
+exclude = [
+  # Mailto and tel are not network-checkable here.
+  "^mailto:",
+  "^tel:",
+  # Placeholder values we deliberately use in examples.
+  "<your-handle>",
+  "<your-did>",
+  "<your-publication-rkey>",
+  "<your-current-handle>",
+  "<your-domain>",
+  "<set-on-new-provider>",
+  "your\\.handle",
+  "your\\.com",
+  "alice\\.com",
+  "alice\\.bsky\\.social",
+  "alice\\.eurosky\\.social",
+  "alice\\.example\\.org",
+  "example\\.com",
+  "example\\.org",
+  # at:// URIs aren't HTTP-fetchable.
+  "^at://",
+  # localhost / local dev.
+  "^https?://localhost",
+  "^https?://127\\.0\\.0\\.1",
+  # Some hosts rate-limit aggressively or block CI IPs; allowlist only
+  # the cases we hit in practice rather than skipping whole TLDs.
+  # LinkedIn often returns 999 to bots.
+  "^https?://(www\\.)?linkedin\\.com",
+  # Twitter / X gate behind auth for most requests.
+  "^https?://(www\\.)?(twitter|x)\\.com",
+  # Instagram is a frequent CI-IP block.
+  "^https?://(www\\.)?instagram\\.com",
+  # YouTube channel pages are stable but their bot-detection is noisy.
+  "^https?://(www\\.)?youtube\\.com",
+  # docs.sifa.id self-links: handled by the internal-link check below.
+  # We still want to verify external mentions of docs.sifa.id, just not
+  # ones inside out/ that would just chase our own build.
+  # (handled via --base when we invoke lychee in CI)
+]
+
+# Internal links (rooted with "/") should resolve to a file in out/.
+# lychee does this automatically when given a directory.
+include_fragments = false
+
+# User agent helps with hosts that block default bot UAs.
+user_agent = "sifa-docs-link-check (+https://docs.sifa.id)"
+
+# Allow GitHub API rate limits to use a token when one is present.
+github_token = "${GITHUB_TOKEN}"
+
+# Format the report so failures are easy to read in CI logs.
+format = "compact"
+
+# Quiet: only print problems and a summary.
+verbose = false
