@@ -69,7 +69,7 @@ jobs:
         with:
           # Walk the built static export. lychee picks up HTML, MDX is
           # already rendered into HTML by next build.
-          args: --config .lychee.toml --base https://docs.sifa.id ./out
+          args: --config .lychee.toml --root-dir "$(pwd)/out" ./out
           # Fail the job on any broken link.
           fail: true
           # Output goes to GitHub Actions step summary.
