@@ -85,4 +85,4 @@ github_token = "${GITHUB_TOKEN}"
 format = "compact"
 
 # Quiet: only print problems and a summary.
-verbose = false
+verbose = "warn"
