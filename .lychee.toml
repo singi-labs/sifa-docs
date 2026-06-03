@@ -1,0 +1,125 @@
+# lychee link-checker configuration for sifa-docs.
+#
+# Run locally with: lychee --config .lychee.toml out/
+# CI runs it after `pnpm build` so every link rendered into the static
+# export gets checked (prose links, generated URLs, OG meta, sitemap).
+
+# Verify TLS but allow self-signed for local testing.
+insecure = false
+
+# Cache so repeat runs (and PR rebases) skip recently-checked URLs.
+cache = true
+max_cache_age = "1d"
+
+# Follow redirects (most short URLs and migrations need this).
+max_redirects = 5
+
+# Reasonable per-request timeout. Slow servers fail loud rather than
+# stalling the whole run.
+timeout = 20
+
+# Concurrent requests. High enough to be fast, low enough to be polite.
+max_concurrency = 16
+
+# Retries with exponential backoff for transient network errors.
+max_retries = 2
+retry_wait_time = 2
+
+# Treat 200-399 as success. Some hosts return 403/405 to HEAD requests
+# even when the URL is valid; lychee retries with GET automatically.
+accept = ["200..=299", "301", "302", "307", "308"]
+
+# Skip URLs that are not real links (mailto, javascript, anchors that
+# don't have an HTML target, and example placeholders).
+exclude = [
+  # Mailto and tel are not network-checkable here.
+  "^mailto:",
+  "^tel:",
+  # Placeholder values we deliberately use in examples.
+  "<your-handle>",
+  "<your-did>",
+  "<your-publication-rkey>",
+  "<your-current-handle>",
+  "<your-domain>",
+  "<set-on-new-provider>",
+  "your\\.handle",
+  "your\\.com",
+  "alice\\.com",
+  "alice\\.bsky\\.social",
+  "alice\\.eurosky\\.social",
+  "alice\\.example\\.org",
+  "example\\.com",
+  "example\\.org",
+  # XRPC example URLs in code blocks. lychee parses the URL stopping at
+  # the angle bracket of <your-handle> and tries the truncated request.
+  "^https?://bsky\\.social/xrpc/",
+  "^https?://eurosky\\.social/xrpc/",
+  # at:// URIs aren't HTTP-fetchable. lychee may also rewrite them to
+  # file:// when scanning text dumps; match both.
+  "^at://",
+  "^file:.*at:",
+  # Reederapp.com occasionally times out from CI. Re-check manually if
+  # the link is suspected dead.
+  "^https?://reederapp\\.com",
+  # localhost / local dev.
+  "^https?://localhost",
+  "^https?://127\\.0\\.0\\.1",
+  # Next.js image optimizer endpoint. Present in static export HTML as
+  # /_next/image?url=..., but the route handler isn't materialized as
+  # a file (images are pre-optimized at build).
+  "/_next/image",
+  # Absolute self-references to docs.sifa.id. Relative links in HTML
+  # are already resolved against the local out/ directory via the
+  # --root-dir flag in the workflow, so absolute self-references would
+  # only double-check by hitting the live site. A PR that adds a new
+  # page would then fail because the live site doesn't have it yet.
+  "^https?://docs\\.sifa\\.id/",
+  # Hosts that 403 / 999 / rate-limit CI IPs aggressively. Verified in
+  # practice; allowlist only what's blocking, not whole TLDs.
+  "^https?://(www\\.)?linkedin\\.com",
+  "^https?://(www\\.)?(twitter|x)\\.com",
+  "^https?://(www\\.)?instagram\\.com",
+  "^https?://(www\\.)?youtube\\.com",
+  "^https?://(www\\.)?substack\\.com",
+  "^https?://(www\\.)?npmjs\\.com",
+  # Sometimes-unreachable third-party hosts. Re-evaluate periodically.
+  "^https?://offprint\\.pub",
+  "^https?://hannah\\.makes\\.software",
+  # docs.sifa.id self-links: handled by the internal-link check below.
+  # We still want to verify external mentions of docs.sifa.id, just not
+  # ones inside out/ that would just chase our own build.
+  # (handled via --base when we invoke lychee in CI)
+]
+
+# Don't scan the raw markdown copies of doc pages. lychee picks up JSX
+# component attributes (e.g. `<Screenshot src="x.png">`) as relative
+# URLs and resolves them against the base, which produces false 404s
+# because the real screenshot URLs are at /screenshots/x.png.
+# Skip the text dumps that duplicate HTML content. lychee picks them up
+# and rescans URLs that already appear in the source HTML, multiplying
+# both the request count and the surface for false positives (e.g.,
+# at:// URIs in code samples get parsed as file paths).
+exclude_path = [
+  "out/raw",
+  "out/llms.txt",
+  "out/llms-full.txt",
+  # Next.js per-page RSC text dumps.
+  "out/**/__next.*.txt",
+  "out/**/index.txt",
+]
+
+# Internal links (rooted with "/") should resolve to a file in out/.
+# lychee does this automatically when given a directory.
+include_fragments = false
+
+# User agent helps with hosts that block default bot UAs.
+user_agent = "sifa-docs-link-check (+https://docs.sifa.id)"
+
+# Allow GitHub API rate limits to use a token when one is present.
+github_token = "${GITHUB_TOKEN}"
+
+# Format the report so failures are easy to read in CI logs.
+format = "compact"
+
+# Quiet: only print problems and a summary.
+verbose = "warn"
