@@ -53,8 +53,14 @@ exclude = [
   # XRPC example URLs in code blocks. lychee parses the URL stopping at
   # the angle bracket of <your-handle> and tries the truncated request.
   "^https?://bsky\\.social/xrpc/",
-  # at:// URIs aren't HTTP-fetchable.
+  "^https?://eurosky\\.social/xrpc/",
+  # at:// URIs aren't HTTP-fetchable. lychee may also rewrite them to
+  # file:// when scanning text dumps; match both.
   "^at://",
+  "^file:.*at:",
+  # Reederapp.com occasionally times out from CI. Re-check manually if
+  # the link is suspected dead.
+  "^https?://reederapp\\.com",
   # localhost / local dev.
   "^https?://localhost",
   "^https?://127\\.0\\.0\\.1",
@@ -85,7 +91,18 @@ exclude = [
 # component attributes (e.g. `<Screenshot src="x.png">`) as relative
 # URLs and resolves them against the base, which produces false 404s
 # because the real screenshot URLs are at /screenshots/x.png.
-exclude_path = ["out/raw"]
+# Skip the text dumps that duplicate HTML content. lychee picks them up
+# and rescans URLs that already appear in the source HTML, multiplying
+# both the request count and the surface for false positives (e.g.,
+# at:// URIs in code samples get parsed as file paths).
+exclude_path = [
+  "out/raw",
+  "out/llms.txt",
+  "out/llms-full.txt",
+  # Next.js per-page RSC text dumps.
+  "out/**/__next.*.txt",
+  "out/**/index.txt",
+]
 
 # Internal links (rooted with "/") should resolve to a file in out/.
 # lychee does this automatically when given a directory.
