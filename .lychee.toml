@@ -64,6 +64,10 @@ exclude = [
   # localhost / local dev.
   "^https?://localhost",
   "^https?://127\\.0\\.0\\.1",
+  # Next.js image optimizer endpoint. Present in static export HTML as
+  # /_next/image?url=..., but the route handler isn't materialized as
+  # a file (images are pre-optimized at build).
+  "/_next/image",
   # Absolute self-references to docs.sifa.id. Relative links in HTML
   # are already resolved against the local out/ directory via the
   # --root-dir flag in the workflow, so absolute self-references would
