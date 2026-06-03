@@ -100,6 +100,7 @@ The SDK doesn't ship logos. Logos are static SVG assets, not tokens. If you're b
 
 - **For runtime rendering** (an `<img src="...">` or React Native `<Image>`), grab the SVG from sifa-web's public directory: [`sifa-logo-light.svg`](https://github.com/singi-labs/sifa-web/blob/main/public/sifa-logo-light.svg) and [`sifa-logo-dark.svg`](https://github.com/singi-labs/sifa-web/blob/main/public/sifa-logo-dark.svg). These are the same files sifa-docs serves from `/sifa-logo-light.svg` and `/sifa-logo-dark.svg`, so you can hotlink against `docs.sifa.id` if you don't want to vendor them.
 - **For press contexts** (longer-form articles, conference programs, banners), use the higher-resolution variants from the [Singi Labs press kit](https://singi.dev/press/kit/). The press kit also covers brand-usage guidelines (clearspace, minimum size, what backgrounds the wordmark works on).
+- **For other Atmosphere app logos** (Bluesky, Tangled, Leaflet, Smoke Signal, Grain, Semble, and others, when your client renders records from those apps), [atmologos](https://tangled.org/cozylittle.house/atmologos) is the community-curated source of truth, maintained by [@cozylittle.house](https://bsky.app/profile/cozylittle.house). SVG logomarks in colour and monochrome. Confirm each app's individual brand-usage policy before redistributing.
 
 ## Why no client-render component?
 
