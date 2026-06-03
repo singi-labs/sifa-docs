@@ -23,6 +23,17 @@ at://did:plc:abc123/id.sifa.profile.position/3lc4apsq2nx2k
 
 That URI is the canonical address of one particular record on the network. Any Atmosphere app can fetch it directly from your provider. No Sifa involved.
 
+## Blobs: the other primitive
+
+Records are the unit of structured data. **Blobs** are the unit of unstructured data: images, files, anything that doesn't fit in a JSON object. When you upload a profile photo, attach an image to a post, or set a Standard.site publication icon, the bytes go to your provider as a blob; the record that references them stores only a content-addressed pointer.
+
+Two things follow from that:
+
+- A blob is identified by the hash of its content. The same image uploaded twice produces the same identifier. You can reference an existing blob from a new record without re-uploading.
+- Blobs live on your provider alongside your records. When you move providers, both move together. When you delete a record that referenced a blob, the blob is eventually garbage-collected (different providers do this on different schedules).
+
+Most Sifa records don't have blobs. Profile photos are the obvious exception. The [Standard.site cards](/docs/standard-site-cards) page covers a working example of fetching and reusing a blob from your account.
+
 ## Where Sifa's records live in your account
 
 When you fill in your Sifa profile, you create records in the `id.sifa.*` collections:
