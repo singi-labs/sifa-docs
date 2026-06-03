@@ -50,26 +50,36 @@ exclude = [
   "alice\\.example\\.org",
   "example\\.com",
   "example\\.org",
+  # XRPC example URLs in code blocks. lychee parses the URL stopping at
+  # the angle bracket of <your-handle> and tries the truncated request.
+  "^https?://bsky\\.social/xrpc/",
   # at:// URIs aren't HTTP-fetchable.
   "^at://",
   # localhost / local dev.
   "^https?://localhost",
   "^https?://127\\.0\\.0\\.1",
-  # Some hosts rate-limit aggressively or block CI IPs; allowlist only
-  # the cases we hit in practice rather than skipping whole TLDs.
-  # LinkedIn often returns 999 to bots.
+  # Hosts that 403 / 999 / rate-limit CI IPs aggressively. Verified in
+  # practice; allowlist only what's blocking, not whole TLDs.
   "^https?://(www\\.)?linkedin\\.com",
-  # Twitter / X gate behind auth for most requests.
   "^https?://(www\\.)?(twitter|x)\\.com",
-  # Instagram is a frequent CI-IP block.
   "^https?://(www\\.)?instagram\\.com",
-  # YouTube channel pages are stable but their bot-detection is noisy.
   "^https?://(www\\.)?youtube\\.com",
+  "^https?://(www\\.)?substack\\.com",
+  "^https?://(www\\.)?npmjs\\.com",
+  # Sometimes-unreachable third-party hosts. Re-evaluate periodically.
+  "^https?://offprint\\.pub",
+  "^https?://hannah\\.makes\\.software",
   # docs.sifa.id self-links: handled by the internal-link check below.
   # We still want to verify external mentions of docs.sifa.id, just not
   # ones inside out/ that would just chase our own build.
   # (handled via --base when we invoke lychee in CI)
 ]
+
+# Don't scan the raw markdown copies of doc pages. lychee picks up JSX
+# component attributes (e.g. `<Screenshot src="x.png">`) as relative
+# URLs and resolves them against the base, which produces false 404s
+# because the real screenshot URLs are at /screenshots/x.png.
+exclude_path = ["out/raw"]
 
 # Internal links (rooted with "/") should resolve to a file in out/.
 # lychee does this automatically when given a directory.
