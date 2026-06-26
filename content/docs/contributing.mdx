@@ -1,0 +1,77 @@
+---
+title: Contributing to Sifa
+description: Local development setup for Sifa, and where the shared contributor process and engineering standards live.
+---
+
+Sifa is source-available and built in the open. This page covers the **Sifa-specific
+local setup**. The shared process that applies to every Singi Labs repo — the CLA,
+review flow, conventions, and engineering standards — lives once in the org, linked
+below, so it never drifts out of sync.
+
+## Start here (the shared process)
+
+Read these first — they apply to all Singi Labs repos, not just Sifa:
+
+- [Contributing guide](https://github.com/singi-labs/.github/blob/main/CONTRIBUTING.md) — CLA, branch/PR workflow, review, conventional commits.
+- [The engineering harness](https://github.com/singi-labs/.github/tree/main/engineering) — how we engineer with AI agents, what the harness enforces, and the [engineering standards](https://github.com/singi-labs/.github/tree/main/engineering/standards).
+- [Agent instructions](https://github.com/singi-labs/.github/blob/main/engineering/agent-instructions.md) — if you use a coding agent, drop this into your local clone.
+
+## Access
+
+Sifa's app repos (`sifa-api`, `sifa-web`) are source-available; invited collaborators
+get write access to push branches and open PRs. You can't merge your own PR — every
+change gets a maintainer review. Ask a maintainer to be added before you start.
+
+## Prerequisites
+
+- **Node.js 25+**
+- **Docker + Docker Compose** (for local PostgreSQL + Valkey)
+- **Git**, a GitHub account
+- Both repos use **npm** (not pnpm/yarn)
+
+## Local setup
+
+### sifa-api (start here)
+
+```bash
+git clone https://github.com/singi-labs/sifa-api.git
+cd sifa-api
+npm ci
+cp .env.example .env          # then fill the values (see .env.example)
+npm run services:up           # PostgreSQL 17 + Valkey 8 via Docker
+npm run db:migrate
+npm run dev
+```
+
+Key env vars are listed in `.env.example` (database + Valkey URLs, OAuth JWKS path).
+
+> **AT Protocol auth is OAuth, never app passwords** — an org-wide rule, no
+> exceptions. Ask a maintainer for the local OAuth client / JWKS steps if the repo
+> doesn't document them yet.
+
+### sifa-web
+
+```bash
+git clone https://github.com/singi-labs/sifa-web.git
+cd sifa-web
+npm ci
+npm run dev                   # requires sifa-api running
+```
+
+### Verify before opening a PR (both repos)
+
+```bash
+npm test
+npm run lint
+npm run typecheck
+```
+
+Show the output — don't assert "passing" without it.
+
+## Picking work
+
+Start with an issue tagged `good first issue` — small scope, clear acceptance
+criteria, low blast radius. Comment that you're taking it, branch from `main`
+(`feat/short-description`, one feature per branch), build it **with tests**, then
+open a PR linking the issue (`Closes #NN`). An automated reviewer posts a blocking
+check; a maintainer reviews and merges.
