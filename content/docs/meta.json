@@ -19,6 +19,8 @@
     "standard-site-cards",
     "---Account management---",
     "move-account",
-    "privacy-and-data"
+    "privacy-and-data",
+    "---Developers---",
+    "contributing"
   ]
 }

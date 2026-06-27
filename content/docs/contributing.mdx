@@ -1,0 +1,78 @@
+---
+title: Contributing
+description: How to contribute code to Sifa — finding an issue, local setup, the review flow, and the standards we hold.
+---
+
+Sifa is built in the open. The [SDK](https://github.com/singi-labs/sifa-sdk) and
+[lexicons](https://github.com/singi-labs/sifa-lexicons) are MIT-licensed and open
+to anyone; the core service (`sifa-api`, `sifa-web`) is source-available and
+contributed to by invitation. This page gets you from "I'd like to help" to a
+merged pull request.
+
+The canonical rules live in the org guide —
+[`singi-labs/.github` → CONTRIBUTING](https://github.com/singi-labs/.github/blob/main/CONTRIBUTING.md)
+and the [engineering harness](https://github.com/singi-labs/.github/tree/main/engineering).
+This page is the practical on-ramp.
+
+## Finding something to work on
+
+Start with issues labelled **good first issue** — small, well-scoped, and a good
+way to learn the codebase:
+
+- **Across all of Sifa:** [open `good first issue`s in `singi-labs`](https://github.com/search?q=org%3Asingi-labs+is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22&type=issues)
+- **By repo:** [sifa-sdk](https://github.com/singi-labs/sifa-sdk/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) ·
+  [sifa-api](https://github.com/singi-labs/sifa-api/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) ·
+  [sifa-web](https://github.com/singi-labs/sifa-web/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+- Want more depth? Swap the label for [**help wanted**](https://github.com/search?q=org%3Asingi-labs+is%3Aissue+is%3Aopen+label%3A%22help+wanted%22&type=issues).
+
+You'll only see issues in repos you have access to — the SDK and lexicons are
+public; the core repos appear once you've been added.
+
+**Claim it first:** comment on the issue to say you're picking it up, so two
+people don't build the same thing. No issue for your idea? Open one and discuss
+the scope before writing code.
+
+## Local setup
+
+You'll need **Node** (current LTS), **Docker + Docker Compose**, and **Git**. The
+**exact** commands — package manager, services, env vars — live in each repo's
+`README.md` and `AGENTS.md`, which are the source of truth:
+
+- [sifa-sdk](https://github.com/singi-labs/sifa-sdk#readme) — TypeScript library; clone, install, test.
+- [sifa-api](https://github.com/singi-labs/sifa-api#readme) — backend; clone, `npm ci`, `npm run services:up` (PostgreSQL + Valkey), `npm run db:migrate`, `npm run dev`.
+- [sifa-web](https://github.com/singi-labs/sifa-web#readme) — frontend; clone, `npm ci`, `npm run dev` (needs `sifa-api` running).
+
+> AT Protocol auth is **OAuth, never app passwords** — an org-wide rule, no
+> exceptions.
+
+Before you open a PR, run the repo's checks locally:
+
+```bash
+npm test
+npm run lint
+npm run typecheck
+```
+
+## The workflow
+
+1. Branch from `main`: `git checkout -b feat/short-description`. One branch, one change. Never push to `main`.
+2. Build it **with tests** — the test suite is the contract.
+3. Open a PR, link the issue (`Closes #NN`), fill the checklist.
+4. **Sign the CLA** on your first PR — a bot comments asking you to; reply once and it's recorded for all future PRs.
+5. **Automated gates run:** a secret scan, and a blocking **AI reviewer** that posts a comment — address anything it flags and push (it re-runs).
+6. A **maintainer reviews and merges** (squash). You can't merge your own PR.
+
+Commits follow [Conventional Commits](https://www.conventionalcommits.org/):
+`type(scope): description` (`feat`, `fix`, `docs`, `test`, `refactor`, `chore`, `ci`).
+
+## The standards
+
+The AI reviewer and maintainers both enforce the
+[engineering standards](https://github.com/singi-labs/.github/tree/main/engineering/standards).
+The essentials: TypeScript strict (no `any`), validate inputs with Zod, tests
+with every change, sanitize user content, accessibility (WCAG 2.2 AA) for UI, no
+`console.*`, and reuse existing UI primitives before adding new ones.
+
+If you use a coding agent (Claude Code or similar), drop
+[`agent-instructions.md`](https://github.com/singi-labs/.github/blob/main/engineering/agent-instructions.md)
+into your clone as `CLAUDE.md` / `AGENTS.md` to keep it inside the house rules.
