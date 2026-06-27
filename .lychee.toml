@@ -90,6 +90,9 @@ exclude = [
   # Sometimes-unreachable third-party hosts. Re-evaluate periodically.
   "^https?://offprint\\.pub",
   "^https?://hannah\\.makes\\.software",
+  # Community PDS-migration tool linked from move-account; intermittently
+  # 500s under CI load (verified up via curl). Re-check periodically.
+  "^https?://(www\\.)?pdsmoover\\.com",
   # docs.sifa.id self-links: handled by the internal-link check below.
   # We still want to verify external mentions of docs.sifa.id, just not
   # ones inside out/ that would just chase our own build.
