@@ -74,6 +74,11 @@ exclude = [
   # only double-check by hitting the live site. A PR that adds a new
   # page would then fail because the live site doesn't have it yet.
   "^https?://docs\\.sifa\\.id/",
+  # Source-available core repos: 404 to the anonymous / CI link-checker
+  # (its token can't read other private repos), but valid for invited
+  # contributors. The public SDK/lexicons/.github links are still checked.
+  "^https?://github\\.com/singi-labs/sifa-api",
+  "^https?://github\\.com/singi-labs/sifa-web",
   # Hosts that 403 / 999 / rate-limit CI IPs aggressively. Verified in
   # practice; allowlist only what's blocking, not whole TLDs.
   "^https?://(www\\.)?linkedin\\.com",
