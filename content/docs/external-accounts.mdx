@@ -51,9 +51,48 @@ Once Sifa finds a feed, it polls daily and surfaces new items in your [Activity 
 
 ## ORCID: academic publications
 
-Add an ORCID account and Sifa pulls your publications from the ORCID API on a daily sync. Each publication becomes an `id.sifa.profile.publication` record on your provider, so your publications are now portable Atmosphere records, not a list locked inside ORCID.
+Add an ORCID account and Sifa pulls your publications from the ORCID API on a daily sync. Each publication becomes an `id.sifa.profile.publication` record on your provider, so your publications are portable Atmosphere records, not a list locked inside ORCID.
 
 Sifa accepts both the full URL (`https://orcid.org/0000-0002-1825-0097`) and the bare ID (`0000-0002-1825-0097`). The input is normalised before validation.
+
+### Getting your publications onto Sifa
+
+1. If you don't have an ORCID yet, create one at [orcid.org](https://orcid.org/register).
+2. Add your publications to ORCID and set them to **Everyone** visibility. Works marked "Trusted parties only" or "Only me" aren't served by the public API, so Sifa can't read them.
+3. Link your ORCID to Sifa. Either verify it through [Keytrace](https://keytrace.dev), which makes it appear automatically, or add the ORCID URL by hand under **External accounts**.
+4. Your publications show up in the **Publications** section of your profile, usually within a day.
+
+### Verifying your ORCID
+
+Verification confirms you own the ORCID you linked. It puts a checkmark on the link and on each publication drawn from it. You only need one of the two methods.
+
+**Via Keytrace.** If you verify your ORCID through [Keytrace](https://keytrace.dev), Sifa detects it on its own. The checkmark and your publications appear without any further steps.
+
+**Via an ORCID researcher URL.**
+
+1. On your [ORCID profile](https://orcid.org/my-orcid), find **Websites & social links**.
+2. Add your Sifa profile URL (for example `https://sifa.id/p/yourhandle`) with visibility set to **Everyone**.
+3. Back on Sifa, press **Check now** next to your ORCID link.
+
+### Hiding individual publications
+
+Every ORCID publication is shown by default. To hide one, use the eye icon next to it in your edit view. Hidden publications stay visible only to you.
+
+### Refreshing
+
+Sifa syncs with ORCID once a day, so new works appear within 24 hours. To pull them sooner, press **Refresh from ORCID** in your Publications section. This needs a verified ORCID, through either method above.
+
+### Editing publications
+
+ORCID is the source of truth for these records, so you can't edit them on Sifa. Change a title or add a DOI on [orcid.org](https://orcid.org/my-orcid) and Sifa picks it up on the next sync. If you'd rather manage a publication directly, add it by hand in the Publications section instead.
+
+### Disconnecting
+
+Removing the ORCID link under **External accounts** removes every ORCID-sourced publication from your profile. Anything you added by hand stays. Re-link the same ORCID later and your hide preferences come back.
+
+### Publications not showing up?
+
+The usual cause is visibility on ORCID's side. Open [orcid.org](https://orcid.org/my-orcid) and confirm the works are set to **Everyone**. Anything restricted to "Trusted parties only" or "Only me" stays off Sifa, because the public API never returns it.
 
 ## GitHub: initial repo scan
 
