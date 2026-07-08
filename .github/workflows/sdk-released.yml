@@ -62,8 +62,13 @@ jobs:
       - name: Regenerate lockfile
         run: pnpm install --no-frozen-lockfile
 
-      - name: Typecheck repo
-        run: pnpm typecheck
+      # Build rather than `pnpm typecheck`: the standalone `tsc --noEmit`
+      # cannot resolve the fumadocs `:collections/server` virtual module,
+      # which only exists once `next build` generates the MDX collections.
+      # This mirrors ci.yml, which validates types via `pnpm build` for the
+      # same reason.
+      - name: Build repo against new SDK
+        run: pnpm build
 
       - name: Typecheck examples against new SDK
         run: pnpm examples:typecheck
