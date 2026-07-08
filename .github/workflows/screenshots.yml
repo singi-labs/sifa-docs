@@ -63,6 +63,7 @@ jobs:
           retention-days: 30
 
       - name: Open PR on meaningful change
+        id: cpr
         if: steps.diff.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
@@ -70,10 +71,23 @@ jobs:
           branch: chore/screenshots-${{ github.run_id }}
           title: 'chore(screenshots): nightly diff ${{ steps.diff.outputs.date }}'
           body: |
-            Auto-captured screenshot diff. Review and merge if the changes are real.
+            Auto-captured screenshot diff, merged automatically once checks pass.
 
             Diff PNGs are uploaded as the `screenshot-diffs-${{ github.run_id }}` artifact on
             [this workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).
           commit-message: 'chore(screenshots): update from nightly run'
           add-paths: |
             public/screenshots/
+
+      # Nightly screenshot diffs are trusted, PNG-only changes — merge them
+      # automatically so they don't pile up. Try GitHub auto-merge first (waits
+      # for any pending checks); fall back to a direct squash merge, since `main`
+      # is unprotected and `--auto` errors when the PR is already clean.
+      - name: Auto-merge the diff PR
+        if: steps.diff.outputs.changed == 'true' && steps.cpr.outputs.pull-request-number
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR: ${{ steps.cpr.outputs.pull-request-number }}
+        run: |
+          gh pr merge --squash --delete-branch --auto "$PR" \
+            || gh pr merge --squash --delete-branch "$PR"
