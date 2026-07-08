@@ -30,17 +30,17 @@ You'll only see issues in repos you have access to. The SDK and lexicons are pub
 You'll need **Node** (current LTS), **Docker + Docker Compose**, and **Git**. The **exact** commands (package manager, services, env vars) live in each repo's `README.md` and `AGENTS.md`, which are the source of truth:
 
 - [sifa-sdk](https://github.com/singi-labs/sifa-sdk#readme): TypeScript library. Clone, install, test.
-- [sifa-api](https://github.com/singi-labs/sifa-api#readme): backend. Clone, `npm ci`, `npm run services:up` (PostgreSQL + Valkey), `npm run db:migrate`, `npm run dev`.
-- [sifa-web](https://github.com/singi-labs/sifa-web#readme): frontend. Clone, `npm ci`, `npm run dev` (needs `sifa-api` running).
+- [sifa-api](https://github.com/singi-labs/sifa-api#readme): backend. Clone, `pnpm install`, `pnpm services:up` (PostgreSQL + Valkey), `pnpm db:migrate`, `pnpm dev`.
+- [sifa-web](https://github.com/singi-labs/sifa-web#readme): frontend. Clone, `pnpm install`, `pnpm dev` (needs `sifa-api` running).
 
 > AT Protocol auth is **OAuth, never app passwords**, an org-wide rule with no exceptions.
 
 Before you open a PR, run the repo's checks locally:
 
 ```bash
-npm test
-npm run lint
-npm run typecheck
+pnpm test
+pnpm lint
+pnpm typecheck
 ```
 
 ## The workflow
