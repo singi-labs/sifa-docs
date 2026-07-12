@@ -1,0 +1,60 @@
+---
+title: Company pages
+description: Every organization on Sifa has a shared page at /c/<domain>. It starts as an auto-generated stub built from public company data, and the people who work there connect to it from their profiles.
+---
+
+When you list an employer, a university, or a certificate issuer on your profile, that organization has a home on Sifa ID too. It lives at `/c/<domain>`, keyed to the organization's own domain: `https://sifa.id/c/spryker.com`, `https://sifa.id/c/acme.com`. One shared page per organization, so every person who links it points at the same place.
+
+A company page is not a personal profile. A profile belongs to one person and holds their history, their activity, their endorsements. A company page belongs to the organization and holds public facts about it, plus the connections that people draw to it from their own profiles.
+
+## How a company page starts
+
+Every company page begins as an **unclaimed stub**. Nobody creates it by hand. The first time someone links an organization from a profile entry, Sifa generates the page from public company data and starts serving it at `/c/<domain>`.
+
+An unclaimed stub is clearly marked as what it is. A note sits above the fold: _"This page was auto-generated from public company data. [Company] has not verified it."_ The card carries an **Unclaimed** badge, and its dashed, muted styling signals that no one from the organization stands behind it yet.
+
+Because these pages are auto-generated and unverified, they stay out of search-engine indexes for now. They exist to give the links on your profile somewhere real to point, not to rank as company directory pages.
+
+## Where the data comes from
+
+The facts on an unclaimed stub are drawn from open, public company registries, never from anything a Sifa user typed. Sifa reads them from sources like [Wikidata](https://www.wikidata.org), [GLEIF](https://www.gleif.org) (the global legal-entity register), and [ROR](https://ror.org) (the Research Organization Registry).
+
+Depending on what those sources hold, a stub can show:
+
+- The organization's canonical name and website
+- Industry
+- Headquarters country
+- Year founded
+- Employee count
+- A short description
+- The logo
+
+Fields that the public sources don't cover are simply left off the page. A stub with only a name and a domain is normal, and more detail fills in as the underlying data improves.
+
+One thing a company page does **not** show is a roster of who works there. Sifa deliberately holds back per-person headcounts and employee lists on these pages. The connection runs the other way: you decide, on your own profile, which organizations to link.
+
+## How your profile connects to a company page
+
+You reach a company page by linking an organization from your profile. When you attach the **Company** field on a work position (or the institution on an education entry, the issuer on a certificate, and so on) to a match from Sifa's organization typeahead, that entry points at the shared page.
+
+Linking keeps the connection live rather than freezing a name into text. If the organization's name is later corrected on Sifa, the correction follows every link, and your profile shows the current name without you re-editing anything.
+
+The full walkthrough, including how to add an organization that isn't listed yet and how to suggest a name correction, lives in [Companies and organizations](/docs/link-companies).
+
+## Verifying a company with its domain
+
+Company pages use the same identity model as people on Sifa: **your domain is your handle**. A personal profile can swap `alice.bsky.social` for `alice.com` by proving control of the domain through DNS or a `.well-known` file (see [Use your own domain](/docs/use-your-own-domain)). An organization verifies itself the same way, through the domain the page is already keyed to.
+
+This is why company pages live at `/c/<domain>` and not at an arbitrary Sifa ID. The domain is the thing an organization can prove it controls, and proving that control is what turns an unclaimed stub into a verified, organization-run page.
+
+## Claiming and managing your page: coming soon
+
+Today a company page is read-only: an auto-generated stub that nobody has taken over yet. The next step, letting an organization claim its page and manage it, is designed and on the way, but not live yet. When it ships, claiming a page will let an organization verify itself through its domain, correct the public facts on its own page, and manage how it appears.
+
+Until then, if a detail on your organization's page is wrong, the [name-correction flow](/docs/link-companies#suggesting-a-name-correction) is the way to fix the most visible field. Anyone who has linked the organization can suggest a corrected name, and an approved correction updates it everywhere the company is linked.
+
+## Related
+
+- [Companies and organizations](/docs/link-companies): link the organizations on your profile to their shared company pages, add one that isn't listed, and suggest a name correction.
+- [Import from LinkedIn](/docs/import-linkedin): imported positions arrive as plain text. Reopen each one and link it so the entry points at the real organization.
+- [Use your own domain](/docs/use-your-own-domain): the domain-as-handle model that company verification is built on.
