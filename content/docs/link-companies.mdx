@@ -1,0 +1,62 @@
+---
+title: Companies and organizations
+description: Link the organizations on your profile to a shared company page on Sifa, add one that isn't listed yet, and suggest a name correction when the details are off.
+---
+
+Most things on a professional profile point at an organization. The company you worked for, the university you studied at, the body that issued a certificate, the project you volunteered on. Sifa lets you connect those entries to a shared company page instead of leaving them as loose text.
+
+A linked entry stays attached to the real organization. If the organization's name is later corrected, the correction follows the link and your profile shows the current name on its own, without you touching it.
+
+## Linking an organization to a profile entry
+
+The organization typeahead shows up wherever a profile entry names a company or institution:
+
+- **Work positions** (Company)
+- **Education** (Institution)
+- **Certifications** (Issuing organization)
+- **Courses** (Institution)
+- **Awards and honours** (Issuing organization)
+- **Volunteering** (Organization)
+- **Open-source involvement**
+
+Start typing in the organization field and Sifa searches as you go. It matches on **name and on domain**, so `Acme` and `acme.com` both surface the same company. Pick the match from the list and Sifa attaches it. The field collapses into a chip showing the organization's name next to a **Linked** badge.
+
+Hover the badge and the tooltip reads: _"Linked to a company on Sifa. This is a link, not a verification."_ A link connects your entry to a shared page. It doesn't claim Sifa checked the fact, and it's separate from the email or organization verification badges.
+
+Typing a name on its own is fine, and the entry saves either way. Sifa never links silently, because company names are ambiguous. Until you pick a match, the field shows _"Not linked to a company page"_ so you always know where you stand. To change your mind, use **Change** to pick a different organization or **Unlink** to drop back to plain text.
+
+### Why linking helps
+
+- **Your entry connects to a shared page.** Anyone reading that organization's page on Sifa can find your role there, and you can reach it from your entry.
+- **The name stays current on its own.** When an organization's name is corrected on Sifa, the change reaches every linked entry at read time. You don't re-edit your history to keep it accurate.
+
+## Adding a company that isn't listed
+
+If the organization you want isn't in the results, type its **domain** (for example `acme.com`). When nothing matches, Sifa offers an **Add [domain]** row, with _"from its website"_ underneath. Choose it and Sifa builds an entry from the organization's public site and links your record to it.
+
+Set your expectations here:
+
+- **It resolves for you right away.** The link works on your profile immediately, and the chip shows an _"Added · pending review"_ note.
+- **It stays hidden from everyone else's search until a Sifa admin approves it.** Other people won't see the new company in their typeahead while it's pending. This keeps low-quality or duplicate entries out of everyone's search while yours already works.
+
+## Suggesting a name correction
+
+When a company shows the wrong name, you don't have to unlink and retype. Once an organization is linked, a **Suggest a name correction** action appears just below the field.
+
+Select it and a short dialog opens. It explains what you're doing: _"This company shows as [name] on Sifa. Suggest the correct name and we'll review it. An approved correction updates the name everywhere this company is linked."_ Fill in:
+
+- **Correct company name**: prefilled with the current name, ready to edit.
+- **Note (optional)**: anything that helps us review, such as a link or a bit of context.
+
+Send it and you'll see _"Thanks. We'll review your suggestion."_
+
+Here's what happens after that:
+
+1. A Sifa admin reviews your suggestion. Nothing changes on your say-so alone, which stops one person from renaming a shared page for everyone.
+2. Once it's approved, the new name updates **everywhere that company is linked**, across every profile, at read time.
+3. The previous name is kept as a search alias, so a search for the old name still finds the company.
+
+## Related
+
+- [Import from LinkedIn](/docs/import-linkedin): after an import, your positions come in as text. Reopen each one and link it to lock the entry to the real organization.
+- [External accounts](/docs/external-accounts): link the places you publish, the other half of connecting your profile to the wider web.
