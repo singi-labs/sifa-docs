@@ -1,0 +1,27 @@
+---
+title: Academics
+description: A standalone academic CV page generated from your Sifa profile, styled like academicpages.github.io. Self-hostable.
+---
+
+Sifa ID's profile data works as a CV for research and academic work too, not just industry positions. This page covers the features built for that.
+
+## Academic pages
+
+Every Sifa profile has a second, standalone view at `sifa.id/p/{handle}/academic`, styled after [academicpages.github.io](https://academicpages.github.io/): a top masthead, a left sidebar with your identity and links, a print-friendly layout, and a dark mode toggle. It looks like an academic's personal site, not a social profile.
+
+The content comes from the same profile sections you already fill in on Sifa: About, Positions, Education, Publications, and so on. There's no separate data entry for the academic page. Update your profile once, and both views reflect it.
+
+### Self-hosting your own copy
+
+The renderer that generates this page is a standalone open-source package, [`@singi-labs/academicpages-renderer`](https://github.com/singi-labs/academicpages-renderer). If you want your academic CV on your own domain instead of `sifa.id`, with your own branding, clone [sifa-academicpages](https://github.com/singi-labs/sifa-academicpages): a small static-site scaffold that pulls your profile from Sifa's public API and builds the same layout, deployable to GitHub Pages or any static host.
+
+Your profile data still lives on your PDS either way. Self-hosting the page changes where the HTML is served from, not who owns the underlying records.
+
+## ORCID: publications on your academic page
+
+If you add an [ORCID](https://orcid.org) account under [External accounts](/docs/external-accounts#orcid-academic-publications), Sifa syncs your publications from the ORCID API nightly and writes them as `id.sifa.profile.publication` records on your provider. Those publications show up in your profile's Publications section, which means they show up on your academic page too, automatically, with no extra step beyond linking the ORCID account once.
+
+## Want to go deeper
+
+- [External accounts](/docs/external-accounts): link ORCID, GitHub, and other platforms to your profile.
+- [Your data on a provider](/docs/your-data-on-a-provider): what a profile record looks like on your PDS.
