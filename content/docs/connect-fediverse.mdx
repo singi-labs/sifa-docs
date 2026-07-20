@@ -1,0 +1,38 @@
+---
+title: Connect a Fediverse account
+description: Link your Mastodon, GoToSocial, Pleroma, or other Fediverse account so your public posts show up in your Sifa activity feed.
+---
+
+If you post on Mastodon (or GoToSocial, Pleroma, Pixelfed, or any other Fediverse server), you can connect that account to Sifa ID and have your public posts appear in your [activity feed](/docs/activity-feed) alongside the rest of your Atmosphere activity.
+
+## Connect your account
+
+Open your profile, go to **External accounts**, and add an account with:
+
+- **Platform**: pick **Fediverse**. This is the step that matters. If you add your Mastodon URL as a plain "Website", Sifa treats it as a link only and won't pull in your posts.
+- **URL**: your profile address, for example `https://mastodon.social/@you`.
+
+Save, and that's it. Sifa displays the account as `@you@mastodon.social`, the handle format you're used to.
+
+## What shows up
+
+Sifa reads your account's public **outbox**, the standard ActivityPub feed of what you've published, and shows your posts in your activity feed.
+
+- Only your **own posts** appear. Boosts, likes, and follows are left out, the same way Sifa never shows posts you liked on Bluesky.
+- Only **public** posts. Followers-only posts and direct messages are never read.
+- Posts sync **periodically**, not instantly. Expect your first posts to appear within an hour of connecting, then on an ongoing basis.
+
+You can link **several** Fediverse accounts (say a Mastodon and a Pixelfed) and all of them ingest.
+
+## A note on some servers
+
+A few servers run in a hardened mode (Mastodon's "Secure mode", and GoToSocial by default) that limits what Sifa can read from the outside. If your posts don't appear after an hour, your server may be one of these. We're expanding support for them.
+
+## Verify it (optional)
+
+To show a verified badge on the link, add a `rel="me"` link back to your Sifa profile in your Fediverse profile's metadata fields. Sifa checks for the matching link and marks the account verified. This is optional. Connecting works without it.
+
+## Related
+
+- [External accounts](/docs/external-accounts) covers linking blogs, GitHub, ORCID, and other profiles.
+- [Your activity feed](/docs/activity-feed) explains how everything is pulled together.
