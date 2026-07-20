@@ -12,7 +12,9 @@ Open your profile, go to **External accounts**, and add an account with:
 - **Platform**: pick **Fediverse**. This is the step that matters. If you add your Mastodon URL as a plain "Website", Sifa treats it as a link only and won't pull in your posts.
 - **URL**: your profile address, for example `https://mastodon.social/@you`.
 
-Save, and that's it. Sifa displays the account as `@you@mastodon.social`, the handle format you're used to.
+Save. Sifa displays the account as `@you@mastodon.social`, the handle format you're used to.
+
+One more step is required before your posts are pulled in: you have to prove the account is yours (see [Verify that it's yours](#verify-that-its-yours) below). Until then, the account shows on your profile as a link only. This stops anyone from surfacing a stranger's posts on their own Sifa profile.
 
 ## What shows up
 
@@ -20,7 +22,7 @@ Sifa reads your account's public **outbox**, the standard ActivityPub feed of wh
 
 - Only your **own posts** appear. Boosts, likes, and follows are left out, the same way Sifa never shows posts you liked on Bluesky.
 - Only **public** posts. Followers-only posts and direct messages are never read.
-- Posts sync **periodically**, not instantly. Expect your first posts to appear within an hour of connecting, then on an ongoing basis.
+- Posts sync **periodically**, not instantly. Expect your first posts to appear within an hour of verifying, then on an ongoing basis.
 
 You can link **several** Fediverse accounts (say a Mastodon and a Pixelfed) and all of them ingest.
 
@@ -28,9 +30,14 @@ You can link **several** Fediverse accounts (say a Mastodon and a Pixelfed) and 
 
 A few servers run in a hardened mode (Mastodon's "Secure mode", and GoToSocial by default) that limits what Sifa can read from the outside. If your posts don't appear after an hour, your server may be one of these. We're expanding support for them.
 
-## Verify it (optional)
+## Verify that it's yours
 
-To show a verified badge on the link, add a `rel="me"` link back to your Sifa profile in your Fediverse profile's metadata fields. Sifa checks for the matching link and marks the account verified. This is optional. Connecting works without it.
+Verifying ownership is **required** before Sifa ingests your posts (it also puts a verified badge on the link). Use either method:
+
+- **`rel="me"` back-link.** Add a `rel="me"` link to your Sifa profile in your Fediverse profile's metadata fields. Sifa checks for the matching link and verifies the account. Most Fediverse servers let you add profile links, and many mark them verified once the link points both ways.
+- **[Keytrace](https://keytrace.dev).** If you verify the account through Keytrace, Sifa detects it automatically, no back-link needed.
+
+Until one of these passes, the account still appears on your profile, but only as a link, and none of its posts are pulled in.
 
 ## Related
 
