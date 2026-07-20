@@ -34,10 +34,20 @@ A few servers run in a hardened mode (Mastodon's "Secure mode", and GoToSocial b
 
 Verifying ownership is **required** before Sifa ingests your posts (it also puts a verified badge on the link). Use either method:
 
-- **`rel="me"` back-link.** Add a `rel="me"` link to your Sifa profile in your Fediverse profile's metadata fields. Sifa checks for the matching link and verifies the account. Most Fediverse servers let you add profile links, and many mark them verified once the link points both ways.
-- **[Keytrace](https://keytrace.dev).** If you verify the account through Keytrace, Sifa detects it automatically, no back-link needed.
+- **`rel="me"` back-link.** Add your Sifa profile URL to your Fediverse profile so your server publishes it with `rel="me"`. Sifa fetches your profile, finds the matching `rel="me"` link, and verifies the account. Where the URL goes matters (see below).
+- **[Keytrace](https://keytrace.dev).** If you verify the account through Keytrace, Sifa detects it automatically, no back-link needed. This is the simplest route.
 
 Until one of these passes, the account still appears on your profile, but only as a link, and none of its posts are pulled in.
+
+### Adding the `rel="me"` link
+
+The link has to go in a **profile field**, not your bio. Bio links are published as `rel="nofollow noopener"`, without the `me` part, so they never verify. This is the usual reason a link "won't turn into `rel="me"`".
+
+- **Mastodon:** Preferences -> Profile -> **Profile metadata**. Add a row, for example name `Sifa` and content `https://sifa.id/p/<your-handle>`. Mastodon publishes profile-metadata links with `rel="me"` automatically.
+- **GoToSocial / Pleroma / Akkoma:** add the URL in your profile's fields / metadata (the same key-value fields Mastodon uses).
+- **Pixelfed:** add the URL in your profile's website or links field.
+
+You do not need your own server's green "verified" checkmark. That checkmark is bidirectional (it also wants a link back from the target), but Sifa only needs the one-way `rel="me"` from your account to your Sifa profile.
 
 ## Related
 
