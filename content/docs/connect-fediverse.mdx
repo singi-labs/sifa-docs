@@ -5,16 +5,35 @@ description: Link your Mastodon, GoToSocial, Pleroma, or other Fediverse account
 
 If you post on Mastodon (or GoToSocial, Pleroma, Pixelfed, or any other Fediverse server), you can connect that account to Sifa ID and have your public posts appear in your [activity feed](/docs/activity-feed) alongside the rest of your Atmosphere activity.
 
-## Connect your account
+## Two ways to connect
+
+Both ways prove you own the account, which is required before Sifa surfaces any posts. Pick one:
+
+1. **Add it in Sifa and verify with `rel="me"` (recommended).** You add the account to your Sifa profile, then add a link back from your Fediverse profile. Nothing else is involved: just your Fediverse server and your Sifa profile, both in your hands, no other service to sign up for. That self-owned setup is the point of Sifa, so it's the route we recommend.
+2. **Verify it on [Keytrace](https://keytrace.dev).** Verify the account on Keytrace and Sifa picks it up automatically, so you don't even need to add it here. It's convenient, especially if you're verifying several accounts at once, and the proof is written to your own account. It just means using one more tool.
+
+The rest of this page walks through option 1. For option 2, verify the account on Keytrace and you're done.
+
+## Add the account
 
 Open your profile, go to **External accounts**, and add an account with:
 
 - **Platform**: pick **Fediverse**. This is the step that matters. If you add your Mastodon URL as a plain "Website", Sifa treats it as a link only and won't pull in your posts.
 - **URL**: your profile address, for example `https://mastodon.social/@you`.
 
-Save. Sifa displays the account as `@you@mastodon.social`, the handle format you're used to.
+Save. Sifa displays the account as `@you@mastodon.social`, the handle format you're used to. Until you verify it (next section), the account shows on your profile as a link only, and no posts are pulled in. This is what stops anyone from surfacing a stranger's posts on their own profile.
 
-One more step is required before your posts are pulled in: you have to prove the account is yours (see [Verify that it's yours](#verify-that-its-yours) below). Until then, the account shows on your profile as a link only. This stops anyone from surfacing a stranger's posts on their own Sifa profile.
+## Verify with `rel="me"`
+
+Add your Sifa profile URL to your Fediverse profile so your server publishes it with `rel="me"`. Sifa fetches your profile, finds the matching `rel="me"` link, and verifies the account (it also puts a verified badge on the link).
+
+The link has to go in a **profile field**, not your bio. Bio links are published as `rel="nofollow noopener"`, without the `me` part, so they never verify. This is the usual reason a link "won't turn into `rel="me"`".
+
+- **Mastodon:** Preferences -> Profile -> **Profile metadata** (the same "Custom fields" section Keytrace uses). Add a row, for example name `Sifa` and content `https://sifa.id/p/<your-handle>`. The value is the full **URL** here, not your DID like Keytrace wants: Mastodon publishes URL-valued fields with `rel="me"` automatically.
+- **GoToSocial / Pleroma / Akkoma:** add the URL in your profile's fields / metadata (the same key-value fields Mastodon uses).
+- **Pixelfed:** add the URL in your profile's website or links field.
+
+You don't need your own server's green "verified" checkmark. That checkmark is bidirectional (it also wants a link back from the target), but Sifa only needs the one-way `rel="me"` from your account to your Sifa profile.
 
 ## What shows up
 
@@ -24,20 +43,15 @@ Sifa reads your account's public **outbox**, the standard ActivityPub feed of wh
 - Only **public** posts. Followers-only posts and direct messages are never read.
 - Posts sync **periodically**, not instantly. Expect your first posts to appear within an hour of verifying, then on an ongoing basis.
 
-You can link **several** Fediverse accounts (say a Mastodon and a Pixelfed) and all of them ingest.
+## One account per kind of content
+
+The Fediverse spreads content across different apps, each with its own account: microblog posts on Mastodon or GoToSocial, long-form writing on WriteFreely, photos on Pixelfed, video on PeerTube, events on Mobilizon. If you're active on more than one, add and verify each account you want surfaced. They all feed the same Sifa activity stream, so your writing, photos, and video sit side by side.
+
+Today Sifa ingests text posts and articles. Photos, video, and events are being added, so a Pixelfed or PeerTube account you connect now will start filling in as that support lands.
 
 ## A note on some servers
 
 A few servers run in a hardened mode (Mastodon's "Secure mode", and GoToSocial by default) that limits what Sifa can read from the outside. If your posts don't appear after an hour, your server may be one of these. We're expanding support for them.
-
-## Verify that it's yours
-
-Verifying ownership is **required** before Sifa ingests your posts (it also puts a verified badge on the link). Use either method:
-
-- **`rel="me"` back-link.** Add a `rel="me"` link to your Sifa profile in your Fediverse profile's metadata fields. Sifa checks for the matching link and verifies the account. Most Fediverse servers let you add profile links, and many mark them verified once the link points both ways.
-- **[Keytrace](https://keytrace.dev).** If you verify the account through Keytrace, Sifa detects it automatically, no back-link needed.
-
-Until one of these passes, the account still appears on your profile, but only as a link, and none of its posts are pulled in.
 
 ## Related
 
