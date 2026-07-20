@@ -11,20 +11,20 @@ Sifa ID's strength is your activity on the Atmosphere: what you post on [Bluesky
 
 Sifa supports these platforms today:
 
-| Platform    | What Sifa does with it                                                                                                          |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `rss`       | Generic RSS / Atom feed. Items appear in your activity feed.                                                                    |
-| `website`   | Your personal site. Sifa tries to auto-discover a feed from the page.                                                           |
-| `substack`  | [Substack](https://substack.com) newsletter. Auto-discovers the public RSS feed.                                                |
-| `fediverse` | [Mastodon](https://joinmastodon.org) / Pleroma / GoToSocial account. Auto-discovers the user feed.                              |
-| `github`    | GitHub account. Sifa runs an initial scan of your public repos.                                                                 |
-| `orcid`     | ORCID academic profile. Sifa syncs your publications nightly.                                                                   |
-| `keyoxide`  | [Keyoxide](https://keyoxide.org) identity verification profile.                                                                 |
-| `youtube`   | YouTube channel. Link only.                                                                                                     |
-| `twitter`   | Twitter / X handle. Link only.                                                                                                  |
-| `instagram` | Instagram profile. Link only.                                                                                                   |
-| `linkedin`  | LinkedIn profile. Link only (importing your data instead is usually better, see [Import from LinkedIn](/docs/import-linkedin)). |
-| `other`     | Any other URL. Link only.                                                                                                       |
+| Platform    | What Sifa does with it                                                                                                                                               |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `rss`       | Generic RSS / Atom feed. Items appear in your activity feed.                                                                                                         |
+| `website`   | Your personal site. Sifa tries to auto-discover a feed from the page.                                                                                                |
+| `substack`  | [Substack](https://substack.com) newsletter. Auto-discovers the public RSS feed.                                                                                     |
+| `fediverse` | [Mastodon](https://joinmastodon.org) / GoToSocial / Pleroma / Pixelfed account. Reads your public posts. See [Connect a Fediverse account](/docs/connect-fediverse). |
+| `github`    | GitHub account. Sifa runs an initial scan of your public repos.                                                                                                      |
+| `orcid`     | ORCID academic profile. Sifa syncs your publications nightly.                                                                                                        |
+| `keyoxide`  | [Keyoxide](https://keyoxide.org) identity verification profile.                                                                                                      |
+| `youtube`   | YouTube channel. Link only.                                                                                                                                          |
+| `twitter`   | Twitter / X handle. Link only.                                                                                                                                       |
+| `instagram` | Instagram profile. Link only.                                                                                                                                        |
+| `linkedin`  | LinkedIn profile. Link only (importing your data instead is usually better, see [Import from LinkedIn](/docs/import-linkedin)).                                      |
+| `other`     | Any other URL. Link only.                                                                                                                                            |
 
 "Link only" means Sifa shows the URL on your profile but doesn't poll it for activity.
 
@@ -41,11 +41,13 @@ Save. Sifa writes an `id.sifa.profile.externalAccount` record to your provider. 
 
 ## How feed discovery works
 
-When you add a `website`, `substack`, `fediverse`, or `rss` account without specifying `feedUrl`, Sifa fetches the URL and looks for a feed. The discovery follows the standard auto-discovery rules:
+When you add a `website`, `substack`, or `rss` account without specifying `feedUrl`, Sifa fetches the URL and looks for a feed. The discovery follows the standard auto-discovery rules:
 
 1. `<link rel="alternate" type="application/atom+xml">` or `application/rss+xml` in the page head.
 2. Well-known feed paths (`/feed`, `/feed.xml`, `/atom.xml`, `/rss.xml`).
-3. Platform-specific rules. Substack always lives at `<subdomain>.substack.com/feed`, Mastodon at `<server>/users/<handle>.atom`.
+3. Platform-specific rules. Substack always lives at `<subdomain>.substack.com/feed`.
+
+`fediverse` accounts don't use RSS discovery. Sifa reads your posts from the ActivityPub outbox instead, covered in [Connect a Fediverse account](/docs/connect-fediverse).
 
 Once Sifa finds a feed, it polls daily and surfaces new items in your [Activity feed](/docs/activity-feed). The feed URL is stored alongside the account so subsequent polls go directly to it without re-discovery.
 
