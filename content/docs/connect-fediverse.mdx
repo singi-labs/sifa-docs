@@ -7,37 +7,37 @@ If you post on Mastodon (or GoToSocial, Pleroma, Pixelfed, or any other Fedivers
 
 ## Pick one route
 
-There are two separate ways to connect a Fediverse account. **Do one or the other, not both** — they are different entry points, not steps in a sequence:
+There are two separate ways to connect a Fediverse account. **Do one or the other, not both.** They are different entry points, not steps in a sequence:
 
-- **Option 1: add it in Sifa, then verify with `rel="me"`** (recommended). You add the account under External accounts and add a link back from your Fediverse profile.
+- **Option 1: add it in Sifa, then add your Sifa link to a profile field** (recommended). You add the account under External accounts and put your Sifa profile link in one of your Fediverse profile fields.
 - **Option 2: verify it on [Keytrace](https://keytrace.dev)**. You don't add anything in Sifa. Keytrace verifies the account and Sifa surfaces it automatically.
 
 Both prove you own the account, which is required before Sifa surfaces any posts. We recommend Option 1: it's self-contained, just your Fediverse server and your Sifa profile, with no other service to sign up for. Option 2 is a convenient shortcut, especially if you already use Keytrace or want to verify several accounts at once.
 
-## Option 1: add it in Sifa, verify with `rel="me"`
+## Option 1: add it in Sifa, verify with a profile field
 
-**Step 1 — add the account.** Open your profile, go to **External accounts**, and add an account with:
+**Step 1: add the account.** Open your profile, go to **External accounts**, and add an account with:
 
 - **Platform**: pick **Fediverse**. If you pick "Website" instead, Sifa treats it as a plain link and won't pull in your posts.
 - **URL**: your profile address, for example `https://mastodon.social/@you`.
 
 Save. Sifa displays the account as `@you@mastodon.social`. Until you finish step 2 it shows as a link only, with no posts pulled in.
 
-**Step 2 — add the `rel="me"` link back.** Add your Sifa profile URL to your Fediverse profile so your server publishes it with `rel="me"`. Sifa fetches your profile, finds the matching `rel="me"` link, and verifies the account.
+**Step 2: add your Sifa link to a profile field.** Put your Sifa profile URL (for example `https://sifa.id/p/<your-handle>`) in one of your Fediverse profile fields. Sifa reads the fields on your profile, finds the match, and verifies the account. Your DID works too, so if you already added it for Keytrace, you're covered.
 
-The link has to go in a **profile field**, not your bio. Bio links are published as `rel="nofollow noopener"`, without the `me` part, so they never verify. This is the usual reason a link "won't turn into `rel="me"`".
+It has to go in a **profile field**, not your bio. Sifa reads the structured fields on your profile, so a link buried in your bio text is not picked up.
 
-- **Mastodon:** Preferences -> Profile -> **Profile metadata** (the same "Custom fields" section Keytrace uses). Add a row, for example name `Sifa` and content `https://sifa.id/p/<your-handle>`. The value is the full **URL** here, not your DID like Keytrace wants: Mastodon publishes URL-valued fields with `rel="me"` automatically.
+- **Mastodon:** Preferences -> Profile -> **Profile metadata** (the same "Custom fields" section Keytrace uses). Add a row, for example name `Sifa` and content `https://sifa.id/p/<your-handle>`.
 - **GoToSocial / Pleroma / Akkoma:** add the URL in your profile's fields / metadata (the same key-value fields Mastodon uses).
 - **Pixelfed:** add the URL in your profile's website or links field.
 
-You don't need your own server's green "verified" checkmark. That checkmark is bidirectional (it also wants a link back from the target), but Sifa only needs the one-way `rel="me"` from your account to your Sifa profile.
+Once the field is in place, use the **Verify** button on the account in Sifa to check right away, or leave it and Sifa re-checks periodically. There's no `rel="me"` step and no green "verified" checkmark to earn on your own server: Sifa reads the field value directly.
 
 ## Option 2: verify on Keytrace
 
 Verify the account on [Keytrace](https://keytrace.dev) (for Mastodon and similar, this means adding your DID to a profile field, which Keytrace walks you through). That's the whole flow.
 
-You do **not** add the account under External accounts for this route. Sifa detects the Keytrace verification and surfaces the account on its own. Adding it as a Fediverse external account as well would just create a separate link that then needs its own `rel="me"`, so if you're going the Keytrace way, skip the "add it in Sifa" step entirely.
+You do **not** add the account under External accounts for this route. Sifa detects the Keytrace verification and surfaces the account on its own. Adding it as a Fediverse external account as well would just create a duplicate, so if you're going the Keytrace way, skip the "add it in Sifa" step entirely.
 
 ## What shows up
 
