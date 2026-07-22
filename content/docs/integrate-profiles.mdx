@@ -1,0 +1,92 @@
+---
+title: Show Sifa profiles in your app
+description: Read a person's professional headline, current role, employer, and skills from their Sifa profile, and render it in your own app. Public data, no Sifa account, no API key.
+---
+
+If you build on the Atmosphere, you can show a person's professional facts (their current role, their employer, the skills they list) right where it's useful: a maintainer on a package page, a developer on a git forge, a contributor in a byline. The data is public and portable, so you read it directly. There's no Sifa account to create, no API key to request, and nothing to ask permission for.
+
+There are three ways in, from least to most work. Pick the one that fits your stack.
+
+## Option 1: call the profile query
+
+Sifa's AppView exposes an XRPC query that returns the aggregated public profile. Call it from your server with a handle or a DID:
+
+```bash
+curl "https://api.sifa.id/xrpc/id.sifa.getProfileView?actor=gui.do"
+```
+
+The response is JSON. The fields most apps want:
+
+```json
+{
+  "did": "did:plc:45uheisi25szrjvjurfpritx",
+  "handle": "gui.do",
+  "displayName": "Guido Jansen",
+  "headline": "Founder at Singi Labs",
+  "positions": [
+    {
+      "title": "Founder",
+      "company": "Singi Labs",
+      "entityName": "Singi Labs",
+      "startedAt": "2025-11"
+    }
+  ],
+  "skills": [{ "name": "Product" }, { "name": "AT Protocol" }],
+  "education": [{ "institution": "…", "degree": "…" }]
+}
+```
+
+A position with no `endedAt` is a current role. When a position is linked to a company page, `entityName` is the resolved name; otherwise `company` is the free-text value the person typed. The query needs no authentication. It returns the same public projection a logged-out visitor sees, so hidden items are already omitted.
+
+The full field list is defined by the `id.sifa.getProfileView` lexicon in [singi-labs/sifa-lexicons](https://github.com/singi-labs/sifa-lexicons).
+
+## Option 2: use the SDK
+
+If your app is TypeScript, the [`@singi-labs/sifa-sdk`](https://www.npmjs.com/package/@singi-labs/sifa-sdk) does the fetching and typing for you, and gives you a compact summary when you only want the headline facts.
+
+```bash
+pnpm add @singi-labs/sifa-sdk
+```
+
+```ts
+import { fetchProfileSummary } from '@singi-labs/sifa-sdk/query'
+
+const summary = await fetchProfileSummary({ baseUrl: 'https://api.sifa.id' }, 'gui.do')
+// {
+//   handle: 'gui.do',
+//   displayName: 'Guido Jansen',
+//   headline: 'Founder at Singi Labs',
+//   currentTitle: 'Founder',
+//   currentCompany: 'Singi Labs',
+//   topSkills: ['Product', 'AT Protocol'],
+//   claimed: true,
+// }
+```
+
+`fetchProfileSummary` returns `null` when there's no profile for that actor, so a missing profile is easy to handle. `currentTitle` and `currentCompany` come from the same "primary position" rule the profile page uses, so your summary matches what the person sees on their own profile. Call it from your server, the same as option 1.
+
+If you want the whole profile instead of the summary, use `fetchGetProfileView`, which returns the full typed `ProfileView`.
+
+## Option 3: read straight from the PDS
+
+The most decentralized path skips Sifa entirely. Every `id.sifa.*` record lives in the person's own Personal Data Server, and those records are public. Resolve their handle to a DID, resolve the DID to its PDS host, then read the collections you want:
+
+```bash
+# id.sifa.profile.self holds the headline and core fields
+curl "https://<their-pds>/xrpc/com.atproto.repo.getRecord?repo=<did>&collection=id.sifa.profile.self&rkey=self"
+
+# positions, skills, and education are one collection each
+curl "https://<their-pds>/xrpc/com.atproto.repo.listRecords?repo=<did>&collection=id.sifa.profile.position"
+```
+
+This is the same mechanism generic record browsers like [pdsls.dev](https://pdsls.dev) use. The trade-off: you get the raw records exactly as written, so you handle company-page resolution, formatting, and the skill-to-position links yourself. Options 1 and 2 do that work for you. Reach for this one when you specifically want zero dependency on Sifa's AppView. See [Apps, AppViews, and the firehose](/docs/apps-appviews-firehose) for how PDS reads fit the wider picture.
+
+## Be a good neighbour
+
+- **Cache.** A person's role doesn't change by the second. Cache reads for a minute or so rather than fetching on every page view, and read server-side rather than from every visitor's browser.
+- **Expect change.** Records can be edited or deleted at any time. Treat a `404` as "no data right now", not an error, and don't hard-fail a page over a missing profile.
+- **Attribute.** When you show Sifa data, link back to the person's Sifa profile page (their `/p/{handle}` page) so they can find and correct it.
+
+## Tell us what you built
+
+If your app reads `id.sifa.*` records, [open an issue](https://github.com/singi-labs/sifa-lexicons/issues) and we'll list it on [Lexicons and integrations](/docs/lexicons-and-integrations). Seeing the same profile show up across apps, owned by the person and not by any one platform, is the entire point.
