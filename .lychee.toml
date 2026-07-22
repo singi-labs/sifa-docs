@@ -74,6 +74,10 @@ exclude = [
   # only double-check by hitting the live site. A PR that adds a new
   # page would then fail because the live site doesn't have it yet.
   "^https?://docs\\.sifa\\.id/",
+  # Prod AppView API. Appears in code examples (curl commands, SDK baseUrl),
+  # but CI runners can't reach it (prod firewalls the runner IPs) and a bare
+  # request to it isn't a navigable link. Verified reachable outside CI.
+  "^https?://api\\.sifa\\.id",
   # Source-available core repos: 404 to the anonymous / CI link-checker
   # (its token can't read other private repos), but valid for invited
   # contributors. The public SDK/lexicons/.github links are still checked.
