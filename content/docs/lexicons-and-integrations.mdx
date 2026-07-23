@@ -45,21 +45,22 @@ Beyond apps, some people render their own website from their `id.sifa.*` records
 
 If you want the same, [`@singi-labs/sifa-page-renderer`](https://github.com/singi-labs/sifa-page-renderer) (MIT) turns a Sifa profile into a static site. See [Personal website](/docs/personal-website) for the hosted option.
 
-## Lexicons Sifa reads (but doesn't own)
+## What Sifa reads (and what it doesn't)
 
-Sifa isn't just a publisher. It also reads from other apps' lexicons to render your activity feed and rich profile data. The main ones:
+To build your activity stream ([/activity](/docs/activity-feed) and /now), Sifa reads the public records across your PDS, not a fixed set of lexicons. Whatever public records your apps write can show up on your timeline. As examples of what that includes today:
 
-- `app.bsky.*`: [Bluesky](https://bsky.app) posts, follows, reposts, profile data.
-- `forum.barazo.*`: Barazo forum posts and reactions (Sifa surfaces the Barazo activity that's relevant to a profile).
-- `sh.tangled.*`: [Tangled](https://tangled.org) repos, issues, pull requests.
-- `rsvp.atmo.*`: [atmo.rsvp](https://atmo.rsvp) calendar events and RSVPs.
-- `pub.leaflet.*`: [Leaflet](https://leaflet.pub) publications and articles.
-- `whtwnd.blog.*`: [WhiteWind](https://whtwnd.com) blog posts.
-- `community.lexicon.calendar.rsvp`, `community.lexicon.location.*`: shared community lexicons.
-- `site.standard.publication`: [Standard.site](https://standard.site) publication records (see [Standard.site cards](/docs/standard-site-cards)).
-- …and more as new Atmosphere apps launch.
+- `app.bsky.*`: [Bluesky](https://bsky.app) posts, follows, reposts, and profile data.
+- `forum.barazo.*`: Barazo forum posts and reactions relevant to a profile.
+- `sh.tangled.*`: [Tangled](https://tangled.org) repos, issues, and pull requests.
+- `rsvp.atmo.*` and `community.lexicon.calendar.*`: calendar events and RSVPs, e.g. [atmo.rsvp](https://atmo.rsvp).
+- Blog posts and long-form writing, e.g. [WhiteWind](https://whtwnd.com), [Leaflet](https://leaflet.pub), and [Standard.site](https://standard.site) (see [Standard.site cards](/docs/standard-site-cards)).
+- `community.lexicon.location.*`: shared community location records.
 
-The full list of record types Sifa treats as "activity" (and how each is categorised) lives in [`@singi-labs/sifa-sdk/tokens`](https://github.com/singi-labs/sifa-sdk). The [Activity feed](/docs/activity-feed) page renders that list dynamically. When sifa-sdk adds support for a new app, the page updates automatically.
+New Atmosphere apps show up on their own as people start using them. The record types Sifa treats as "activity" are catalogued in [`@singi-labs/sifa-sdk/tokens`](https://github.com/singi-labs/sifa-sdk), and the [Activity feed](/docs/activity-feed) page renders that list dynamically.
+
+### Only your public data
+
+Sifa reads only the public records in your PDS, the same ones any Atmosphere app can already see. It has no access to private or permissioned data: not your Bluesky DMs, and nothing behind a permission you haven't granted. If a record isn't public, Sifa doesn't see it.
 
 ## Want to go deeper
 
