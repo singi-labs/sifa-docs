@@ -31,10 +31,21 @@ The exact list and schema details are in the repo. We don't restate them here be
 Because the schemas are public, any Atmosphere app can read or write them. Today:
 
 - **Sifa itself**: the primary writer. Everything in your profile editor produces `id.sifa.*` records.
+- **[verak.app](https://verak.app)**: writes `id.sifa.*` endorsement and profile records alongside its own reputation data.
+- **[weareonhire.com](https://weareonhire.com)**: writes `id.sifa.*` profile records as part of its hiring workflow.
 - **[pdsls.dev](https://pdsls.dev)**: generic record browser, displays any lexicon including `id.sifa.*`.
 - **Atmosphere browser extensions**: some show your Sifa profile inline when you hover over an Atmosphere handle anywhere on the web.
 
 We expect more over time. If you build something that reads or writes `id.sifa.*` records, [open an issue](https://github.com/singi-labs/sifa-lexicons/issues) and we'll add it here.
+
+### Personal sites driven by a Sifa profile
+
+Beyond apps, some people render their own website from their `id.sifa.*` records, so a personal CV or career page stays in sync with their profile:
+
+- [gui.do/cv](https://gui.do/cv/)
+- [renderg.host/career](https://renderg.host/career)
+
+If you want the same, [`@singi-labs/sifa-page-renderer`](https://github.com/singi-labs/sifa-page-renderer) (MIT) turns a Sifa profile into a static site. See [Personal website](/docs/personal-website) for the hosted option.
 
 ## Lexicons Sifa reads (but doesn't own)
 
