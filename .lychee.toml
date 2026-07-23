@@ -74,6 +74,10 @@ exclude = [
   # only double-check by hitting the live site. A PR that adds a new
   # page would then fail because the live site doesn't have it yet.
   "^https?://docs\\.sifa\\.id/",
+  # Authenticated app routes (settings, account). They redirect to login or
+  # gate server-side for the anonymous CI checker, but are valid for signed-in
+  # users. The public marketing/profile pages on sifa.id are still checked.
+  "^https?://sifa\\.id/settings",
   # Prod AppView API. Appears in code examples (curl commands, SDK baseUrl),
   # but CI runners can't reach it (prod firewalls the runner IPs) and a bare
   # request to it isn't a navigable link. Verified reachable outside CI.
