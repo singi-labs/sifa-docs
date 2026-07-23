@@ -33,8 +33,6 @@ Because the schemas are public, any Atmosphere app can read or write them. Today
 - **Sifa itself**: the primary writer. Everything in your profile editor produces `id.sifa.*` records.
 - **[verak.app](https://verak.app)**: writes `id.sifa.*` endorsement and profile records alongside its own reputation data.
 - **[weareonhire.com](https://weareonhire.com)**: writes `id.sifa.*` profile records as part of its hiring workflow.
-- **[pdsls.dev](https://pdsls.dev)**: generic record browser, displays any lexicon including `id.sifa.*`.
-- **Atmosphere browser extensions**: some show your Sifa profile inline when you hover over an Atmosphere handle anywhere on the web.
 
 We expect more over time. If you build something that reads or writes `id.sifa.*` records, [open an issue](https://github.com/singi-labs/sifa-lexicons/issues) and we'll add it here.
 
@@ -54,7 +52,7 @@ Sifa isn't just a publisher. It also reads from other apps' lexicons to render y
 - `app.bsky.*`: [Bluesky](https://bsky.app) posts, follows, reposts, profile data.
 - `forum.barazo.*`: Barazo forum posts and reactions (Sifa surfaces the Barazo activity that's relevant to a profile).
 - `sh.tangled.*`: [Tangled](https://tangled.org) repos, issues, pull requests.
-- `events.smokesignal.*`: [Smoke Signal](https://smokesignal.events) calendar events you've RSVP'd to.
+- `rsvp.atmo.*`: [atmo.rsvp](https://atmo.rsvp) calendar events and RSVPs.
 - `pub.leaflet.*`: [Leaflet](https://leaflet.pub) publications and articles.
 - `whtwnd.blog.*`: [WhiteWind](https://whtwnd.com) blog posts.
 - `community.lexicon.calendar.rsvp`, `community.lexicon.location.*`: shared community lexicons.
