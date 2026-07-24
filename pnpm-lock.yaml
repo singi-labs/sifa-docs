@@ -12,8 +12,8 @@ importers:
         specifier: 3.0.0
         version: 3.0.0
       '@singi-labs/sifa-sdk':
-        specifier: 0.9.18
-        version: 0.9.18(react@19.2.4)
+        specifier: 0.12.25
+        version: 0.12.25(react@19.2.4)
       fumadocs-core:
         specifier: 16.6.5
         version: 16.6.5(@mdx-js/mdx@3.1.1)(@types/estree-jsx@1.0.5)(@types/hast@3.0.4)(@types/mdast@4.0.4)(@types/react@19.2.14)(lucide-react@0.570.0(react@19.2.4))(next@16.1.6(@babel/core@7.29.7)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(zod@4.3.6)
@@ -1352,8 +1352,8 @@ packages:
     resolution: {integrity: sha512-KxXvfapcixpz6rVEB6HPjOUZT22yN6v0vI0urQSk1L8MlEWPDFCZkhw2xmkyoTGYeFw7tWTZd7e3lVzRZRN/EA==}
     engines: {node: '>=18'}
 
-  '@singi-labs/sifa-sdk@0.9.18':
-    resolution: {integrity: sha512-Q2ko2seafY+C9gHQKb5J9V+EvwGVGmEsVFt+CAAPlqugSGQcbiJHE30myNkQwKUGAW2j7Mw2IqHI18oTKkV/Pg==}
+  '@singi-labs/sifa-sdk@0.12.25':
+    resolution: {integrity: sha512-Vuk16OVRd+XaQR2ZvyT6tZpNPvBDgoNv4jKnjWhMeGQHRC0b2UhST0nNks7g5XKmGYFRxnYn2e6urr9sp4+J1A==}
     engines: {node: '>=22'}
     peerDependencies:
       '@tanstack/react-query': ^5.100.0
@@ -5128,7 +5128,7 @@ snapshots:
 
   '@simple-libs/stream-utils@1.2.0': {}
 
-  '@singi-labs/sifa-sdk@0.9.18(react@19.2.4)':
+  '@singi-labs/sifa-sdk@0.12.25(react@19.2.4)':
     dependencies:
       zod: 4.4.3
     optionalDependencies:
