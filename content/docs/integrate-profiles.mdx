@@ -81,6 +81,26 @@ curl "https://<their-pds>/xrpc/com.atproto.repo.listRecords?repo=<did>&collectio
 
 This is the same mechanism generic record browsers like [pdsls.dev](https://pdsls.dev) use. The trade-off: you get the raw records exactly as written, so you handle company-page resolution, formatting, and the skill-to-position links yourself. Options 1 and 2 do that work for you. Reach for this one when you specifically want zero dependency on Sifa's AppView. See [Apps, AppViews, and the firehose](/docs/apps-appviews-firehose) for how PDS reads fit the wider picture.
 
+### Validating the records you read
+
+If your app is TypeScript, the SDK's root subpath exports a Zod schema and a type for every `id.sifa.*` record. They mirror the lexicons in [singi-labs/sifa-lexicons](https://github.com/singi-labs/sifa-lexicons) and pull in no dependencies, so you can use them for PDS reads without touching the `/query` layer or the AppView at all.
+
+```ts
+import { ProfilePositionRecordSchema } from '@singi-labs/sifa-sdk'
+
+const parsed = ProfilePositionRecordSchema.safeParse(record.value)
+if (parsed.success) {
+  // parsed.data.title, parsed.data.startedAt, parsed.data.skills, ...
+}
+```
+
+Two things to know about these schemas:
+
+- **They accept fields they don't know about.** Record schemas pass unknown keys through rather than stripping them, so a record written against a newer lexicon than the SDK version you pinned still parses. Anything the SDK doesn't declare comes back untyped.
+- **Not every reference carries a CID.** `position.skills` entries are `id.sifa.defs#skillRef`, which is an AT-URI and nothing else: skills are mutable records in the same person's repo, so the link resolves live and follows edits. Other references, like `endorsement.skill`, are full `com.atproto.repo.strongRef` values pinning a specific version. Check the lexicon before assuming a `cid` is there.
+
+If a schema and its lexicon disagree, that's a bug in the SDK. [Open an issue](https://github.com/singi-labs/sifa-sdk/issues) and we'll fix the schema.
+
 ## Be a good neighbour
 
 - **Cache.** A person's role doesn't change by the second. Cache reads for a minute or so rather than fetching on every page view, and read server-side rather than from every visitor's browser.
