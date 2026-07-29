@@ -17,7 +17,7 @@ Sifa supports these platforms today:
 | `website`   | Your personal site. Sifa tries to auto-discover a feed from the page.                                                                                                |
 | `substack`  | [Substack](https://substack.com) newsletter. Auto-discovers the public RSS feed.                                                                                     |
 | `fediverse` | [Mastodon](https://joinmastodon.org) / GoToSocial / Pleroma / Pixelfed account. Reads your public posts. See [Connect a Fediverse account](/docs/connect-fediverse). |
-| `github`    | GitHub account. Sifa runs an initial scan of your public repos.                                                                                                      |
+| `github`    | GitHub account. Sifa reads your merged pull requests. See [Connect a GitHub account](/docs/connect-github).                                                          |
 | `orcid`     | ORCID academic profile. Sifa syncs your publications nightly.                                                                                                        |
 | `keyoxide`  | [Keyoxide](https://keyoxide.org) identity verification profile.                                                                                                      |
 | `youtube`   | YouTube channel. Link only.                                                                                                                                          |
@@ -96,9 +96,11 @@ Removing the ORCID link under **External accounts** removes every ORCID-sourced 
 
 The usual cause is visibility on ORCID's side. Open [orcid.org](https://orcid.org/my-orcid) and confirm the works are set to **Everyone**. Anything restricted to "Trusted parties only" or "Only me" stays off Sifa, because the public API never returns it.
 
-## GitHub: initial repo scan
+## GitHub: merged pull requests
 
-Add a GitHub account and Sifa runs an initial scan of your public repositories and contributions. The scan is one-shot. Subsequent updates flow through the GitHub firehose / public events stream where available, or through periodic re-scans.
+Once a GitHub account is verified, Sifa reads the **merged pull requests you authored** in public repositories, and shows them in your activity feed and contribution graph. Not your repositories, not commits, not issues.
+
+Sifa reads roughly the last year, refreshing at most once a day when your profile is viewed. There are two ways to verify the account, including one that skips adding it here entirely. See [Connect a GitHub account](/docs/connect-github).
 
 ## Verification
 
