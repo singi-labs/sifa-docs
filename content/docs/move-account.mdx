@@ -22,7 +22,7 @@ Your **DID doesn't change**. Your handle may need re-pointing if you used a prov
 - Know **which provider you're moving to**. Popular alternatives to Bluesky: [Eurosky](https://eurosky.social) (EU-hosted, GDPR-aware), [Tangled](https://tangled.org) (EU, developer-focused), and [Blacksky](https://blacksky.community).
 - Some providers require an **invite code**. Check the target provider's signup page first and grab one if you need it.
 - Pick a moment when you can afford some downtime. The migration itself takes minutes, but DNS propagation and re-signing into apps can take longer.
-- Back up first. The protocol is built for safe migration, but mistakes happen. Keep a CAR-file export of your old provider before you start.
+- Back up first. The protocol is built for safe migration, but mistakes happen. Grab a CAR-file export of your old provider before you start: in Sifa, **Settings -> Account** has **Export my data server via pdsls.dev**, which opens [pdsls.dev](https://pdsls.dev) with your account loaded and exports from there. From a terminal, `goat repo export <your-handle>` does the same thing against `com.atproto.sync.getRepo`.
 
 ## How to actually do it
 
