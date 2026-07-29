@@ -17,6 +17,7 @@
     "atom-feeds",
     "external-accounts",
     "connect-fediverse",
+    "connect-github",
     "personal-website",
     "link-companies",
     "company-pages",
