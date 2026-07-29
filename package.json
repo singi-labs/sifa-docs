@@ -25,7 +25,8 @@
     "prepare": "husky",
     "screenshots:capture": "tsx scripts/screenshot-runner.ts",
     "screenshots:diff": "tsx scripts/screenshot-diff.ts",
-    "screenshots:validate": "tsx scripts/validate-screenshot-refs.ts"
+    "screenshots:validate": "tsx scripts/validate-screenshot-refs.ts",
+    "fetch:apps": "node scripts/fetch-app-registry.mjs"
   },
   "dependencies": {
     "@radix-ui/colors": "3.0.0",

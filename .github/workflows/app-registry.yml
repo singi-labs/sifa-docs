@@ -1,0 +1,53 @@
+name: App registry
+
+# Refresh the committed snapshot of the app registry that /docs/supported-apps
+# renders. The registry lives in sifa-api; snapshotting it keeps the docs build
+# off the network, at the cost of being up to a day stale. Opens a PR rather
+# than pushing, so a new app landing on the docs site is a reviewed change.
+
+on:
+  schedule:
+    - cron: '30 4 * * *' # 04:30 UTC daily, after the screenshot run
+  workflow_dispatch:
+
+concurrency:
+  group: app-registry
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Fetch the registry
+        run: pnpm fetch:apps
+
+      - name: Open PR on change
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          add-paths: content/data/app-registry.json
+          branch: chore/app-registry-refresh
+          delete-branch: true
+          commit-message: 'chore(apps): refresh the app registry snapshot'
+          title: 'chore(apps): refresh the app registry snapshot'
+          body: |
+            The app registry in sifa-api changed. This updates the snapshot
+            that `/docs/supported-apps` renders.
+
+            Check the diff reads sensibly to a user before merging: a new app
+            here is a public statement that Sifa reads its activity.
