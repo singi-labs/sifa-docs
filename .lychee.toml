@@ -101,6 +101,11 @@ exclude = [
   # Community PDS-migration tool linked from move-account; intermittently
   # 500s under CI load (verified up via curl). Re-check periodically.
   "^https?://(www\\.)?pdsmoover\\.com",
+  # Linked from lexicons-and-integrations. Returned 502 from CI and from a
+  # local curl on 2026-07-29, so the host itself is down, not the runner.
+  # Treated as temporary. Re-check periodically and drop this line (or the
+  # link) once it resolves either way.
+  "^https?://(www\\.)?weareonhire\\.com",
   # docs.sifa.id self-links: handled by the internal-link check below.
   # We still want to verify external mentions of docs.sifa.id, just not
   # ones inside out/ that would just chase our own build.
