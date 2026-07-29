@@ -4,398 +4,512 @@
     "name": "Aether Docs",
     "category": "Slides",
     "description": "Slide decks in Aether OS on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://aetheros.computer",
+    "logo": "https://sifa.id/api/company/favicon/aetheros.computer"
   },
   {
     "id": "aetheros",
     "name": "Aetheros",
     "category": "Pages",
-    "description": "Personal pages on the AT Protocol.",
-    "externallySourced": false
+    "description": "A desktop environment for the AT Protocol, running in the browser.",
+    "externallySourced": false,
+    "homepage": "https://aetheros.computer",
+    "logo": "https://sifa.id/api/company/favicon/aetheros.computer"
   },
   {
     "id": "alternativeproto",
     "name": "AlternativeProto",
     "category": "Links",
     "description": "An app directory on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://alternativeproto.net",
+    "logo": "https://sifa.id/api/company/favicon/alternativeproto.net"
   },
   {
     "id": "anisota",
     "name": "Anisota",
     "category": "Posts",
     "description": "Bluesky-clone feed and curated lists on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://anisota.net",
+    "logo": "https://sifa.id/api/company/favicon/anisota.net"
   },
   {
     "id": "asq",
     "name": "ASQ",
     "category": "Q&A",
     "description": "Questions and answers on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://asq.fyi",
+    "logo": "https://sifa.id/api/company/favicon/asq.fyi"
   },
   {
     "id": "atfund",
     "name": "at.fund",
     "category": "Endorsements",
     "description": "Funding and endorsements for AT Protocol builders.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://at.fund",
+    "logo": "https://sifa.id/api/company/favicon/at.fund"
   },
   {
     "id": "atcr",
     "name": "ATCR",
     "category": "Code",
     "description": "Distributed container registry on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://atcr.io",
+    "logo": "https://sifa.id/api/company/favicon/atcr.io"
   },
   {
     "id": "atmorsvp",
     "name": "atmo.rsvp",
     "category": "Events",
     "description": "Events and RSVPs on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://atmo.rsvp",
+    "logo": "https://sifa.id/api/company/favicon/atmo.rsvp"
   },
   {
     "id": "atmobb",
     "name": "atmoBB",
     "category": "Social",
     "description": "Forum threads and replies on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://atmobb.app",
+    "logo": "https://sifa.id/api/company/favicon/atmobb.app"
   },
   {
     "id": "atstore",
     "name": "atstore",
     "category": "Reviews",
     "description": "App reviews and listings on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://atstore.fyi",
+    "logo": "https://sifa.id/api/company/favicon/atstore.fyi"
   },
   {
     "id": "atvouch",
     "name": "atVouch",
     "category": "Endorsements",
     "description": "Vouches and trust on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://atvouch.dev",
+    "logo": "https://sifa.id/api/company/favicon/atvouch.dev"
   },
   {
     "id": "badges",
     "name": "Badges",
     "category": "Verification",
     "description": "Earned badges on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": null,
+    "logo": null
   },
   {
     "id": "beaconbits",
     "name": "Beacon Bits",
     "category": "Places",
     "description": "Location pins with photos and posts on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://beaconbits.app",
+    "logo": "https://sifa.id/api/company/favicon/beaconbits.app"
   },
   {
     "id": "bluesky",
     "name": "Bluesky",
     "category": "Posts",
     "description": "Social networking on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://bsky.app",
+    "logo": "https://sifa.id/api/company/favicon/bsky.app"
   },
   {
     "id": "bookhive",
     "name": "BookHive",
     "category": "Reviews",
     "description": "Reading tracker and reviews on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://bookhive.buzz",
+    "logo": "https://sifa.id/api/company/favicon/bookhive.buzz"
   },
   {
     "id": "colibri",
     "name": "Colibri",
     "category": "Social",
     "description": "Community chat on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://colibri.social",
+    "logo": "https://sifa.id/api/company/favicon/colibri.social"
   },
   {
     "id": "collectivesocial",
     "name": "Collective Social",
     "category": "Lists",
     "description": "Curated lists of recommendations on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://collectivesocial.app",
+    "logo": "https://sifa.id/api/company/favicon/collectivesocial.app"
   },
   {
     "id": "smokesignal",
     "name": "Community Calendar",
     "category": "Events",
     "description": "Events and RSVPs on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://atmo.rsvp",
+    "logo": "https://sifa.id/api/company/favicon/atmo.rsvp"
   },
   {
     "id": "crate",
     "name": "Crate",
     "category": "Articles",
     "description": "Publishing for the things you make on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://crate.social",
+    "logo": "https://sifa.id/api/company/favicon/crate.social"
   },
   {
     "id": "flashes",
     "name": "Flashes",
     "category": "Photos",
     "description": "Photo sharing on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://flashes.blue",
+    "logo": "https://sifa.id/api/company/favicon/flashes.blue"
   },
   {
     "id": "frontpage",
     "name": "Frontpage",
     "category": "Links",
     "description": "Link aggregation on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://frontpage.fyi",
+    "logo": "https://sifa.id/api/company/favicon/frontpage.fyi"
   },
   {
     "id": "github",
     "name": "GitHub",
     "category": "Code",
     "description": "GitHub contribution activity (merged pull requests)",
-    "externallySourced": true
+    "externallySourced": true,
+    "homepage": "https://github.com",
+    "logo": "https://sifa.id/api/company/favicon/github.com"
   },
   {
     "id": "grain",
     "name": "Grain",
     "category": "Photos",
     "description": "Photo galleries on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://grain.social",
+    "logo": "https://sifa.id/api/company/favicon/grain.social"
   },
   {
     "id": "guestbook",
     "name": "Guestbook",
     "category": "Social",
     "description": "Leave a note on someone else’s cross-site guestbook on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://baileytownsend.dev",
+    "logo": null
   },
   {
     "id": "kevara",
     "name": "Kevara",
     "category": "Events",
     "description": "Professional networking and speaker directory on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": null,
+    "logo": null
   },
   {
     "id": "keytrace",
     "name": "Keytrace",
     "category": "Verification",
     "description": "Identity verification on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://keytrace.dev",
+    "logo": null
   },
   {
     "id": "kich",
     "name": "Kich",
     "category": "Recipes",
     "description": "Recipes and kitchen management on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://kich.io",
+    "logo": "https://sifa.id/api/company/favicon/kich.io"
   },
   {
     "id": "leaflet",
     "name": "Leaflet",
     "category": "Articles",
     "description": "Social publishing on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://leaflet.pub",
+    "logo": "https://sifa.id/api/company/favicon/leaflet.pub"
   },
   {
     "id": "lichen",
     "name": "Lichen",
     "category": "Pages",
     "description": "Wikis on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://lichen.wiki",
+    "logo": "https://sifa.id/api/company/favicon/lichen.wiki"
   },
   {
     "id": "lifepo",
     "name": "Lifepo",
     "category": "Social",
     "description": "Life-event timelines on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://lifepo.st",
+    "logo": null
   },
   {
     "id": "margin",
     "name": "Margin",
     "category": "Research",
     "description": "Annotate the web on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://margin.at",
+    "logo": "https://sifa.id/api/company/favicon/margin.at"
   },
   {
     "id": "marque",
     "name": "Marque",
     "category": "Domains",
     "description": "Domain registration on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://marque.at",
+    "logo": "https://sifa.id/api/company/favicon/marque.at"
   },
   {
     "id": "mcp",
     "name": "MCP",
     "category": "Code",
     "description": "Model Context Protocol servers on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": null,
+    "logo": null
   },
   {
     "id": "minomobi",
     "name": "Minomobi",
     "category": "Music",
     "description": "Music composition on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://minomobi.com",
+    "logo": null
   },
   {
     "id": "nooki",
     "name": "Nooki",
     "category": "Social",
     "description": "Reddit-style discussion communities on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": null,
+    "logo": null
   },
   {
     "id": "opensocial",
     "name": "Open Social",
     "category": "Social",
     "description": "Community membership and management on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://opensocial.community",
+    "logo": "https://sifa.id/api/company/favicon/opensocial.community"
   },
   {
     "id": "papili",
     "name": "Papili",
     "category": "Links",
     "description": "Link posts on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": null,
+    "logo": null
   },
   {
     "id": "passports",
     "name": "Passports",
     "category": "Places",
     "description": "Travel logs and place collections on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://passports.social",
+    "logo": "https://sifa.id/api/company/favicon/passports.social"
   },
   {
     "id": "pastesphere",
     "name": "PasteSphere",
     "category": "Pastes",
     "description": "Code snippets on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": null,
+    "logo": null
   },
   {
     "id": "plonk",
     "name": "Plonk",
     "category": "Pastes",
     "description": "Text pastes on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://plonk.li",
+    "logo": null
   },
   {
     "id": "plyr",
     "name": "Plyr.fm",
     "category": "Music",
     "description": "Music player and listener comments on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://plyr.fm",
+    "logo": "https://sifa.id/api/company/favicon/plyr.fm"
   },
   {
     "id": "popfeed",
     "name": "Popfeed",
     "category": "Reviews",
     "description": "Reviews and ratings on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://popfeed.social",
+    "logo": "https://sifa.id/api/company/favicon/popfeed.social"
   },
   {
     "id": "recipe",
     "name": "recipe.exchange",
     "category": "Recipes",
     "description": "Share and discover recipes on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://recipe.exchange",
+    "logo": "https://sifa.id/api/company/favicon/recipe.exchange"
   },
   {
     "id": "roomy",
     "name": "Roomy",
     "category": "Social",
     "description": "Social spaces on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://roomy.space",
+    "logo": "https://sifa.id/api/company/favicon/roomy.space"
   },
   {
     "id": "semble",
     "name": "Semble",
     "category": "Research",
     "description": "Social knowledge trails on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://semble.so",
+    "logo": "https://sifa.id/api/company/favicon/semble.so"
   },
   {
     "id": "spark",
     "name": "Spark",
     "category": "Posts",
     "description": "Video and photo social on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://sprk.so",
+    "logo": "https://sifa.id/api/company/favicon/sprk.so"
   },
   {
     "id": "standard",
     "name": "Standard",
     "category": "Articles",
     "description": "Document publishing on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://standard.site",
+    "logo": "https://sifa.id/api/company/favicon/standard.site"
   },
   {
     "id": "streamthought",
     "name": "Stream",
     "category": "Posts",
     "description": "Short thoughts on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://thought.stream",
+    "logo": null
   },
   {
     "id": "streamplace",
     "name": "Streamplace",
     "category": "Video",
     "description": "Livestreaming on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://stream.place",
+    "logo": "https://sifa.id/api/company/favicon/stream.place"
   },
   {
     "id": "tangled",
     "name": "Tangled",
     "category": "Code",
     "description": "Git hosting on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://tangled.sh",
+    "logo": "https://sifa.id/api/company/favicon/tangled.sh"
   },
   {
     "id": "userinput",
     "name": "User Input",
     "category": "Social",
     "description": "Roadmap discussions on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://userinput.app",
+    "logo": "https://sifa.id/api/company/favicon/userinput.app"
   },
   {
     "id": "vit",
     "name": "v-it",
     "category": "Code",
     "description": "Published agent skills on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://v-it.org",
+    "logo": "https://sifa.id/api/company/favicon/v-it.org"
   },
   {
     "id": "voxport",
     "name": "Voxport",
     "category": "Video",
     "description": "Podcasts on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://voxport.com",
+    "logo": "https://sifa.id/api/company/favicon/voxport.com"
   },
   {
     "id": "waow",
     "name": "Waow",
     "category": "Photos",
     "description": "Drawings, slides and polls on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://waow.tech",
+    "logo": null
   },
   {
     "id": "watsm",
     "name": "watsm",
     "category": "Code",
     "description": "Published WebAssembly programs on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": null,
+    "logo": null
   },
   {
     "id": "whitewind",
     "name": "Whitewind",
     "category": "Articles",
     "description": "Long-form writing on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://whtwnd.com",
+    "logo": "https://sifa.id/api/company/favicon/whtwnd.com"
   },
   {
     "id": "youandme",
     "name": "You & Me",
     "category": "Social",
     "description": "Social connections on the AT Protocol.",
-    "externallySourced": false
+    "externallySourced": false,
+    "homepage": "https://youandme.at",
+    "logo": "https://sifa.id/api/company/favicon/youandme.at"
   }
 ]
