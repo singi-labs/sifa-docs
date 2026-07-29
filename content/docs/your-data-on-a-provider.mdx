@@ -60,12 +60,12 @@ One record per item. One job equals one record. Edit the job on Sifa and the rec
 
 You can look at your records directly, without going through Sifa. Two ways:
 
-**Browser:** [pdsls.dev](https://pdsls.dev) is a public viewer for any Atmosphere account. Enter your handle, browse collections, see the raw JSON.
+**Browser:** [pdsls.dev](https://pdsls.dev) is a public viewer for any Atmosphere account. Enter your username, browse collections, see the raw JSON.
 
 **Command line:** call your provider's HTTP API. To list all Sifa positions on your account:
 
 ```bash
-curl -s "https://bsky.social/xrpc/com.atproto.repo.listRecords?repo=<your-handle>&collection=id.sifa.profile.position" | jq .
+curl -s "https://bsky.social/xrpc/com.atproto.repo.listRecords?repo=<your-username>&collection=id.sifa.profile.position" | jq .
 ```
 
 (Swap `bsky.social` for your provider's hostname if you're not on [Bluesky](https://bsky.app).)
@@ -104,4 +104,4 @@ See [Move your account to another provider](/docs/move-account) for the step-by-
 
 - [Lexicons and integrations](/docs/lexicons-and-integrations): the schemas that define what each record type must contain.
 - [Apps, AppViews, and the firehose](/docs/apps-appviews-firehose): how Sifa reads these records and renders them.
-- [DIDs, handles, and providers](/docs/dids-handles-providers): the parts of your identity.
+- [DIDs, usernames, and providers](/docs/dids-usernames-providers): the parts of your identity.

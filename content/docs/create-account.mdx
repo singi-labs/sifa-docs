@@ -8,7 +8,7 @@ Sifa ID runs on the Atmosphere ([AT Protocol](https://atproto.com)). Your Sifa a
 ## I already have a [Bluesky](https://bsky.app) (or other Atmosphere) account
 
 1. Go to [sifa.id/login](https://sifa.id/login).
-2. Enter your Atmosphere username. For most people that's the `jay.bsky.social` form, or the custom domain you've set up as your handle.
+2. Enter your Atmosphere username. For most people that's the `jay.bsky.social` form, or the custom domain you've set up as your username.
 3. Click **Sign in to Sifa**.
 4. You'll bounce to your home PDS (the server that holds your account, usually `bsky.social`) to authorise Sifa. Approve.
 5. Back on Sifa, your profile is created automatically and you land on your profile page.
@@ -34,7 +34,7 @@ You need an Atmosphere account before you can use Sifa. You don't have to set it
 
 Rather have your data on European infrastructure than on Bluesky's US-hosted PDS? Create the account on [Eurosky](https://eurosky.social) instead. Once the account exists, sign in to Sifa the same way.
 
-Other Atmosphere providers (Northsky, [Blacksky](https://blacksky.community), Skylight, and others) work the same. Pick whichever fits, then sign in with the resulting handle.
+Other Atmosphere providers (Northsky, [Blacksky](https://blacksky.community), Skylight, and others) work the same. Pick whichever fits, then sign in with the resulting username.
 
 You can move your account between PDSes later without losing any of your Sifa data. Portability like that is the reason Sifa builds on an open protocol instead of its own database.
 
@@ -43,7 +43,7 @@ You can move your account between PDSes later without losing any of your Sifa da
 An Atmosphere account is a portable identity on AT Protocol. Concretely, you get:
 
 - **A DID** (decentralised identifier), the permanent ID for your account. Looks like `did:plc:abc123…`.
-- **A handle**, the human-readable name, like `alice.bsky.social` or `alice.com`.
+- **A username**, the human-readable name, like `alice.bsky.social` or `alice.com`.
 - **A PDS** (Personal Data Server), the server that stores your records.
 
 When you sign in to Sifa, Sifa reads from and writes to your PDS via AT Protocol APIs. Sifa doesn't have its own copy of your account. If you switch PDSes, delete records, or move to a different Atmosphere app, your data is yours and travels with you.
@@ -58,7 +58,7 @@ The first time you sign in:
 
 <Screenshot
   src="public-profile.png"
-  alt="A populated Sifa profile page. Header card with name, handle (@gui.do), pronouns, short tagline, location, and a follow button. Below: section navigation (About, Career, Education, Projects, Credentials, Publications, Volunteering, Awards) on the left, biography text on the right, and an Activity heatmap visualising posts and contributions over the last year."
+  alt="A populated Sifa profile page. Header card with name, username (@gui.do), pronouns, short tagline, location, and a follow button. Below: section navigation (About, Career, Education, Projects, Credentials, Publications, Volunteering, Awards) on the left, biography text on the right, and an Activity heatmap visualising posts and contributions over the last year."
   caption="A populated Sifa profile, shown as it appears to anyone signed in or out. Example profile: gui.do."
 />
 

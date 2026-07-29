@@ -8,13 +8,13 @@ Every public Sifa ID profile publishes an Atom feed of its activity. Anyone with
 ## The URL pattern
 
 ```
-https://sifa.id/p/<handle>/activity.atom
+https://sifa.id/p/<username>/activity.atom
 ```
 
 Examples:
 
 - `https://sifa.id/p/alice.bsky.social/activity.atom`
-- `https://sifa.id/p/alice.com/activity.atom` (custom domain handle)
+- `https://sifa.id/p/alice.com/activity.atom` (custom domain username)
 
 You don't have to remember the exact path. Feed readers usually auto-discover the feed from the profile's HTML. Most apps let you paste in the regular profile URL (`https://sifa.id/p/alice.bsky.social`) and they find the feed themselves via the `<link rel="alternate" type="application/atom+xml">` tag in the page head.
 

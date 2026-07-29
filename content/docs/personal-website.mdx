@@ -7,7 +7,7 @@ Sifa ID's profile data doubles as a standalone personal website. This page cover
 
 ## Personal website
 
-Every Sifa profile has a second, standalone view at `sifa.id/p/{handle}/site`, styled after [academicpages.github.io](https://academicpages.github.io/): a top masthead, a left sidebar with your identity and links, a print-friendly layout, and a dark mode toggle. It looks like your own personal site, not a social profile.
+Every Sifa profile has a second, standalone view at `sifa.id/p/{username}/site`, styled after [academicpages.github.io](https://academicpages.github.io/): a top masthead, a left sidebar with your identity and links, a print-friendly layout, and a dark mode toggle. It looks like your own personal site, not a social profile.
 
 The content comes from the same profile sections you already fill in on Sifa: About, Positions, Education, Publications, and so on. There's no separate data entry for the personal website. Update your profile once, and both views reflect it.
 
@@ -18,13 +18,13 @@ The renderer behind this page is an open-source package, [`@singi-labs/sifa-page
 The fastest path is GitHub Pages, straight from the fork, with no local build and no server:
 
 1. **Fork** [sifa-page](https://github.com/singi-labs/sifa-page) to your GitHub account.
-2. In the fork, open **Settings → Secrets and variables → Actions → Variables** and add a variable named `SIFA_ID` set to your [DID](/docs/dids-handles-providers) (`did:plc:...`). A handle works too, but a DID keeps the site working if you ever change your handle.
+2. In the fork, open **Settings → Secrets and variables → Actions → Variables** and add a variable named `SIFA_ID` set to your [DID](/docs/dids-usernames-providers) (`did:plc:...`). A username works too, but a DID keeps the site working if you ever change your username.
 3. Open **Settings → Pages** and set **Source** to **GitHub Actions**.
 4. Open **Actions**, run the **Deploy site** workflow (or push any commit). Your site publishes at `https://<your-username>.github.io/sifa-page/`.
 
 The scaffold ships with the GitHub Actions workflow, so steps 3 and 4 are the whole deploy. Profile edits appear the next time the workflow runs. To keep the site current, add a scheduled trigger that rebuilds it daily.
 
-**Your own domain.** GitHub Pages supports custom domains under **Settings → Pages → Custom domain**: add the domain and the DNS record GitHub gives you, and your site serves from `cv.alice.com` instead of the `github.io` URL. This is the domain your website is served from, separate from your [Sifa handle domain](/docs/use-your-own-domain).
+**Your own domain.** GitHub Pages supports custom domains under **Settings → Pages → Custom domain**: add the domain and the DNS record GitHub gives you, and your site serves from `cv.alice.com` instead of the `github.io` URL. This is the domain your website is served from, separate from your [Sifa username domain](/docs/use-your-own-domain).
 
 Your profile data still lives on your PDS either way. Self-hosting the page changes where the HTML is served from, not who owns the underlying records.
 

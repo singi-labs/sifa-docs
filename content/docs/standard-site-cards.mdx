@@ -33,8 +33,8 @@ Community write-ups sometimes suggest you do. You don't. These files are real, t
 
 | File / record                                         | What it does                                                                                                                              |
 | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| **DNS TXT `_atproto.<domain>`** with `did=<your-did>` | AT Protocol handle resolution. Makes a custom domain work as a Bluesky / Sifa handle.                                                     |
-| **`/.well-known/atproto-did`** (plain-text DID)       | Same purpose as the TXT record: handle resolution. Useful when you can't set TXT records, or for handles too long for DNS.                |
+| **DNS TXT `_atproto.<domain>`** with `did=<your-did>` | AT Protocol username resolution. Makes a custom domain work as a Bluesky / Sifa username.                                                 |
+| **`/.well-known/atproto-did`** (plain-text DID)       | Same purpose as the TXT record: username resolution. Useful when you can't set TXT records, or for usernames too long for DNS.            |
 | **`/.well-known/site.standard.publication`** (AT-URI) | Standard.site verification: proves your domain controls the publication record. A strict reader can refuse to trust an unverified record. |
 
 None of these get the card to render. The AppView doesn't fetch your website. It reads from the PDS.
@@ -45,7 +45,7 @@ Ghost Pro, some managed WordPress hosts, and certain SaaS site builders block th
 
 What you do lose on those hosts:
 
-- Using your custom domain as a Bluesky / Sifa handle.
+- Using your custom domain as a Bluesky / Sifa username.
 - Standard.site verification, which strict consumers (Sequoia, some third-party readers) may require.
 
 If those matter, move to a host where you control DNS or `/.well-known/`. Most static hosts (GitHub Pages, Netlify, Cloudflare Pages, plain nginx) let you serve files at any path.
@@ -58,7 +58,7 @@ If you publish through Leaflet, pckt, or Offprint, the platform sets it for you.
 
 **Easiest route: edit the record on [pdsls.dev](https://pdsls.dev).**
 
-pdsls.dev is a web UI for browsing and editing AT Protocol records. Log in with your handle + an app password (Bluesky → Settings → App Passwords), navigate to your `site.standard.publication` record, and paste this `basicTheme` block into the existing JSON:
+pdsls.dev is a web UI for browsing and editing AT Protocol records. Log in with your username + an app password (Bluesky → Settings → App Passwords), navigate to your `site.standard.publication` record, and paste this `basicTheme` block into the existing JSON:
 
 ```json
 "basicTheme": {
@@ -94,7 +94,7 @@ In AT Protocol, blobs are content-addressed by hash and reusable across records 
 Fetch your profile record:
 
 ```bash
-curl -s "https://bsky.social/xrpc/com.atproto.repo.getRecord?repo=<your-handle>&collection=app.bsky.actor.profile&rkey=self" | jq .value.avatar
+curl -s "https://bsky.social/xrpc/com.atproto.repo.getRecord?repo=<your-username>&collection=app.bsky.actor.profile&rkey=self" | jq .value.avatar
 ```
 
 The output looks like:
@@ -131,7 +131,7 @@ goat record update --rkey <your-publication-rkey>
 #!/usr/bin/env bash
 set -euo pipefail
 
-HANDLE="your.handle"
+USERNAME="your.username"
 IMAGE="${1:?usage: ./set-icon.sh path/to/image.png}"
 RKEY="<your-publication-rkey>"
 COLLECTION="site.standard.publication"
@@ -142,7 +142,7 @@ MIME=$(file -b --mime-type "$IMAGE")
 
 SESSION=$(curl -sS -X POST "$PDS/xrpc/com.atproto.server.createSession" \
   -H "Content-Type: application/json" \
-  -d "{\"identifier\":\"$HANDLE\",\"password\":\"$APP_PW\"}")
+  -d "{\"identifier\":\"$USERNAME\",\"password\":\"$APP_PW\"}")
 JWT=$(echo "$SESSION" | jq -r .accessJwt)
 DID=$(echo "$SESSION" | jq -r .did)
 
@@ -159,7 +159,7 @@ curl -sS -X POST "$PDS/xrpc/com.atproto.repo.putRecord" \
         '{repo:$repo,collection:$coll,rkey:$rkey,record:$record}')" | jq .
 ```
 
-Edit `HANDLE`, `RKEY`, and `PDS`, then run:
+Edit `USERNAME`, `RKEY`, and `PDS`, then run:
 
 ```bash
 chmod +x set-icon.sh
@@ -175,7 +175,7 @@ In pdsls.dev, your publication record's URL ends in something like `.../site.sta
 Or list your records via the API:
 
 ```bash
-curl -s "https://bsky.social/xrpc/com.atproto.repo.listRecords?repo=<your-handle>&collection=site.standard.publication" | jq .
+curl -s "https://bsky.social/xrpc/com.atproto.repo.listRecords?repo=<your-username>&collection=site.standard.publication" | jq .
 ```
 
 ## Verifying it works
