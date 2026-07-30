@@ -85,7 +85,7 @@ Use the MDX `<Screenshot>` component to embed:
 ```mdx
 <Screenshot
   src="create-account-login-page.png"
-  alt="Sifa login page with a single handle input and a sign-in button."
+  alt="Sifa login page with a single username input and a sign-in button."
   caption="The Sifa login page."
 />
 ```
@@ -96,7 +96,7 @@ The bot uses the built-in `GITHUB_TOKEN` to open review PRs. Tradeoff:
 limitation), but for screenshot-only PRs there's nothing CI would catch
 anyway.
 
-The demo handle used in `/p/{handle}` shots is set in
+The demo username used in `/p/{username}` shots is set in
 `scripts/screenshot-targets.ts` (`DEMO_HANDLE`).
 
 See [CONTRIBUTING.md](https://github.com/singi-labs/.github/blob/main/CONTRIBUTING.md) for contribution guidelines.

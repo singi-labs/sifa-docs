@@ -1,13 +1,13 @@
 ---
-title: Use your own domain as your handle
+title: Use your own domain as your username
 description: Replace `alice.bsky.social` with `alice.com`. Your own domain becomes your Atmosphere identity. Setup happens on your provider (or via DNS), not on Sifa.
 ---
 
-Your Atmosphere handle defaults to ending in your provider's domain: `alice.bsky.social` on Bluesky, `alice.eurosky.social` on Eurosky. You can swap that for your own domain (`alice.com`, `me.example.org`) so your professional identity isn't tied to a provider's name.
+Your Atmosphere username defaults to ending in your provider's domain: `alice.bsky.social` on Bluesky, `alice.eurosky.social` on Eurosky. You can swap that for your own domain (`alice.com`, `me.example.org`) so your professional identity isn't tied to a provider's name.
 
-The setup happens at the **[AT Protocol](https://atproto.com) level**, on your provider. Sifa ID doesn't run a whitelabel handle service. What Sifa gives you is the profile that uses whichever handle you've configured upstream.
+The setup happens at the **[AT Protocol](https://atproto.com) level**, on your provider. Sifa ID doesn't run a whitelabel username service. What Sifa gives you is the profile that uses whichever username you've configured upstream.
 
-Once your handle is set, your Sifa profile URL becomes `https://sifa.id/p/alice.com` automatically. No further configuration on Sifa.
+Once your username is set, your Sifa profile URL becomes `https://sifa.id/p/alice.com` automatically. No further configuration on Sifa.
 
 ## What you need before you start
 
@@ -28,7 +28,7 @@ In Sifa: open your profile page and look in the settings panel.
 From the command line:
 
 ```bash
-curl -s "https://bsky.social/xrpc/com.atproto.identity.resolveHandle?handle=<your-current-handle>" | jq -r .did
+curl -s "https://bsky.social/xrpc/com.atproto.identity.resolveHandle?handle=<your-current-username>" | jq -r .did
 ```
 
 Swap `bsky.social` for your provider's hostname if you're not on Bluesky.
@@ -74,11 +74,11 @@ curl -s https://alice.com/.well-known/atproto-did
 # should print: did:plc:abc123...
 ```
 
-## Step 3: update your handle on your provider
+## Step 3: update your username on your provider
 
-With DNS or well-known in place, tell your provider you want to change your handle.
+With DNS or well-known in place, tell your provider you want to change your username.
 
-**On Bluesky:** Settings → Account → Handle → I have my own domain. Enter `alice.com`. The Bluesky app runs the verification. If it finds your DNS record or fetches your well-known file, the handle is updated.
+**On Bluesky:** Settings → Account → Handle → I have my own domain. Enter `alice.com`. The Bluesky app runs the verification. If it finds your DNS record or fetches your well-known file, the username is updated.
 
 **On Eurosky / [Tangled](https://tangled.org) / [Blacksky](https://blacksky.community):** roughly the same flow under Settings or Account.
 
@@ -86,23 +86,23 @@ If verification fails, double-check the steps above. DNS sometimes takes a few m
 
 ## Step 4: verify on Sifa
 
-Sign out of Sifa and sign back in with your new handle. Your profile page is now `https://sifa.id/p/alice.com`.
+Sign out of Sifa and sign back in with your new username. Your profile page is now `https://sifa.id/p/alice.com`.
 
 <Screenshot
   src="public-profile.png"
-  alt="A Sifa profile page rendered with a custom-domain handle (@gui.do, where gui.do is the owner's own domain). Same layout as any other Sifa profile: header card with name and handle, section navigation on the left, biography and activity heatmap on the right."
-  caption="A Sifa profile served at sifa.id/p/your-domain.com. Example: gui.do, a real custom-domain handle."
+  alt="A Sifa profile page rendered with a custom-domain username (@gui.do, where gui.do is the owner's own domain). Same layout as any other Sifa profile: header card with name and username, section navigation on the left, biography and activity heatmap on the right."
+  caption="A Sifa profile served at sifa.id/p/your-domain.com. Example: gui.do, a real custom-domain username."
 />
 
-Old links pointing at `https://sifa.id/p/alice.bsky.social` still resolve. The AppView indexes by DID, not by handle, so any path that maps to your DID renders the same profile.
+Old links pointing at `https://sifa.id/p/alice.bsky.social` still resolve. The AppView indexes by DID, not by username, so any path that maps to your DID renders the same profile.
 
 ## Why do this
 
-- **Independence from your provider.** Move from Bluesky to Eurosky later, and your domain handle stays. People who linked to `alice.com` don't lose anything.
-- **Personal-brand surface.** A short, memorable handle that matches your website. `sifa.id/p/alice.com` reads as your CV the way `alice.com` reads as your blog.
+- **Independence from your provider.** Move from Bluesky to Eurosky later, and your domain username stays. People who linked to `alice.com` don't lose anything.
+- **Personal-brand surface.** A short, memorable username that matches your website. `sifa.id/p/alice.com` reads as your CV the way `alice.com` reads as your blog.
 - **One-time setup.** DNS records and well-known files don't decay. Set once, runs for years.
 
 ## Want to go deeper
 
-- [DIDs, handles, and providers](/docs/dids-handles-providers): what each piece is for. The DID is what makes handle changes work without breaking anything.
-- [Move your account to another provider](/docs/move-account): handles paired with provider migration. You can keep your custom domain while switching where your data lives.
+- [DIDs, usernames, and providers](/docs/dids-usernames-providers): what each piece is for. The DID is what makes username changes work without breaking anything.
+- [Move your account to another provider](/docs/move-account): usernames paired with provider migration. You can keep your custom domain while switching where your data lives.
