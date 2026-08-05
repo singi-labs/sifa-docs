@@ -1,6 +1,6 @@
 ---
 title: External accounts
-description: Link your blog, GitHub, ORCID, and other profiles to Sifa so the work you publish elsewhere shows up on your professional page. Auto-discovers RSS feeds.
+description: How to link your blog, GitHub, ORCID, and other profiles to Sifa, so work you publish elsewhere reaches your professional page. Sifa finds RSS feeds for you.
 ---
 
 Sifa ID's strength is your activity on the Atmosphere: what you post on [Bluesky](https://bsky.app), what you publish on [Leaflet](https://leaflet.pub), the repos you maintain on [Tangled](https://tangled.org). Most professionals also publish elsewhere though. A personal blog, a GitHub account, an [ORCID](https://orcid.org) profile for academic work, a Mastodon presence.
@@ -26,7 +26,7 @@ Sifa supports these platforms today:
 | `linkedin`  | LinkedIn profile. Link only (importing your data instead is usually better, see [Import from LinkedIn](/docs/import-linkedin)).                                      |
 | `other`     | Any other URL. Link only.                                                                                                                                            |
 
-"Link only" means Sifa shows the URL on your profile but doesn't poll it for activity.
+"Link only" means Sifa shows the URL on your profile but does not poll it for activity.
 
 ## How to add one
 
@@ -35,32 +35,32 @@ In Sifa, open your profile and go to **External accounts**. Add an account with:
 - **Platform**: pick from the list above.
 - **URL**: the canonical address of the account or feed.
 - **Label** (optional): a custom display name. Sifa uses the platform's default if you leave it blank.
-- **Feed URL** (optional): if Sifa can't auto-discover the RSS or Atom feed, paste it here. Most of the time you can leave it blank.
+- **Feed URL** (optional): if Sifa cannot auto-discover the RSS or Atom feed, paste it here. Most of the time you can leave it blank.
 
-Save. Sifa writes an `id.sifa.profile.externalAccount` record to your provider. The record is owned by you, lives on your provider, and is readable by any other app that reads `id.sifa.*` lexicons.
+Save. Sifa writes an `id.sifa.profile.externalAccount` record to your provider. You own that record. It lives on your provider, and any app that reads `id.sifa.*` lexicons can read it.
 
 ## How feed discovery works
 
-When you add a `website`, `substack`, or `rss` account without specifying `feedUrl`, Sifa fetches the URL and looks for a feed. The discovery follows the standard auto-discovery rules:
+Add a `website`, `substack`, or `rss` account with an empty `feedUrl`. Sifa then fetches the URL and looks for a feed. The discovery follows the standard auto-discovery rules:
 
 1. `<link rel="alternate" type="application/atom+xml">` or `application/rss+xml` in the page head.
 2. Well-known feed paths (`/feed`, `/feed.xml`, `/atom.xml`, `/rss.xml`).
 3. Platform-specific rules. Substack always lives at `<subdomain>.substack.com/feed`.
 
-`fediverse` accounts don't use RSS discovery. Sifa reads your posts from the ActivityPub outbox instead, covered in [Connect a Fediverse account](/docs/connect-fediverse).
+`fediverse` accounts do not use RSS discovery. Sifa reads your posts from the ActivityPub outbox instead, covered in [Connect a Fediverse account](/docs/connect-fediverse).
 
-Once Sifa finds a feed, it polls daily and surfaces new items in your [Activity feed](/docs/activity-feed). The feed URL is stored alongside the account so subsequent polls go directly to it without re-discovery.
+Once Sifa finds a feed, it polls daily and surfaces new items in your [Activity feed](/docs/activity-feed). Sifa keeps the feed URL next to the account, so each later poll goes straight to it and skips the discovery step.
 
 ## ORCID: academic publications
 
 Add an ORCID account and Sifa pulls your publications from the ORCID API on a daily sync. Each publication becomes an `id.sifa.profile.publication` record on your provider, so your publications are portable Atmosphere records, not a list locked inside ORCID.
 
-Sifa accepts both the full URL (`https://orcid.org/0000-0002-1825-0097`) and the bare ID (`0000-0002-1825-0097`). The input is normalised before validation.
+Sifa accepts both the full URL (`https://orcid.org/0000-0002-1825-0097`) and the bare ID (`0000-0002-1825-0097`). Sifa normalises the input before it validates it.
 
 ### Getting your publications onto Sifa
 
-1. If you don't have an ORCID yet, create one at [orcid.org](https://orcid.org/register).
-2. Add your publications to ORCID and set them to **Everyone** visibility. Works marked "Trusted parties only" or "Only me" aren't served by the public API, so Sifa can't read them.
+1. If you do not have an ORCID yet, create one at [orcid.org](https://orcid.org/register).
+2. Add your publications to ORCID. Set their visibility to **Everyone**. The public API serves no work that carries "Trusted parties only" or "Only me", so Sifa cannot read those.
 3. Link your ORCID to Sifa. Either verify it through [Keytrace](https://keytrace.dev), which makes it appear automatically, or add the ORCID URL by hand under **External accounts**.
 4. Your publications show up in the **Publications** section of your profile, usually within a day.
 
@@ -68,9 +68,9 @@ Sifa accepts both the full URL (`https://orcid.org/0000-0002-1825-0097`) and the
 
 Verification confirms you own the ORCID you linked. It puts a checkmark on the link and on each publication drawn from it. You only need one of the two methods.
 
-**Via Keytrace.** If you verify your ORCID through [Keytrace](https://keytrace.dev), Sifa detects it on its own. The checkmark and your publications appear without any further steps.
+**With Keytrace.** If you verify your ORCID through [Keytrace](https://keytrace.dev), Sifa detects it on its own. The checkmark and your publications appear without any further steps.
 
-**Via an ORCID researcher URL.**
+**With an ORCID researcher URL.**
 
 1. On your [ORCID profile](https://orcid.org/my-orcid), find **Websites & social links**.
 2. Add your Sifa profile URL (for example `https://sifa.id/p/<username>`) with visibility set to **Everyone**.
@@ -78,7 +78,7 @@ Verification confirms you own the ORCID you linked. It puts a checkmark on the l
 
 ### Hiding individual publications
 
-Every ORCID publication is shown by default. To hide one, use the eye icon next to it in your edit view. Hidden publications stay visible only to you.
+Sifa shows every ORCID publication by default. To hide one, use the eye icon next to it in your edit view. Hidden publications stay visible only to you.
 
 ### Refreshing
 
@@ -86,7 +86,7 @@ Sifa syncs with ORCID once a day, so new works appear within 24 hours. To pull t
 
 ### Editing publications
 
-ORCID is the source of truth for these records, so you can't edit them on Sifa. Change a title or add a DOI on [orcid.org](https://orcid.org/my-orcid) and Sifa picks it up on the next sync. If you'd rather manage a publication directly, add it by hand in the Publications section instead.
+ORCID is the source of truth for these records, so you cannot edit them on Sifa. Change a title or add a DOI on [orcid.org](https://orcid.org/my-orcid) and Sifa picks it up on the next sync. If you would rather manage a publication directly, add it by hand in the Publications section instead.
 
 ### Disconnecting
 
@@ -94,23 +94,23 @@ Removing the ORCID link under **External accounts** removes every ORCID-sourced 
 
 ### Publications not showing up?
 
-The usual cause is visibility on ORCID's side. Open [orcid.org](https://orcid.org/my-orcid) and confirm the works are set to **Everyone**. Anything restricted to "Trusted parties only" or "Only me" stays off Sifa, because the public API never returns it.
+The usual cause is the visibility setting on ORCID. Open [orcid.org](https://orcid.org/my-orcid). Confirm that each work carries **Everyone**. A work with "Trusted parties only" or "Only me" stays off Sifa, because the public API never returns it.
 
 ## GitHub: merged pull requests
 
-Once a GitHub account is verified, Sifa reads the **merged pull requests you authored** in public repositories, and shows them in your activity feed and contribution graph. Not your repositories, not commits, not issues.
+After you verify a GitHub account, Sifa reads the **merged pull requests you authored** in public repositories. It shows them in your activity feed and contribution graph. Not your repositories, not commits, not issues.
 
-Sifa reads roughly the last year, refreshing at most once a day when your profile is viewed. There are two ways to verify the account, including one that skips adding it here entirely. See [Connect a GitHub account](/docs/connect-github).
+Sifa reads roughly the last year. A visit to your profile triggers a refresh, at most once a day. Two routes verify the account, and one of them skips this page entirely. See [Connect a GitHub account](/docs/connect-github).
 
 ## Verification
 
-For some platforms (the ones the protocol can verify, like GitHub and ORCID) Sifa tries to confirm that the account you added is actually yours by checking for a back-link or a specific identifier. Verified accounts show a small checkmark on your profile. Un-verified accounts work the same way for content. The verification badge is informational.
+On the platforms that the protocol can verify, such as GitHub and ORCID, Sifa tries to confirm that the account is yours. It looks for a back-link or a specific identifier. A verified account shows a small checkmark on your profile. An unverified account still delivers its content. The badge only informs.
 
 ## Removing or editing an external account
 
 In Sifa's profile editor, you can edit the URL, change the label, or delete the account. Deleting it removes the `id.sifa.profile.externalAccount` record from your provider and removes the surfaced items from your activity feed.
 
-Records on the external service itself (your blog posts, your GitHub repos) are untouched. Sifa only manages the link record on your provider.
+Sifa leaves the records on the external service alone: your blog posts, your GitHub repos, and the rest. Sifa manages only the link record on your provider.
 
 ## Want to go deeper
 

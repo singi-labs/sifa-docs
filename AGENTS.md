@@ -28,4 +28,5 @@ API reference (fumadocs-openapi) and TypeScript type docs (fumadocs-typescript) 
 - Strict TypeScript -- `strict: true`, no `any`, no `@ts-ignore`
 - Accessibility -- WCAG 2.2 AA, semantic HTML
 - Static export -- all pages pre-rendered at build time, zero client JS where possible
+- Simplified Technical English -- every page under `content/docs/` follows ASD-STE100, restricted to the subset enforced by `pnpm check:ste`. Short sentences (20 words for instructions, 25 for description), one action per instruction, active voice, simple tenses, no `-ing` participles as verbs, no contractions, one word per concept, no idiom. See `CONTRIBUTING.md` for the rule table. We follow the structure of the standard, not its licensed word list, so the site is never described as "ASD-STE100 certified".
 - Code-anchored content -- pages that describe behavior (allow-lists, filter rules) should import canonical data from sifa-sdk at build time rather than restate it in prose. Drift between code and docs is treated as a CI failure.

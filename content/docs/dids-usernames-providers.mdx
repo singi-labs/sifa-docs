@@ -9,7 +9,7 @@ Every Atmosphere account has three pieces:
 - **A username**: a human-readable name. Can change anytime.
 - **A provider** (also called a PDS): the server that stores your data.
 
-The three pieces work together. You don't usually think about them directly because apps like Sifa ID hide them. Knowing what each does makes the rest of the network easier to follow.
+The three pieces work together. You rarely think about them, because apps like Sifa ID hide them. Knowing what each does makes the rest of the network easier to follow.
 
 ## DID: your permanent ID
 
@@ -19,18 +19,18 @@ A DID is a long string that looks like:
 did:plc:abcdef1234567890
 ```
 
-It's your **account's true name**. The username you use day to day is a friendly alias on top. The DID is what Sifa stores when it writes records about you, what other Atmosphere apps refer to you by, and what stays the same when you move providers, change your username, or repoint your custom domain.
+The DID is your **account's true name**. The username you use day to day is a friendly alias on top. Sifa stores the DID when it writes records about you. Other Atmosphere apps refer to you by it. It stays the same when you move providers, change your username, or repoint your custom domain.
 
-You rarely see your DID unless you ask for it. Sifa shows it in profile settings and on the developer-facing parts of [AT Protocol](https://atproto.com). You don't memorise it. You copy-paste it if something needs it.
+You rarely see your DID unless you ask for it. Sifa shows it in profile settings and on the developer-facing parts of [AT Protocol](https://atproto.com). You do not memorise it. You copy it and paste it when something needs it.
 
-The DID **never changes**. Portable identity is what the Atmosphere is built for, and the DID is what makes it work.
+The DID **never changes**. The Atmosphere exists for portable identity, and the DID makes that identity work.
 
 ## Username: your friendly name
 
 A username is what people actually call you. Two common shapes:
 
 - **Provider subdomain**: `alice.bsky.social` (username issued by [Bluesky](https://bsky.app)), `alice.eurosky.social` (username issued by [Eurosky](https://eurosky.social)).
-- **Your own domain**: `alice.com`, `alice.example.org`. Set up by adding a DNS record or a `/.well-known/atproto-did` file on your own site.
+- **Your own domain**: `alice.com`, `alice.example.org`. You set it up with a DNS record, or with a `/.well-known/atproto-did` file on your own site.
 
 Usernames can change. If you stop liking `alice.bsky.social`, switch to `alice.com` tomorrow. Your DID stays the same, your followers stay the same, your Sifa profile stays the same. People who linked to your old username get redirected.
 
@@ -40,7 +40,7 @@ The AT Protocol specification and some apps call this a **handle**. Same thing. 
 
 ## Provider: where your account data lives
 
-A provider is the company or organisation running the server that stores your records. In AT Protocol jargon the server is called a **PDS** (Personal Data Server); the company running it is the provider.
+A provider is the company or organisation running the server that stores your records. AT Protocol names the server a **PDS** (Personal Data Server). The company that runs it is the provider.
 
 Some current ones:
 
@@ -52,7 +52,7 @@ Some current ones:
 
 Sifa is **not** a provider. Sifa is an app that reads from and writes to your provider on your behalf. Your career history, posts, and profile records live on your provider, not in Sifa's database.
 
-You can change providers without losing anything. Migrate from Bluesky to Eurosky and your followers, posts, profile data, and Sifa records come with you. The DID stays the same. The username may need re-pointing if you used a provider subdomain.
+You can change providers and keep everything. Migrate from Bluesky to Eurosky, and your followers, posts, profile data, and Sifa records come with you. The DID stays the same. The username may need re-pointing if you used a provider subdomain.
 
 ## How they fit together: a worked example
 
@@ -67,7 +67,7 @@ You sign in to Sifa with `alice.bsky.social`. Sifa looks up your DID, reads your
 A year later you decide you want your data on EU infrastructure. You migrate to Eurosky:
 
 1. Eurosky becomes your new provider.
-2. Your DID (`did:plc:abc123`) doesn't change.
+2. Your DID (`did:plc:abc123`) does not change.
 3. Your username becomes `alice.eurosky.social` (or you point your own `alice.com` at the new provider).
 4. All your records, including Sifa records, move with you.
 

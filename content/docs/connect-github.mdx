@@ -3,7 +3,7 @@ title: Connect a GitHub account
 description: Link your GitHub account so your merged pull requests show up in your Sifa activity feed and contribution graph.
 ---
 
-Connect your GitHub account to Sifa ID and your merged pull requests appear in your [activity feed](/docs/activity-feed) and contribution graph, alongside the rest of your Atmosphere activity.
+Connect your GitHub account to Sifa ID. Your merged pull requests then appear in your [activity feed](/docs/activity-feed) and contribution graph, next to the rest of your Atmosphere activity.
 
 Sifa reads **merged pull requests you authored** in public repositories. Not your repositories, not commits, not issues, not stars.
 
@@ -11,14 +11,14 @@ Sifa reads **merged pull requests you authored** in public repositories. Not you
 
 There are two separate ways to connect a GitHub account. **Do one or the other, not both.** They are different entry points, not steps in a sequence:
 
-- **Option 1: add it in Sifa, then link back from your GitHub profile** (recommended). You add the account under External accounts and put your Sifa profile link on your GitHub profile.
-- **Option 2: verify it on [Keytrace](https://keytrace.dev)**. You don't add anything in Sifa. Keytrace verifies the account and Sifa surfaces it automatically.
+- **Option 1: add it in Sifa. Then link back from your GitHub profile** (recommended). You add the account under External accounts. You then put your Sifa profile link on your GitHub profile.
+- **Option 2: verify it on [Keytrace](https://keytrace.dev)**. You do not add anything in Sifa. Keytrace verifies the account and Sifa surfaces it automatically.
 
-Both prove you own the account, which is required before Sifa reads anything. We recommend Option 1: it's self-contained, just GitHub and your Sifa profile, with no other service to sign up for. Option 2 is a convenient shortcut, especially if you already use Keytrace or want to verify several accounts at once.
+Both routes prove that you own the account. Sifa reads nothing before that proof exists. We recommend Option 1, because it needs only GitHub and your Sifa profile, with no third service. Option 2 is a shortcut for people who already use Keytrace, or who want to verify several accounts at once.
 
 ## Option 1: add it in Sifa, link back from GitHub
 
-**Step 1: add the account.** Open your profile, go to **External accounts**, and add an account with:
+**Step 1: add the account.** Open your profile. Go to **External accounts**. Add an account with:
 
 - **Platform**: pick **GitHub**.
 - **URL**: your profile address, for example `https://github.com/<your-username>`.
@@ -34,19 +34,19 @@ Both are under **Settings -> Public profile**. GitHub marks both with `rel="me"`
 
 A link in your profile **README** or bio text does not work. Sifa reads the structured profile links, not free text.
 
-Once the link is in place, use the **Verify** button on the account in Sifa to check right away, or leave it and Sifa re-checks periodically.
+When the link is in place, use the **Verify** button on the account in Sifa for an immediate check. You can also wait, because Sifa re-checks the link from time to time.
 
 ## Option 2: verify on Keytrace
 
-Verify your GitHub account on [Keytrace](https://keytrace.dev), which walks you through publishing a signed claim. That's the whole flow.
+Verify your GitHub account on [Keytrace](https://keytrace.dev). Keytrace guides you through a signed claim. That is the whole flow.
 
 You do **not** add the account under External accounts for this route. Sifa detects the Keytrace claim and reads your pull requests on its own.
 
 ## What shows up
 
-- **Merged pull requests you authored**, in public repositories. Open and closed-unmerged PRs are left out.
+- **Merged pull requests you authored**, in public repositories. Sifa omits open and closed-unmerged PRs.
 - Each card shows the repository, the title, the language, and the diff size.
-- A run of merges with nothing in between is **grouped into one card** ("N merged pull requests") rather than filling your feed. Open it to see the individual PRs.
+- Sifa **groups a run of merges into one card** ("N merged pull requests") instead of one card for each merge. Open the card to see the individual PRs.
 - Your merges also feed the **contribution graph** on your activity page.
 
 ## How far back, and how often
@@ -56,15 +56,15 @@ Sifa reads roughly **the last year** of merged pull requests, which is the windo
 Timing:
 
 - The first read happens when you verify.
-- After that, Sifa refreshes when your profile is viewed, at most once a day.
-- Filling in your full year runs as a background job and can take a few passes, so if your history is long, expect it to keep filling in for a while after the first merges appear.
+- After that, a visit to your profile triggers a refresh, at most once a day.
+- A background job fills in your full year. It needs several passes. With a long history, the feed keeps growing for a while after the first merges appear.
 
 ## Not showing up?
 
-- **Check the account is verified.** Unverified accounts show as a link only and are never read. The account should show a checkmark on your profile.
+- **Check that the account carries a verification.** An unverified account shows as a link, and Sifa never reads it. A verified account shows a checkmark on your profile.
 - **Check the link is in a profile field, not your README.** Website or Social accounts, under Settings -> Public profile.
-- **Check the PRs are merged and public.** Open PRs, closed-unmerged PRs, and anything in a private repository are all excluded by design.
-- **Give it a day.** If you just verified, the first read is immediate but the full history fills in behind it.
+- **Check that GitHub merged the PRs, and that the repository is public.** Sifa excludes open PRs, closed-unmerged PRs, and every private repository by design.
+- **Wait a day.** The first read happens at once, and the full history follows behind it.
 
 ## Related
 

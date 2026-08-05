@@ -3,29 +3,29 @@ title: Supported apps
 description: Every app Sifa reads activity from, and why some of what you do on them never reaches your profile.
 ---
 
-Sifa reads your activity from the apps below. You don't connect any of them: your records live with your [DID](/docs/dids-usernames-providers), so using an app is all it takes. Start using one and it appears on your profile on its own.
+Sifa reads your activity from the apps below. You do not connect any of them: your records live with your [DID](/docs/dids-usernames-providers), so using an app is all it takes. Start using one and it appears on your profile on its own.
 
 <SupportedApps />
 
 ## Why your app might not be here
 
-The Atmosphere is growing faster than any one list. If an app you use is missing, its records are still safely on your provider, Sifa just doesn't recognise them yet and won't render them.
+The Atmosphere grows faster than any one list. Your records stay safe on your provider even when Sifa omits the app. Sifa does not recognise those records yet, so it renders none of them.
 
-Adding one is usually a small change. Open an issue on [sifa-workspace](https://github.com/singi-labs/sifa-workspace/issues) with the app's name and its lexicon namespace.
+A new app is usually a small change. Open an issue on [sifa-workspace](https://github.com/singi-labs/sifa-workspace/issues) with the name of the app and its lexicon namespace.
 
-## Why some of your activity is missing, even from a listed app
+## Why some of your activity never appears, even from a listed app
 
 Being on this list means Sifa reads the app, not that everything you do there reaches your profile. Two filters apply.
 
 **We show what you made, not what you did.** Posts, articles, photos, repositories, reviews and merged pull requests are work. Likes, follows, reposts and RSVPs are taps. The second kind stays off your profile so the page reads as a record of work. The full split is on the [activity feed](/docs/activity-feed) page.
 
-**Configuration records never appear.** Preferences, moderation lists, block lists and similar plumbing are hidden everywhere on Sifa. They're still yours and still on your provider; they just aren't activity.
+**Configuration records never appear.** Sifa hides preferences, moderation lists, block lists and similar records on every surface. They stay yours and stay on your provider. They are not activity.
 
-One consequence worth knowing: an app can be on this list and still show nothing on your profile, if everything you've done there falls into one of those two buckets.
+One consequence is worth knowing. An app on this list can still show nothing on your profile. That happens when both filters catch everything you did there.
 
-## Sources that aren't on the Atmosphere
+## Sources that are not on the Atmosphere
 
-These have no records on your provider, so unlike the apps above, you add and verify them once. After that they behave the same way.
+These sources write no records to your provider. You add and verify each one once. After that they behave like the apps above.
 
 | Source                       | What Sifa reads                                                | Setup                                                  |
 | ---------------------------- | -------------------------------------------------------------- | ------------------------------------------------------ |
@@ -34,9 +34,9 @@ These have no records on your provider, so unlike the apps above, you add and ve
 | ORCID                        | Your academic publications                                     | [External accounts](/docs/external-accounts)           |
 | RSS, Substack, personal site | Items from the feed                                            | [External accounts](/docs/external-accounts)           |
 
-Anything else you link, LinkedIn or YouTube or an arbitrary URL, is shown as a link on your profile and never polled.
+Sifa renders every other link, such as LinkedIn or YouTube or any URL, as a plain link on your profile. Sifa never polls those links.
 
 ## Related
 
 - [Activity feed](/docs/activity-feed), for what Sifa shows and what it leaves out
-- [External accounts](/docs/external-accounts), for linking a source that isn't on the Atmosphere
+- [External accounts](/docs/external-accounts), for a source that lives off the Atmosphere

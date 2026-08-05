@@ -74,6 +74,49 @@ editorial — tie it to the surrounding paragraph.
 Don't bundle target + embed in one PR — the embed will fail validation
 (see `scripts/validate-screenshot-refs.ts`) until the PNG lands on main.
 
+## Simplified Technical English
+
+Every page under `content/docs/` is written in Simplified Technical
+English, based on ASD-STE100. `pnpm check:ste` enforces it in CI and
+fails the PR on any violation. Run it before you push, alongside
+`pnpm format:check`.
+
+The rules you will hit most, in the order they bite:
+
+- **No contractions.** "do not", "cannot", "it is". Possessive `'s` is
+  fine, so "Sifa's AppView" stays.
+- **Sentence length.** 20 words for an instruction, 25 for descriptive
+  prose. Split, do not comma-splice.
+- **Active voice.** Name the actor. "The server rejects the record",
+  not "The record is rejected".
+- **Simple tenses.** No "has been added", no "is running".
+- **No `-ing` participles as verbs.** "After you connect GitHub", not
+  "After connecting GitHub".
+- **One action per instruction.** No "and then".
+- **One word per concept.** use / before / to / also / get / need /
+  make sure / with. Not utilize / prior to / in order to / additionally
+  / obtain / require / ensure / via.
+- **No idiom.** No "under the hood", "spin up", "seamless", "simply".
+
+Six sentences max per paragraph. Prose in scope includes headings, list
+items, table cells, the frontmatter `description`, and `<Screenshot>`
+`alt` and `caption` text. Code fences and inline code are out of scope.
+
+Escape hatch, reason required, use it rarely:
+
+```mdx
+{/* ste-allow: S4 quoting the wording the API returns */}
+```
+
+There is no baseline file and the corpus passes with zero exemptions.
+Do not add one. Rule ids and rationale:
+`decisions/2026-08-06-docs-simplified-technical-english.md` in the Sifa
+workspace. Implementation: `scripts/ste.ts`, tests in
+`scripts/ste.test.ts` (`pnpm check:ste:test`).
+
+Never call the site "ASD-STE100 certified". We check structure, not the
+licensed approved-word dictionary.
+
 ## Other notes
 
 - **Static export:** every `app/*/route.ts`, `sitemap.ts`, `robots.ts`,

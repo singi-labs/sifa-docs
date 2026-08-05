@@ -3,7 +3,7 @@ title: Brand tokens
 description: The colors, typography, and icon conventions exported from sifa-sdk/tokens. Plus pointers to logos and press assets.
 ---
 
-The `/tokens` subpath of [`@singi-labs/sifa-sdk`](https://www.npmjs.com/package/@singi-labs/sifa-sdk) (currently <SdkVersion inline />) bundles the cross-platform brand primitives a third-party Sifa-aware client needs to feel native: colors, typography stacks, and the icon-library convention. None of them depend on Tailwind or any specific framework. None of them touch the network.
+The `/tokens` subpath of [`@singi-labs/sifa-sdk`](https://www.npmjs.com/package/@singi-labs/sifa-sdk) (now at <SdkVersion inline />) carries the cross-platform brand primitives that a third-party Sifa-aware client needs to feel native: colors, typography stacks, and the icon-library convention. None of them depend on Tailwind or any specific framework. None of them touch the network.
 
 This page renders the live values straight from the SDK. If the palette updates or the typography conventions change, the page changes on the next docs build.
 
@@ -24,13 +24,13 @@ interface Colors {
 }
 ```
 
-Exported as a `const` object at runtime, so TypeScript narrows the values to their literal string types. Updates to the palette propagate via `pnpm update @singi-labs/sifa-sdk`, no find-and-replace required.
+Exported as a `const` object at runtime, so TypeScript narrows the values to their literal string types. A palette update reaches you through `pnpm update @singi-labs/sifa-sdk`, with no find-and-replace.
 
 ### Usage
 
 <Example path="03-use-tokens.ts" />
 
-If you're styling with CSS, reference the same hex values as variables. Sifa Web and Sifa Docs both expose them as CSS variables (`--brand-blue-solid`, etc.). The full variable set isn't published outside the sifa-web source tree, but the names mirror the SDK constants: `--brand-blue-solid` maps to `colors.primary`, `--brand-purple-solid` to `colors.secondary`.
+If you style with CSS, reference the same hex values as variables. Sifa Web and Sifa Docs both expose them as CSS variables (`--brand-blue-solid`, etc.). The full variable set stays inside the sifa-web source tree, but the names mirror the SDK constants: `--brand-blue-solid` maps to `colors.primary`, `--brand-purple-solid` to `colors.secondary`.
 
 ## Typography
 
@@ -63,7 +63,7 @@ interface FontFallbackStacks {
 
 <Example path="04-use-fonts.ts" />
 
-The fallback stacks include Noto Sans subsets (Arabic, Devanagari, Thai, Hebrew) and OS-installed CJK fonts. Sifa deliberately doesn't ship CJK web fonts: every CJK user already has an OS-level CJK font and vendoring them would add 14+ MB.
+The fallback stacks include Noto Sans subsets (Arabic, Devanagari, Thai, Hebrew) and OS-installed CJK fonts. Sifa ships no CJK web fonts on purpose. Every CJK user already has an OS-level CJK font, and 14+ MB of vendored fonts would help nobody.
 
 ## Icons
 
@@ -96,12 +96,12 @@ The weight conventions are guidance, not enforced. Tooling that wants to lint ic
 
 ## Logos and press assets
 
-The SDK doesn't ship logos. Logos are static SVG assets, not tokens. If you're building a Sifa-aware client and want the logo:
+The SDK ships no logos. A logo is a static SVG asset, not a token. If you build a Sifa-aware client and want the logo:
 
-- **For runtime rendering** (an `<img src="...">` or React Native `<Image>`), grab the SVG from sifa-docs: [`sifa-logo-light.svg`](https://docs.sifa.id/sifa-logo-light.svg) and [`sifa-logo-dark.svg`](https://docs.sifa.id/sifa-logo-dark.svg). Hotlinking is fine; if you'd rather vendor, copy the SVG into your own assets.
+- **For runtime rendering** (an `<img src="...">` or React Native `<Image>`), take the SVG from sifa-docs: [`sifa-logo-light.svg`](https://docs.sifa.id/sifa-logo-light.svg) and [`sifa-logo-dark.svg`](https://docs.sifa.id/sifa-logo-dark.svg). A direct link is fine. To vendor it instead, copy the SVG into your own assets.
 - **For press contexts** (longer-form articles, conference programs, banners), use the higher-resolution variants from the [Singi Labs press kit](https://singi.dev/press/kit/). The press kit also covers brand-usage guidelines (clearspace, minimum size, what backgrounds the wordmark works on).
-- **For other Atmosphere app logos** (Bluesky, Tangled, Leaflet, Smoke Signal, Grain, Semble, and others, when your client renders records from those apps), [atmologos](https://tangled.org/cozylittle.house/atmologos) is the community-curated source of truth, maintained by [@cozylittle.house](https://bsky.app/profile/cozylittle.house). SVG logomarks in colour and monochrome. Confirm each app's individual brand-usage policy before redistributing.
+- **For other Atmosphere app logos**, use [atmologos](https://tangled.org/cozylittle.house/atmologos). It is the community-curated source of truth, and [@cozylittle.house](https://bsky.app/profile/cozylittle.house) maintains it. It covers Bluesky, Tangled, Leaflet, Smoke Signal, Grain, Semble, and others that your client may render records from. SVG logomarks in colour and monochrome. Check the brand-usage policy of each app before you redistribute it.
 
 ## Why no client-render component?
 
-Sifa's full design system (spacing, motion, the complete typography scale) lives in [Singi Labs / brand](https://github.com/singi-labs) and is not part of the SDK. The `/tokens` subpath only exposes the cross-platform primitives a third-party client needs to render a Sifa-flavoured UI without depending on Tailwind or any specific framework. Each consumer translates the constants into whatever their styling layer expects.
+Sifa's full design system (spacing, motion, the complete typography scale) lives in [Singi Labs / brand](https://github.com/singi-labs) and is not part of the SDK. The `/tokens` subpath exposes only the cross-platform primitives that a third-party client needs. Those primitives render a Sifa-flavoured UI and depend on no framework. Each consumer translates the constants into whatever their styling layer expects.
