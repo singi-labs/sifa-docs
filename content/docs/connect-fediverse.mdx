@@ -3,27 +3,27 @@ title: Connect a Fediverse account
 description: Link your Mastodon, GoToSocial, Pleroma, or other Fediverse account so your public posts show up in your Sifa activity feed.
 ---
 
-If you post on Mastodon (or GoToSocial, Pleroma, Pixelfed, or any other Fediverse server), you can connect that account to Sifa ID and have your public posts appear in your [activity feed](/docs/activity-feed) alongside the rest of your Atmosphere activity.
+Do you post on Mastodon, GoToSocial, Pleroma, Pixelfed, or another Fediverse server? Connect that account to Sifa ID. Your public posts then appear in your [activity feed](/docs/activity-feed), next to the rest of your Atmosphere activity.
 
 ## Pick one route
 
 There are two separate ways to connect a Fediverse account. **Do one or the other, not both.** They are different entry points, not steps in a sequence:
 
-- **Option 1: add it in Sifa, then add your Sifa link to a profile field** (recommended). You add the account under External accounts and put your Sifa profile link in one of your Fediverse profile fields.
+- **Option 1: add it in Sifa. Then add your Sifa link to a profile field** (recommended). You add the account under External accounts. You then put your Sifa profile link in one of your Fediverse profile fields.
 - **Option 2: verify it on [Keytrace](https://keytrace.dev)**. You do not add anything in Sifa. Keytrace verifies the account and Sifa surfaces it automatically.
 
-Both prove you own the account, which is required before Sifa surfaces any posts. We recommend Option 1: it is self-contained, just your Fediverse server and your Sifa profile, with no other service to sign up for. Option 2 is a convenient shortcut, especially if you already use Keytrace or want to verify several accounts at once.
+Both routes prove that you own the account. Sifa surfaces no posts before that proof exists. We recommend Option 1, because it needs only your Fediverse server and your Sifa profile. Option 2 is a shortcut for people who already use Keytrace, or who want to verify several accounts at once.
 
 ## Option 1: add it in Sifa, verify with a profile field
 
-**Step 1: add the account.** Open your profile, go to **External accounts**, and add an account with:
+**Step 1: add the account.** Open your profile. Go to **External accounts**. Add an account with:
 
 - **Platform**: pick **Fediverse**. If you pick "Website" instead, Sifa treats it as a plain link and will not pull in your posts.
 - **URL**: your profile address, for example `https://mastodon.social/@you`.
 
 Save. Sifa displays the account as `@you@mastodon.social`. Until you finish step 2 it shows as a link only, with no posts pulled in.
 
-**Step 2: add your Sifa link to a profile field.** Put your Sifa profile URL (for example `https://sifa.id/p/<your-username>`) in one of your Fediverse profile fields. Sifa reads the fields on your profile, finds the match, and verifies the account. Your DID works too, so if you already added it for Keytrace, you are covered.
+**Step 2: add your Sifa link to a profile field.** Put your Sifa profile URL (for example `https://sifa.id/p/<your-username>`) in one of your Fediverse profile fields. Sifa reads the fields on your profile, finds the match, and verifies the account. Your DID works too. If you already added it for Keytrace, Sifa finds that as well.
 
 It has to go in a **profile field**, not your bio. Sifa reads the structured fields on your profile, so a link buried in your bio text is not picked up.
 
@@ -31,33 +31,33 @@ It has to go in a **profile field**, not your bio. Sifa reads the structured fie
 - **GoToSocial / Pleroma / Akkoma:** add the URL in your profile's fields / metadata (the same key-value fields Mastodon uses).
 - **Pixelfed:** add the URL in your profile's website or links field.
 
-Once the field is in place, use the **Verify** button on the account in Sifa to check right away, or leave it and Sifa re-checks periodically. There is no `rel="me"` step and no green "verified" checkmark to earn on your own server: Sifa reads the field value directly.
+When the field is in place, use the **Verify** button on the account in Sifa for an immediate check. You can also wait, because Sifa re-checks the field from time to time. There is no `rel="me"` step, and your own server needs no green checkmark. Sifa reads the field value directly.
 
 ## Option 2: verify on Keytrace
 
-Verify the account on [Keytrace](https://keytrace.dev) (for Mastodon and similar, this means adding your DID to a profile field, which Keytrace walks you through). That is the whole flow.
+Verify the account on [Keytrace](https://keytrace.dev). On Mastodon and similar servers, you add your DID to a profile field, and Keytrace guides you. That is the whole flow.
 
-You do **not** add the account under External accounts for this route. Sifa detects the Keytrace verification and surfaces the account on its own. Adding it as a Fediverse external account as well would just create a duplicate, so if you are going the Keytrace way, skip the "add it in Sifa" step entirely.
+You do **not** add the account under External accounts for this route. Sifa detects the Keytrace verification and surfaces the account on its own. A second entry under External accounts creates a duplicate. On the Keytrace route, skip the "add it in Sifa" step.
 
 ## What shows up
 
-Sifa reads your account's public **outbox**, the standard ActivityPub feed of what you have published, and shows your posts in your activity feed.
+Sifa reads the public **outbox** of your account. That outbox is the standard ActivityPub feed of your published work. Sifa shows those posts in your activity feed.
 
-- Only your **own posts** appear. Boosts, likes, and follows are left out, the same way Sifa never shows posts you liked on Bluesky.
+- Only your **own posts** appear. Sifa omits boosts, likes, and follows, exactly as it omits the posts you like on Bluesky.
 - Only **public** posts. Followers-only posts and direct messages are never read.
-- Posts sync **periodically**, not instantly. Expect your first posts to appear within an hour of verifying, then on an ongoing basis.
+- Posts sync **from time to time**, not at once. Your first posts appear within an hour of the verification, and later posts follow.
 
 ## One account per kind of content
 
-The Fediverse spreads content across different apps, each with its own account: microblog posts on Mastodon or GoToSocial, long-form writing on WriteFreely, photos on Pixelfed, video on PeerTube, events on Mobilizon. If you are active on more than one, connect each account you want surfaced (via either route above). They all feed the same Sifa activity stream, so your writing, photos, and video sit side by side.
+The Fediverse spreads content across different apps, each with its own account: microblog posts on Mastodon or GoToSocial, long-form writing on WriteFreely, photos on Pixelfed, video on PeerTube, events on Mobilizon. Are you active on more than one? Connect each account that you want on your profile, through either route above. They all feed the same Sifa activity stream, so your writing, photos, and video sit side by side.
 
-Today Sifa ingests text posts, articles, photos, and video. Events are still being added, so a Mobilizon account you connect now will start filling in as that support lands.
+Today Sifa ingests text posts, articles, photos, and video. Event support is on the way. A Mobilizon account that you connect today fills in when that support ships.
 
 ## A note on some servers
 
-A few servers run in a hardened mode (Mastodon's "Secure mode", and GoToSocial by default) that limits what Sifa can read from the outside. If your posts do not appear after an hour, your server may be one of these. We are expanding support for them.
+A few servers run in a hardened mode, such as "Secure mode" on Mastodon, and GoToSocial by default. That mode limits what Sifa can read from outside. If your posts do not appear after an hour, your server may be one of them. We work on wider support.
 
 ## Related
 
 - [External accounts](/docs/external-accounts) covers linking blogs, GitHub, ORCID, and other profiles.
-- [Your activity feed](/docs/activity-feed) explains how everything is pulled together.
+- [Your activity feed](/docs/activity-feed) explains how Sifa brings it all together.

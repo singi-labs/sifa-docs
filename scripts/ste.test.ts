@@ -187,3 +187,21 @@ test('S2 does not treat JSX attribute text as a paragraph', () => {
   ].join('\n')
   assert.ok(!rules(page(shot)).includes('S2'))
 })
+
+test('S4 does not flag a hyphenated adjective such as read-only', () => {
+  assert.ok(!rules(page('Today a company page is read-only.')).includes('S4'))
+  assert.ok(rules(page('The page is read by the AppView.')).includes('S4'))
+})
+
+test('each list item counts as its own sentence', () => {
+  const list = ['Fields:', '', `- ${'word '.repeat(15)}one`, `- ${'word '.repeat(15)}two`].join(
+    '\n'
+  )
+  const found = checkSource(page(list)).filter((v) => v.rule === 'S1')
+  assert.equal(found.length, 0)
+})
+
+test('a long single list item still trips S1', () => {
+  const list = ['Fields:', '', `- ${'word '.repeat(30)}end.`].join('\n')
+  assert.ok(rules(page(list)).includes('S1'))
+})

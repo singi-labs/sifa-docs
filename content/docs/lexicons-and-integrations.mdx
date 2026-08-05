@@ -3,19 +3,19 @@ title: Lexicons and integrations
 description: The open schemas that define what each record type contains, and the apps that already read or write Sifa's lexicons.
 ---
 
-A **lexicon** is the schema for one type of Atmosphere record. It says, in machine-readable form: a `id.sifa.profile.position` record must have a `title`, a `companyName`, may have a `startDate`, etc. Lexicons are how any app on the network knows whether the data it just received is well-formed.
+A **lexicon** is the schema for one type of Atmosphere record. In machine-readable form it says that an `id.sifa.profile.position` record must carry a `title` and a `companyName`, and may carry a `startDate`. Any app on the network uses lexicons to decide whether the data it receives is well-formed.
 
 ## Why lexicons matter
 
-Lexicons are the contract between apps. When Sifa ID publishes the `id.sifa.profile.position` lexicon, it is committing to: "any record in this collection will look like this." Other apps can read those records confidently, build features on top of them, and skip asking Sifa for permission.
+Lexicons are the contract between apps. When Sifa ID publishes the `id.sifa.profile.position` lexicon, it promises one thing: every record in that collection looks like this. Other apps read those records with confidence and build features on them. They ask Sifa for no permission.
 
-That is the part that makes an open network actually open. Without published schemas, apps would have to reverse-engineer each other's data, and the moment one app renamed a field everything would break. With lexicons, every change is versioned, public, and signposted.
+That is the part that makes an open network actually open. Without published schemas, each app would reverse-engineer the data of the others, and a single renamed field would break everything. With lexicons, every change carries a version, a public record, and a signpost.
 
 ## Where Sifa's lexicons live
 
-All Sifa schemas live in [singi-labs/sifa-lexicons](https://github.com/singi-labs/sifa-lexicons), an MIT-licensed public repo. Each schema is a JSON file with field types, required fields, validation constraints, and human-readable descriptions.
+All Sifa schemas live in [singi-labs/sifa-lexicons](https://github.com/singi-labs/sifa-lexicons), an MIT-licensed public repo. Each schema is a JSON file. It names the field types, the mandatory fields, the validation constraints, and a human-readable description.
 
-The namespace is `id.sifa.*`. Currently published:
+The namespace is `id.sifa.*`. Published today:
 
 - `id.sifa.profile.self` and 12 sub-types covering positions, education, skills, certifications, projects, volunteering, publications, courses, honors, languages, external accounts, and the user's location.
 - `id.sifa.project.*`: projects with multiple contributors.
@@ -56,11 +56,11 @@ To build your activity stream ([/activity](/docs/activity-feed) and /now), Sifa 
 - Blog posts and long-form writing, e.g. [WhiteWind](https://whtwnd.com), [Leaflet](https://leaflet.pub), and [Standard.site](https://standard.site) (see [Standard.site cards](/docs/standard-site-cards)).
 - `community.lexicon.location.*`: shared community location records.
 
-New Atmosphere apps show up on their own as people start using them. The record types Sifa treats as "activity" are catalogued in [`@singi-labs/sifa-sdk/tokens`](https://github.com/singi-labs/sifa-sdk), and the [Activity feed](/docs/activity-feed) page renders that list dynamically.
+New Atmosphere apps show up on their own as people start using them. [`@singi-labs/sifa-sdk/tokens`](https://github.com/singi-labs/sifa-sdk) catalogues every record type that Sifa treats as activity. The [Activity feed](/docs/activity-feed) page renders that list live.
 
 ### You choose what shows
 
-Reading a record and showing it on your profile are separate choices. In your [activity settings](https://sifa.id/settings/activity) you can turn any app or record type on or off, so you control exactly which apps and lexicons appear on your profile and activity stream.
+Reading a record and showing it on your profile are separate choices. Your [activity settings](https://sifa.id/settings/activity) turn any app or record type on and off. You decide which apps and lexicons appear on your profile and in your activity stream.
 
 ### Only your public data
 

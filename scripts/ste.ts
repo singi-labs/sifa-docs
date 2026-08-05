@@ -455,7 +455,6 @@ export function checkSource(source: string): Violation[] {
   let block: RegExpExecArray | null
   while ((block = blockPattern.exec(masked)) !== null) {
     if (!/[A-Za-z]/.test(block[0])) continue
-    const sentences = splitSentences(block[0], block.index)
     const firstLine = lineOf(masked, block.index)
     const lineSpan = block[0].split('\n').length
     const isList = Array.from({ length: lineSpan }, (_, i) => firstLine + i).some((line) =>
@@ -464,6 +463,19 @@ export function checkSource(source: string): Violation[] {
     const isAttribute = Array.from({ length: lineSpan }, (_, i) => firstLine + i).some((line) =>
       attributeLines.has(line)
     )
+    // Each item of a list is its own unit. Splitting the whole block at once
+    // would fuse items that carry no full stop into one giant "sentence".
+    let sentences: Sentence[]
+    if (isList) {
+      sentences = []
+      let cursor = block.index
+      for (const line of block[0].split('\n')) {
+        sentences.push(...splitSentences(line, cursor))
+        cursor += line.length + 1
+      }
+    } else {
+      sentences = splitSentences(block[0], block.index)
+    }
     if (!isList && !isAttribute && sentences.length > 6) {
       violations.push({
         rule: 'S2',
@@ -502,7 +514,8 @@ export function checkSource(source: string): Violation[] {
   }
 
   // S4 passive voice.
-  const participle = `(?:\\w+ed|${PARTICIPLES.join('|')})`
+  // The trailing lookahead keeps hyphenated adjectives such as "read-only" out.
+  const participle = `(?:\\w+ed|${PARTICIPLES.join('|')})(?!-)`
   checkPattern(
     'S4',
     new RegExp(`\\b(?:is|are|was|were|be|been|being)\\s+(?:\\w+ly\\s+)?${participle}\\b`, 'gi'),

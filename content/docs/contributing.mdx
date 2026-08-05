@@ -3,27 +3,34 @@ title: Contributing
 description: How to contribute code to Sifa. Finding an issue, local setup, the review flow, and the standards we hold.
 ---
 
-Sifa ID is built in the open. The [SDK](https://github.com/singi-labs/sifa-sdk) and [lexicons](https://github.com/singi-labs/sifa-lexicons) are MIT-licensed and open to anyone. The core service (`sifa-api`, `sifa-web`) is source-available, contributed to by invitation. This page gets you from "I would like to help" to a merged pull request.
+We build Sifa ID in the open. The [SDK](https://github.com/singi-labs/sifa-sdk) and the [lexicons](https://github.com/singi-labs/sifa-lexicons) carry the MIT licence, and they are open to anybody. The core service (`sifa-api`, `sifa-web`) is source-available, and contributions arrive by invitation. This page gets you from "I would like to help" to a merged pull request.
 
 The canonical rules live in the org guide: [CONTRIBUTING in `singi-labs/.github`](https://github.com/singi-labs/.github/blob/main/CONTRIBUTING.md) and the [engineering harness](https://github.com/singi-labs/.github/tree/main/engineering). This page is the practical on-ramp.
 
-## What we are building toward
+## What we build toward
 
-Sifa ID is building toward a professional reputation you earn and own: earned from real work, vouched for by the people who would know, and portable across the open web, so no single company can gate it or switch it off. Professional life is where we start, not where we stop. The fuller story is on the [about page](https://sifa.id/about).
+Sifa ID builds toward a professional reputation that you earn and own. It comes from real work. The people who know you vouch for it. It travels across the open web, so no single company can gate it or switch it off. Professional life is where we start, not where we stop. The fuller story is on the [about page](https://sifa.id/about).
 
 **Earned, not claimed. Owned by you, built for the open web.**
 
 These principles decide what belongs in Sifa. When you weigh a feature or a change, if it works against one of them, it is probably a no:
 
 1. **Show your work, do not score it.** Real activity and contributions, never ranks, tiers, or leaderboards.
-2. **Earned by others, not asserted by you.** The credibility that counts is verified by people who would know. That is the core of Sifa, so protect it.
+2. **Earned from others, not asserted by you.** The people who know you verify the credibility that counts. That idea is the core of Sifa, so protect it.
 3. **You own it, and you can always leave.** Every feature keeps your data, identity, and graph portable. If it cannot leave, it does not ship.
 4. **Current by default, not by chore.** Prefer pulling in real activity over asking people to maintain a profile by hand.
 5. **Honest over flattering.** No vanity metrics, no dark patterns, nothing that inflates a number for its own sake.
-6. **Open rails, no landlord.** We build on open standards, host in Europe, and stay portable. We do not recreate the lock-in we are replacing.
+6. **Open rails, no landlord.** We build on open standards, host in Europe, and stay portable. We do not rebuild the lock-in that we replace.
 7. **Meet people where they already are.** Work with the open web people already use.
 
-And the things we will not build, whatever the pull: reputation scores or leaderboards, borrowed endorsements dressed up as verified, growth dark patterns or lock-in, surveillance or selling member data, puzzles or games to farm attention, and a feature-for-feature clone of the old professional network.
+We will never build these, whatever the pull:
+
+- reputation scores and leaderboards
+- borrowed endorsements in the costume of a verification
+- growth dark patterns and lock-in
+- surveillance, and sales of member data
+- puzzles or games that farm attention
+- a feature-for-feature clone of the old professional network
 
 ## The stack
 
@@ -39,9 +46,9 @@ Start with issues labelled `good first issue`, which are small, well-scoped, and
   [sifa-web](https://github.com/singi-labs/sifa-web/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 - Want more depth? Swap the label for [**help wanted**](https://github.com/search?q=org%3Asingi-labs+is%3Aissue+is%3Aopen+label%3A%22help+wanted%22&type=issues).
 
-You will only see issues in repos you have access to. The SDK and lexicons are public, the core repos appear once you have been added.
+You see issues only in the repos that you can reach. The SDK and the lexicons are public. The core repos appear after we add you.
 
-**Claim it first:** comment on the issue to say you are picking it up, so two people do not build the same thing. No issue for your idea? Open one and discuss the scope before writing code.
+**Claim it first:** comment on the issue to say that you take it, so two people do not build the same thing. No issue for your idea? Open one. Agree the scope before you write code.
 
 ## Local setup
 
@@ -66,7 +73,7 @@ pnpm typecheck
 1. Branch from `main`: `git checkout -b feat/short-description`. One branch, one change. Never push to `main`.
 2. Build it **with tests**. The test suite is the contract.
 3. Open a PR, link the issue (`Closes #NN`), fill the checklist.
-4. **Sign the CLA** on your first PR. A bot comments asking you to. Reply once and it is recorded for all future PRs.
+4. **Sign the CLA** on your first PR. A bot asks you in a comment. Reply once, and the signature covers all your later PRs.
 5. **Automated gates run:** a secret scan, and a blocking **AI reviewer** that posts a comment. Address anything it flags and push (it re-runs).
 6. A **maintainer reviews and merges** (squash). You cannot merge your own PR.
 
@@ -74,6 +81,6 @@ Commits follow [Conventional Commits](https://www.conventionalcommits.org/): `ty
 
 ## The standards
 
-The AI reviewer and maintainers both enforce the [engineering standards](https://github.com/singi-labs/.github/tree/main/engineering/standards). The essentials: TypeScript strict (no `any`), validate inputs with Zod, tests with every change, sanitize user content, accessibility (WCAG 2.2 AA) for UI, no `console.*`, and reuse existing UI primitives before adding new ones.
+The AI reviewer and maintainers both enforce the [engineering standards](https://github.com/singi-labs/.github/tree/main/engineering/standards). The essentials: strict TypeScript with no `any`, Zod on every input, tests with every change, sanitised user content, WCAG 2.2 AA on the UI, and no `console.*`. Reuse an existing UI primitive before you add a new one.
 
 If you use a coding agent (Claude Code or similar), drop [`agent-instructions.md`](https://github.com/singi-labs/.github/blob/main/engineering/agent-instructions.md) into your clone as `CLAUDE.md` / `AGENTS.md` to keep it inside the house rules.
