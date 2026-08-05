@@ -431,6 +431,13 @@ export function checkSource(source: string): Violation[] {
   const masked = maskNonProse(source)
   const violations: Violation[] = []
 
+  // A list or a table is not a paragraph, so S2 skips those blocks. Rows and
+  // items still go through the sentence-level rules.
+  const listLines = new Set<number>()
+  source.split('\n').forEach((text, index) => {
+    if (/^\s*(?:[-*+]|\d+\.)\s/.test(text) || /^\s*\|/.test(text)) listLines.add(index + 1)
+  })
+
   // Block-level rules: S1 sentence length, S2 paragraph length, S3 one
   // instruction per sentence.
   const blockPattern = /[^\n]+(?:\n[^\n]+)*/g
@@ -438,10 +445,15 @@ export function checkSource(source: string): Violation[] {
   while ((block = blockPattern.exec(masked)) !== null) {
     if (!/[A-Za-z]/.test(block[0])) continue
     const sentences = splitSentences(block[0], block.index)
-    if (sentences.length > 6) {
+    const firstLine = lineOf(masked, block.index)
+    const lineSpan = block[0].split('\n').length
+    const isList = Array.from({ length: lineSpan }, (_, i) => firstLine + i).some((line) =>
+      listLines.has(line)
+    )
+    if (!isList && sentences.length > 6) {
       violations.push({
         rule: 'S2',
-        line: lineOf(masked, block.index),
+        line: firstLine,
         message: `paragraph has ${sentences.length} sentences, limit is 6`,
         excerpt: excerptOf(block[0]),
       })

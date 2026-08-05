@@ -26,7 +26,7 @@ Sifa supports these platforms today:
 | `linkedin`  | LinkedIn profile. Link only (importing your data instead is usually better, see [Import from LinkedIn](/docs/import-linkedin)).                                      |
 | `other`     | Any other URL. Link only.                                                                                                                                            |
 
-"Link only" means Sifa shows the URL on your profile but doesn't poll it for activity.
+"Link only" means Sifa shows the URL on your profile but does not poll it for activity.
 
 ## How to add one
 
@@ -35,7 +35,7 @@ In Sifa, open your profile and go to **External accounts**. Add an account with:
 - **Platform**: pick from the list above.
 - **URL**: the canonical address of the account or feed.
 - **Label** (optional): a custom display name. Sifa uses the platform's default if you leave it blank.
-- **Feed URL** (optional): if Sifa can't auto-discover the RSS or Atom feed, paste it here. Most of the time you can leave it blank.
+- **Feed URL** (optional): if Sifa cannot auto-discover the RSS or Atom feed, paste it here. Most of the time you can leave it blank.
 
 Save. Sifa writes an `id.sifa.profile.externalAccount` record to your provider. The record is owned by you, lives on your provider, and is readable by any other app that reads `id.sifa.*` lexicons.
 
@@ -47,7 +47,7 @@ When you add a `website`, `substack`, or `rss` account without specifying `feedU
 2. Well-known feed paths (`/feed`, `/feed.xml`, `/atom.xml`, `/rss.xml`).
 3. Platform-specific rules. Substack always lives at `<subdomain>.substack.com/feed`.
 
-`fediverse` accounts don't use RSS discovery. Sifa reads your posts from the ActivityPub outbox instead, covered in [Connect a Fediverse account](/docs/connect-fediverse).
+`fediverse` accounts do not use RSS discovery. Sifa reads your posts from the ActivityPub outbox instead, covered in [Connect a Fediverse account](/docs/connect-fediverse).
 
 Once Sifa finds a feed, it polls daily and surfaces new items in your [Activity feed](/docs/activity-feed). The feed URL is stored alongside the account so subsequent polls go directly to it without re-discovery.
 
@@ -59,8 +59,8 @@ Sifa accepts both the full URL (`https://orcid.org/0000-0002-1825-0097`) and the
 
 ### Getting your publications onto Sifa
 
-1. If you don't have an ORCID yet, create one at [orcid.org](https://orcid.org/register).
-2. Add your publications to ORCID and set them to **Everyone** visibility. Works marked "Trusted parties only" or "Only me" aren't served by the public API, so Sifa can't read them.
+1. If you do not have an ORCID yet, create one at [orcid.org](https://orcid.org/register).
+2. Add your publications to ORCID and set them to **Everyone** visibility. Works marked "Trusted parties only" or "Only me" are not served by the public API, so Sifa cannot read them.
 3. Link your ORCID to Sifa. Either verify it through [Keytrace](https://keytrace.dev), which makes it appear automatically, or add the ORCID URL by hand under **External accounts**.
 4. Your publications show up in the **Publications** section of your profile, usually within a day.
 
@@ -86,7 +86,7 @@ Sifa syncs with ORCID once a day, so new works appear within 24 hours. To pull t
 
 ### Editing publications
 
-ORCID is the source of truth for these records, so you can't edit them on Sifa. Change a title or add a DOI on [orcid.org](https://orcid.org/my-orcid) and Sifa picks it up on the next sync. If you'd rather manage a publication directly, add it by hand in the Publications section instead.
+ORCID is the source of truth for these records, so you cannot edit them on Sifa. Change a title or add a DOI on [orcid.org](https://orcid.org/my-orcid) and Sifa picks it up on the next sync. If you would rather manage a publication directly, add it by hand in the Publications section instead.
 
 ### Disconnecting
 

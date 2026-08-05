@@ -147,3 +147,24 @@ test('maskNonProse preserves length and newlines', () => {
   assert.equal(masked.length, source.length)
   assert.equal(masked.split('\n').length, source.split('\n').length)
 })
+
+test('S2 does not treat a bullet list as a paragraph', () => {
+  const list = [
+    'Sifa reads these records:',
+    '',
+    '- One thing.',
+    '- Two things.',
+    '- Three things.',
+    '- Four things.',
+    '- Five things.',
+    '- Six things.',
+    '- Seven things.',
+  ].join('\n')
+  assert.ok(!rules(page(list)).includes('S2'))
+})
+
+test('S2 still flags a long prose paragraph', () => {
+  const prose =
+    'One thing. Two things. Three things. Four things. Five things. Six things. Seven things.'
+  assert.ok(rules(page(prose)).includes('S2'))
+})

@@ -5,7 +5,7 @@ description: How the same data gets read by multiple Atmosphere apps. Why Sifa s
 
 The Atmosphere is **one network of data, many apps reading it**. [Bluesky](https://bsky.app), Sifa ID, [Tangled](https://tangled.org), [Leaflet](https://leaflet.pub), and the rest all read from the same pool of records and render them however they like.
 
-Four pieces make this work, in order: providers publish data, relays aggregate it, AppViews index the aggregate, and apps render what's in the index.
+Four pieces make this work, in order: providers publish data, relays aggregate it, AppViews index the aggregate, and apps render what is in the index.
 
 ## Providers publish
 
@@ -15,9 +15,9 @@ Across the whole network there are thousands of providers, each with its own fir
 
 ## Relays aggregate the firehose
 
-A **relay** subscribes to many PDS firehoses at once and merges them into a single combined stream of everything happening on the network. Anyone can run a relay; reading from one means you don't have to keep a connection open to every PDS yourself.
+A **relay** subscribes to many PDS firehoses at once and merges them into a single combined stream of everything happening on the network. Anyone can run a relay; reading from one means you do not have to keep a connection open to every PDS yourself.
 
-The relay doesn't decide what's important. It just rebroadcasts. Bluesky operates a main relay at `bsky.network`, and a lighter JSON-formatted variant called Jetstream is widely used by smaller AppViews that don't want to handle the binary protocol the main relay speaks.
+The relay does not decide what is important. It just rebroadcasts. Bluesky operates a main relay at `bsky.network`, and a lighter JSON-formatted variant called Jetstream is widely used by smaller AppViews that do not want to handle the binary protocol the main relay speaks.
 
 ## AppViews index for an audience
 
@@ -52,11 +52,11 @@ Neither view is the "real" one. Both are honest renderings of the same records, 
 
 ## Splitting the data from the app
 
-You've probably spotted the pattern. Twitter, LinkedIn, Facebook each store your data, decide how to display it, and charge advertisers for access. The data and the app are the same company.
+You have probably spotted the pattern. Twitter, LinkedIn, Facebook each store your data, decide how to display it, and charge advertisers for access. The data and the app are the same company.
 
-The Atmosphere splits them apart. Your data lives on your provider (or your own server, if you self-host). Apps read your data and render it. Don't like how an app renders? Switch to another app, your data is unchanged. App shuts down? Your data is still there.
+The Atmosphere splits them apart. Your data lives on your provider (or your own server, if you self-host). Apps read your data and render it. Do not like how an app renders? Switch to another app, your data is unchanged. App shuts down? Your data is still there.
 
-Same shape as email: your inbox lives on your mail server, your mail client just reads it. Switch from Apple Mail to Thunderbird and you don't lose your inbox.
+Same shape as email: your inbox lives on your mail server, your mail client just reads it. Switch from Apple Mail to Thunderbird and you do not lose your inbox.
 
 ## Want to go deeper
 

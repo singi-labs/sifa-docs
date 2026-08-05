@@ -1,34 +1,34 @@
 ---
 title: Privacy and data
-description: What's public, what's on your provider, what's in Sifa's database, and what happens when you delete. The full picture of where your data lives and who can see it.
+description: What is public, what is on your provider, what is in Sifa's database, and what happens when you delete. The full picture of where your data lives and who can see it.
 ---
 
 Sifa ID is a professional network, so the design assumption is "people will look at this." Your profile is public by default. The full picture of where data lives and who can see it has more nuance though. This page is the reference.
 
 For the short version, the [Trust page](https://sifa.id/trust) on sifa.id lists the sub-processors, security measures, and retention at a glance, and the [privacy policy](https://sifa.id/privacy) has the formal legal detail.
 
-## What's public
+## What is public
 
 **Your profile, by default, is fully public.** That means:
 
 - Anyone with the URL can view it. No login required.
-- Search engines index it (it's in the sitemap).
+- Search engines index it (it is in the sitemap).
 - AI agents and crawlers can read it. The page returns 200 to anyone.
 - Logged-out humans see the same thing logged-in humans see. No "hide some fields from non-members" mode.
 
 This is on purpose. A portable professional profile only works as a public reference, somewhere you can link to from your CV, your email signature, your conference bio. If you wanted half-public, LinkedIn already does that.
 
-Want to keep something private? **Leave it off your profile.** Records you don't create can't be displayed.
+Want to keep something private? **Leave it off your profile.** Records you do not create cannot be displayed.
 
-## What's _not_ public
+## What is _not_ public
 
-Some things you do on Sifa aren't surfaced on your public profile:
+Some things you do on Sifa are not surfaced on your public profile:
 
-- **Likes / reposts / follows.** These get written to your provider but Sifa doesn't render them on your profile. See [Activity feed](/docs/activity-feed) for which record types Sifa treats as "Did" rather than "Made".
+- **Likes / reposts / follows.** These get written to your provider but Sifa does not render them on your profile. See [Activity feed](/docs/activity-feed) for which record types Sifa treats as "Did" rather than "Made".
 - **Drafts** in the profile editor before you save.
 - **Blocks and mutes.** Stored on your account, used by Sifa to filter what you see, but not surfaced on your profile.
 
-A heads-up though: just because Sifa doesn't render them doesn't mean they're secret. Many of these (likes, follows, blocks) are written to your provider as standard AT Protocol records and **are visible** to any other Atmosphere app that wants to look. The privacy story comes from the protocol, not from Sifa.
+A heads-up though: just because Sifa does not render them does not mean they are secret. Many of these (likes, follows, blocks) are written to your provider as standard AT Protocol records and **are visible** to any other Atmosphere app that wants to look. The privacy story comes from the protocol, not from Sifa.
 
 ## Where data lives
 
@@ -42,11 +42,11 @@ A heads-up though: just because Sifa doesn't render them doesn't mean they're se
 | Email address (if you provided one)        | Sifa's database, encrypted at rest                               | Only Sifa's server; never displayed; used for transactional email |
 | Analytics on your visits                   | Sifa's database (aggregate only); GlitchTip for error monitoring | Sifa's team                                                       |
 
-The AppView is a **cache, not the source of truth.** Delete a record from your provider and the AppView removes it from its index within seconds (via the firehose). Sifa doesn't retain copies after deletion.
+The AppView is a **cache, not the source of truth.** Delete a record from your provider and the AppView removes it from its index within seconds (via the firehose). Sifa does not retain copies after deletion.
 
 ## What Sifa stores beyond your records
 
-Sifa's own database holds things that aren't [AT Protocol](https://atproto.com) records:
+Sifa's own database holds things that are not [AT Protocol](https://atproto.com) records:
 
 - **Session tokens** (hashed) so you stay logged in.
 - **OAuth grant metadata** so Sifa knows what you authorised.
@@ -66,7 +66,7 @@ Three levels of "delete":
 
 **Delete your Atmosphere account.** This is a provider-level action. You do it on your provider's settings page, not on Sifa. Your DID is deactivated, all your records (across all apps) are released. Sifa's AppView sees the deactivation and stops rendering your profile.
 
-The first two are reversible: re-add the data and it's back. The third is irreversible after a grace period that varies by provider.
+The first two are reversible: re-add the data and it is back. The third is irreversible after a grace period that varies by provider.
 
 ## What survives if you leave Sifa
 
@@ -74,7 +74,7 @@ If you delete your Sifa-specific records but keep your Atmosphere account:
 
 - Your Sifa profile (`https://sifa.id/p/<username>`) returns 404 once the `id.sifa.profile.self` record is gone.
 - Your AT Protocol identity (DID, username, all other records) is untouched.
-- Endorsements other people gave you are owned by _their_ provider. They don't disappear from those accounts when you leave Sifa.
+- Endorsements other people gave you are owned by _their_ provider. They do not disappear from those accounts when you leave Sifa.
 
 ## What survives if Sifa shuts down
 
@@ -85,11 +85,11 @@ If Sifa as a company / project goes away:
 - The AT Protocol lexicons we published (`id.sifa.*`) remain valid open schemas. Any other app can adopt them and render the same records, so a successor profile site can read your existing Sifa data without you doing anything.
 - The lexicon repo ([singi-labs/sifa-lexicons](https://github.com/singi-labs/sifa-lexicons)) is MIT-licensed and would persist as long as GitHub does.
 
-That's the "your data isn't held hostage" promise, made concrete.
+That is the "your data is not held hostage" promise, made concrete.
 
 ## Requesting your data
 
-No need to request it. It's already on your provider, where you have direct access. See [Your data on a provider](/docs/your-data-on-a-provider) for how to inspect or export it via [pdsls.dev](https://pdsls.dev) or the AT Protocol API.
+No need to request it. It is already on your provider, where you have direct access. See [Your data on a provider](/docs/your-data-on-a-provider) for how to inspect or export it via [pdsls.dev](https://pdsls.dev) or the AT Protocol API.
 
 Need a copy of any Sifa-side metadata (session logs, analytics) for compliance reasons? [Open an issue](https://github.com/singi-labs/sifa-workspace/issues) or email the team. EU users have GDPR rights of access and erasure. We honour both.
 

@@ -1,6 +1,6 @@
 ---
 title: Getting started
-description: Install the SDK, configure it for your AT Protocol session, and make your first call.
+description: How to install the SDK, configure it for your AT Protocol session, and make your first call.
 ---
 
 The SDK is **TypeScript-first** but ships dual ESM + CJS, so any modern Node, Bun, Deno, or browser bundler can consume it.
@@ -19,7 +19,7 @@ Peer dependencies: `@tanstack/react-query@^5` if you use the `/query` subpath. T
 
 ## Read-only example: fetch the activity-tier taxonomy
 
-The taxonomy is bundled in the package and resolved without network. Useful as a smoke test.
+The package carries the taxonomy and resolves it without a network call. Useful as a smoke test.
 
 <Example path="01-fetch-activity-tiers.ts" />
 
@@ -27,7 +27,7 @@ The exported `ACTIVITY_TIERS` is what every Sifa app uses to decide whether a re
 
 ## Authenticated example: write a position record to a user's PDS
 
-Writing records requires an authenticated `@atproto/api` agent. The SDK doesn't construct the agent itself: you bring your own (browser-side, you'll use OAuth; server-side, you might use an app password during development).
+A write needs an authenticated `@atproto/api` agent. The SDK does not construct the agent. You bring your own: OAuth in the browser, or an app password on the server during development.
 
 <Example path="02-write-position.ts" />
 

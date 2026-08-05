@@ -26,7 +26,11 @@ function walkMdx(dir: string): string[] {
   return out.sort()
 }
 
-const files = walkMdx(CONTENT_DIR)
+// With no arguments, check the whole corpus. With arguments, check only
+// those files, which is what you want while you rewrite one page.
+const requested = process.argv.slice(2)
+const files =
+  requested.length > 0 ? requested.map((file) => path.resolve(file)) : walkMdx(CONTENT_DIR)
 let total = 0
 const byRule = new Map<string, number>()
 

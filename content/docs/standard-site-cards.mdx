@@ -9,17 +9,17 @@ This page covers how to get the card to appear, how to set its colours and icon,
 
 ## What you actually need
 
-**One `site.standard.publication` record on your PDS whose `url` field matches the URL you're linking to.**
+**One `site.standard.publication` record on your PDS whose `url` field matches the URL you are linking to.**
 
-That's the whole mechanism. Bluesky's AppView indexes Standard.site records from the firehose and matches them to post links by URL ([matching logic](https://github.com/bluesky-social/atproto/blob/main/packages/bsky/src/util/standard-site.ts)). Sifa does the same. No DNS records, no `/.well-known/` files, no page metadata required for the card itself.
+That is the whole mechanism. Bluesky's AppView indexes Standard.site records from the firehose and matches them to post links by URL ([matching logic](https://github.com/bluesky-social/atproto/blob/main/packages/bsky/src/util/standard-site.ts)). Sifa does the same. No DNS records, no `/.well-known/` files, no page metadata required for the card itself.
 
 ## Three ways to get the record
 
-You don't need to publish the record by hand. Most people don't.
+You do not need to publish the record by hand. Most people do not.
 
 1. **Use a Standard.site app**: [Leaflet](https://leaflet.pub), [pckt.blog](https://pckt.blog), or [Offprint](https://offprint.pub) create and maintain the record for you when you set up a publication on their platform. The publication's `url` lives on that platform (`yourname.leaflet.pub`, etc.), so links to that URL get the card. The card's action button shows **"Subscribe on Leaflet"** (or pckt / Offprint) because Bluesky's social-app ships a hardcoded allowlist for those three hosts.
 
-2. **WordPress with the [ATmosphere](https://wordpress.org/plugins/atmosphere/) plugin**: installing it gives your WordPress site a publication record automatically, with `url` set to your blog. The card's button reads **"View publication"** with a generic arrow icon (your domain isn't on the hardcoded allowlist, so no platform branding). Functionally identical otherwise.
+2. **WordPress with the [ATmosphere](https://wordpress.org/plugins/atmosphere/) plugin**: installing it gives your WordPress site a publication record automatically, with `url` set to your blog. The card's button reads **"View publication"** with a generic arrow icon (your domain is not on the hardcoded allowlist, so no platform branding). Functionally identical otherwise.
 
 3. **Roll your own**: if you have your own [AT Protocol](https://atproto.com) account and a static blog, publish a `site.standard.publication` record on your PDS pointing to your domain. Steve Simkins' Sequoia CLI is the most common tool. The card again reads "View publication." Hannah Shelley's [Neocities walkthrough](https://hannah.makes.software/2026/05/22/putting-my-neocities-blog-on-atproto/) is a good real-world example of the roll-your-own path.
 
@@ -27,21 +27,21 @@ In all three cases the card appears on Bluesky and Sifa once the AppView has ind
 
 If you have nothing set up yet, start with the [Standard.site implementations guide](https://standard.site) and get the publication record in place first. The rest of this page (making the card look good) only matters once the record exists.
 
-## You don't need DNS TXT or `/.well-known/` for the card
+## You do not need DNS TXT or `/.well-known/` for the card
 
-Community write-ups sometimes suggest you do. You don't. These files are real, they just serve different purposes:
+Community write-ups sometimes suggest you do. You do not. These files are real, they just serve different purposes:
 
 | File / record                                         | What it does                                                                                                                              |
 | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | **DNS TXT `_atproto.<domain>`** with `did=<your-did>` | AT Protocol username resolution. Makes a custom domain work as a Bluesky / Sifa username.                                                 |
-| **`/.well-known/atproto-did`** (plain-text DID)       | Same purpose as the TXT record: username resolution. Useful when you can't set TXT records, or for usernames too long for DNS.            |
+| **`/.well-known/atproto-did`** (plain-text DID)       | Same purpose as the TXT record: username resolution. Useful when you cannot set TXT records, or for usernames too long for DNS.           |
 | **`/.well-known/site.standard.publication`** (AT-URI) | Standard.site verification: proves your domain controls the publication record. A strict reader can refuse to trust an unverified record. |
 
-None of these get the card to render. The AppView doesn't fetch your website. It reads from the PDS.
+None of these get the card to render. The AppView does not fetch your website. It reads from the PDS.
 
 ### Hosts that block `/.well-known/`
 
-Ghost Pro, some managed WordPress hosts, and certain SaaS site builders block the `/.well-known/` path or don't let you set DNS TXT records. That doesn't affect the card. It still appears as long as the publication record exists with a matching `url`.
+Ghost Pro, some managed WordPress hosts, and certain SaaS site builders block the `/.well-known/` path or do not let you set DNS TXT records. That does not affect the card. It still appears as long as the publication record exists with a matching `url`.
 
 What you do lose on those hosts:
 
@@ -77,7 +77,7 @@ pdsls.dev is a web UI for browsing and editing AT Protocol records. Log in with 
 | `background`       | Card body background (not used by Bluesky's renderer yet; Sifa may use it) |
 | `foreground`       | Card body text (same)                                                      |
 
-Replace the RGB values with your brand colours. Only `accent` and `accentForeground` change anything visible on Bluesky today. The renderer derives hover (5% darker) and disabled (5% lighter) states automatically from `accent`, so you don't specify those.
+Replace the RGB values with your brand colours. Only `accent` and `accentForeground` change anything visible on Bluesky today. The renderer derives hover (5% darker) and disabled (5% lighter) states automatically from `accent`, so you do not specify those.
 
 All four colours are **required by the lexicon**, even the ones the current Bluesky card ignores. The PDS rejects the record without them. Other Standard.site renderers use the full set for the publication page, and the card may extend to use them later.
 
@@ -112,11 +112,11 @@ The output looks like:
 
 Copy the whole object, open your `site.standard.publication` record on pdsls.dev, paste it as the `icon` field, save.
 
-Same trick works for your banner or any image you've posted. Whatever blob is already on your PDS is fair game.
+Same trick works for your banner or any image you have posted. Whatever blob is already on your PDS is fair game.
 
 ### Upload a new image
 
-pdsls.dev intentionally doesn't expose blob upload, so for a fresh image you need a CLI or a small script.
+pdsls.dev intentionally does not expose blob upload, so for a fresh image you need a CLI or a small script.
 
 **With `goat`:**
 
@@ -180,22 +180,22 @@ curl -s "https://bsky.social/xrpc/com.atproto.repo.listRecords?repo=<your-userna
 
 ## Verifying it works
 
-Post a link to your publication URL on Bluesky and watch the embed render. If the card doesn't appear:
+Post a link to your publication URL on Bluesky and watch the embed render. If the card does not appear:
 
 - Confirm a `site.standard.publication` record exists on your account's PDS (browse via pdsls.dev).
-- Confirm the record's `url` field matches the URL you're linking to. The AppView canonicalises host case and trailing slash, drops query and fragment, but otherwise needs an exact match. Leaflet/pckt/Offprint also accept subpaths.
+- Confirm the record's `url` field matches the URL you are linking to. The AppView canonicalises host case and trailing slash, drops query and fragment, but otherwise needs an exact match. Leaflet/pckt/Offprint also accept subpaths.
 - Give the firehose a minute to propagate.
 
 ## One record, every AT Protocol app
 
-The `site.standard.publication` record lives on your PDS as a plain AT Protocol record. Bluesky is one app reading it. Sifa is another. Any app that indexes the firehose can render your publication however it likes. You don't sign up for anything.
+The `site.standard.publication` record lives on your PDS as a plain AT Protocol record. Bluesky is one app reading it. Sifa is another. Any app that indexes the firehose can render your publication however it likes. You do not sign up for anything.
 
 ![Sifa rendering the gui.do Standard.site publication: a "Basic link card" with just the URL, next to a richer "Publication card" with title, description, gui.do avatar, and a "View publication" button.](/screenshots/sifa-standard-site.webp)
 
-Same data, different readers, each taking the parts it cares about. Set the record once and you're done. That's the point of publishing to an open protocol instead of one platform's API.
+Same data, different readers, each taking the parts it cares about. Set the record once and you are done. That is the point of publishing to an open protocol instead of one platform's API.
 
 ## Lexicon caveats worth knowing
 
 - Bluesky raised its own profile-avatar upload limit to 2 MB in v1.121 (April 2026). The `site.standard.publication` lexicon still caps the publication icon at **1 MB**. The PDS validates against the lexicon, so anything larger gets rejected at record write.
-- All four `basicTheme` colours are required even though Bluesky's current card only uses `accent` and `accentForeground`. The lexicon validator doesn't let you drop the others.
-- The well-known verification file is recommended for production. Bluesky's card doesn't check it. Sequoia and some readers do.
+- All four `basicTheme` colours are required even though Bluesky's current card only uses `accent` and `accentForeground`. The lexicon validator does not let you drop the others.
+- The well-known verification file is recommended for production. Bluesky's card does not check it. Sequoia and some readers do.

@@ -7,9 +7,9 @@ A **lexicon** is the schema for one type of Atmosphere record. It says, in machi
 
 ## Why lexicons matter
 
-Lexicons are the contract between apps. When Sifa ID publishes the `id.sifa.profile.position` lexicon, it's committing to: "any record in this collection will look like this." Other apps can read those records confidently, build features on top of them, and skip asking Sifa for permission.
+Lexicons are the contract between apps. When Sifa ID publishes the `id.sifa.profile.position` lexicon, it is committing to: "any record in this collection will look like this." Other apps can read those records confidently, build features on top of them, and skip asking Sifa for permission.
 
-That's the part that makes an open network actually open. Without published schemas, apps would have to reverse-engineer each other's data, and the moment one app renamed a field everything would break. With lexicons, every change is versioned, public, and signposted.
+That is the part that makes an open network actually open. Without published schemas, apps would have to reverse-engineer each other's data, and the moment one app renamed a field everything would break. With lexicons, every change is versioned, public, and signposted.
 
 ## Where Sifa's lexicons live
 
@@ -24,7 +24,7 @@ The namespace is `id.sifa.*`. Currently published:
 - `id.sifa.auth*`: auth flows for Sifa's meet feature.
 - `id.sifa.meeting`: meeting records from the handshake / meet flow.
 
-The exact list and schema details are in the repo. We don't restate them here because the repo is the source of truth.
+The exact list and schema details are in the repo. We do not restate them here because the repo is the source of truth.
 
 ## Apps that already use Sifa lexicons
 
@@ -34,7 +34,7 @@ Because the schemas are public, any Atmosphere app can read or write them. Today
 - **[verak.app](https://verak.app)**: writes `id.sifa.*` endorsement and profile records alongside its own reputation data.
 - **[weareonhire.com](https://weareonhire.com)**: writes `id.sifa.*` profile records as part of its hiring workflow.
 
-We expect more over time. If you build something that reads or writes `id.sifa.*` records, [open an issue](https://github.com/singi-labs/sifa-lexicons/issues) and we'll add it here.
+We expect more over time. If you build something that reads or writes `id.sifa.*` records, [open an issue](https://github.com/singi-labs/sifa-lexicons/issues) and we will add it here.
 
 ### Personal sites driven by a Sifa profile
 
@@ -45,7 +45,7 @@ Beyond apps, some people render their own website from their `id.sifa.*` records
 
 If you want the same, [`@singi-labs/sifa-page-renderer`](https://github.com/singi-labs/sifa-page-renderer) (MIT) turns a Sifa profile into a static site. See [Personal website](/docs/personal-website) for the hosted option.
 
-## What Sifa reads (and what it doesn't)
+## What Sifa reads (and what it does not)
 
 To build your activity stream ([/activity](/docs/activity-feed) and /now), Sifa reads the public records across your PDS, not a fixed set of lexicons. Whatever public records your apps write can show up on your timeline. As examples of what that includes today:
 
@@ -64,7 +64,7 @@ Reading a record and showing it on your profile are separate choices. In your [a
 
 ### Only your public data
 
-Sifa reads only the public records in your PDS, the same ones any Atmosphere app can already see. It has no access to private or permissioned data: not your Bluesky DMs, and nothing behind a permission you haven't granted. If a record isn't public, Sifa doesn't see it.
+Sifa reads only the public records in your PDS, the same ones any Atmosphere app can already see. It has no access to private or permissioned data: not your Bluesky DMs, and nothing behind a permission you have not granted. If a record is not public, Sifa does not see it.
 
 ## Want to go deeper
 

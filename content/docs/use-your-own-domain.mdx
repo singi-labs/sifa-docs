@@ -3,9 +3,9 @@ title: Use your own domain as your username
 description: Replace `alice.bsky.social` with `alice.com`. Your own domain becomes your Atmosphere identity. Setup happens on your provider (or via DNS), not on Sifa.
 ---
 
-Your Atmosphere username defaults to ending in your provider's domain: `alice.bsky.social` on Bluesky, `alice.eurosky.social` on Eurosky. You can swap that for your own domain (`alice.com`, `me.example.org`) so your professional identity isn't tied to a provider's name.
+Your Atmosphere username defaults to ending in your provider's domain: `alice.bsky.social` on Bluesky, `alice.eurosky.social` on Eurosky. You can swap that for your own domain (`alice.com`, `me.example.org`) so your professional identity is not tied to a provider's name.
 
-The setup happens at the **[AT Protocol](https://atproto.com) level**, on your provider. Sifa ID doesn't run a whitelabel username service. What Sifa gives you is the profile that uses whichever username you've configured upstream.
+The setup happens at the **[AT Protocol](https://atproto.com) level**, on your provider. Sifa ID does not run a whitelabel username service. What Sifa gives you is the profile that uses whichever username you have configured upstream.
 
 Once your username is set, your Sifa profile URL becomes `https://sifa.id/p/alice.com` automatically. No further configuration on Sifa.
 
@@ -31,14 +31,14 @@ From the command line:
 curl -s "https://bsky.social/xrpc/com.atproto.identity.resolveHandle?handle=<your-current-username>" | jq -r .did
 ```
 
-Swap `bsky.social` for your provider's hostname if you're not on Bluesky.
+Swap `bsky.social` for your provider's hostname if you are not on Bluesky.
 
 ## Step 2, option A: set a DNS TXT record
 
 On your DNS provider (Cloudflare, Hetzner, Route 53, your registrar's panel, wherever you manage records for the domain):
 
 - **Type:** TXT
-- **Name:** `_atproto.<your-domain>`. For `alice.com`, that's literally `_atproto.alice.com`. Some DNS UIs ask for just `_atproto` and append the domain automatically. Both forms are correct.
+- **Name:** `_atproto.<your-domain>`. For `alice.com`, that is literally `_atproto.alice.com`. Some DNS UIs ask for just `_atproto` and append the domain automatically. Both forms are correct.
 - **Value:** `did=did:plc:<your-did-here>`
 - **TTL:** 300 is fine.
 
@@ -53,7 +53,7 @@ dig +short TXT _atproto.alice.com
 
 ## Step 2, option B: serve a `.well-known/atproto-did` file
 
-If you can't set DNS TXT records (some managed hosts block them), serve a plain-text file at:
+If you cannot set DNS TXT records (some managed hosts block them), serve a plain-text file at:
 
 ```
 https://<your-domain>/.well-known/atproto-did
@@ -98,9 +98,9 @@ Old links pointing at `https://sifa.id/p/alice.bsky.social` still resolve. The A
 
 ## Why do this
 
-- **Independence from your provider.** Move from Bluesky to Eurosky later, and your domain username stays. People who linked to `alice.com` don't lose anything.
+- **Independence from your provider.** Move from Bluesky to Eurosky later, and your domain username stays. People who linked to `alice.com` do not lose anything.
 - **Personal-brand surface.** A short, memorable username that matches your website. `sifa.id/p/alice.com` reads as your CV the way `alice.com` reads as your blog.
-- **One-time setup.** DNS records and well-known files don't decay. Set once, runs for years.
+- **One-time setup.** DNS records and well-known files do not decay. Set once, runs for years.
 
 ## Want to go deeper
 
