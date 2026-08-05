@@ -434,7 +434,18 @@ export function checkSource(source: string): Violation[] {
   // A list or a table is not a paragraph, so S2 skips those blocks. Rows and
   // items still go through the sentence-level rules.
   const listLines = new Set<number>()
+  const tableLines = new Set<number>()
+  // Text inside a JSX attribute (alt, caption) is not a paragraph either.
+  const attributeLines = new Set<number>()
+  const tagSpan = /<\/?[A-Za-z][^>]*>/g
+  let tagMatch: RegExpExecArray | null
+  while ((tagMatch = tagSpan.exec(source)) !== null) {
+    const first = source.slice(0, tagMatch.index).split('\n').length
+    const span = tagMatch[0].split('\n').length
+    for (let i = 0; i < span; i += 1) attributeLines.add(first + i)
+  }
   source.split('\n').forEach((text, index) => {
+    if (/^\s*\|/.test(text)) tableLines.add(index + 1)
     if (/^\s*(?:[-*+]|\d+\.)\s/.test(text) || /^\s*\|/.test(text)) listLines.add(index + 1)
   })
 
@@ -450,7 +461,10 @@ export function checkSource(source: string): Violation[] {
     const isList = Array.from({ length: lineSpan }, (_, i) => firstLine + i).some((line) =>
       listLines.has(line)
     )
-    if (!isList && sentences.length > 6) {
+    const isAttribute = Array.from({ length: lineSpan }, (_, i) => firstLine + i).some((line) =>
+      attributeLines.has(line)
+    )
+    if (!isList && !isAttribute && sentences.length > 6) {
       violations.push({
         rule: 'S2',
         line: firstLine,
@@ -462,7 +476,8 @@ export function checkSource(source: string): Violation[] {
       const instruction = IMPERATIVE_VERBS.has(firstWord(sentence.text))
       const limit = instruction ? 20 : 25
       const count = wordCount(sentence.text)
-      if (count > limit) {
+      // A table row is a set of cells, not a sentence, so S1 does not apply.
+      if (count > limit && !tableLines.has(lineOf(masked, sentence.offset))) {
         violations.push({
           rule: 'S1',
           line: lineOf(masked, sentence.offset),

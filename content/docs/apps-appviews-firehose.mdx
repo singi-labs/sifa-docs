@@ -15,9 +15,9 @@ Across the whole network there are thousands of providers, each with its own fir
 
 ## Relays aggregate the firehose
 
-A **relay** subscribes to many PDS firehoses at once and merges them into a single combined stream of everything happening on the network. Anyone can run a relay; reading from one means you do not have to keep a connection open to every PDS yourself.
+A **relay** subscribes to many PDS firehoses at once and merges them into a single combined stream of everything happening on the network. Anyone can run a relay. If you read from one, you keep no connection to each separate PDS.
 
-The relay does not decide what is important. It just rebroadcasts. Bluesky operates a main relay at `bsky.network`, and a lighter JSON-formatted variant called Jetstream is widely used by smaller AppViews that do not want to handle the binary protocol the main relay speaks.
+The relay does not decide what is important. It just rebroadcasts. Bluesky operates a main relay at `bsky.network`. A lighter JSON variant called Jetstream serves smaller AppViews. Those AppViews prefer JSON over the binary protocol of the main relay.
 
 ## AppViews index for an audience
 
@@ -25,9 +25,9 @@ Reading the firehose stream and answering questions like "what did Alice post th
 
 Sifa runs its own AppView at `sifa.id`. It indexes the records it cares about: your `id.sifa.*` profile records, the `app.bsky.*` activity that shows up on your profile, the `forum.barazo.*` posts that flow through Sifa's community feed.
 
-The AppView is what makes your profile load fast. Without it, every page view would have to ask hundreds of providers for the latest data.
+The AppView is what makes your profile load fast. Without it, each page view would ask hundreds of providers for the latest data.
 
-One thing to remember: **the AppView is a cache, not the source of truth.** Your records live on your provider. The AppView is Sifa's index of them. Delete a record from your provider and it disappears from Sifa within seconds, because the relay broadcasts the deletion and Sifa's AppView removes it from the index.
+One thing to remember: **the AppView is a cache, not the source of truth.** Your records live on your provider. The AppView is Sifa's index of them. Delete a record from your provider, and it leaves Sifa within seconds. The relay broadcasts the deletion, and the Sifa AppView drops it from the index.
 
 ## Apps render
 
@@ -36,10 +36,10 @@ An app is what you use. The Bluesky web app, the Sifa web app, a third-party des
 Apps usually do three things:
 
 1. **Read** from an AppView to render their UI.
-2. **Write** records on your behalf when you do things (post a message, edit your profile, give an endorsement). Writes go to your provider, not to the AppView.
-3. **Authenticate** as you with your provider when writing.
+2. **Write** records on your behalf when you act: a new message, a profile edit, an endorsement. Every write goes to your provider, not to the AppView.
+3. **Authenticate** as you with your provider for every write.
 
-A single app can be specialised: Bluesky focuses on microblog posts, Sifa focuses on professional identity, Tangled on Git repositories. Each app reads the records that matter to it and ignores the rest.
+Each app can specialise. Bluesky focuses on microblog posts, Sifa on professional identity, Tangled on Git repositories. Each app reads the records that matter to it and ignores the rest.
 
 ## Why Sifa and Bluesky show different views
 
@@ -52,9 +52,11 @@ Neither view is the "real" one. Both are honest renderings of the same records, 
 
 ## Splitting the data from the app
 
-You have probably spotted the pattern. Twitter, LinkedIn, Facebook each store your data, decide how to display it, and charge advertisers for access. The data and the app are the same company.
+You probably see the pattern. Twitter, LinkedIn and Facebook each store your data, decide how to display it, and charge advertisers for access. The data and the app are the same company.
 
-The Atmosphere splits them apart. Your data lives on your provider (or your own server, if you self-host). Apps read your data and render it. Do not like how an app renders? Switch to another app, your data is unchanged. App shuts down? Your data is still there.
+The Atmosphere splits them apart. Your data lives on your provider, or on your own server if you self-host. Apps read your data and render it.
+
+Do you dislike how one app renders it? Switch to another app, and your data stays as it is. If an app shuts down, your data stays too.
 
 Same shape as email: your inbox lives on your mail server, your mail client just reads it. Switch from Apple Mail to Thunderbird and you do not lose your inbox.
 
@@ -65,4 +67,4 @@ Same shape as email: your inbox lives on your mail server, your mail client just
 - [Activity feed](/docs/activity-feed): exactly which records Sifa shows on your profile.
 - [Atom feeds](/docs/atom-feeds): another way to consume your Sifa activity, with no Atmosphere account needed.
 
-For a deeper developer-facing tour of every layer (including labellers, feed generators, and the PLC directory), Kuba Suder's [Introduction to AT Protocol](https://mackuba.eu/2025/08/20/introduction-to-atproto/) is the canonical long read.
+Kuba Suder's [Introduction to AT Protocol](https://mackuba.eu/2025/08/20/introduction-to-atproto/) is the canonical long read. It tours every layer, and it covers labellers, feed generators, and the PLC directory.

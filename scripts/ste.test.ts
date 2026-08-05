@@ -168,3 +168,22 @@ test('S2 still flags a long prose paragraph', () => {
     'One thing. Two things. Three things. Four things. Five things. Six things. Seven things.'
   assert.ok(rules(page(prose)).includes('S2'))
 })
+
+test('S1 does not treat a table row as a sentence', () => {
+  const table = [
+    '| Source | What Sifa reads | Setup |',
+    '| --- | --- | --- |',
+    `| GitHub | ${'word '.repeat(30)} | link |`,
+  ].join('\n')
+  assert.ok(!rules(page(table)).includes('S1'))
+})
+
+test('S2 does not treat JSX attribute text as a paragraph', () => {
+  const shot = [
+    '<Screenshot',
+    '  src="a.png"',
+    '  alt="One. Two. Three. Four. Five. Six. Seven. Eight."',
+    '/>',
+  ].join('\n')
+  assert.ok(!rules(page(shot)).includes('S2'))
+})
