@@ -171,6 +171,41 @@ Top-nav switcher between the two tabs is in `app/layout.config.tsx`'s `links` ar
 
 ## Voice and style
 
+### Simplified Technical English (enforced)
+
+Every page under `content/docs/` is written in Simplified Technical English, based on ASD-STE100. `pnpm check:ste` enforces the mechanical rules on every PR. Run it before you push.
+
+Prose is in scope: body text, headings, list items, table cells, the frontmatter `description`, and the `alt` and `caption` text of `<Screenshot>`. Code fences, inline code, URLs and generated SDK tables are out of scope.
+
+| Rule | What it means                                                                                                                                                                                                              | Checked  |
+| ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| S1   | Instruction sentences: 20 words max. Descriptive sentences: 25 words max.                                                                                                                                                  | yes      |
+| S2   | Six sentences max per paragraph.                                                                                                                                                                                           | yes      |
+| S3   | One action per instruction. Split "Open settings and click Save" in two.                                                                                                                                                   | yes      |
+| S4   | Active voice. Name the actor.                                                                                                                                                                                              | yes      |
+| S5   | Simple tenses only. No "has been added", no "is running".                                                                                                                                                                  | yes      |
+| S6   | No `-ing` participles as verbs. "After you connect GitHub", not "After connecting GitHub".                                                                                                                                 | yes      |
+| S7   | No contractions. Write "do not", "cannot", "it is". Possessive `'s` is fine.                                                                                                                                               | yes      |
+| S8   | One word, one meaning. Use the approved word: use (not utilize), before (not prior to), to (not in order to), also (not additionally), get (not obtain), need (not require), make sure (not ensure), with or by (not via). | yes      |
+| S9   | No idiom, slang, or empty intensifiers. No "under the hood", "spin up", "seamless", "simply", "powerful".                                                                                                                  | yes      |
+| S10  | Noun clusters: three words max.                                                                                                                                                                                            | reviewer |
+| S11  | One term per concept. "AT Protocol", "atproto", "Atmosphere".                                                                                                                                                              | partly   |
+| S12  | A warning goes above the step it qualifies, never after.                                                                                                                                                                   | reviewer |
+| S13  | Keep articles. "Open the settings page", not "Open settings page".                                                                                                                                                         | reviewer |
+
+To keep a single violation, put a directive on that line or the line above. A reason is required:
+
+```mdx
+{/* ste-allow: S4 quoting the wording the API returns */}
+The record is rejected by the server.
+```
+
+There is no baseline file. The whole corpus passes, and it stays that way.
+
+Full rule and rationale: `decisions/2026-08-06-docs-simplified-technical-english.md` in the Sifa workspace. We follow the structure of ASD-STE100, not its licensed approved-word dictionary, so never describe the site as "ASD-STE100 certified".
+
+### House voice (still applies)
+
 External-audience MDX pages on docs.sifa.id (anything under `content/docs/`) are humanizer-required: every draft passes through the [humanizer skill](https://github.com/blader/humanizer) (or its equivalent in this workspace) before merge. The rule is "draft → humanizer → ship", not "ship and pass through humanizer later".
 
 Tight constraints worth knowing:
@@ -178,7 +213,7 @@ Tight constraints worth knowing:
 - **No em-dashes** (the wide horizontal one) anywhere. Use a colon, comma, semicolon, or restructure. CI does not enforce this; reviewers should.
 - **No AI-trope phrases**: avoid "It's not just X, it's Y", "didn't just...also", "isn't X. It's Y", "Here's the thing", "Let me tell you", "In conclusion".
 - **No throat-clearing**: if a sentence's only job is to announce what comes next, delete it.
-- **Contractions throughout**: "I'm", "don't", "it's", "you're". Never spell out.
+- **Contractions**: banned under `content/docs/` (rule S7 above, enforced). The old "contractions throughout" rule now applies only outside the docs corpus, for example in this file and in the README.
 - **Hedges for predictions, direct for principles**: "I think this might break" but "This breaks. Fix it."
 - **AT Protocol terminology**: use "AT Protocol" (preferred public form), "atproto" (lowercase, dev contexts), or "Atmosphere" (ecosystem name). Never "ATproto" / "ATProtocol" / "atmosphere" lowercase.
 
@@ -191,7 +226,9 @@ Every PR runs these (in order):
 1. `pnpm format:check`: prettier 3.8.1, strict.
 2. `pnpm build`: Next.js static export. Fails if any route handler under `app/` lacks `export const dynamic = 'force-static'`.
 3. `pnpm lint`: eslint. Fails on unescaped apostrophes in JSX (`react/no-unescaped-entities`); use `&apos;`.
-4. `pnpm examples:typecheck`: `tsc --noEmit` against `examples/tsconfig.json`. Fails if any `.ts` file under `examples/` doesn't compile against the pinned SDK.
+4. `pnpm check:ste:test`: unit tests for the STE checker itself (`node:test` through tsx).
+5. `pnpm check:ste`: Simplified Technical English check over `content/**/*.mdx`. Fails on any violation. See "Voice and style" above.
+6. `pnpm examples:typecheck`: `tsc --noEmit` against `examples/tsconfig.json`. Fails if any `.ts` file under `examples/` doesn't compile against the pinned SDK.
 
 Deploy CI runs the same plus rsync to sifa-prod after merge to main.
 

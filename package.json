@@ -26,6 +26,8 @@
     "screenshots:capture": "tsx scripts/screenshot-runner.ts",
     "screenshots:diff": "tsx scripts/screenshot-diff.ts",
     "screenshots:validate": "tsx scripts/validate-screenshot-refs.ts",
+    "check:ste": "tsx scripts/check-ste.ts",
+    "check:ste:test": "tsx --test scripts/ste.test.ts",
     "fetch:apps": "node scripts/fetch-app-registry.mjs"
   },
   "dependencies": {
