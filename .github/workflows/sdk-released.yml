@@ -77,7 +77,12 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.SDK_BUMP_PR_TOKEN }}
-          branch: chore/bump-sifa-sdk-${{ steps.ver.outputs.version }}
+          # A fixed branch, not one per version. create-pull-request force-pushes
+          # this branch and updates the existing PR in place, so an unmerged bump
+          # is replaced by the next release rather than stacking beside it. The
+          # per-version branch this used to build opened a new PR on every
+          # publish; the SDK ships several times a day, and 25 of them piled up.
+          branch: chore/bump-sifa-sdk
           title: 'chore(deps): bump @singi-labs/sifa-sdk to ${{ steps.ver.outputs.version }}'
           commit-message: 'chore(deps): bump @singi-labs/sifa-sdk to ${{ steps.ver.outputs.version }}'
           body: |
@@ -86,7 +91,7 @@ jobs:
             The new SDK version typechecks against this repo's `examples/` and the docs site builds clean.
             Merge to deploy a fresh build of `docs.sifa.id` with the updated API reference.
 
-            If this PR sits open for a while, the next release will open a new one, superseding it. Old branches are deleted on merge.
+            This PR always tracks the newest release: if it sits open, the next release rewrites it in place rather than opening another one. The branch is deleted on merge and recreated by the next publish.
           add-paths: |
             package.json
             pnpm-lock.yaml
