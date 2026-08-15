@@ -47,11 +47,26 @@ A company page uses the identity model of a person on Sifa: **your domain is you
 
 That is why a company page lives at `/c/<domain>` and not at an arbitrary Sifa ID. An organization can prove that it controls the domain. That proof turns an unclaimed stub into a verified page that the organization runs.
 
-## Claiming and managing your page: coming soon
+## Claiming and managing your page
 
-Today a company page is read-only. It is a generated stub, and nobody owns it yet. The next step gives an organization the page. That step exists as a design, and it is not live. When it ships, an organization verifies itself through its domain, corrects the public facts on its page, and controls how the page appears.
+An organization claims its own page and then edits it. The account that claims the page must use the organization domain as its username. This username is the proof that the account controls the organization.
 
-Until then, use the [name-correction flow](/docs/link-companies#suggesting-a-name-correction) for the most visible field. Anybody who links the organization can suggest a corrected name. An approved correction updates the name on every link to that company.
+Follow these steps to claim a page:
+
+1. Set up a Bluesky account, or any account on the AT Protocol, for the organization.
+2. Set the organization domain as the username of that account. [Use your own domain](/docs/use-your-own-domain) shows the two methods.
+3. Sign in to Sifa with that account.
+4. Open the page at `/c/<domain>`.
+5. Select **Claim this page**.
+6. Confirm that you represent the organization.
+
+The claim page is also at [sifa.id/claim](https://sifa.id/claim). Sifa then writes an organization record to the account and gives you the page. You edit the name, the description, the website, and the other public facts.
+
+The account username must be a custom domain, such as `acme.com`. An account with a shared username, such as `name.bsky.social`, cannot claim a page. The claim page shows how to set your domain as your username before you continue.
+
+A claim does not remove a personal profile. A sole trader keeps a profile at `/p/<username>` next to the company page, and the two link to each other. You turn the personal page off in your organization settings at any time.
+
+You can also use the [name-correction flow](/docs/link-companies#suggesting-a-name-correction) for the most visible field. Any person who links the organization can suggest a corrected name. An approved correction updates the name on every link to that company.
 
 ## Related
 
