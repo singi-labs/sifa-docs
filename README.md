@@ -111,7 +111,7 @@ See [CONTRIBUTING.md](https://github.com/singi-labs/.github/blob/main/CONTRIBUTI
 | [sifa-web](https://github.com/singi-labs/sifa-web)             | Frontend (private)                             | —       |
 | [sifa-sdk](https://github.com/singi-labs/sifa-sdk)             | Public TypeScript SDK (`@singi-labs/sifa-sdk`) | MIT     |
 | [sifa-lexicons](https://github.com/singi-labs/sifa-lexicons)   | AT Protocol schemas (`id.sifa.*`)              | MIT     |
-| [sifa-workspace](https://github.com/singi-labs/sifa-workspace) | Issue tracker and project coordination         | —       |
+| [sifa-workspace](https://github.com/singi-labs/sifa-workspace) | Project coordination                           | —       |
 
 ---
 
