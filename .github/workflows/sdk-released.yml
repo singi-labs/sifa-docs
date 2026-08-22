@@ -33,11 +33,14 @@ jobs:
     steps:
       - name: Resolve target version
         id: ver
+        env:
+          PAYLOAD_VERSION: ${{ github.event.client_payload.version }}
+          INPUT_VERSION: ${{ inputs.version }}
         run: |
-          if [ -n "${{ github.event.client_payload.version }}" ]; then
-            echo "version=${{ github.event.client_payload.version }}" >> "$GITHUB_OUTPUT"
+          if [ -n "$PAYLOAD_VERSION" ]; then
+            echo "version=$PAYLOAD_VERSION" >> "$GITHUB_OUTPUT"
           else
-            echo "version=${{ inputs.version }}" >> "$GITHUB_OUTPUT"
+            echo "version=$INPUT_VERSION" >> "$GITHUB_OUTPUT"
           fi
 
       - uses: actions/checkout@v4
