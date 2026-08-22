@@ -135,6 +135,15 @@
     "logo": "https://sifa.id/api/company/favicon/bookhive.buzz"
   },
   {
+    "id": "chive",
+    "name": "Chive",
+    "category": "Research",
+    "description": "Preprints and eprints on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://chive.pub",
+    "logo": "https://sifa.id/api/company/favicon/chive.pub"
+  },
+  {
     "id": "colibri",
     "name": "Colibri",
     "category": "Social",
@@ -169,6 +178,24 @@
     "externallySourced": false,
     "homepage": "https://crate.social",
     "logo": "https://sifa.id/api/company/favicon/crate.social"
+  },
+  {
+    "id": "fediverse",
+    "name": "Fediverse",
+    "category": "Posts",
+    "description": "Posts from a verified Fediverse account",
+    "externallySourced": true,
+    "homepage": null,
+    "logo": null
+  },
+  {
+    "id": "rss",
+    "name": "Feeds",
+    "category": "Articles",
+    "description": "Posts from a verified RSS or Atom feed",
+    "externallySourced": true,
+    "homepage": null,
+    "logo": null
   },
   {
     "id": "flashes",
@@ -270,6 +297,15 @@
     "logo": null
   },
   {
+    "id": "locale",
+    "name": "Locale",
+    "category": "Translations",
+    "description": "Localization and translation on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://locale.at",
+    "logo": "https://sifa.id/api/company/favicon/locale.at"
+  },
+  {
     "id": "margin",
     "name": "Margin",
     "category": "Research",
@@ -349,6 +385,24 @@
     "externallySourced": false,
     "homepage": null,
     "logo": null
+  },
+  {
+    "id": "pckt",
+    "name": "Pckt",
+    "category": "Posts",
+    "description": "Blogging and microblogging on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://pckt.blog",
+    "logo": "https://sifa.id/api/company/favicon/pckt.blog"
+  },
+  {
+    "id": "pixl",
+    "name": "Pixl",
+    "category": "Photos",
+    "description": "Photo sharing on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://pixl.pics",
+    "logo": "https://sifa.id/api/company/favicon/pixl.pics"
   },
   {
     "id": "plonk",
@@ -473,8 +527,8 @@
     "category": "Video",
     "description": "Podcasts on the AT Protocol.",
     "externallySourced": false,
-    "homepage": "https://voxport.com",
-    "logo": "https://sifa.id/api/company/favicon/voxport.com"
+    "homepage": null,
+    "logo": null
   },
   {
     "id": "waow",
@@ -511,5 +565,14 @@
     "externallySourced": false,
     "homepage": "https://youandme.at",
     "logo": "https://sifa.id/api/company/favicon/youandme.at"
+  },
+  {
+    "id": "zeens",
+    "name": "Zeens",
+    "category": "Photos",
+    "description": "Photography collections on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://zeens.app",
+    "logo": "https://sifa.id/api/company/favicon/zeens.app"
   }
 ]
