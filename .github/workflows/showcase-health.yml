@@ -1,0 +1,71 @@
+name: Showcase health
+
+# Checks the "personal sites driven by a Sifa profile" showcase
+# (content/data/site-showcase.json) stays live and Sifa-driven.
+#
+# For every entry: the displayed URL must return 2xx (catches 404s and lapsed
+# domains), and — where a per-entry marker is declared — that marker must still
+# be present in the delivered page or its same-origin JS (catches a site that
+# redesigned away from Sifa). `manual` entries are surfaced for a human but do
+# not fail the run. Logic + rationale: scripts/check-showcase.ts.
+#
+# Triggers:
+# - on PRs that touch the showcase data or its checker, so a new entry is
+#   verified live before it merges.
+# - on a weekly schedule (Mondays 05:00 UTC) to catch rot between PRs.
+# - manually via workflow_dispatch.
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'content/data/site-showcase.json'
+      - 'scripts/showcase.ts'
+      - 'scripts/check-showcase.ts'
+      - '.github/workflows/showcase-health.yml'
+  schedule:
+    - cron: '0 5 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write # for the scheduled-run failure-issue step
+
+concurrency:
+  group: showcase-health-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
+
+      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
+        with:
+          version: 10
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm check:showcase:test
+
+      - name: Check showcase sites
+        run: pnpm check:showcase
+
+      # On the scheduled run, file an issue instead of failing into a red
+      # workflow nobody watches. The report names each dead/drifted entry so
+      # it can be removed or fixed in site-showcase.json.
+      - name: File issue on scheduled-run failure
+        if: failure() && github.event_name == 'schedule'
+        uses: peter-evans/create-issue-from-file@e8ef132d6df98ed982188e460ebb3b5d4ef3a9cd # v5.0.1
+        with:
+          title: 'Showcase site needs attention (dead or drifted)'
+          content-filepath: ./showcase/health.md
+          labels: docs, link-rot, automated
