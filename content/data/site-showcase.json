@@ -13,6 +13,15 @@
     "provenance": { "mode": "marker", "marker": "id.sifa" }
   },
   {
+    "url": "https://clembs.com/en/resume",
+    "label": "clembs.com/en/resume",
+    "screenshot": "clembs.png",
+    "provenance": {
+      "mode": "manual",
+      "reason": "Static build with no Sifa marker in the delivered page; provenance verified by hand."
+    }
+  },
+  {
     "url": "https://samclemente.me",
     "label": "samclemente.me",
     "note": "open the CV tab",
