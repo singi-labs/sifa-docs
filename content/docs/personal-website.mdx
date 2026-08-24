@@ -18,9 +18,9 @@ The renderer behind this page is an open-source package, [`@singi-labs/sifa-page
 The fastest path is GitHub Pages, straight from the fork, with no local build and no server:
 
 1. **Fork** [sifa-page](https://github.com/singi-labs/sifa-page) to your GitHub account.
-2. In the fork, open **Settings → Secrets and variables → Actions → Variables** and add a variable named `SIFA_ID` set to your [DID](/docs/dids-usernames-providers) (`did:plc:...`). A username works too, but a DID keeps the site working if you ever change your username.
+2. In the fork, open **Settings → Secrets and variables → Actions** and select the **Variables** tab. Click **New repository variable**, not an environment variable. Name it `SIFA_ID`. Set the value to your [DID](/docs/dids-usernames-providers) (`did:plc:...`), which Sifa shows in your profile settings on [sifa.id](https://sifa.id). A username also works, but a DID keeps the site working after a username change.
 3. Open **Settings → Pages**. Set **Source** to **GitHub Actions**.
-4. Open **Actions**, run the **Deploy site** workflow (or push any commit). Your site publishes at `https://<your-username>.github.io/sifa-page/`.
+4. Open the **Actions** tab. It sits in the top row of the repository, next to **Settings**, not inside it. Run the **Deploy site** workflow, or push any commit. Your site publishes at `https://<your-username>.github.io/sifa-page/`.
 
 The scaffold ships with the GitHub Actions workflow, so steps 3 and 4 are the whole deploy. Profile edits appear the next time the workflow runs. To keep the site current, add a scheduled trigger that rebuilds it daily.
 
