@@ -82,6 +82,11 @@ exclude = [
   # but CI runners can't reach it (prod firewalls the runner IPs) and a bare
   # request to it isn't a navigable link. Verified reachable outside CI.
   "^https?://api\\.sifa\\.id",
+  # Company favicon proxy on the supported-apps page. These are decorative
+  # logos with a monogram fallback in the UI, not user-facing links; the proxy
+  # 404s whenever a company's own favicon is unavailable (e.g. the site blocks
+  # the proxy, as voxport.com does), which should not gate the docs build.
+  "^https?://sifa\\.id/api/company/favicon/",
   # Source-available core repos: 404 to the anonymous / CI link-checker
   # (its token can't read other private repos), but valid for invited
   # contributors. The public SDK/lexicons/.github links are still checked.
@@ -95,6 +100,9 @@ exclude = [
   "^https?://(www\\.)?youtube\\.com",
   "^https?://(www\\.)?substack\\.com",
   "^https?://(www\\.)?npmjs\\.com",
+  # voxport.com (a registry app) sits behind a WAF that 403s crawlers with a
+  # browser UA and GET alike; valid for humans. Verified via curl 2026-08-24.
+  "^https?://(www\\.)?voxport\\.com",
   # Sometimes-unreachable third-party hosts. Re-evaluate periodically.
   "^https?://offprint\\.pub",
   "^https?://hannah\\.makes\\.software",
