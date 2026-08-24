@@ -22,7 +22,7 @@ const manualEntry: ShowcaseEntry = {
 
 test('marker present on a live page is ok', () => {
   const v = classifyEntry(markerEntry, {
-    ok: true,
+    reachable: true,
     status: 200,
     body: '<a href="https://sifa.id/p/example">Sifa</a>',
   })
@@ -32,7 +32,7 @@ test('marker present on a live page is ok', () => {
 
 test('marker missing on a live page is drift', () => {
   const v = classifyEntry(markerEntry, {
-    ok: true,
+    reachable: true,
     status: 200,
     body: '<h1>My brand new CV</h1>',
   })
@@ -41,25 +41,37 @@ test('marker missing on a live page is drift', () => {
   assert.match(v.detail, /sifa\.id\/p\/example/)
 })
 
-test('non-2xx is dead regardless of body', () => {
+test('a real non-2xx response is dead and fails', () => {
   const v = classifyEntry(markerEntry, {
-    ok: false,
+    reachable: true,
     status: 404,
-    body: 'sifa.id/p/example',
+    body: '',
   })
   assert.equal(v.state, 'dead')
   assert.equal(v.detail, 'HTTP 404')
   assert.equal(isProblem(v), true)
 })
 
-test('a dead URL wins over manual provenance', () => {
-  const v = classifyEntry(manualEntry, { ok: false, status: 410, body: '' })
+test('a dead response wins over manual provenance', () => {
+  const v = classifyEntry(manualEntry, { reachable: true, status: 410, body: '' })
   assert.equal(v.state, 'dead')
   assert.equal(isProblem(v), true)
 })
 
+test('no HTTP response is unreachable, advisory not a problem', () => {
+  const v = classifyEntry(markerEntry, { reachable: false, status: 0, body: '' })
+  assert.equal(v.state, 'unreachable')
+  assert.equal(isProblem(v), false)
+})
+
+test('unreachable wins even for a manual entry', () => {
+  const v = classifyEntry(manualEntry, { reachable: false, status: 0, body: '' })
+  assert.equal(v.state, 'unreachable')
+  assert.equal(isProblem(v), false)
+})
+
 test('manual entry on a live page is surfaced but not a problem', () => {
-  const v = classifyEntry(manualEntry, { ok: true, status: 200, body: 'anything' })
+  const v = classifyEntry(manualEntry, { reachable: true, status: 200, body: 'anything' })
   assert.equal(v.state, 'manual')
   assert.equal(isProblem(v), false)
   assert.equal(v.detail, 'Static build, no runtime marker.')
@@ -71,7 +83,7 @@ test('markerUrl is named in the drift detail', () => {
     label: 'beck.example/about',
     provenance: { mode: 'marker', marker: 'did:plc:abc', markerUrl: 'https://beck.example/' },
   }
-  const v = classifyEntry(entry, { ok: true, status: 200, body: 'no marker here' })
+  const v = classifyEntry(entry, { reachable: true, status: 200, body: 'no marker here' })
   assert.equal(v.state, 'drifted')
   assert.match(v.detail, /beck\.example\/$/)
 })
