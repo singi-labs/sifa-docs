@@ -18,7 +18,7 @@ The renderer behind this page is an open-source package, [`@singi-labs/sifa-page
 The fastest path is GitHub Pages, straight from the fork, with no local build and no server:
 
 1. **Fork** [sifa-page](https://github.com/singi-labs/sifa-page) to your GitHub account.
-2. In the fork, open **Settings → Secrets and variables → Actions** and select the **Variables** tab. Click **New repository variable**, not an environment variable. Name it `SIFA_ID`. Set the value to your [DID](/docs/dids-usernames-providers) (`did:plc:...`), which Sifa shows in your profile settings on [sifa.id](https://sifa.id). A username also works, but a DID keeps the site working after a username change.
+2. In the fork, open **Settings → Secrets and variables → Actions** and select the **Variables** tab. Click **New repository variable**, not an environment variable. Name it `SIFA_ID`. Set the value to your Sifa username (for example `alice.bsky.social`). A username works well. For a site that keeps working after a username change, use your [DID](/docs/dids-usernames-providers) (`did:plc:...`) instead. To find your DID, open **Settings → Account** on [sifa.id](https://sifa.id) and copy it there.
 3. Open **Settings → Pages**. Set **Source** to **GitHub Actions**.
 4. Open the **Actions** tab. It sits in the top row of the repository, next to **Settings**, not inside it. Run the **Deploy site** workflow, or push any commit. Your site publishes at `https://<your-username>.github.io/sifa-page/`.
 
