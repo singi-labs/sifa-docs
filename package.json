@@ -30,6 +30,7 @@
     "check:ste:test": "tsx --test scripts/ste.test.ts",
     "check:showcase": "tsx scripts/check-showcase.ts",
     "check:showcase:test": "tsx --test scripts/showcase.test.ts",
+    "capture:showcase": "tsx scripts/capture-showcase.ts",
     "fetch:apps": "node scripts/fetch-app-registry.mjs"
   },
   "dependencies": {
