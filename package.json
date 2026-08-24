@@ -13,7 +13,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/copy-mdx-to-raw.mjs",
+    "prebuild": "node scripts/copy-mdx-to-raw.mjs && tsx scripts/generate-og-images.tsx",
     "build": "next build",
     "examples:typecheck": "tsc -p examples/tsconfig.json --noEmit",
     "start": "next start",
