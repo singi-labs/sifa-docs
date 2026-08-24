@@ -84,5 +84,19 @@
       "mode": "manual",
       "reason": "SvelteKit static build that bakes the data and ships no runtime Sifa marker (no sifa.id backlink, did:plc, or id.sifa string in the HTML or JS). Renders the owner's Sifa talks/presentations. Owner submitted the link (they/them, 2026-08-24)."
     }
+  },
+  {
+    "url": "https://cv.johnbreslin.com/",
+    "label": "cv.johnbreslin.com",
+    "handle": "cloud.eurosky.social",
+    "screenshot": "johnbreslin.png",
+    "provenance": { "mode": "marker", "marker": "sifa.id/p/cloud.eurosky.social" }
+  },
+  {
+    "url": "https://scarnecchia.net/work/",
+    "label": "scarnecchia.net/work",
+    "handle": "scoiattolo.mountainherder.xyz",
+    "screenshot": "scarnecchia.png",
+    "provenance": { "mode": "marker", "marker": "sifa.id/p/scoiattolo.mountainherder.xyz" }
   }
 ]
