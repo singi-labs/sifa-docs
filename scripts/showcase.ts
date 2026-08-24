@@ -39,11 +39,17 @@ export interface ShowcaseProvenanceManual {
   reason: string
 }
 
+import type { ScreenshotAction } from './screenshot-targets'
+
 export interface ShowcaseEntry {
   url: string
   label: string
   handle?: string
   note?: string
+  /** Thumbnail filename in public/showcase/, produced by capture-showcase.ts. */
+  screenshot?: string
+  /** Interactions to run before the thumbnail is captured (e.g. open a tab). */
+  captureActions?: ScreenshotAction[]
   provenance: ShowcaseProvenanceMarker | ShowcaseProvenanceManual
 }
 

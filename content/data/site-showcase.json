@@ -3,39 +3,50 @@
     "url": "https://gui.do/cv/",
     "label": "gui.do/cv",
     "handle": "gui.do",
+    "screenshot": "gui-do.png",
     "provenance": { "mode": "marker", "marker": "sifa.id/p/gui.do" }
   },
   {
     "url": "https://renderg.host/career",
     "label": "renderg.host/career",
+    "screenshot": "renderg-host.png",
     "provenance": { "mode": "marker", "marker": "id.sifa" }
   },
   {
     "url": "https://samclemente.me",
     "label": "samclemente.me",
     "note": "open the CV tab",
+    "screenshot": "samclemente.png",
+    "captureActions": [
+      { "type": "click", "selector": "#cv-tab" },
+      { "type": "wait", "selector": "#cv-panel" }
+    ],
     "provenance": { "mode": "marker", "marker": "data-sifa-cv" }
   },
   {
     "url": "https://www.lion-byte.com/about",
     "label": "lion-byte.com/about",
     "handle": "lion-byte.com",
+    "screenshot": "lion-byte.png",
     "provenance": { "mode": "marker", "marker": "sifa.id/p/lion-byte.com" }
   },
   {
     "url": "https://www.bljohnson.dev/",
     "label": "bljohnson.dev",
     "handle": "bljohnson.dev",
+    "screenshot": "bljohnson.png",
     "provenance": { "mode": "marker", "marker": "sifa.id/p/bljohnson.dev" }
   },
   {
     "url": "https://jzweifel.dev/",
     "label": "jzweifel.dev",
+    "screenshot": "jzweifel.png",
     "provenance": { "mode": "marker", "marker": "id.sifa" }
   },
   {
     "url": "https://beck.codes/about/",
     "label": "beck.codes/about",
+    "screenshot": "beck-codes.png",
     "provenance": {
       "mode": "marker",
       "marker": "did:plc:zpn6q2rw4445pv6khe5dbasy",
@@ -46,11 +57,13 @@
     "url": "https://barryfrost.com/work",
     "label": "barryfrost.com/work",
     "handle": "barryfrost.com",
+    "screenshot": "barryfrost.png",
     "provenance": { "mode": "marker", "marker": "sifa.id/p/barryfrost.com" }
   },
   {
     "url": "https://a-cup-of.coffee/cv/",
     "label": "a-cup-of.coffee/cv",
+    "screenshot": "a-cup-of-coffee.png",
     "provenance": { "mode": "marker", "marker": "did:plc:hqnyog7skad6m4aejb2yujxy" }
   }
 ]
