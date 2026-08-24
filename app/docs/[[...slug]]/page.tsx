@@ -114,6 +114,9 @@ export async function generateMetadata(props: { params: Promise<{ slug?: string[
   // /raw/index.md.
   const slugPath = page.url.replace(/^\/docs\/?/, '') || 'index'
   const rawUrl = `${SITE}/raw/${slugPath}.md`
+  // Per-page card generated at build time by scripts/generate-og-images.tsx.
+  // slugPath mirrors the MDX path, so it matches public/og/docs/<slug>.png.
+  const ogImage = `/og/docs/${slugPath}.png`
 
   return {
     title: page.data.title,
@@ -129,10 +132,13 @@ export async function generateMetadata(props: { params: Promise<{ slug?: string[
       description: page.data.description,
       url: page.url,
       type: 'article',
+      images: [ogImage],
     },
     twitter: {
+      card: 'summary_large_image',
       title: page.data.title,
       description: page.data.description,
+      images: [ogImage],
     },
   }
 }

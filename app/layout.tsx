@@ -62,6 +62,17 @@ export const metadata: Metadata = {
     type: 'website',
     url: '/',
     siteName: 'Sifa Docs',
+    images: ['/og/default.png'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: ['/og/default.png'],
+  },
+  icons: {
+    // Explicit because setting `icons` here disables Next's file-convention
+    // auto-link for app/icon.svg. favicon.ico is still auto-injected.
+    icon: [{ url: '/icon.svg', type: 'image/svg+xml', sizes: 'any' }],
+    apple: { url: '/apple-icon.png', type: 'image/png', sizes: '180x180' },
   },
 }
 
