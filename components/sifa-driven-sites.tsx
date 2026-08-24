@@ -22,7 +22,7 @@ interface ShowcaseSite {
  */
 export function SifaDrivenSites() {
   return (
-    <ul className="my-6 grid list-none grid-cols-1 gap-4 pl-0 sm:grid-cols-2 lg:grid-cols-3">
+    <ul className="not-prose my-6 grid list-none grid-cols-1 gap-4 pl-0 sm:grid-cols-2 lg:grid-cols-3">
       {(sites as ShowcaseSite[]).map((site) => (
         <li key={site.url} className="m-0">
           <a href={site.url} target="_blank" rel="noreferrer" className="group block no-underline">
