@@ -98,5 +98,12 @@
     "handle": "scoiattolo.mountainherder.xyz",
     "screenshot": "scarnecchia.png",
     "provenance": { "mode": "marker", "marker": "sifa.id/p/scoiattolo.mountainherder.xyz" }
+  },
+  {
+    "url": "https://julietshen.online/resume.html",
+    "label": "julietshen.online/resume.html",
+    "handle": "julietshen.bsky.social",
+    "screenshot": "julietshen.png",
+    "provenance": { "mode": "marker", "marker": "sifa.id/p/julietshen.bsky.social" }
   }
 ]
