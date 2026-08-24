@@ -28,6 +28,8 @@
     "screenshots:validate": "tsx scripts/validate-screenshot-refs.ts",
     "check:ste": "tsx scripts/check-ste.ts",
     "check:ste:test": "tsx --test scripts/ste.test.ts",
+    "check:showcase": "tsx scripts/check-showcase.ts",
+    "check:showcase:test": "tsx --test scripts/showcase.test.ts",
     "fetch:apps": "node scripts/fetch-app-registry.mjs"
   },
   "dependencies": {

@@ -1,6 +1,7 @@
 import defaultMdxComponents from 'fumadocs-ui/mdx'
 import type { MDXComponents } from 'mdx/types'
 import { ActivityRegistry } from './components/activity-registry'
+import { SifaDrivenSites } from './components/sifa-driven-sites'
 import { SupportedApps } from './components/supported-apps'
 import { Example } from './components/example'
 import { Screenshot } from './components/screenshot'
@@ -13,6 +14,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
   return {
     ...defaultMdxComponents,
     ActivityRegistry,
+    SifaDrivenSites,
     SupportedApps,
     Example,
     Screenshot,

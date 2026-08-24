@@ -1,0 +1,56 @@
+[
+  {
+    "url": "https://gui.do/cv/",
+    "label": "gui.do/cv",
+    "handle": "gui.do",
+    "provenance": { "mode": "marker", "marker": "sifa.id/p/gui.do" }
+  },
+  {
+    "url": "https://renderg.host/career",
+    "label": "renderg.host/career",
+    "provenance": { "mode": "marker", "marker": "id.sifa" }
+  },
+  {
+    "url": "https://samclemente.me",
+    "label": "samclemente.me",
+    "note": "open the CV tab",
+    "provenance": { "mode": "marker", "marker": "data-sifa-cv" }
+  },
+  {
+    "url": "https://www.lion-byte.com/about",
+    "label": "lion-byte.com/about",
+    "handle": "lion-byte.com",
+    "provenance": { "mode": "marker", "marker": "sifa.id/p/lion-byte.com" }
+  },
+  {
+    "url": "https://www.bljohnson.dev/",
+    "label": "bljohnson.dev",
+    "handle": "bljohnson.dev",
+    "provenance": { "mode": "marker", "marker": "sifa.id/p/bljohnson.dev" }
+  },
+  {
+    "url": "https://jzweifel.dev/",
+    "label": "jzweifel.dev",
+    "provenance": { "mode": "marker", "marker": "id.sifa" }
+  },
+  {
+    "url": "https://beck.codes/about/",
+    "label": "beck.codes/about",
+    "provenance": {
+      "mode": "marker",
+      "marker": "did:plc:zpn6q2rw4445pv6khe5dbasy",
+      "markerUrl": "https://beck.codes/"
+    }
+  },
+  {
+    "url": "https://barryfrost.com/work",
+    "label": "barryfrost.com/work",
+    "handle": "barryfrost.com",
+    "provenance": { "mode": "marker", "marker": "sifa.id/p/barryfrost.com" }
+  },
+  {
+    "url": "https://a-cup-of.coffee/cv/",
+    "label": "a-cup-of.coffee/cv",
+    "provenance": { "mode": "marker", "marker": "did:plc:hqnyog7skad6m4aejb2yujxy" }
+  }
+]
