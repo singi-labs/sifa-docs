@@ -28,7 +28,13 @@ const DATA = path.resolve(process.cwd(), 'content/data/site-showcase.json')
 const REPORT_DIR = path.resolve(process.cwd(), 'showcase')
 const TIMEOUT_MS = 20_000
 const RETRIES = 2
+// Wait between retries so a transient blip (a Cloudflare/deploy hiccup that
+// briefly serves a 404 or 5xx) has time to clear before we call it dead.
+const RETRY_DELAY_MS = 2_000
 const MAX_JS_FILES = 15
+
+const sleep = (ms: number): Promise<void> => new Promise((r) => setTimeout(r, ms))
+const is2xx = (status: number): boolean => status >= 200 && status < 300
 // Look like a real browser: some hosts (Cloudflare and friends) reject requests
 // without a browser UA or Accept headers, which would otherwise read as failure.
 const HEADERS = {
@@ -63,12 +69,18 @@ async function fetchOnce(url: string): Promise<FetchOutcome> {
   }
 }
 
-/** Fetch with a couple of retries so a transient network blip is not a failure. */
+/**
+ * Fetch with retries so a transient blip is not a failure. Retries BOTH network
+ * errors and any non-2xx response (a live site can briefly 404/5xx during a
+ * deploy or CDN hiccup — that is what wrongly removed clembs.com once). Only a
+ * 2xx short-circuits; a persistent failure returns the last outcome.
+ */
 async function fetchText(url: string): Promise<FetchOutcome> {
   let last: FetchOutcome = { reachable: false, status: 0, text: '' }
   for (let attempt = 0; attempt <= RETRIES; attempt++) {
+    if (attempt > 0) await sleep(RETRY_DELAY_MS)
     last = await fetchOnce(url)
-    if (last.reachable) return last
+    if (last.reachable && is2xx(last.status)) return last
   }
   return last
 }
