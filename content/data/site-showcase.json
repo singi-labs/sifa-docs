@@ -74,5 +74,15 @@
     "label": "a-cup-of.coffee/cv",
     "screenshot": "a-cup-of-coffee.png",
     "provenance": { "mode": "marker", "marker": "did:plc:hqnyog7skad6m4aejb2yujxy" }
+  },
+  {
+    "url": "https://ricciuti.me/speaking",
+    "label": "ricciuti.me/speaking",
+    "note": "talks and sessions",
+    "screenshot": "ricciuti.png",
+    "provenance": {
+      "mode": "manual",
+      "reason": "SvelteKit static build that bakes the data and ships no runtime Sifa marker (no sifa.id backlink, did:plc, or id.sifa string in the HTML or JS). Renders the owner's Sifa talks/presentations. Owner submitted the link (they/them, 2026-08-24)."
+    }
   }
 ]
