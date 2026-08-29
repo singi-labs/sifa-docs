@@ -1,6 +1,6 @@
 ---
 title: Make a CV with Typst
-description: Export your Sifa profile as a JSON Resume file, then compile it into a typeset PDF CV with a Typst template.
+description: Export your Sifa profile as a JSON Resume file. A Typst template turns that file into a typeset PDF CV.
 ---
 
 Sifa exports your profile as a `resume.json` file in the [JSON Resume](https://jsonresume.org/schema/) format. [Typst](https://typst.app/) is an open-source typesetting system. Several Typst CV templates read JSON Resume files directly. Together, these give you a typeset PDF CV that you rebuild in seconds when your profile changes.
@@ -48,16 +48,17 @@ The version number `1.6.0` is deliberate. Keep it. A template that changes under
 
 ### In the web editor
 
-1. Open [typst.app](https://typst.app/) and create an empty project.
-2. Upload `sifa-cv.typ` and `resume.json` into the project.
-3. Open `sifa-cv.typ`. The preview shows your CV.
-4. Select **Export PDF**.
+1. Open [typst.app](https://typst.app/).
+2. Create an empty project.
+3. Upload `sifa-cv.typ` and `resume.json` into the project.
+4. Open `sifa-cv.typ`. The preview shows your CV.
+5. Select **Export PDF**.
 
 Keep both files in the same project folder. The template reads `resume.json` from the folder that holds `sifa-cv.typ`.
 
 ### On your computer
 
-Put both files in one folder and run:
+Put both files in one folder. Then run this command:
 
 ```bash
 typst compile sifa-cv.typ
