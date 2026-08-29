@@ -1,0 +1,85 @@
+---
+title: Make a CV with Typst
+description: Export your Sifa profile as a JSON Resume file, then compile it into a typeset PDF CV with a Typst template.
+---
+
+Sifa exports your profile as a `resume.json` file in the [JSON Resume](https://jsonresume.org/schema/) format. [Typst](https://typst.app/) is an open-source typesetting system. Several Typst CV templates read JSON Resume files directly. Together, these give you a typeset PDF CV that you rebuild in seconds when your profile changes.
+
+Sifa does not compile the PDF for you. You keep control of the template, the fonts, and the layout. Your profile data stays the source.
+
+## What you get
+
+- A PDF CV with correct typography, not a browser print.
+- A template you change and keep.
+- A rebuild that takes one command after you update your profile.
+
+## Before you start
+
+You need a Sifa profile with your positions, education, and skills filled in. You also need one of these:
+
+- A free account on [typst.app](https://typst.app/), the Typst web editor. No installation.
+- The Typst compiler on your computer. See the [Typst installation instructions](https://github.com/typst/typst#installation).
+
+## Step 1. Export your profile
+
+1. Open your export page at `sifa.id/settings/export`.
+2. Select **JSON Resume**.
+3. Save the `resume.json` file.
+
+The file contains your positions, education, skills, certifications, publications, projects, volunteering, awards, and languages. Hidden items stay out of the file.
+
+Some Sifa data has no place in the JSON Resume format. Endorsements, confirmations, involvement, investments, presentations, and courses are not in the file. Your profile keeps them.
+
+## Step 2. Make the Typst file
+
+Create a file with the name `sifa-cv.typ`. Put these two lines in it:
+
+```typst
+#import "@preview/altacv:1.6.0": alta-from-json
+
+#alta-from-json(path("resume.json"))
+```
+
+This uses [altacv](https://typst.app/universe/package/altacv/), a CV template on Typst Universe that reads JSON Resume files. Other templates also read this format. [jsume](https://typst.app/universe/package/jsume/) is one more.
+
+The version number `1.6.0` is deliberate. Keep it. A template that changes under you also changes your CV.
+
+## Step 3. Compile the PDF
+
+### In the web editor
+
+1. Open [typst.app](https://typst.app/) and create an empty project.
+2. Upload `sifa-cv.typ` and `resume.json` into the project.
+3. Open `sifa-cv.typ`. The preview shows your CV.
+4. Select **Export PDF**.
+
+Keep both files in the same project folder. The template reads `resume.json` from the folder that holds `sifa-cv.typ`.
+
+### On your computer
+
+Put both files in one folder and run:
+
+```bash
+typst compile sifa-cv.typ
+```
+
+This writes `sifa-cv.pdf` next to the source file.
+
+## Step 4. Update your CV later
+
+When your profile changes, export a new `resume.json` and replace the old one. Compile again. The layout stays the same.
+
+This is the reason to keep the data and the layout apart. You change your profile in one place. Every CV, personal website, and export follows.
+
+## Change how it looks
+
+The `sifa-cv.typ` file is yours. To change the layout, read the [altacv documentation](https://typst.app/universe/package/altacv/) and add the options you want. To change the template completely, replace the import line with a different template that reads JSON Resume.
+
+## Other ways to use the file
+
+The `resume.json` file is a standard format. Other tools read it:
+
+- The [JSON Resume themes](https://jsonresume.org/themes/) render it as a web page or a PDF.
+- Third-party CV editors import it, which lets you move your data on again.
+
+Sifa does not endorse these tools. They are examples of what an open format makes possible.
