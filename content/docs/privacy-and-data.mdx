@@ -62,7 +62,7 @@ Three levels of "delete":
 
 **Delete one record.** Open the item in your profile editor. Remove it. Your provider then deletes the `id.sifa.profile.*` record. The AppView sees the deletion on the firehose and drops it from your profile within seconds.
 
-**Delete everything Sifa-specific.** Account settings holds a delete-Sifa-data button. It walks every `id.sifa.*` collection on your account and removes each record. It leaves your Atmosphere account alone, on [Bluesky](https://bsky.app), [Eurosky](https://eurosky.social) or anywhere else. Only the records in the Sifa namespace go.
+**Delete everything Sifa-specific.** [Account settings](https://sifa.id/settings/account) holds a delete-Sifa-data button. It walks every `id.sifa.*` collection on your account and removes each record. It leaves your Atmosphere account alone, on [Bluesky](https://bsky.app), [Eurosky](https://eurosky.social) or anywhere else. Only the records in the Sifa namespace go.
 
 **Delete your Atmosphere account.** This is a provider-level action. You do it on your provider's settings page, not on Sifa. Your provider deactivates your DID and releases every record, across every app. The Sifa AppView sees the deactivation and stops rendering your profile.
 

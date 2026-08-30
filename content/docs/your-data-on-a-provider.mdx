@@ -87,7 +87,7 @@ If Sifa shuts down tomorrow:
 
 If you decide to leave Sifa but stay on the Atmosphere, delete your `id.sifa.*` records from your provider. Two ways:
 
-- **From Sifa:** go to **Settings -> Account**. Then scroll to **Danger Zone**. **Reset Profile** clears your Sifa profile data and opens the import page, so you can start again. The **Delete Account** control clears the profile data and your Sifa settings, then signs you out. Both offer to remove the matching `id.sifa.*` records from your data server. Sifa then walks every collection and deletes each record.
+- **From Sifa:** go to [**Settings -> Account**](https://sifa.id/settings/account). Then scroll to **Danger Zone**. **Reset Profile** clears your Sifa profile data and opens the import page, so you can start again. The **Delete Account** control clears the profile data and your Sifa settings, then signs you out. Both offer to remove the matching `id.sifa.*` records from your data server. Sifa then walks every collection and deletes each record.
 - **From outside Sifa:** any tool that talks to [AT Protocol](https://atproto.com)'s `com.atproto.repo.deleteRecord` endpoint can delete records directly. pdsls.dev does it in the browser. The `goat` CLI does it from the terminal.
 
 Either way, Sifa's AppView sees the deletions on the firehose within seconds and removes them from its index. Your profile page becomes empty (or 404, if you also delete `id.sifa.profile.self`).

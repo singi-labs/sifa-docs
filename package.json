@@ -28,6 +28,8 @@
     "screenshots:validate": "tsx scripts/validate-screenshot-refs.ts",
     "check:ste": "tsx scripts/check-ste.ts",
     "check:ste:test": "tsx --test scripts/ste.test.ts",
+    "check:links": "tsx scripts/check-app-links.ts",
+    "check:links:test": "tsx --test scripts/app-links.test.ts",
     "check:showcase": "tsx scripts/check-showcase.ts",
     "check:showcase:test": "tsx --test scripts/showcase.test.ts",
     "capture:showcase": "tsx scripts/capture-showcase.ts",

@@ -228,7 +228,9 @@ Every PR runs these (in order):
 3. `pnpm lint`: eslint. Fails on unescaped apostrophes in JSX (`react/no-unescaped-entities`); use `&apos;`.
 4. `pnpm check:ste:test`: unit tests for the STE checker itself (`node:test` through tsx).
 5. `pnpm check:ste`: Simplified Technical English check over `content/**/*.mdx`. Fails on any violation. See "Voice and style" above.
-6. `pnpm examples:typecheck`: `tsc --noEmit` against `examples/tsconfig.json`. Fails if any `.ts` file under `examples/` doesn't compile against the pinned SDK.
+6. `pnpm check:links:test`: unit tests for the app-link checker itself.
+7. `pnpm check:links`: fails when a universal Sifa app route (`/settings/*`) appears in inline code or bare prose instead of a Markdown link. Those pages are the same for every reader, so they are always clickable. Placeholder routes (`/p/<username>`, `/c/<domain>`) are out of scope, and so are fenced code blocks. Suppress one line with `{/* links-allow: reason */}`.
+8. `pnpm examples:typecheck`: `tsc --noEmit` against `examples/tsconfig.json`. Fails if any `.ts` file under `examples/` doesn't compile against the pinned SDK.
 
 Deploy CI runs the same plus rsync to sifa-prod after merge to main.
 
