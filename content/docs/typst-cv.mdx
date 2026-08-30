@@ -76,6 +76,16 @@ This is the reason to keep the data and the layout apart. You change your profil
 
 The `sifa-cv.typ` file is yours. To change the layout, read the [altacv documentation](https://typst.app/universe/package/altacv/) and add the options you want. To change the template completely, replace the import line with a different template that reads JSON Resume.
 
+## Use LaTeX instead
+
+LaTeX cannot read a JSON file. A converter must write the `.tex` file first. Sifa does not supply a LaTeX template, and the tools below come from other people. Nobody maintains them now. Read that as a warning, not as a recommendation.
+
+- **[RenderCV 1.18](https://pypi.org/project/rendercv/1.18/)** (`pip install rendercv==1.18`) is the last LaTeX version. It carries its own LaTeX, so you install nothing else. Version 2.0 and later use Typst.
+- **[ModernCV-from-JSONResume](https://github.com/Hookz/ModernCV-from-JSONResume)** writes a moderncv document from a JSON Resume file. The author plans no more work on it.
+- **[json_resume](https://github.com/prat0318/json_resume)** is a Ruby tool. It writes HTML, Markdown, and `.tex` from one JSON file.
+
+The wider ecosystem moved away from LaTeX. RenderCV changed to Typst at version 2.0 for speed and for a simpler language. This is why Typst is the path this page describes, and the only path Sifa supports.
+
 ## Other ways to use the file
 
 The `resume.json` file is a standard format. Other tools read it:
