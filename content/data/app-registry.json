@@ -36,6 +36,15 @@
     "logo": "https://sifa.id/api/company/favicon/anisota.net"
   },
   {
+    "id": "askeverything",
+    "name": "Ask Everything",
+    "category": "Q&A",
+    "description": "Question-and-answer on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://askeverything.app",
+    "logo": "https://sifa.id/api/company/favicon/askeverything.app"
+  },
+  {
     "id": "asq",
     "name": "ASQ",
     "category": "Q&A",
@@ -70,6 +79,15 @@
     "externallySourced": false,
     "homepage": "https://atmo.rsvp",
     "logo": "https://sifa.id/api/company/favicon/atmo.rsvp"
+  },
+  {
+    "id": "atmob",
+    "name": "atmob",
+    "category": "Pastes",
+    "description": "Text and code pastes on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://atmob.in",
+    "logo": null
   },
   {
     "id": "atmobb",
@@ -135,6 +153,24 @@
     "logo": "https://sifa.id/api/company/favicon/bookhive.buzz"
   },
   {
+    "id": "certified",
+    "name": "Certified",
+    "category": "Endorsements",
+    "description": "Endorsements and group memberships on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://certified.app",
+    "logo": "https://sifa.id/api/company/favicon/certified.app"
+  },
+  {
+    "id": "chive",
+    "name": "Chive",
+    "category": "Research",
+    "description": "Preprints and eprints on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://chive.pub",
+    "logo": "https://sifa.id/api/company/favicon/chive.pub"
+  },
+  {
     "id": "colibri",
     "name": "Colibri",
     "category": "Social",
@@ -169,6 +205,33 @@
     "externallySourced": false,
     "homepage": "https://crate.social",
     "logo": "https://sifa.id/api/company/favicon/crate.social"
+  },
+  {
+    "id": "dropanchor",
+    "name": "Dropanchor",
+    "category": "Places",
+    "description": "Location check-ins on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": null,
+    "logo": null
+  },
+  {
+    "id": "fediverse",
+    "name": "Fediverse",
+    "category": "Posts",
+    "description": "Posts from a verified Fediverse account",
+    "externallySourced": true,
+    "homepage": null,
+    "logo": null
+  },
+  {
+    "id": "rss",
+    "name": "Feeds",
+    "category": "Articles",
+    "description": "Posts from a verified RSS or Atom feed",
+    "externallySourced": true,
+    "homepage": null,
+    "logo": null
   },
   {
     "id": "flashes",
@@ -207,12 +270,39 @@
     "logo": "https://sifa.id/api/company/favicon/grain.social"
   },
   {
+    "id": "greengale",
+    "name": "GreenGale",
+    "category": "Articles",
+    "description": "Blogging on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://greengale.app",
+    "logo": "https://sifa.id/api/company/favicon/greengale.app"
+  },
+  {
     "id": "guestbook",
     "name": "Guestbook",
     "category": "Social",
     "description": "Leave a note on someone else’s cross-site guestbook on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://baileytownsend.dev",
+    "logo": null
+  },
+  {
+    "id": "hypercerts",
+    "name": "Hypercerts",
+    "category": "Impact",
+    "description": "Claims of impactful work, published as records you own on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://hypercerts.org",
+    "logo": "https://sifa.id/api/company/favicon/hypercerts.org"
+  },
+  {
+    "id": "impactindexer",
+    "name": "Impact Indexer",
+    "category": "Reviews",
+    "description": "Reviews of impact claims on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": null,
     "logo": null
   },
   {
@@ -243,6 +333,15 @@
     "logo": "https://sifa.id/api/company/favicon/kich.io"
   },
   {
+    "id": "kut",
+    "name": "Kut",
+    "category": "Social",
+    "description": "Communities on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://kut.social",
+    "logo": "https://sifa.id/api/company/favicon/kut.social"
+  },
+  {
     "id": "leaflet",
     "name": "Leaflet",
     "category": "Articles",
@@ -268,6 +367,15 @@
     "externallySourced": false,
     "homepage": "https://lifepo.st",
     "logo": null
+  },
+  {
+    "id": "locale",
+    "name": "Locale",
+    "category": "Translations",
+    "description": "Localization and translation on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://locale.at",
+    "logo": "https://sifa.id/api/company/favicon/locale.at"
   },
   {
     "id": "margin",
@@ -351,12 +459,39 @@
     "logo": null
   },
   {
+    "id": "pckt",
+    "name": "Pckt",
+    "category": "Posts",
+    "description": "Blogging and microblogging on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://pckt.blog",
+    "logo": "https://sifa.id/api/company/favicon/pckt.blog"
+  },
+  {
+    "id": "pinksea",
+    "name": "PinkSea",
+    "category": "Art",
+    "description": "Hand-drawn artwork on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://pinksea.art",
+    "logo": "https://sifa.id/api/company/favicon/pinksea.art"
+  },
+  {
+    "id": "pixl",
+    "name": "Pixl",
+    "category": "Photos",
+    "description": "Photo sharing on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://pixl.pics",
+    "logo": "https://sifa.id/api/company/favicon/pixl.pics"
+  },
+  {
     "id": "plonk",
     "name": "Plonk",
     "category": "Pastes",
     "description": "Text pastes on the AT Protocol.",
     "externallySourced": false,
-    "homepage": "https://plonk.li",
+    "homepage": null,
     "logo": null
   },
   {
@@ -376,6 +511,15 @@
     "externallySourced": false,
     "homepage": "https://popfeed.social",
     "logo": "https://sifa.id/api/company/favicon/popfeed.social"
+  },
+  {
+    "id": "portable",
+    "name": "Portable",
+    "category": "Social",
+    "description": "Community memberships on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": null,
+    "logo": null
   },
   {
     "id": "recipe",
@@ -450,6 +594,15 @@
     "logo": "https://sifa.id/api/company/favicon/tangled.sh"
   },
   {
+    "id": "tokono",
+    "name": "tokono",
+    "category": "Video",
+    "description": "Video hosting on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://tokono.ma",
+    "logo": null
+  },
+  {
     "id": "userinput",
     "name": "User Input",
     "category": "Social",
@@ -473,8 +626,8 @@
     "category": "Video",
     "description": "Podcasts on the AT Protocol.",
     "externallySourced": false,
-    "homepage": "https://voxport.com",
-    "logo": "https://sifa.id/api/company/favicon/voxport.com"
+    "homepage": null,
+    "logo": null
   },
   {
     "id": "waow",
@@ -511,5 +664,14 @@
     "externallySourced": false,
     "homepage": "https://youandme.at",
     "logo": "https://sifa.id/api/company/favicon/youandme.at"
+  },
+  {
+    "id": "zeens",
+    "name": "Zeens",
+    "category": "Photos",
+    "description": "Photography collections on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://zeens.app",
+    "logo": "https://sifa.id/api/company/favicon/zeens.app"
   }
 ]
