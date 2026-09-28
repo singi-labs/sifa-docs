@@ -1,0 +1,116 @@
+---
+title: Import talks and sessions
+description: How to add your talks and the events where you gave them to Sifa with two CSV templates.
+---
+
+Do you keep a list of your talks in a spreadsheet? Sifa ID can import it. You fill in two CSV templates and upload them. Sifa then writes one AT Protocol record per talk and one per session to your own PDS.
+
+Sifa uses two words here:
+
+- A **talk** is the content that you can give more than one time. It has a title, a description, a duration, and links to slides.
+- A **session** is one occasion when you gave a talk. It has an event, a date, a location, and your role.
+
+## Before you start
+
+You need:
+
+- A Sifa account ([sign in](/docs/create-account) first if you do not have one).
+- A spreadsheet app that can save a file as CSV, for example LibreOffice Calc, Numbers, or Excel.
+
+## Step 1: download the templates
+
+1. Go to [sifa.id/import?tab=talks](https://sifa.id/import?tab=talks). The **Talks & sessions** tab opens.
+2. Click **Download template** next to **Talks (presentations.csv)**.
+3. Click **Download template** next to **Sessions (deliveries.csv)**.
+
+Each template has a header row and example rows. Keep the header row. Replace the example rows with your own data.
+
+You do not need both files. Use only `presentations.csv` to add talks without sessions. Use only `deliveries.csv` to add sessions without a talk.
+
+## Step 2: fill in the talks file
+
+Each row in `presentations.csv` is one talk.
+
+| Column               | What to put in it                                                                                      |
+| -------------------- | ------------------------------------------------------------------------------------------------------ |
+| `presentation_key`   | A short name of your choice, for example `scaling-postgres`. Sessions use it to link to this talk.     |
+| `title`              | The title of the talk. This column must have a value.                                                  |
+| `description`        | A summary of the talk. Sifa removes HTML tags and keeps the plain text.                                |
+| `duration`           | The length, for example `30 min` or a range such as `30-45 min`.                                       |
+| `intended_audiences` | The audiences for the talk. Put a semicolon between two audiences, for example `developers;designers`. |
+| `slides_url`         | A link to your slides.                                                                                 |
+| `recording_url`      | A link to a recording.                                                                                 |
+| `writeup_url`        | A link to an article about the talk.                                                                   |
+
+All links must start with `http://` or `https://`.
+
+## Step 3: fill in the sessions file
+
+Each row in `deliveries.csv` is one session.
+
+| Column             | What to put in it                                                                          |
+| ------------------ | ------------------------------------------------------------------------------------------ |
+| `presentation_key` | The key of the talk from `presentations.csv`. Leave it empty for a session without a talk. |
+| `title`            | A title for a session without a talk. Leave it empty when you use a key.                   |
+| `event_name`       | The name of the event, for example `PGConf EU`.                                            |
+| `date`             | The date as `YYYY-MM-DD`. If you do not know the day, use `YYYY-MM` or `YYYY`.             |
+| `location`         | The place, for example `Prague, CZ`.                                                       |
+| `role`             | Your role: `speaker`, `keynote`, `panelist`, `workshop`, or `host`.                        |
+| `mode`             | How you gave the session: `inPerson`, `virtual`, or `hybrid`.                              |
+| `event_url`        | A link to the event page.                                                                  |
+| `recording_url`    | A link to a recording of this session.                                                     |
+
+Many sessions can use the same key. Thus one talk can show all the events where you gave it.
+
+Save each file as CSV. If a value contains a comma, put the value between double quotes, for example `"Prague, CZ"`. Most spreadsheet apps do this for you.
+
+## Step 4: upload and preview
+
+1. On the **Talks & sessions** tab, click **Choose CSV file** for each file that you use.
+2. Click **Preview import**.
+3. Read the summary. It shows the number of talks and sessions that Sifa will add.
+4. If the numbers are not correct, click **Back** and choose different files.
+
+Your browser reads the files. Nothing goes to Sifa until you click the import button.
+
+## Step 5: import
+
+Click **Import to my profile**. Sifa writes the records to your PDS:
+
+- `id.sifa.profile.presentation` for each talk
+- `id.sifa.profile.presentationDelivery` for each session
+
+When the import is complete, Sifa shows the number of talks and sessions that it added. Click **View your profile** to see them in the talks section.
+
+> **Every talk and session that you import becomes public.** Any visitor, search engine, or other Atmosphere app can read them.
+
+You can edit or delete each talk and session in the Sifa profile editor after the import.
+
+## What happens to rows with problems
+
+Sifa checks all rows before it writes a record. The result depends on the problem:
+
+- **An empty row.** Sifa ignores it.
+- **A value in `role` or `mode` that Sifa does not know.** Sifa imports the row without that value. You can set the role or mode later in the profile editor.
+- **A session with a key that is not in `presentations.csv`.** Sifa imports the session without a link to a talk.
+- **A talk without a title, a date in an incorrect format, or a link that does not start with `http://` or `https://`.** Sifa stops the import and shows an error. Sifa does not write any records. Correct the row and upload the file again.
+- **More than 500 talks or more than 2000 sessions in one import.** Sifa stops the import. Split the rows into two or more files. Import each file separately.
+
+If the preview shows zero talks and zero sessions, make sure that each file has the header row and at least one row of data.
+
+## Import again
+
+You can import the same files again. Sifa does not make duplicates:
+
+- Sifa skips a talk when a talk with the same title is already on your profile. Upper case and lower case do not matter.
+- Sifa skips a session when a session with the same event name, date, and title is already on your profile.
+- Sifa also skips a row that repeats an earlier row in the same file.
+
+When a skip occurs, the result screen shows the number of skipped rows. If an import stops with an error, correct the problem and import the files again. Sifa adds only the rows that are not on your profile yet.
+
+An import never changes or deletes a talk or session that is already on your profile. To change one, edit it in the profile editor. You can also delete it there and then import it again.
+
+## Related
+
+- [Import from LinkedIn](/docs/import-linkedin) brings your positions, education, and skills to Sifa.
+- [Your data on a provider](/docs/your-data-on-a-provider) shows where the imported records live.
