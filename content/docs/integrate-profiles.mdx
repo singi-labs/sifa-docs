@@ -36,7 +36,7 @@ The response is JSON. The fields most apps want:
 }
 ```
 
-A position with no `endedAt` is a current role. When a position points at a company page, `entityName` holds the resolved name. Otherwise `company` holds the free text that the person typed. The query needs no authentication. It returns the public projection that a logged-out visitor sees, and it omits every hidden item.
+A position with no `endedAt` is a current role. When a position points at an organization page, `entityName` holds the resolved name. Otherwise `company` holds the free text that the person typed. The query needs no authentication. It returns the public projection that a logged-out visitor sees, and it omits every hidden item.
 
 The `id.sifa.getProfileView` lexicon in [singi-labs/sifa-lexicons](https://github.com/singi-labs/sifa-lexicons) defines the full field list.
 
@@ -79,7 +79,7 @@ curl "https://<their-pds>/xrpc/com.atproto.repo.getRecord?repo=<did>&collection=
 curl "https://<their-pds>/xrpc/com.atproto.repo.listRecords?repo=<did>&collection=id.sifa.profile.position"
 ```
 
-This is the same mechanism generic record browsers like [pdsls.dev](https://pdsls.dev) use. The trade-off: you get the raw records exactly as written, so you handle company-page resolution, formatting, and the skill-to-position links yourself. Options 1 and 2 do that work for you. Reach for this one when you specifically want zero dependency on Sifa's AppView. See [Apps, AppViews, and the firehose](/docs/apps-appviews-firehose) for how PDS reads fit the wider picture.
+This is the same mechanism generic record browsers like [pdsls.dev](https://pdsls.dev) use. The trade-off: you get the raw records exactly as written, so you handle organization-page resolution, formatting, and the skill-to-position links yourself. Options 1 and 2 do that work for you. Reach for this one when you specifically want zero dependency on Sifa's AppView. See [Apps, AppViews, and the firehose](/docs/apps-appviews-firehose) for how PDS reads fit the wider picture.
 
 ### Validating the records you read
 
