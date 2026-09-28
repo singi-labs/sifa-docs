@@ -1,9 +1,9 @@
 ---
 title: Connect a Fediverse account
-description: Link your Mastodon, GoToSocial, Pleroma, or other Fediverse account so your public posts show up in your Sifa activity feed.
+description: Link your Mastodon, Pixelfed, PeerTube, or other Fediverse account to show your public posts, photos, and videos on Sifa.
 ---
 
-Do you post on Mastodon, GoToSocial, Pleroma, Pixelfed, or another Fediverse server? Connect that account to Sifa ID. Your public posts then appear in your [activity feed](/docs/activity-feed), next to the rest of your Atmosphere activity.
+Do you post on Mastodon, GoToSocial, Pleroma, Pixelfed, or another Fediverse server? Connect that account to Sifa ID. Your public posts, photos, and videos then appear in your [activity feed](/docs/activity-feed), next to the rest of your Atmosphere activity.
 
 ## Pick one route
 
@@ -41,7 +41,13 @@ You do **not** add the account under External accounts for this route. Sifa dete
 
 ## What shows up
 
-Sifa reads the public **outbox** of your account. That outbox is the standard ActivityPub feed of your published work. Sifa shows those posts in your activity feed.
+Sifa reads the public **outbox** of your account. That outbox is the standard ActivityPub feed of your published work. Sifa shows these items in your activity feed:
+
+- **Posts and articles**, with the text of each post.
+- **Photos and video clips** that you attach to a post. A post with only a photo and no text also appears.
+- **Videos** that you publish on PeerTube, with the thumbnail and title. A click on the card opens the video page.
+
+Some rules apply to all items:
 
 - Only your **own posts** appear. Sifa omits boosts, likes, and follows, exactly as it omits the posts you like on Bluesky.
 - Only **public** posts. Followers-only posts and direct messages are never read.
