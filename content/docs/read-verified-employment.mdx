@@ -1,0 +1,108 @@
+---
+title: Read verified employment
+description: How to read the employment verifications that Sifa issues, from the issuer repository or from the profile query, and how to trust them.
+---
+
+Sifa verifies employment in more than one way. An organization can confirm a position from its own account, and other methods follow. When Sifa verifies a position, it writes one public record about it from a dedicated issuer account. Your app can read that record with no Sifa account and no API key.
+
+This page tells you where the records are, what they contain, and which rule decides if a record counts.
+
+## The one trust rule
+
+Only a record that the Sifa issuer account wrote counts. This table shows the issuer DID:
+
+| Issuer                   | DID           |
+| ------------------------ | ------------- |
+| Sifa verification issuer | `did:plc:TBD` |
+
+A copy of the same record in any other repository has no meaning. Check the repository DID before you use the record. Bluesky clients check the verifier of an `app.bsky.graph.verification` record in the same way.
+
+## The record
+
+The collection is `id.sifa.verification.employment`. The lexicon is in [singi-labs/sifa-lexicons](https://github.com/singi-labs/sifa-lexicons).
+
+```json
+{
+  "$type": "id.sifa.verification.employment",
+  "subject": "did:plc:45uheisi25szrjvjurfpritx",
+  "position": { "uri": "at://did:plc:45uheisi25szrjvjurfpritx/id.sifa.profile.position/3abc" },
+  "status": "id.sifa.defs#employmentCurrent",
+  "methods": ["id.sifa.defs#verifiedByOrg"],
+  "title": "Founder",
+  "startedAt": "2025-11",
+  "organization": "did:plc:2f2ahswozqy4v5lvu676375y",
+  "evidence": [
+    { "uri": "at://did:plc:2f2ahswozqy4v5lvu676375y/id.sifa.org.employmentAttestation/3xyz" }
+  ],
+  "verifiedAt": "2026-09-30T12:00:00.000Z",
+  "createdAt": "2026-09-30T12:00:00.000Z"
+}
+```
+
+The fields that matter to a reader:
+
+- `subject` is the person. `position` points at their own position record.
+- `status` is `employmentCurrent` or `employmentPast`.
+- `methods` lists what backs the verification. `verifiedByOrg` means the organization confirmed it from its own account. `verifiedByDirectory` means the organization's directory sync did. Sifa reserves `verifiedByEmail` and `verifiedByPeer` for later methods.
+- `title` and `startedAt` are snapshots. Compare them with the live position record. A difference means the person changed the position after the verification.
+- `evidence` links to public records that back the verification, such as the organization's attestation.
+- `expiresAt`, when present, means the verification lapses at that time unless Sifa renews it. Treat a record after that time as lapsed.
+
+The record never contains an email address or an email domain.
+
+A deleted record is a revocation. No record for a position means "not verified by Sifa", and that is not a negative signal.
+
+## Option 1: read the issuer repository
+
+Every record lives in the issuer's own repository. List the collection, or follow it live.
+
+```bash
+# every record the issuer wrote, paginated
+curl "https://<issuer-pds>/xrpc/com.atproto.repo.listRecords?repo=<issuer-did>&collection=id.sifa.verification.employment"
+
+# live: subscribe to the issuer DID on Jetstream
+wss://jetstream2.fr.hose.cam/subscribe?wantedDids=<issuer-did>&wantedCollections=id.sifa.verification.employment
+```
+
+To find every verification about one person, query backlinks on `subject` with Constellation and keep only the records whose repository is the issuer DID.
+
+## Option 2: call the profile query
+
+The AppView adds a `verification` object to each verified position in `id.sifa.getProfileView`:
+
+```json
+{
+  "positions": [
+    {
+      "title": "Founder",
+      "company": "Singi Labs",
+      "startedAt": "2025-11",
+      "verification": {
+        "methods": ["id.sifa.defs#verifiedByOrg"],
+        "status": "id.sifa.defs#employmentCurrent",
+        "verifiedAt": "2026-09-30T12:00:00.000Z",
+        "uri": "at://<issuer-did>/id.sifa.verification.employment/3def"
+      }
+    }
+  ]
+}
+```
+
+`uri` points at the issued record, so you can go from the query to the record on the protocol.
+
+## Option 3: use the SDK
+
+```ts
+import { resolveEmploymentVerification } from '@singi-labs/sifa-sdk'
+
+const result = resolveEmploymentVerification(record, { repoDid, issuerDid })
+// result.ok === true only when repoDid is the issuer and the record parses
+```
+
+The helper applies the trust rule and returns a typed record, or a reason when the record does not count.
+
+## Be a good neighbour
+
+- Cache reads for a minute or so and read from your server.
+- A person can hide a position or turn sharing off at any time. Then Sifa deletes the record. Treat a missing record as "no data now".
+- When you show a verification, link to the person's Sifa profile page.
