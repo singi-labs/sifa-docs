@@ -33,8 +33,6 @@ A write needs an authenticated `@atproto/api` agent. The SDK does not construct 
 
 The wrapper accepts the agent as a parameter so your app stays in control of identity, storage, and session refresh. The SDK provides the typed write surface and the Zod validation; you provide the network.
 
-Be gentle with the servers that you call. Cache what you read, and do not poll in a tight loop. We do not want to build a second Hellthread.
-
 ## Where to next
 
 - [Concepts](/docs/sdk/concepts): the architecture, where the SDK ends and the AppView begins.
