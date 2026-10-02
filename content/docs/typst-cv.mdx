@@ -51,13 +51,25 @@ Some Sifa data has no place in the JSON Resume format. Endorsements, confirmatio
 
 ## Step 2. Make the Typst file
 
-Create a file with the name `sifa-cv.typ`. Put these two lines in it:
+Create a file with the name `sifa-cv.typ`. Put this text in it:
 
 ```typst
 #import "@preview/altacv:1.6.0": alta-from-json
 
-#alta-from-json(path("resume.json"))
+#let cv = json("resume.json")
+
+// Typst reads images from files only. Your photo is a web address, so remove it.
+#let _ = cv.basics.remove("image", default: none)
+
+// altacv shows skills only in groups. Put all your skills in one group.
+#if "skills" in cv {
+  cv.insert("skills", ((name: "Skills", keywords: cv.skills.map(s => s.name)),))
+}
+
+#alta-from-json(cv)
 ```
+
+The file makes two changes before altacv reads your data. It removes your photo, because Typst cannot load an image from a web address. It also puts your skills into one group, because altacv does not show skills without a group.
 
 This uses [altacv](https://typst.app/universe/package/altacv/), a CV template on Typst Universe that reads JSON Resume files. Other templates also read this format. [jsume](https://typst.app/universe/package/jsume/) is one more.
 
