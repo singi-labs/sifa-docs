@@ -5,7 +5,26 @@ description: Export your Sifa profile as a JSON Resume file. A Typst template tu
 
 Sifa exports your profile as a `resume.json` file in the [JSON Resume](https://jsonresume.org/schema/) format. [Typst](https://typst.app/) is an open-source typesetting system. Several Typst CV templates read JSON Resume files directly. Together, these give you a typeset PDF CV that you rebuild in seconds when your profile changes.
 
-Sifa does not compile the PDF for you. You keep control of the template, the fonts, and the layout. Your profile data stays the source.
+You can get the PDF in two ways:
+
+- Download a ready PDF from Sifa in one step. Sifa compiles it for you with the same template.
+- Compile the PDF yourself. You keep control of the template, the fonts, and the layout.
+
+In both ways, your profile data stays the source.
+
+## Get a PDF in one step
+
+1. Open your export page at [sifa.id/settings/export](https://sifa.id/settings/export).
+2. Select **Download PDF**.
+3. Save the PDF file.
+
+Sifa uses your full profile for this PDF. The section and date options on the export page do not change it. Hidden items stay out of the PDF. Your profile picture is not in the PDF.
+
+You can make a limited number of PDFs each hour. If Sifa cannot make your PDF, the export page shows a message. Try again later, or use the steps below.
+
+## Compile the PDF yourself
+
+The steps below give you your own copy of the template. Use them when you want to change the layout.
 
 ## What you get
 
@@ -32,13 +51,25 @@ Some Sifa data has no place in the JSON Resume format. Endorsements, confirmatio
 
 ## Step 2. Make the Typst file
 
-Create a file with the name `sifa-cv.typ`. Put these two lines in it:
+Create a file with the name `sifa-cv.typ`. Put this text in it:
 
 ```typst
 #import "@preview/altacv:1.6.0": alta-from-json
 
-#alta-from-json(path("resume.json"))
+#let cv = json("resume.json")
+
+// Typst reads images from files only. Your photo is a web address, so remove it.
+#let _ = cv.basics.remove("image", default: none)
+
+// altacv shows skills only in groups. Put all your skills in one group.
+#if "skills" in cv {
+  cv.insert("skills", ((name: "Skills", keywords: cv.skills.map(s => s.name)),))
+}
+
+#alta-from-json(cv)
 ```
+
+The file makes two changes before altacv reads your data. It removes your photo, because Typst cannot load an image from a web address. It also puts your skills into one group, because altacv does not show skills without a group.
 
 This uses [altacv](https://typst.app/universe/package/altacv/), a CV template on Typst Universe that reads JSON Resume files. Other templates also read this format. [jsume](https://typst.app/universe/package/jsume/) is one more.
 
