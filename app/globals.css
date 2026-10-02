@@ -97,11 +97,6 @@
   color: var(--cyan-12);
 }
 
-.dark ::selection {
-  background-color: var(--cyan-dark-4);
-  color: var(--cyan-dark-12);
-}
-
 /* Apply typography. body uses iA Writer Quattro via --font-sans;
    headings + wordmark use Space Grotesk via --font-display. */
 @layer base {
