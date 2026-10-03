@@ -9,6 +9,7 @@ import { SdkColors } from './components/sdk-colors'
 import { SdkIconWeights } from './components/sdk-icon-weights'
 import { SdkTypography } from './components/sdk-typography'
 import { SdkVersion } from './components/sdk-version'
+import { Video } from './components/video'
 
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
   return {
@@ -22,6 +23,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     SdkIconWeights,
     SdkTypography,
     SdkVersion,
+    Video,
     ...components,
   }
 }

@@ -1,0 +1,112 @@
+---
+title: Make a CV for a grant application
+description: Make an NIH Biographical Sketch or an ERC Part B1 CV from your Sifa profile. Download it as a PDF or as Typst source.
+---
+
+A funder often asks for your CV in its own format. Sifa ID makes two of these formats from your profile:
+
+- The **NIH Biographical Sketch**, for the US National Institutes of Health.
+- The **ERC Part B1 CV**, for the European Research Council.
+
+You pick the publications, talks, and honors to show. Then you download a PDF or the [Typst](https://typst.app/) source. The feature is free.
+
+<Video
+  src="grant-cv-explainer.mp4"
+  poster="grant-cv-explainer-poster.jpg"
+  alt="A silent screen recording with music. The export page shows the card A CV for a grant application. The user selects Choose items. The NIH Biographical Sketch form shows a list of publications, and each publication has three options: Leave out, Closely related, and Other significant. The user sets the options, then changes the format to ERC Part B1 CV. The user selects Download PDF. The ERC PDF opens, and the video moves to the sections that show To fill in. Then the Typst source shows, and the user types text into a To fill in section. The video ends on sifa.id with the text Free, like all our exports, and a note that the NIH output is a draft for SciENcv."
+  caption="Make a funder CV from your Sifa profile in 30 seconds."
+/>
+
+## Make the CV
+
+1. Open your export page at [sifa.id/settings/export](https://sifa.id/settings/export).
+2. On the card **A CV for a grant application**, select **Choose items**.
+3. Select the format: **NIH Biographical Sketch** or **ERC Part B1 CV**.
+4. Pick the items to show. The sections below give the limits.
+5. Select **Download PDF** or **Download Typst source**.
+
+You can also go directly to [sifa.id/settings/export/funder](https://sifa.id/settings/export/funder).
+
+The form starts with your most recent publications and honors, up to each limit. Talks are on the list, but the form does not select them for you. Hidden items are not on the list and are not in the CV.
+
+If you select more items than a section permits, Sifa does not make the CV. The form shows the section with too many items and keeps your other choices. Remove some items. Then try again.
+
+The form works without JavaScript.
+
+## NIH Biographical Sketch
+
+{/* ste-allow: S5 "due" is the date term that NIH uses for application deadlines */}
+The NIH format follows the NIH Common Form and the NIH Biographical Sketch Supplement. These are the forms for applications due on or after 25 January 2026. The PDF uses US Letter paper.
+
+**NIH accepts only the certified biographical sketch that you make in [SciENcv](https://www.ncbi.nlm.nih.gov/sciencv/).** Do not send the Sifa PDF to NIH. Use it as a draft. Copy the entries into SciENcv. The PDF shows this note at the top.
+
+| Section                    | What you pick                                         | Limit |
+| -------------------------- | ----------------------------------------------------- | ----- |
+| Products closely related   | Publications and talks closely related to the project | 5     |
+| Other significant products | Other important publications and talks                | 5     |
+| Honors                     | Honors from your profile                              | 15    |
+
+For each publication or talk, select **Closely related**, **Other significant**, or **Leave out**.
+
+Sifa fills these sections from your profile:
+
+- Your name, your ORCID iD, and the title of your current position.
+- Your organization and location.
+- Your education, in the section Professional preparation.
+- Your positions, in the section Appointments and positions.
+
+To show your ORCID iD, add your ORCID account to your profile. See [External accounts](/docs/external-accounts).
+
+## ERC Part B1 CV
+
+The ERC format follows the section "Curriculum vitae and Track Record" in the ERC Part B1 template. The PDF uses A4 paper. ERC permits a maximum of 4 pages for this section. Sifa does not stop a longer CV, so check the page count before you submit.
+
+| Section               | What you pick                                                        | Limit |
+| --------------------- | -------------------------------------------------------------------- | ----- |
+| Research achievements | Publications from your profile                                       | 10    |
+| Peer recognition      | Honors and talks, for example prizes, fellowships, and invited talks | 15    |
+
+Sifa fills these sections from your profile:
+
+- Your name, your ORCID iD, and your website.
+- Your education.
+- Your current positions and your previous positions.
+- Your teaching and volunteer work, in the section Other contributions to the research community.
+
+## Sections marked "To fill in"
+
+Some sections need text that your profile does not have. Sifa shows these sections as "To fill in", with a short note about what the funder asks for. A section from the list above also shows "To fill in" when your profile has no data for it.
+
+| Format | Sections that you write yourself                     |
+| ------ | ---------------------------------------------------- |
+| NIH    | Personal statement, Contributions to science         |
+| ERC    | Career breaks, a short note for each research output |
+
+For NIH, you also certify the sketch in SciENcv when you submit it. ERC also asks for the name of your PhD supervisor. Sifa does not keep this name, so add it in the Typst source. To fill in these sections, use the Typst source.
+
+## Fill in the Typst source
+
+The Typst source is one `.typ` file. Your selected data is in the file, so you do not need other files.
+
+1. Select **Download Typst source**.
+2. Open the file in the [Typst web editor](https://typst.app/) or in a text editor.
+3. Find each `placeholder[...]`.
+4. Replace it with your text.
+5. Compile the file to a PDF.
+
+To compile on your computer, run this command. Use the name of the file that you downloaded.
+
+```bash
+typst compile your-file.typ
+```
+
+The templates use the font Noto Sans, or Arial if Noto Sans is not available. For more about Typst, see [Make a CV with Typst](/docs/typst-cv).
+
+## Limits
+
+- You can download 10 funder CVs each hour. A PDF and a Typst source count the same.
+- Sifa makes one PDF at a time for all users. If another PDF is in progress, try again after one minute.
+- If Sifa cannot make your PDF, download the Typst source and compile it yourself.
+- Organization accounts do not have this feature.
+
+Sifa does not have grants, supervision, peer review, or memberships in your profile yet. Add these to the "To fill in" sections in the Typst source.

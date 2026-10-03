@@ -132,6 +132,8 @@ This repository uses a dual license:
 
 See [LICENSE](LICENSE) for the content license and [LICENSE-CODE](LICENSE-CODE) for the code license.
 
+The videos in `public/videos/` use music from [StreamBeats](https://www.streambeats.com/) by Harris Heller. The music is not covered by either license.
+
 ---
 
 Made with ♥ in 🇪🇺 by [Singi Labs](https://singi.dev)
