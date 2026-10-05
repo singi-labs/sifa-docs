@@ -31,6 +31,7 @@ jobs:
       - run: pnpm lint
       - run: pnpm check:ste:test
       - run: pnpm check:ste
+      - run: pnpm check:link-health:test
       - run: pnpm check:links:test
       - run: pnpm check:links
       - run: pnpm examples:typecheck

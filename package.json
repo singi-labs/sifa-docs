@@ -32,8 +32,9 @@
     "check:links:test": "tsx --test scripts/app-links.test.ts",
     "check:showcase": "tsx scripts/check-showcase.ts",
     "check:showcase:test": "tsx --test scripts/showcase.test.ts",
+    "check:link-health:test": "tsx --test scripts/link-health.test.ts",
     "capture:showcase": "tsx scripts/capture-showcase.ts",
-    "fetch:apps": "node scripts/fetch-app-registry.mjs"
+    "fetch:apps": "tsx scripts/fetch-app-registry.mjs"
   },
   "dependencies": {
     "@radix-ui/colors": "3.0.0",

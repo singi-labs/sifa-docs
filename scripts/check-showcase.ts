@@ -11,14 +11,22 @@
  * `manual` and `unreachable` entries are reported for a human but never fail
  * the run — we cannot tell a host that blocks CI from a genuinely dead one.
  *
+ * With SHOWCASE_TRACK=1 (the daily scheduled run) it records state instead of
+ * failing: each entry's `downSince` is updated in site-showcase.json (the page
+ * hides entries while it is set), entries down for a week go into
+ * .link-health/showcase.md for the workflow's issue, and it exits 0. PR runs
+ * leave it unset and stay strict. See scripts/link-health.ts.
+ *
  * Rationale for per-entry markers (not one global check): decisions/
  * 2026-08-23-sifa-driven-sites-showcase.md in the Sifa workspace.
  */
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
+import { longDownReport, todayUtc } from './link-health'
 import {
   classifyEntry,
   isProblem,
+  nextShowcaseDownSince,
   type FetchResult,
   type ShowcaseEntry,
   type ShowcaseVerdict,
@@ -26,6 +34,8 @@ import {
 
 const DATA = path.resolve(process.cwd(), 'content/data/site-showcase.json')
 const REPORT_DIR = path.resolve(process.cwd(), 'showcase')
+const LONG_DOWN_REPORT = path.resolve(process.cwd(), '.link-health/showcase.md')
+const TRACK = process.env.SHOWCASE_TRACK === '1'
 const TIMEOUT_MS = 20_000
 const RETRIES = 2
 // Wait between retries so a transient blip (a Cloudflare/deploy hiccup that
@@ -178,7 +188,38 @@ async function main(): Promise<void> {
   console.log(
     `\n${verdicts.length} entries: ${ok} ok, ${advisory.length} advisory, ${problems.length} to fix.`
   )
+  if (TRACK) {
+    track(entries, verdicts)
+    return
+  }
   if (problems.length > 0) process.exit(1)
+}
+
+/** Record each entry's `downSince` and write the week-down report. */
+function track(entries: ShowcaseEntry[], verdicts: ShowcaseVerdict[]): void {
+  const today = todayUtc()
+  const updated = entries.map((entry, i): ShowcaseEntry => {
+    const { downSince: _previous, ...rest } = entry
+    const downSince = nextShowcaseDownSince(entry, verdicts[i] as ShowcaseVerdict, today)
+    return downSince ? { ...rest, downSince } : rest
+  })
+  // Only rewrite on a change: the curated file's own formatting stays untouched otherwise.
+  const changed = updated.some((e, i) => (e.downSince ?? null) !== (entries[i]?.downSince ?? null))
+  if (changed) writeFileSync(DATA, `${JSON.stringify(updated, null, 2)}\n`)
+
+  const report = longDownReport(
+    updated.map((e) => ({ name: e.label, url: e.url, downSince: e.downSince })),
+    today,
+    'Remove the entry from `content/data/site-showcase.json` (and its thumbnail from `public/showcase/`), or fix its URL or marker.'
+  )
+  if (report) {
+    mkdirSync(path.dirname(LONG_DOWN_REPORT), { recursive: true })
+    writeFileSync(LONG_DOWN_REPORT, report)
+  }
+  const hidden = updated.filter((e) => e.downSince).length
+  console.log(
+    `Tracked: ${hidden} hidden${report ? `; down 7+ days, see ${LONG_DOWN_REPORT}` : ''}.`
+  )
 }
 
 void main()

@@ -6,7 +6,7 @@
  */
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
-import { classifyEntry, isProblem, type ShowcaseEntry } from './showcase'
+import { classifyEntry, isProblem, nextShowcaseDownSince, type ShowcaseEntry } from './showcase'
 
 const markerEntry: ShowcaseEntry = {
   url: 'https://example.com/cv',
@@ -86,4 +86,32 @@ test('markerUrl is named in the drift detail', () => {
   const v = classifyEntry(entry, { reachable: true, status: 200, body: 'no marker here' })
   assert.equal(v.state, 'drifted')
   assert.match(v.detail, /beck\.example\/$/)
+})
+
+test('nextShowcaseDownSince: dead or drifted starts or keeps the clock', () => {
+  const dead = classifyEntry(markerEntry, { reachable: true, status: 404, body: '' })
+  assert.equal(nextShowcaseDownSince(markerEntry, dead, '2026-10-12'), '2026-10-12')
+  const kept = { ...markerEntry, downSince: '2026-10-01' }
+  assert.equal(nextShowcaseDownSince(kept, dead, '2026-10-12'), '2026-10-01')
+})
+
+test('nextShowcaseDownSince: a healthy check clears it', () => {
+  const kept = { ...markerEntry, downSince: '2026-10-01' }
+  const ok = classifyEntry(kept, { reachable: true, status: 200, body: 'x sifa.id/p/example x' })
+  assert.equal(nextShowcaseDownSince(kept, ok, '2026-10-12'), null)
+  const manual = classifyEntry(
+    { ...manualEntry, downSince: '2026-10-01' },
+    { reachable: true, status: 200, body: '' }
+  )
+  assert.equal(
+    nextShowcaseDownSince({ ...manualEntry, downSince: '2026-10-01' }, manual, '2026-10-12'),
+    null
+  )
+})
+
+test('nextShowcaseDownSince: unreachable changes nothing (a blocked request is not proof)', () => {
+  const blocked = classifyEntry(markerEntry, { reachable: false, status: 0, body: '' })
+  assert.equal(nextShowcaseDownSince(markerEntry, blocked, '2026-10-12'), null)
+  const kept = { ...markerEntry, downSince: '2026-10-01' }
+  assert.equal(nextShowcaseDownSince(kept, blocked, '2026-10-12'), '2026-10-01')
 })

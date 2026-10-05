@@ -39,6 +39,7 @@ export interface ShowcaseProvenanceManual {
   reason: string
 }
 
+import { nextDownSince } from './link-health'
 import type { ScreenshotAction } from './screenshot-targets'
 
 export interface ShowcaseEntry {
@@ -51,6 +52,11 @@ export interface ShowcaseEntry {
   /** Interactions to run before the thumbnail is captured (e.g. open a tab). */
   captureActions?: ScreenshotAction[]
   provenance: ShowcaseProvenanceMarker | ShowcaseProvenanceManual
+  /**
+   * Set by the scheduled check: the date the entry was first found dead or
+   * drifted. The page hides it while set (scripts/link-health.ts).
+   */
+  downSince?: string
 }
 
 /** What the runner fetched: the marker-source page plus its same-origin JS. */
@@ -109,4 +115,18 @@ export function classifyEntry(entry: ShowcaseEntry, result: FetchResult): Showca
  */
 export function isProblem(verdict: ShowcaseVerdict): boolean {
   return verdict.state === 'dead' || verdict.state === 'drifted'
+}
+
+/**
+ * The entry's `downSince` after a check. Dead or drifted starts (or keeps) the
+ * clock; a live page clears it. `unreachable` changes nothing: a host that
+ * blocks CI (gui.do does) must not be hidden, nor shown again, on that basis.
+ */
+export function nextShowcaseDownSince(
+  entry: ShowcaseEntry,
+  verdict: ShowcaseVerdict,
+  today: string
+): string | null {
+  if (verdict.state === 'unreachable') return entry.downSince ?? null
+  return nextDownSince(entry.downSince, !isProblem(verdict), today)
 }

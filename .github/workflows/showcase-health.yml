@@ -11,9 +11,14 @@ name: Showcase health
 #
 # Triggers:
 # - on PRs that touch the showcase data or its checker, so a new entry is
-#   verified live before it merges.
-# - on a weekly schedule (Mondays 05:00 UTC) to catch rot between PRs.
-# - manually via workflow_dispatch.
+#   verified live before it merges. Strict: a dead or drifted entry fails.
+# - daily (05:00 UTC), and manually via workflow_dispatch. These runs track
+#   instead of failing: a dead or drifted entry gets `downSince` in
+#   site-showcase.json, which hides it on the page, and a clean check clears
+#   it again. The change lands through a PR this job opens and merges with
+#   SDK_BUMP_PR_TOKEN (a GITHUB_TOKEN merge would not trigger the deploy).
+#   An entry down for a week opens (or updates) one issue; it closes when
+#   none is. See scripts/link-health.ts.
 
 on:
   pull_request:
@@ -24,12 +29,13 @@ on:
       - 'scripts/check-showcase.ts'
       - '.github/workflows/showcase-health.yml'
   schedule:
-    - cron: '0 5 * * 1'
+    - cron: '0 5 * * *'
   workflow_dispatch:
 
 permissions:
-  contents: read
-  issues: write # for the scheduled-run failure-issue step
+  contents: write
+  pull-requests: write
+  issues: write
 
 concurrency:
   group: showcase-health-${{ github.ref }}
@@ -57,15 +63,56 @@ jobs:
       - run: pnpm check:showcase:test
 
       - name: Check showcase sites
+        if: github.event_name == 'pull_request'
         run: pnpm check:showcase
 
-      # On the scheduled run, file an issue instead of failing into a red
-      # workflow nobody watches. The report names each dead/drifted entry so
-      # it can be removed or fixed in site-showcase.json.
-      - name: File issue on scheduled-run failure
-        if: failure() && github.event_name == 'schedule'
-        uses: peter-evans/create-issue-from-file@e8ef132d6df98ed982188e460ebb3b5d4ef3a9cd # v5.0.1
+      - name: Track showcase sites
+        if: github.event_name != 'pull_request'
+        env:
+          SHOWCASE_TRACK: '1'
+        run: pnpm check:showcase
+
+      - name: Build the site with the new state
+        if: github.event_name != 'pull_request'
+        run: pnpm build
+
+      - name: Open PR on change
+        id: cpr
+        if: github.event_name != 'pull_request'
+        uses: peter-evans/create-pull-request@v6
         with:
-          title: 'Showcase site needs attention (dead or drifted)'
-          content-filepath: ./showcase/health.md
-          labels: docs, link-rot, automated
+          token: ${{ secrets.SDK_BUMP_PR_TOKEN }}
+          add-paths: content/data/site-showcase.json
+          branch: chore/showcase-health
+          delete-branch: true
+          commit-message: 'chore(showcase): update site health'
+          title: 'chore(showcase): update site health'
+          body: |
+            The daily showcase check found a site dead or drifted (hidden from
+            the page via `downSince`), or back again. Merged automatically once
+            the site builds.
+
+      - name: Merge the update
+        if: github.event_name != 'pull_request' && steps.cpr.outputs.pull-request-number != '' && steps.cpr.outputs.pull-request-operation != 'none'
+        env:
+          GH_TOKEN: ${{ secrets.SDK_BUMP_PR_TOKEN }}
+        run: gh pr merge "${{ steps.cpr.outputs.pull-request-number }}" --squash --delete-branch
+
+      - name: Open, update or close the week-down issue
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TITLE: 'Showcase site down for 7+ days'
+          REPORT: .link-health/showcase.md
+        run: |
+          number=$(gh issue list --state open --label link-rot --search "in:title \"$TITLE\"" \
+            --json number,title --jq ".[] | select(.title == env.TITLE) | .number" | head -n 1)
+          if [ -f "$REPORT" ]; then
+            if [ -n "$number" ]; then
+              gh issue edit "$number" --body-file "$REPORT"
+            else
+              gh issue create --title "$TITLE" --body-file "$REPORT" --label docs,link-rot,automated
+            fi
+          elif [ -n "$number" ]; then
+            gh issue close "$number" --comment "No showcase site has been down for 7 days anymore."
+          fi
