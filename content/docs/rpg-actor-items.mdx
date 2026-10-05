@@ -7,36 +7,6 @@ description: Sections of your Sifa ID profile unlock clothes and gear for your r
 
 Some sections of your Sifa ID profile unlock clothes and gear for that character. The items are optional. They change nothing in the sections of your Sifa profile. An item shows what your profile lists. It is not a check or a credential.
 
-<figure className="my-6">
-  {/* TODO: replace with final video */}
-  <video
-    controls
-    preload="none"
-    playsInline
-    poster="/videos/rpg-actor-items-poster.jpg"
-    className="w-full rounded-lg border border-fd-border"
-    aria-describedby="rpg-actor-video-description"
-  >
-    <source src="/videos/rpg-actor-items.mp4" type="video/mp4" />
-    Your browser cannot play this video. [Download the video](/videos/rpg-actor-items.mp4).
-  </video>
-</figure>
-
-<div id="rpg-actor-video-description">
-
-**What the video shows.** The video has music and no speech. It runs for 47 seconds.
-
-1. An example character stands alone. Other characters then appear with a Lab Coat, a Speaker Mic, a Doctoral Cap, a Dev Hoodie and a Weekend Shirt.
-2. A question mark appears above the example character. The text asks where the other characters got their gear.
-3. A Sifa ID profile gets five sections, one at a time: a job, an education entry, a talk, a linked code account and volunteering.
-4. Each section sends one item as a gift to the rpg.actor inbox. A counter goes from "1 of 5 items unlocked" to "5 of 5 items unlocked".
-5. The character claims the five gifts. The character then wears the items.
-6. The character stands in a line with the other characters. It shows different item pairs, for example the Dev Hoodie with the Leather Briefcase.
-7. A character with the label "Coming soon" appears. The text tells you that a colleague who confirms your job unlocks the Sifa Suit.
-8. The last screen shows the Sifa ID and rpg.actor logos and the words "Dress for the job". It tells you to go to sifa.id/rpg.
-
-</div>
-
 ## Get an item
 
 1. Create a character in the [rpg.actor generator](https://rpg.actor/generator).
@@ -125,22 +95,27 @@ Sifa ID can change only characters that you make with the [rpg.actor generator](
 
 The page shows an empty outline and a **Create a character** link. Make a character in the [rpg.actor generator](https://rpg.actor/generator). Then open [sifa.id/rpg](https://sifa.id/rpg) again.
 
+### Sifa ID cannot show your character
+
+The page shows an empty outline with the text `We can't show your character right now.` and a link to rpg.actor. You have a character, but rpg.actor cannot supply its picture at the moment. Open your character page on rpg.actor to see the character there. Then open [sifa.id/rpg](https://sifa.id/rpg) again.
+
 ### The item does not show in a game
 
 Games and apps can need a few minutes to show the item. Make sure that your character wears the item. An item that is only in your inventory does not show. Also make sure that the game supports rpg.actor. The [rpg.actor experiences page](https://rpg.actor/experiences) lists the games and apps.
 
 ### Messages on the page
 
-| Message                                                                                                      | Meaning                                                                          | What to do                                         |
-| ------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------- | -------------------------------------------------- |
-| `Permission saved. Press the button on the item again to finish.`                                            | Your account provider confirmed the permission.                                  | Press the button on the item again.                |
-| `That item can't be claimed right now. Check that your profile still unlocks it.`                            | Your profile no longer has the section that unlocks the item.                    | Add the section again, or choose a different item. |
-| `We couldn't send your items right now. Try again later.`                                                    | The sifa.id account could not write the gift.                                    | Try again later.                                   |
-| `Claiming and wearing items isn't available right now. Try again later.`                                     | Sifa ID cannot claim or change items at the moment.                              | Try again later.                                   |
-| `We couldn't save to your account right now. Try again later.`                                               | Your account provider did not accept the record.                                 | Try again later.                                   |
-| `We can only change characters made with the rpg.actor generator. You can still wear the item on rpg.actor.` | Somebody made your character without the rpg.actor generator.                    | Wear the item on your character page on rpg.actor. |
-| `rpg.actor couldn't redraw your character, so nothing changed. Try again in a moment.`                       | rpg.actor could not draw the new picture. Sifa ID kept your character as it was. | Try again in a moment.                             |
-| `rpg.actor couldn't redraw your character. Its outfit may not match its picture until you try again.`        | The layers of your character changed, but the picture did not change.            | Press the same button again.                       |
+| Message                                                                                                       | Meaning                                                                          | What to do                                         |
+| ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------- |
+| `Permission saved. Press the button on the item again to finish.`                                             | Your account provider confirmed the permission.                                  | Press the button on the item again.                |
+| `That item can't be claimed right now. Check that your profile still unlocks it.`                             | Your profile no longer has the section that unlocks the item.                    | Add the section again, or choose a different item. |
+| `We couldn't send your items right now. Try again later.`                                                     | The sifa.id account could not write the gift.                                    | Try again later.                                   |
+| `Claiming and wearing items isn't available right now. Try again later.`                                      | Sifa ID cannot claim or change items at the moment.                              | Try again later.                                   |
+| `We couldn't save to your account right now. Try again later.`                                                | Your account provider did not accept the record.                                 | Try again later.                                   |
+| `You need an rpg.actor character to wear items. Create a character, then come back and press Wear now again.` | You do not have an rpg.actor character yet.                                      | Create a character. Then press **Wear now** again. |
+| `We can only change characters made with the rpg.actor generator. You can still wear the item on rpg.actor.`  | Somebody made your character without the rpg.actor generator.                    | Wear the item on your character page on rpg.actor. |
+| `rpg.actor couldn't redraw your character, so nothing changed. Try again in a moment.`                        | rpg.actor could not draw the new picture. Sifa ID kept your character as it was. | Try again in a moment.                             |
+| `rpg.actor couldn't redraw your character. Its outfit may not match its picture until you try again.`         | The layers of your character changed, but the picture did not change.            | Press the same button again.                       |
 
 ## Related
 
