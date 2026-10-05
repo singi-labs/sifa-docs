@@ -24,6 +24,7 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises'
 import { dirname } from 'node:path'
 import { longDownReport, nextDownSince, todayUtc } from './link-health'
+import { BLOCKED_STATUSES } from './showcase'
 
 const SOURCE = process.env.SIFA_API_URL ?? 'https://sifa.id'
 const ENDPOINT = `${SOURCE}/api/apps/registry`
@@ -57,7 +58,9 @@ async function probeOnce(url) {
       signal: AbortSignal.timeout(PROBE_TIMEOUT_MS),
       headers: { 'user-agent': 'sifa-docs-build/1.0 (+https://docs.sifa.id)' },
     })
-    return probe.status < 400
+    // 401/403/429 mean the server is up but refuses bots (voxport.com did):
+    // that is a live site, not a dead link.
+    return probe.status < 400 || BLOCKED_STATUSES.has(probe.status)
   } catch {
     return false
   }

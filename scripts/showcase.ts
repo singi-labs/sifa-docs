@@ -69,6 +69,12 @@ export interface FetchResult {
   body: string
 }
 
+/**
+ * Answers that mean "not for you", not "gone": bot protection and rate limits
+ * (clembs.com answers CI with a 403). Treated like no answer at all.
+ */
+export const BLOCKED_STATUSES: ReadonlySet<number> = new Set([401, 403, 429])
+
 export type ShowcaseState = 'ok' | 'dead' | 'drifted' | 'manual' | 'unreachable'
 
 export interface ShowcaseVerdict {
@@ -90,6 +96,13 @@ export function classifyEntry(entry: ShowcaseEntry, result: FetchResult): Showca
       entry,
       state: 'unreachable',
       detail: 'no HTTP response (network error, timeout, or the host blocked the request)',
+    }
+  }
+  if (BLOCKED_STATUSES.has(result.status)) {
+    return {
+      entry,
+      state: 'unreachable',
+      detail: `HTTP ${result.status}: the host refused the checker, which says nothing about the page`,
     }
   }
   if (result.status < 200 || result.status >= 300) {

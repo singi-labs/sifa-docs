@@ -115,3 +115,11 @@ test('nextShowcaseDownSince: unreachable changes nothing (a blocked request is n
   const kept = { ...markerEntry, downSince: '2026-10-01' }
   assert.equal(nextShowcaseDownSince(kept, blocked, '2026-10-12'), '2026-10-01')
 })
+
+test('a host that blocks the checker (401/403/429) is unreachable, not dead', () => {
+  for (const status of [401, 403, 429]) {
+    const v = classifyEntry(markerEntry, { reachable: true, status, body: '' })
+    assert.equal(v.state, 'unreachable', `HTTP ${status}`)
+    assert.equal(isProblem(v), false)
+  }
+})
