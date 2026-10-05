@@ -2,8 +2,18 @@ name: App registry
 
 # Refresh the committed snapshot of the app registry that /docs/supported-apps
 # renders. The registry lives in sifa-api; snapshotting it keeps the docs build
-# off the network, at the cost of being up to a day stale. Opens a PR rather
-# than pushing, so a new app landing on the docs site is a reviewed change.
+# off the network, at the cost of being up to a day stale.
+#
+# The refresh lands by itself: an app reaches this list through a reviewed
+# change to the registry in sifa-api, so a second review here only delayed it
+# (an unmerged refresh PR once sat for two months while dead links stayed up).
+# The site is built before merging, and the PR is opened and merged with
+# SDK_BUMP_PR_TOKEN because a merge made with GITHUB_TOKEN would not trigger
+# the deploy.
+#
+# Dead homepages: fetch:apps hides a homepage that stops answering and records
+# `homepageDownSince` (scripts/link-health.ts). Once one has been down for a
+# week, this opens (or updates) a single issue; it closes when none is.
 
 on:
   schedule:
@@ -17,6 +27,7 @@ concurrency:
 permissions:
   contents: write
   pull-requests: write
+  issues: write
 
 jobs:
   refresh:
@@ -36,18 +47,46 @@ jobs:
       - name: Fetch the registry
         run: pnpm fetch:apps
 
+      - name: Build the site with the new snapshot
+        run: pnpm build
+
       - name: Open PR on change
+        id: cpr
         uses: peter-evans/create-pull-request@v6
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.SDK_BUMP_PR_TOKEN }}
           add-paths: content/data/app-registry.json
           branch: chore/app-registry-refresh
           delete-branch: true
           commit-message: 'chore(apps): refresh the app registry snapshot'
           title: 'chore(apps): refresh the app registry snapshot'
           body: |
-            The app registry in sifa-api changed. This updates the snapshot
-            that `/docs/supported-apps` renders.
+            Daily refresh of the snapshot that `/docs/supported-apps` renders,
+            from the app registry in sifa-api. Homepages that stopped answering
+            are hidden (`homepageDownSince` records since when).
 
-            Check the diff reads sensibly to a user before merging: a new app
-            here is a public statement that Sifa reads its activity.
+            Merged automatically once the site builds.
+
+      - name: Merge the refresh
+        if: steps.cpr.outputs.pull-request-number != '' && steps.cpr.outputs.pull-request-operation != 'none'
+        env:
+          GH_TOKEN: ${{ secrets.SDK_BUMP_PR_TOKEN }}
+        run: gh pr merge "${{ steps.cpr.outputs.pull-request-number }}" --squash --delete-branch
+
+      - name: Open, update or close the week-down issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TITLE: 'Supported apps: homepage down for 7+ days'
+          REPORT: .link-health/apps.md
+        run: |
+          number=$(gh issue list --state open --label link-rot --search "in:title \"$TITLE\"" \
+            --json number,title --jq ".[] | select(.title == env.TITLE) | .number" | head -n 1)
+          if [ -f "$REPORT" ]; then
+            if [ -n "$number" ]; then
+              gh issue edit "$number" --body-file "$REPORT"
+            else
+              gh issue create --title "$TITLE" --body-file "$REPORT" --label docs,link-rot,automated
+            fi
+          elif [ -n "$number" ]; then
+            gh issue close "$number" --comment "No homepage has been down for 7 days anymore."
+          fi

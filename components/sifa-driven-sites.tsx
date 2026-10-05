@@ -6,6 +6,8 @@ interface ShowcaseSite {
   handle?: string
   note?: string
   screenshot?: string
+  /** Set by the scheduled check while the site is dead or drifted. */
+  downSince?: string
 }
 
 /**
@@ -18,33 +20,43 @@ interface ShowcaseSite {
  * marker). Thumbnails are captured on demand by `scripts/capture-showcase.ts`.
  * Liveness and per-entry provenance markers are checked on a schedule by
  * `scripts/check-showcase.ts`; see decisions/2026-08-23-sifa-driven-sites-
- * showcase.md in the Sifa workspace.
+ * showcase.md in the Sifa workspace. A site that check finds dead or drifted
+ * carries `downSince` and is hidden until it passes again.
  */
 export function SifaDrivenSites() {
   return (
     <ul className="not-prose my-6 grid list-none grid-cols-1 gap-4 pl-0 sm:grid-cols-2 lg:grid-cols-3">
-      {(sites as ShowcaseSite[]).map((site) => (
-        <li key={site.url} className="m-0">
-          <a href={site.url} target="_blank" rel="noreferrer" className="group block no-underline">
-            {site.screenshot ? (
-              <span className="block aspect-[3/2] overflow-hidden rounded-lg border border-fd-border">
-                {/* eslint-disable-next-line @next/next/no-img-element -- external showcase thumbnail, static export */}
-                <img
-                  src={`/showcase/${site.screenshot}`}
-                  alt={`Screenshot of ${site.label}`}
-                  loading="lazy"
-                  decoding="async"
-                  className="h-full w-full object-cover object-top transition-opacity group-hover:opacity-90"
-                />
+      {(sites as ShowcaseSite[])
+        .filter((site) => !site.downSince)
+        .map((site) => (
+          <li key={site.url} className="m-0">
+            <a
+              href={site.url}
+              target="_blank"
+              rel="noreferrer"
+              className="group block no-underline"
+            >
+              {site.screenshot ? (
+                <span className="block aspect-[3/2] overflow-hidden rounded-lg border border-fd-border">
+                  {/* eslint-disable-next-line @next/next/no-img-element -- external showcase thumbnail, static export */}
+                  <img
+                    src={`/showcase/${site.screenshot}`}
+                    alt={`Screenshot of ${site.label}`}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover object-top transition-opacity group-hover:opacity-90"
+                  />
+                </span>
+              ) : null}
+              <span className="mt-2 block text-sm">
+                <span className="text-fd-primary underline underline-offset-2">{site.label}</span>
+                {site.note ? (
+                  <span className="text-fd-muted-foreground"> ({site.note})</span>
+                ) : null}
               </span>
-            ) : null}
-            <span className="mt-2 block text-sm">
-              <span className="text-fd-primary underline underline-offset-2">{site.label}</span>
-              {site.note ? <span className="text-fd-muted-foreground"> ({site.note})</span> : null}
-            </span>
-          </a>
-        </li>
-      ))}
+            </a>
+          </li>
+        ))}
     </ul>
   )
 }
