@@ -1,0 +1,123 @@
+---
+title: rpg.actor items
+description: Sections of your Sifa ID profile unlock clothes and gear for your rpg.actor character. This page tells you how to claim and wear the items, and what Sifa writes to your account.
+---
+
+[rpg.actor](https://rpg.actor) gives you a small pixel-art character. The character lives in your own [Atmosphere](/docs/what-is-the-atmosphere) account. Games and apps that support rpg.actor can show it.
+
+Some sections of your Sifa ID profile unlock clothes and gear for that character. The items are optional. They change nothing in the sections of your Sifa profile. An item shows what your profile lists. It is not a check or a credential.
+
+## Get an item
+
+1. Create a character in the [rpg.actor generator](https://rpg.actor/generator).
+2. Sign in to Sifa ID.
+3. Open [sifa.id/rpg](https://sifa.id/rpg). The page shows your character and the items.
+4. Find an item with the **Update Sifa ID** button. The card tells you which section unlocks the item.
+5. Press **Update Sifa ID**. The button opens the correct section of your profile.
+6. Add the section to your profile.
+7. Go back to [sifa.id/rpg](https://sifa.id/rpg). The item now has a **Claim item** button.
+8. Press **Claim item**. The item goes into your rpg.actor inventory.
+9. Press **Wear now**. Your character puts on the item.
+
+The first time that you press **Claim item** or **Wear now**, Sifa ID asks for your permission. Read [What Sifa writes to your account](#what-sifa-writes-to-your-account) for the details.
+
+When you have items to claim, your Sifa ID inbox shows a message. The message links to [sifa.id/rpg](https://sifa.id/rpg).
+
+## Items and the sections that unlock them
+
+| Item              | The profile section that unlocks it                                                              |
+| ----------------- | ------------------------------------------------------------------------------------------------ |
+| Leather Briefcase | A job                                                                                            |
+| Speaker Mic       | A talk                                                                                           |
+| Strapped Books    | An education entry                                                                               |
+| Doctoral Cap      | An education entry with the level set to doctorate                                               |
+| Dev Hoodie        | A linked [GitHub](https://github.com) account, or use of [Tangled](https://tangled.org) for code |
+| Weekend Shirt     | Volunteering                                                                                     |
+| Lab Coat          | A linked [ORCID](https://orcid.org) researcher ID                                                |
+
+The **Sifa Suit** comes later. The page shows it with the label **Coming soon**. It will need a confirmation from other people, not only a section that you add.
+
+## What Sifa writes to your account
+
+The gift comes from the sifa.id account. Sifa ID writes the gift as a public record in the sifa.id account, not in your account. The record names the profile section that unlocked the item.
+
+To claim and wear items on [sifa.id/rpg](https://sifa.id/rpg), Sifa ID needs your permission to write to your account. Sifa ID asks for this permission one time. Your account provider asks you to confirm. You then come back to Sifa ID. Press the button on the item again to finish.
+
+With this permission, Sifa ID writes only these rpg.actor records:
+
+| Record                | What Sifa ID writes                                                                     |
+| --------------------- | --------------------------------------------------------------------------------------- |
+| `equipment.rpg.item`  | The item that you claim. Sifa ID also uploads the pictures of the item to your account. |
+| `actor.rpg.generator` | The layers of your character, when you wear an item or take it off.                     |
+| `actor.rpg.sprite`    | The picture of your character, when you wear an item or take it off.                    |
+
+Sifa ID writes nothing else with this permission.
+
+Sifa ID reads only which sections your profile has. These are jobs, volunteering, talks, education and its level, linked ORCID and GitHub accounts, and your use of Tangled. When you wear an item or take it off, Sifa ID asks rpg.actor to draw the new picture of your character. Sifa ID shares nothing else with rpg.actor.
+
+### Remove the permission
+
+You give the permission to the Sifa ID app at your account provider. To remove it, remove the Sifa ID app at your account provider:
+
+1. Sign in to the website of your account provider.
+2. Open the settings page for connected apps.
+3. Remove Sifa ID from the list.
+
+Sifa ID then cannot write to your account. You may need to sign in to Sifa ID again. Your items stay in your rpg.actor inventory. Sifa ID asks for the permission again the next time that you claim or wear an item.
+
+## Take off an item
+
+Press **Take off** on the item. Your character no longer wears the item. The item stays in your inventory, so you can wear it again later.
+
+Did the item replace something that your character wore before, for example a top? Then that slot is empty after you take the item off. Sifa ID does not put the old item back. To fill the slot, choose a new item in the [rpg.actor generator](https://rpg.actor/generator).
+
+You can also wear and take off items on your character page on rpg.actor. The page address is `https://rpg.actor/<your-handle>`.
+
+## Privacy
+
+Gifts and items are public records, like your [Bluesky](https://bsky.app) posts. Everyone can see them. An item shows that your profile lists the section that unlocked it. For example, the Doctoral Cap shows that your profile lists a doctorate.
+
+When you claim an item, the item also appears in your activity, like other things that you do in the Atmosphere.
+
+**You change your profile later.** The gifts and the items stay. A gift records a past unlock. It does not follow your profile.
+
+**You delete your Sifa ID account.** Sifa ID deletes the gifts that it sent you. Items that you accepted stay in your rpg.actor inventory. You can remove them on rpg.actor.
+
+For more about your data, read [Privacy and data](/docs/privacy-and-data).
+
+## Troubleshooting
+
+### Your character is not from the rpg.actor generator
+
+Sifa ID can change only characters that you make with the [rpg.actor generator](https://rpg.actor/generator). You can still claim items for another character. Wear them on your character page on rpg.actor.
+
+### You do not have a character
+
+The page shows an empty outline and a **Create a character** link. Make a character in the [rpg.actor generator](https://rpg.actor/generator). Then open [sifa.id/rpg](https://sifa.id/rpg) again.
+
+### Sifa ID cannot show your character
+
+The page shows an empty outline with the text `We can't show your character right now.` and a link to rpg.actor. You have a character, but rpg.actor cannot supply its picture at the moment. Open your character page on rpg.actor to see the character there. Then open [sifa.id/rpg](https://sifa.id/rpg) again.
+
+### The item does not show in a game
+
+Games and apps can need a few minutes to show the item. Make sure that your character wears the item. An item that is only in your inventory does not show. Also make sure that the game supports rpg.actor. The [rpg.actor experiences page](https://rpg.actor/experiences) lists the games and apps.
+
+### Messages on the page
+
+| Message                                                                                                       | Meaning                                                                          | What to do                                         |
+| ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------- |
+| `Permission saved. Press the button on the item again to finish.`                                             | Your account provider confirmed the permission.                                  | Press the button on the item again.                |
+| `That item can't be claimed right now. Check that your profile still unlocks it.`                             | Your profile no longer has the section that unlocks the item.                    | Add the section again, or choose a different item. |
+| `We couldn't send your items right now. Try again later.`                                                     | The sifa.id account could not write the gift.                                    | Try again later.                                   |
+| `Claiming and wearing items isn't available right now. Try again later.`                                      | Sifa ID cannot claim or change items at the moment.                              | Try again later.                                   |
+| `We couldn't save to your account right now. Try again later.`                                                | Your account provider did not accept the record.                                 | Try again later.                                   |
+| `You need an rpg.actor character to wear items. Create a character, then come back and press Wear now again.` | You do not have an rpg.actor character yet.                                      | Create a character. Then press **Wear now** again. |
+| `We can only change characters made with the rpg.actor generator. You can still wear the item on rpg.actor.`  | Somebody made your character without the rpg.actor generator.                    | Wear the item on your character page on rpg.actor. |
+| `rpg.actor couldn't redraw your character, so nothing changed. Try again in a moment.`                        | rpg.actor could not draw the new picture. Sifa ID kept your character as it was. | Try again in a moment.                             |
+| `rpg.actor couldn't redraw your character. Its outfit may not match its picture until you try again.`         | The layers of your character changed, but the picture did not change.            | Press the same button again.                       |
+
+## Related
+
+- [Activity feed](/docs/activity-feed), for how Sifa shows your activity from other apps
+- [Privacy and data](/docs/privacy-and-data), for what is public and what happens when you delete your account
