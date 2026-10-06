@@ -6,6 +6,7 @@
     "description": "Slide decks in Aether OS on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://aetheros.computer",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/aetheros.computer"
   },
   {
@@ -15,6 +16,7 @@
     "description": "A desktop environment for the AT Protocol, running in the browser.",
     "externallySourced": false,
     "homepage": "https://aetheros.computer",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/aetheros.computer"
   },
   {
@@ -24,6 +26,7 @@
     "description": "An app directory on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://alternativeproto.net",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/alternativeproto.net"
   },
   {
@@ -33,6 +36,7 @@
     "description": "Bluesky-clone feed and curated lists on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://anisota.net",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/anisota.net"
   },
   {
@@ -42,6 +46,7 @@
     "description": "Question-and-answer on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://askeverything.app",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/askeverything.app"
   },
   {
@@ -51,6 +56,7 @@
     "description": "Questions and answers on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://asq.fyi",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/asq.fyi"
   },
   {
@@ -60,6 +66,7 @@
     "description": "National AT Protocol community commons in Europe.",
     "externallySourced": false,
     "homepage": null,
+    "homepageDownSince": "2026-10-06",
     "logo": null
   },
   {
@@ -69,6 +76,7 @@
     "description": "Funding and endorsements for AT Protocol builders.",
     "externallySourced": false,
     "homepage": "https://at.fund",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/at.fund"
   },
   {
@@ -78,6 +86,7 @@
     "description": "Distributed container registry on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://atcr.io",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/atcr.io"
   },
   {
@@ -87,6 +96,7 @@
     "description": "Events and RSVPs on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://atmo.rsvp",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/atmo.rsvp"
   },
   {
@@ -96,6 +106,7 @@
     "description": "Text and code pastes on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://atmob.in",
+    "homepageDownSince": null,
     "logo": null
   },
   {
@@ -105,6 +116,7 @@
     "description": "Forum threads and replies on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://atmobb.app",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/atmobb.app"
   },
   {
@@ -114,6 +126,7 @@
     "description": "App reviews and listings on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://atstore.fyi",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/atstore.fyi"
   },
   {
@@ -123,6 +136,7 @@
     "description": "Vouches and trust on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://atvouch.dev",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/atvouch.dev"
   },
   {
@@ -132,6 +146,7 @@
     "description": "Earned badges on the AT Protocol.",
     "externallySourced": false,
     "homepage": null,
+    "homepageDownSince": null,
     "logo": null
   },
   {
@@ -141,6 +156,7 @@
     "description": "Location pins with photos and posts on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://beaconbits.app",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/beaconbits.app"
   },
   {
@@ -150,6 +166,7 @@
     "description": "Social networking on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://bsky.app",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/bsky.app"
   },
   {
@@ -159,6 +176,7 @@
     "description": "Reading tracker and reviews on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://bookhive.buzz",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/bookhive.buzz"
   },
   {
@@ -168,6 +186,7 @@
     "description": "3D brick builds saved to your account on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://brickster.at",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/brickster.at"
   },
   {
@@ -177,6 +196,7 @@
     "description": "Endorsements and group memberships on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://certified.app",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/certified.app"
   },
   {
@@ -186,6 +206,7 @@
     "description": "Preprints and eprints on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://chive.pub",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/chive.pub"
   },
   {
@@ -195,6 +216,7 @@
     "description": "Community chat on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://colibri.social",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/colibri.social"
   },
   {
@@ -204,6 +226,7 @@
     "description": "Curated lists of recommendations on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://collectivesocial.app",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/collectivesocial.app"
   },
   {
@@ -213,6 +236,7 @@
     "description": "Events and RSVPs on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://atmo.rsvp",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/atmo.rsvp"
   },
   {
@@ -222,6 +246,7 @@
     "description": "Publishing for the things you make on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://crate.social",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/crate.social"
   },
   {
@@ -231,6 +256,7 @@
     "description": "Location check-ins on the AT Protocol.",
     "externallySourced": false,
     "homepage": null,
+    "homepageDownSince": "2026-10-06",
     "logo": null
   },
   {
@@ -240,6 +266,7 @@
     "description": "Posts from a verified Fediverse account",
     "externallySourced": true,
     "homepage": null,
+    "homepageDownSince": null,
     "logo": null
   },
   {
@@ -249,6 +276,7 @@
     "description": "Posts from a verified RSS or Atom feed",
     "externallySourced": true,
     "homepage": null,
+    "homepageDownSince": null,
     "logo": null
   },
   {
@@ -258,6 +286,7 @@
     "description": "Photo sharing on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://flashes.blue",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/flashes.blue"
   },
   {
@@ -267,6 +296,7 @@
     "description": "Link aggregation on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://frontpage.fyi",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/frontpage.fyi"
   },
   {
@@ -276,6 +306,7 @@
     "description": "GitHub contribution activity (merged pull requests)",
     "externallySourced": true,
     "homepage": "https://github.com",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/github.com"
   },
   {
@@ -285,6 +316,7 @@
     "description": "Photo galleries on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://grain.social",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/grain.social"
   },
   {
@@ -294,6 +326,7 @@
     "description": "Blogging on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://greengale.app",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/greengale.app"
   },
   {
@@ -303,6 +336,7 @@
     "description": "Leave a note on someone else’s cross-site guestbook on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://baileytownsend.dev",
+    "homepageDownSince": null,
     "logo": null
   },
   {
@@ -312,6 +346,7 @@
     "description": "Claims of impactful work, published as records you own on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://hypercerts.org",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/hypercerts.org"
   },
   {
@@ -321,6 +356,7 @@
     "description": "Reviews of impact claims on the AT Protocol.",
     "externallySourced": false,
     "homepage": null,
+    "homepageDownSince": "2026-10-06",
     "logo": null
   },
   {
@@ -330,6 +366,7 @@
     "description": "Professional networking and speaker directory on the AT Protocol.",
     "externallySourced": false,
     "homepage": null,
+    "homepageDownSince": "2026-10-06",
     "logo": null
   },
   {
@@ -339,6 +376,7 @@
     "description": "Identity verification on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://keytrace.dev",
+    "homepageDownSince": null,
     "logo": null
   },
   {
@@ -348,6 +386,7 @@
     "description": "Recipes and kitchen management on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://kich.io",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/kich.io"
   },
   {
@@ -357,6 +396,7 @@
     "description": "Communities on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://kut.social",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/kut.social"
   },
   {
@@ -366,6 +406,7 @@
     "description": "Chord sheets and guitar tabs on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://leadsheet.fm",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/leadsheet.fm"
   },
   {
@@ -375,6 +416,7 @@
     "description": "Social publishing on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://leaflet.pub",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/leaflet.pub"
   },
   {
@@ -384,6 +426,7 @@
     "description": "Whiteboard drawings saved to your account on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://lexidraw.app",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/lexidraw.app"
   },
   {
@@ -393,6 +436,7 @@
     "description": "Wikis on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://lichen.wiki",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/lichen.wiki"
   },
   {
@@ -402,6 +446,7 @@
     "description": "Life-event timelines on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://lifepo.st",
+    "homepageDownSince": null,
     "logo": null
   },
   {
@@ -411,6 +456,7 @@
     "description": "Localization and translation on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://locale.at",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/locale.at"
   },
   {
@@ -420,6 +466,7 @@
     "description": "Annotate the web on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://margin.at",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/margin.at"
   },
   {
@@ -429,6 +476,7 @@
     "description": "Domain registration on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://marque.at",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/marque.at"
   },
   {
@@ -438,6 +486,7 @@
     "description": "Model Context Protocol servers on the AT Protocol.",
     "externallySourced": false,
     "homepage": null,
+    "homepageDownSince": "2026-10-06",
     "logo": null
   },
   {
@@ -447,6 +496,7 @@
     "description": "Music composition on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://minomobi.com",
+    "homepageDownSince": null,
     "logo": null
   },
   {
@@ -456,6 +506,7 @@
     "description": "Reddit-style discussion communities on the AT Protocol.",
     "externallySourced": false,
     "homepage": null,
+    "homepageDownSince": "2026-10-06",
     "logo": null
   },
   {
@@ -465,6 +516,7 @@
     "description": "Community membership and management on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://opensocial.community",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/opensocial.community"
   },
   {
@@ -474,6 +526,7 @@
     "description": "Link posts on the AT Protocol.",
     "externallySourced": false,
     "homepage": null,
+    "homepageDownSince": "2026-10-06",
     "logo": null
   },
   {
@@ -483,6 +536,7 @@
     "description": "Travel logs and place collections on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://passports.social",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/passports.social"
   },
   {
@@ -492,6 +546,7 @@
     "description": "Code snippets on the AT Protocol.",
     "externallySourced": false,
     "homepage": null,
+    "homepageDownSince": "2026-10-06",
     "logo": null
   },
   {
@@ -501,6 +556,7 @@
     "description": "Blogging and microblogging on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://pckt.blog",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/pckt.blog"
   },
   {
@@ -510,6 +566,7 @@
     "description": "Hand-drawn artwork on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://pinksea.art",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/pinksea.art"
   },
   {
@@ -519,6 +576,7 @@
     "description": "Photo sharing on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://pixl.pics",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/pixl.pics"
   },
   {
@@ -528,6 +586,7 @@
     "description": "Text pastes on the AT Protocol.",
     "externallySourced": false,
     "homepage": null,
+    "homepageDownSince": "2026-10-06",
     "logo": null
   },
   {
@@ -537,6 +596,7 @@
     "description": "Music player and listener comments on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://plyr.fm",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/plyr.fm"
   },
   {
@@ -546,6 +606,7 @@
     "description": "Reviews and ratings on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://popfeed.social",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/popfeed.social"
   },
   {
@@ -555,6 +616,7 @@
     "description": "Community memberships on the AT Protocol.",
     "externallySourced": false,
     "homepage": null,
+    "homepageDownSince": "2026-10-06",
     "logo": null
   },
   {
@@ -564,6 +626,7 @@
     "description": "Share and discover recipes on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://recipe.exchange",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/recipe.exchange"
   },
   {
@@ -573,6 +636,7 @@
     "description": "Social spaces on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://roomy.space",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/roomy.space"
   },
   {
@@ -582,6 +646,7 @@
     "description": "RPG characters and equipment on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://rpg.actor",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/rpg.actor"
   },
   {
@@ -591,6 +656,7 @@
     "description": "Social knowledge trails on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://semble.so",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/semble.so"
   },
   {
@@ -600,6 +666,7 @@
     "description": "Video and photo social on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://sprk.so",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/sprk.so"
   },
   {
@@ -609,6 +676,7 @@
     "description": "Document publishing on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://standard.site",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/standard.site"
   },
   {
@@ -618,6 +686,7 @@
     "description": "Short thoughts on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://thought.stream",
+    "homepageDownSince": null,
     "logo": null
   },
   {
@@ -627,6 +696,7 @@
     "description": "Livestreaming on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://stream.place",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/stream.place"
   },
   {
@@ -636,6 +706,7 @@
     "description": "Git hosting on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://tangled.sh",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/tangled.sh"
   },
   {
@@ -645,6 +716,7 @@
     "description": "Video hosting on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://tokono.ma",
+    "homepageDownSince": null,
     "logo": null
   },
   {
@@ -654,6 +726,7 @@
     "description": "Roadmap discussions on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://userinput.app",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/userinput.app"
   },
   {
@@ -663,6 +736,7 @@
     "description": "Published agent skills on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://v-it.org",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/v-it.org"
   },
   {
@@ -671,8 +745,9 @@
     "category": "Video",
     "description": "Podcasts on the AT Protocol.",
     "externallySourced": false,
-    "homepage": null,
-    "logo": null
+    "homepage": "https://www.voxport.live",
+    "homepageDownSince": null,
+    "logo": "https://sifa.id/api/company/favicon/www.voxport.live"
   },
   {
     "id": "waow",
@@ -681,6 +756,7 @@
     "description": "Drawings, slides and polls on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://waow.tech",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/waow.tech"
   },
   {
@@ -690,6 +766,7 @@
     "description": "Published WebAssembly programs on the AT Protocol.",
     "externallySourced": false,
     "homepage": null,
+    "homepageDownSince": null,
     "logo": null
   },
   {
@@ -699,6 +776,7 @@
     "description": "Long-form writing on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://whtwnd.com",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/whtwnd.com"
   },
   {
@@ -708,6 +786,7 @@
     "description": "Social connections on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://youandme.at",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/youandme.at"
   },
   {
@@ -717,6 +796,7 @@
     "description": "Photography collections on the AT Protocol.",
     "externallySourced": false,
     "homepage": "https://zeens.app",
+    "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/zeens.app"
   }
 ]
