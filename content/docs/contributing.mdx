@@ -9,28 +9,11 @@ The canonical rules live in the org guide: [CONTRIBUTING in `singi-labs/.github`
 
 ## What we build toward
 
-Sifa ID builds toward a professional reputation that you earn and own. It comes from real work. The people who know you vouch for it. It travels across the open web, so no single company can gate it or switch it off. Professional life is where we start, not where we stop. The fuller story is on the [about page](https://sifa.id/about).
+Sifa ID builds toward a professional reputation that you earn and own. It comes from real work. The people who know you vouch for it. It travels across the open web, so no single company can gate it or switch it off. Professional life is where we start, not where we stop.
 
 **Earned, not claimed. Owned by you, built for the open web.**
 
-These principles decide what belongs in Sifa. When you weigh a feature or a change, if it works against one of them, it is probably a no:
-
-1. **Show your work, do not score it.** Real activity and contributions, never ranks, tiers, or leaderboards.
-2. **Earned from others, not asserted by you.** The people who know you verify the credibility that counts. That idea is the core of Sifa, so protect it.
-3. **You own it, and you can always leave.** Every feature keeps your data, identity, and graph portable. If it cannot leave, it does not ship.
-4. **Current by default, not by chore.** Prefer pulling in real activity over asking people to maintain a profile by hand.
-5. **Honest over flattering.** No vanity metrics, no dark patterns, nothing that inflates a number for its own sake.
-6. **Open rails, no landlord.** We build on open standards, host in Europe, and stay portable. We do not rebuild the lock-in that we replace.
-7. **Meet people where they already are.** Work with the open web people already use.
-
-We will never build these, whatever the pull:
-
-- reputation scores and leaderboards
-- borrowed endorsements in the costume of a verification
-- growth dark patterns and lock-in
-- surveillance, and sales of member data
-- puzzles or games that farm attention
-- a feature-for-feature clone of the old professional network
+The principles, and the list of things we will not build, live on the [about page](https://sifa.id/about#what-we-wont-build). They decide what belongs in Sifa. A change that works against one of them does not belong. When you propose a feature and you are not sure that it fits, open an issue and name the principle that it serves.
 
 ## The stack
 
@@ -81,6 +64,8 @@ Commits follow [Conventional Commits](https://www.conventionalcommits.org/): `ty
 
 ## The standards
 
-The AI reviewer and maintainers both enforce the [engineering standards](https://github.com/singi-labs/.github/tree/main/engineering/standards). The essentials: strict TypeScript with no `any`, Zod on every input, tests with every change, sanitised user content, WCAG 2.2 AA on the UI, and no `console.*`. Reuse an existing UI primitive before you add a new one.
+The AI reviewer and maintainers both enforce the [engineering standards](https://github.com/singi-labs/.github/tree/main/engineering/standards). The essentials: strict TypeScript with no `any`, Zod on every input, tests with every change, sanitised user content, accessible UI, and no `console.*`. Reuse an existing UI primitive before you add a new one.
+
+The accessibility baseline is WCAG 2.2 AA. On top of that we adopt WCAG 3 draft outcomes that are already testable: form errors next to the field, a reason for each disabled control, and focus indicators with 3:1 contrast.
 
 If you use a coding agent (Claude Code or similar), drop [`agent-instructions.md`](https://github.com/singi-labs/.github/blob/main/engineering/agent-instructions.md) into your clone as `CLAUDE.md` / `AGENTS.md` to keep it inside the house rules.
