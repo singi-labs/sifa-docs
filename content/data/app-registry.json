@@ -160,6 +160,16 @@
     "logo": "https://sifa.id/api/company/favicon/beaconbits.app"
   },
   {
+    "id": "birdsplace",
+    "name": "birds.place",
+    "category": "Places",
+    "description": "Bird sightings logged to your account on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://birds.place",
+    "homepageDownSince": null,
+    "logo": "https://sifa.id/api/company/favicon/birds.place"
+  },
+  {
     "id": "bluesky",
     "name": "Bluesky",
     "category": "Posts",
@@ -658,6 +668,26 @@
     "homepage": "https://semble.so",
     "homepageDownSince": null,
     "logo": "https://sifa.id/api/company/favicon/semble.so"
+  },
+  {
+    "id": "skillz",
+    "name": "skillz.supply",
+    "category": "Code",
+    "description": "Agent skills published to your account on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://skillz.supply",
+    "homepageDownSince": null,
+    "logo": null
+  },
+  {
+    "id": "skymap",
+    "name": "Skymap",
+    "category": "Places",
+    "description": "Maps of places saved to your account on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://skymap.blue",
+    "homepageDownSince": null,
+    "logo": null
   },
   {
     "id": "spark",
