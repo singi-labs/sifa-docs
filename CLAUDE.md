@@ -1,7 +1,7 @@
 # CLAUDE.md — sifa-docs
 
 Repo-specific implementer notes for Claude Code. Workspace-wide Sifa rules
-live in `~/SingiSync/Sifa/CLAUDE.md`.
+live in the Sifa Obsidian workspace (`~/Documents/CoreNotes/Workspaces/Sifa/CLAUDE.md`).
 
 ## Screenshot workflow
 
@@ -30,7 +30,7 @@ Apply these tests, in order:
 
 Each entry is one PNG. Verify the URL is reachable (`curl -sI`) and the
 selector exists in sifa-web (`grep -rn 'data-section\|id="..."'
-~/SingiSync/Sifa/sifa-web/src`) before adding. Use `clip` to scope the
+~/Documents/Git/sifa-web/src`) before adding. Use `clip` to scope the
 shot to a stable sub-region whenever possible — it reduces visual-diff
 churn.
 
