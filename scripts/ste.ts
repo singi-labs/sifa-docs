@@ -288,6 +288,12 @@ export function maskNonProse(source: string): string {
   // Inline code.
   out = out.replace(/`[^`\n]*`/g, blank)
 
+  // <Msg> wraps a verbatim UI string the app shows. It is quoted output,
+  // not our prose, so it is out of scope like inline code.
+  out = out.replace(/<Msg>([^<]*)<\/Msg>/g, (match, text: string) =>
+    match.replace(text, blank(text))
+  )
+
   // ste-allow directives are read separately; blank them here.
   out = out.replace(/\{\/\*[\s\S]*?\*\/\}/g, blank)
 

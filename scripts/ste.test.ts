@@ -95,6 +95,18 @@ test('code fences and inline code are not prose', () => {
   assert.deepEqual(rules(page(body)), [])
 })
 
+test('text inside <Msg> is a verbatim UI string, not prose', () => {
+  const body = "The page shows <Msg>We couldn't save it. Try again later.</Msg> in red."
+  assert.deepEqual(rules(page(body)), [])
+})
+
+test('<Msg> masking preserves length and newlines', () => {
+  const source = page("| <Msg>That can't be done.</Msg> | Try again. |")
+  const masked = maskNonProse(source)
+  assert.equal(masked.length, source.length)
+  assert.equal(masked.split('\n').length, source.split('\n').length)
+})
+
 test('frontmatter description is checked, other keys are not', () => {
   const source =
     "---\ntitle: Don't worry\ndescription: You don't need an account.\n---\n\nPlain text.\n"
