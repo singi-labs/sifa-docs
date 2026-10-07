@@ -100,7 +100,8 @@ The rules you will hit most, in the order they bite:
 
 Six sentences max per paragraph. Prose in scope includes headings, list
 items, table cells, the frontmatter `description`, and `<Screenshot>`
-`alt` and `caption` text. Code fences and inline code are out of scope.
+`alt` and `caption` text. Code fences, inline code, and the text inside
+`<Msg>` (a verbatim message the app shows) are out of scope.
 
 Escape hatch, reason required, use it rarely:
 

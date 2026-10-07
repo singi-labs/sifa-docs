@@ -114,6 +114,7 @@ The site uses a few build-time components to anchor docs to source of truth inst
 - `<SdkTypography />` renders the font tokens.
 - `<SdkIconWeights />` renders the icon-weight convention.
 - `<Example path="01-fetch-activity-tiers.ts" />` reads an example file from `examples/` and renders it as a syntax-highlighted code block.
+- `<Msg>We couldn't save it. Try again later.</Msg>` quotes a message the app shows on screen, in the body font with typographic quotes. Use it instead of inline code for UI text; inline code is for identifiers, commands and values.
 - `<Screenshot src caption alt />` renders a Playwright-captured screenshot from `public/screenshots/`.
 
 To add a new component:
@@ -175,7 +176,7 @@ Top-nav switcher between the two tabs is in `app/layout.config.tsx`'s `links` ar
 
 Every page under `content/docs/` is written in Simplified Technical English, based on ASD-STE100. `pnpm check:ste` enforces the mechanical rules on every PR. Run it before you push.
 
-Prose is in scope: body text, headings, list items, table cells, the frontmatter `description`, and the `alt` and `caption` text of `<Screenshot>`. Code fences, inline code, URLs and generated SDK tables are out of scope.
+Prose is in scope: body text, headings, list items, table cells, the frontmatter `description`, and the `alt` and `caption` text of `<Screenshot>`. Code fences, inline code, URLs, generated SDK tables and the text inside `<Msg>` are out of scope.
 
 | Rule | What it means                                                                                                                                                                                                              | Checked  |
 | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
