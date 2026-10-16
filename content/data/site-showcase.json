@@ -112,5 +112,12 @@
     "handle": "felixs.dev",
     "screenshot": "felixs.png",
     "provenance": { "mode": "marker", "marker": "sifa.id/p/felixs.dev" }
+  },
+  {
+    "url": "https://mihaizaurus.at/about",
+    "label": "mihaizaurus.at/about",
+    "handle": "mihaizaurus.at",
+    "screenshot": "mihaizaurus.png",
+    "provenance": { "mode": "marker", "marker": "sifa.id/p/mihaizaurus.at" }
   }
 ]
