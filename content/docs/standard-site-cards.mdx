@@ -11,7 +11,7 @@ This page shows how to make the card appear and how to set its colours and icon.
 
 **One `site.standard.publication` record on your PDS, with a `url` field that matches your link.**
 
-That is the whole mechanism. The Bluesky AppView indexes Standard.site records from the firehose. It matches them to post links by URL, with this [matching logic](https://github.com/bluesky-social/atproto/blob/main/packages/bsky/src/util/standard-site.ts). Sifa does the same. The card itself needs no DNS record, no `/.well-known/` file, and no page metadata.
+That is the whole mechanism. The Bluesky AppView indexes Standard.site records from the firehose. It matches them to post links by URL, with this [matching logic](https://github.com/bluesky-social/atproto/blob/main/packages/bsky/src/util/external/standard-site.ts). Sifa does the same. The card itself needs no DNS record, no `/.well-known/` file, and no page metadata.
 
 ## Three ways to get the record
 
