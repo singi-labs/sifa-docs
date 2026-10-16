@@ -103,6 +103,10 @@ exclude = [
   # voxport.com (a registry app) sits behind a WAF that 403s crawlers with a
   # browser UA and GET alike; valid for humans. Verified via curl 2026-08-24.
   "^https?://(www\\.)?voxport\\.com",
+  # ror.org (Research Organization Registry, linked from company-pages)
+  # answers 429 to non-browser clients, from CI and from a local curl alike.
+  # Valid for humans. Verified 2026-10-16.
+  "^https?://(www\\.)?ror\\.org",
   # Sometimes-unreachable third-party hosts. Re-evaluate periodically.
   "^https?://offprint\\.pub",
   "^https?://hannah\\.makes\\.software",
