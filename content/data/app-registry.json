@@ -715,8 +715,8 @@
     "category": "Posts",
     "description": "Short thoughts on the AT Protocol.",
     "externallySourced": false,
-    "homepage": "https://thought.stream",
-    "homepageDownSince": null,
+    "homepage": null,
+    "homepageDownSince": "2026-10-17",
     "logo": null
   },
   {
