@@ -15,8 +15,8 @@
     "category": "Pages",
     "description": "A desktop environment for the AT Protocol, running in the browser.",
     "externallySourced": false,
-    "homepage": "https://aetheros.computer",
-    "homepageDownSince": null,
+    "homepage": null,
+    "homepageDownSince": "2026-10-18",
     "logo": "https://sifa.id/api/company/favicon/aetheros.computer"
   },
   {
@@ -295,9 +295,9 @@
     "category": "Photos",
     "description": "Photo sharing on the AT Protocol.",
     "externallySourced": false,
-    "homepage": "https://flashes.blue",
-    "homepageDownSince": null,
-    "logo": "https://sifa.id/api/company/favicon/flashes.blue"
+    "homepage": null,
+    "homepageDownSince": "2026-10-18",
+    "logo": null
   },
   {
     "id": "frontpage",
