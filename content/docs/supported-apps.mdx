@@ -36,7 +36,34 @@ These sources write no records to your provider. You add and verify each one onc
 
 Sifa renders every other link, such as LinkedIn or YouTube or any URL, as a plain link on your profile. Sifa never polls those links.
 
+## Message someone on Germ
+
+Germ DM is an end-to-end encrypted messenger on the Atmosphere. Germ, Sifa ID, Bluesky and other service providers cannot read the messages. Germ is available for iPhone and iPad.
+
+When a person uses Germ, their profile can show a **Message on Germ** button. The person controls this button in the Germ app with one of these settings:
+
+| Setting in Germ    | Who sees the button on Sifa                           |
+| ------------------ | ----------------------------------------------------- |
+| Everyone           | All visitors                                          |
+| People they follow | Signed-in visitors that the person follows on Bluesky |
+| Nobody             | No visitors                                           |
+
+Sifa reads this setting from the public Germ record on the provider of the person. Sifa reads the Bluesky follows of the person from the same provider. Sifa does not send your account to Bluesky for this check.
+
+When you select the button, Germ opens in a new tab. Germ receives your DID, so it can start the conversation. Sifa counts how many people see and select the button. These counts contain no DIDs.
+
+### Why the button is not there
+
+- The person does not use Germ.
+- The person allows messages only from people they follow, and they do not follow you on Bluesky.
+- You are not signed in, and the person allows messages only from people they follow.
+- There is a block between you and the person.
+- It is your own profile. Your profile shows your Germ setting instead of the button.
+
+To change who can message you, use the Germ app. Get it from [the App Store](https://apps.apple.com/us/app/germdm/id6446882771).
+
 ## Related
 
 - [Activity feed](/docs/activity-feed), for what Sifa shows and what it leaves out
 - [External accounts](/docs/external-accounts), for a source that lives off the Atmosphere
+- [Germ DM](https://www.germnetwork.com), the encrypted messenger behind the Message on Germ button
