@@ -80,6 +80,16 @@
     "logo": "https://sifa.id/api/company/favicon/at.fund"
   },
   {
+    "id": "atbb",
+    "name": "atBB",
+    "category": "Posts",
+    "description": "Forum posts written to your account on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://atbb.space",
+    "homepageDownSince": null,
+    "logo": null
+  },
+  {
     "id": "atcr",
     "name": "ATCR",
     "category": "Code",
@@ -220,6 +230,16 @@
     "logo": "https://sifa.id/api/company/favicon/chive.pub"
   },
   {
+    "id": "chiverecipes",
+    "name": "Chive Recipes",
+    "category": "Recipes",
+    "description": "Recipes published to your account on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://chive.com",
+    "homepageDownSince": null,
+    "logo": "https://sifa.id/api/company/favicon/chive.com"
+  },
+  {
     "id": "colibri",
     "name": "Colibri",
     "category": "Social",
@@ -297,7 +317,7 @@
     "externallySourced": false,
     "homepage": "https://flashes.blue",
     "homepageDownSince": null,
-    "logo": null
+    "logo": "https://sifa.id/api/company/favicon/flashes.blue"
   },
   {
     "id": "frontpage",
@@ -367,6 +387,16 @@
     "externallySourced": false,
     "homepage": null,
     "homepageDownSince": "2026-10-06",
+    "logo": null
+  },
+  {
+    "id": "isnot",
+    "name": "is/not",
+    "category": "Reviews",
+    "description": "Short is / is-not reviews saved to your account on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://isnot.at",
+    "homepageDownSince": null,
     "logo": null
   },
   {
@@ -530,6 +560,16 @@
     "logo": "https://sifa.id/api/company/favicon/opensocial.community"
   },
   {
+    "id": "opendeck",
+    "name": "OpenDeck",
+    "category": "Flashcards",
+    "description": "Language flashcard decks saved to your account on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://opendeck.space",
+    "homepageDownSince": null,
+    "logo": "https://sifa.id/api/company/favicon/opendeck.space"
+  },
+  {
     "id": "papili",
     "name": "Papili",
     "category": "Links",
@@ -538,6 +578,16 @@
     "homepage": null,
     "homepageDownSince": "2026-10-06",
     "logo": null
+  },
+  {
+    "id": "passingreads",
+    "name": "Passing Reads",
+    "category": "Reviews",
+    "description": "Notes on physical books you pass on, saved to your account on the AT Protocol.",
+    "externallySourced": false,
+    "homepage": "https://passingreads.org",
+    "homepageDownSince": null,
+    "logo": "https://sifa.id/api/company/favicon/passingreads.org"
   },
   {
     "id": "passports",
