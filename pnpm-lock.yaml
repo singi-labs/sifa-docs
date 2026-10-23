@@ -12,8 +12,8 @@ importers:
         specifier: 3.0.0
         version: 3.0.0
       '@singi-labs/sifa-sdk':
-        specifier: 0.12.70
-        version: 0.12.70(react@19.2.4)
+        specifier: 0.21.0
+        version: 0.21.0(react@19.2.4)
       fumadocs-core:
         specifier: 16.6.5
         version: 16.6.5(@mdx-js/mdx@3.1.1)(@types/estree-jsx@1.0.5)(@types/hast@3.0.4)(@types/mdast@4.0.4)(@types/react@19.2.14)(lucide-react@0.570.0(react@19.2.4))(next@16.3.0(@babel/core@7.29.7)(@types/node@25.3.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(zod@4.3.6)
@@ -1364,8 +1364,8 @@ packages:
     resolution: {integrity: sha512-KxXvfapcixpz6rVEB6HPjOUZT22yN6v0vI0urQSk1L8MlEWPDFCZkhw2xmkyoTGYeFw7tWTZd7e3lVzRZRN/EA==}
     engines: {node: '>=18'}
 
-  '@singi-labs/sifa-sdk@0.12.70':
-    resolution: {integrity: sha512-FBKX+tpsiXtpvXicpmd9ek8IR4OkOZH0yVgzsoW8GHYRcrdQ1lq0JQ2Roab2joiT8quC4tX7NoaHgtsbxJR0oA==}
+  '@singi-labs/sifa-sdk@0.21.0':
+    resolution: {integrity: sha512-aj3d41M0O0HypOdUJgqwrOpVNSo16h6hjl2UR2Ey/d0tKMhhF6zHmlF2AwjEPmgs+ZEsCUldH6Nwagqg0N6yqA==}
     engines: {node: '>=22'}
     peerDependencies:
       '@tanstack/react-query': ^5.100.0
@@ -4007,8 +4007,8 @@ packages:
   zod@4.3.6:
     resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
 
-  zod@4.4.3:
-    resolution: {integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==}
+  zod@4.6.7:
+    resolution: {integrity: sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -5175,9 +5175,9 @@ snapshots:
 
   '@simple-libs/stream-utils@1.2.0': {}
 
-  '@singi-labs/sifa-sdk@0.12.70(react@19.2.4)':
+  '@singi-labs/sifa-sdk@0.21.0(react@19.2.4)':
     dependencies:
-      zod: 4.4.3
+      zod: 4.6.7
     optionalDependencies:
       react: 19.2.4
 
@@ -8457,6 +8457,6 @@ snapshots:
 
   zod@4.3.6: {}
 
-  zod@4.4.3: {}
+  zod@4.6.7: {}
 
   zwitch@2.0.4: {}
