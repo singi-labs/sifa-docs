@@ -54,7 +54,7 @@ The JSON Resume format has no section for some Sifa data, so the file puts it in
 - Your skills are in groups, one group for each skill category.
 - Your involvement is in the volunteering section.
 - Your talks are in the publications section, with the type "Talks".
-- The courses that you took are in the certifications section.
+- The courses that you took are in the certifications section, with the type "Courses" and the course number.
 
 Endorsements, confirmations, investments, and the courses that you teach are not in the file. Your profile keeps them.
 
@@ -76,10 +76,20 @@ Create a file with the name `sifa-cv.typ`. Put this text in it:
   cv.insert("skills", ((name: "Skills", keywords: cv.skills.map(s => s.name)),))
 }
 
+// altacv does not accept these certification fields. Remove them.
+#if "certificates" in cv {
+  cv.insert("certificates", cv.certificates.map(c => {
+    for key in ("endDate", "type", "number") {
+      let _ = c.remove(key, default: none)
+    }
+    c
+  }))
+}
+
 #alta-from-json(cv)
 ```
 
-The file makes two changes before altacv reads your data. It removes your photo, because Typst cannot load an image from a web address. If your file has no skill groups, it also puts your skills into one group, because altacv does not show skills without a group. A new export has the groups already.
+The file makes three changes before altacv reads your data. It removes your photo, because Typst cannot load an image from a web address. If your file has no skill groups, it also puts your skills into one group, because altacv does not show skills without a group. A new export has the groups already. It also removes the expiry date, the type, and the course number from your certifications, because altacv stops with an error on these fields. Your courses then show as certifications.
 
 This uses [altacv](https://typst.app/universe/package/altacv/), a CV template on Typst Universe that reads JSON Resume files. Other templates also read this format. [jsume](https://typst.app/universe/package/jsume/) is one more.
 
