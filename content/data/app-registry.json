@@ -345,9 +345,9 @@
     "category": "Photos",
     "description": "Photo galleries on the AT Protocol.",
     "externallySourced": false,
-    "homepage": null,
-    "homepageDownSince": "2026-10-25",
-    "logo": null
+    "homepage": "https://grain.social",
+    "homepageDownSince": null,
+    "logo": "https://sifa.id/api/company/favicon/grain.social"
   },
   {
     "id": "greengale",
