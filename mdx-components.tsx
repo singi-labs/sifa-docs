@@ -4,6 +4,7 @@ import { ActivityRegistry } from './components/activity-registry'
 import { SifaDrivenSites } from './components/sifa-driven-sites'
 import { SupportedApps } from './components/supported-apps'
 import { Example } from './components/example'
+import { FeaturedProfileEmbed } from './components/featured-profile-embed'
 import { Msg } from './components/msg'
 import { Screenshot } from './components/screenshot'
 import { SdkColors } from './components/sdk-colors'
@@ -19,6 +20,7 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     SifaDrivenSites,
     SupportedApps,
     Example,
+    FeaturedProfileEmbed,
     Msg,
     Screenshot,
     SdkColors,
