@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 
 const EMBED_ORIGIN = 'https://sifa.id'
-const EMBED_URL = `${EMBED_ORIGIN}/embed/featured`
+// frame=panel gives the card the same rounded panel it has on sifa.id.
+const EMBED_URL = `${EMBED_ORIGIN}/embed/featured?frame=panel`
 // Card height before the embed reports its real size, and without JavaScript.
 const DEFAULT_HEIGHT = 260
 
@@ -36,7 +37,7 @@ export function FeaturedProfileEmbed() {
   const frameRef = useRef<HTMLIFrameElement>(null)
   const [height, setHeight] = useState(DEFAULT_HEIGHT)
   const theme = useSyncExternalStore(subscribeToTheme, getTheme, getServerTheme)
-  const src = theme ? `${EMBED_URL}?theme=${theme}` : EMBED_URL
+  const src = theme ? `${EMBED_URL}&theme=${theme}` : EMBED_URL
 
   useEffect(() => {
     function onMessage(event: MessageEvent) {
