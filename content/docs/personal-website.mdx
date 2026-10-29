@@ -1,15 +1,24 @@
 ---
 title: Personal website
-description: A standalone personal website generated from your Sifa profile, styled like academicpages.github.io. Self-hostable.
+description: Two ways to get a personal website from your Sifa profile. Use the ready-made Sifa page, or build your own site on your id.sifa.* records.
 ---
 
-Sifa ID's profile data doubles as a standalone personal website. This page covers the features built for that.
+Your Sifa ID profile can also be your personal website. You have two ways to get one. Your choice depends on how much you want to build yourself.
 
-## Personal website
+|                 | Sifa page (ready-made)                        | Build your own                                             |
+| --------------- | --------------------------------------------- | ---------------------------------------------------------- |
+| **For**         | Everyone. You do not write code.              | People who write code.                                     |
+| **Design**      | A fixed layout. You do not change it.         | Your own design.                                           |
+| **Address**     | `page.sifa.id/{username}`, or your own domain | Your own domain                                            |
+| **Data source** | Your Sifa profile, through Sifa's public API  | Your `id.sifa.*` records, from your PDS or through the SDK |
 
-Every Sifa profile has a second, standalone view at `sifa.id/p/{username}/site`, styled after [academicpages.github.io](https://academicpages.github.io/): a top masthead, a left sidebar with your identity and links, a print-friendly layout, and a dark mode toggle. It looks like your own personal site, not a social profile.
+The two options use the same data. Your profile records stay on your PDS either way.
 
-The content comes from the same profile sections you already fill in on Sifa: About, Positions, Education, Publications, and so on. The personal website has no separate data entry. Update your profile once, and both views reflect it.
+## Sifa page
+
+Every Sifa profile has a standalone personal website at `page.sifa.id/{username}`. The layout is like [academicpages.github.io](https://academicpages.github.io/): a top masthead, a left sidebar with your identity and links, a print-friendly layout, and a dark mode toggle. It looks like your own personal site, not a social profile. For an overview, see [sifa.id/page](https://sifa.id/page).
+
+The content comes from the same profile sections you already fill in on Sifa: About, Positions, Education, Publications, and so on. The Sifa page has no separate data entry. Update your profile once, and both views show the change.
 
 ### Self-hosting your own copy
 
@@ -27,6 +36,21 @@ The scaffold ships with the GitHub Actions workflow, so steps 3 and 4 are the wh
 **Your own domain.** GitHub Pages supports custom domains under **Settings → Pages → Custom domain**: add the domain and the DNS record GitHub gives you, and your site serves from `cv.alice.com` instead of the `github.io` URL. This domain serves your website. It is separate from your [Sifa username domain](/docs/use-your-own-domain).
 
 Your profile data still lives on your PDS either way. A self-hosted page changes which host serves the HTML, not who owns the records underneath.
+
+## Build your own
+
+If you write code, you can build a site with your own design on your Sifa data. Your profile is a set of public `id.sifa.*` records on your PDS. Any site can read them. You do not need permission from Sifa.
+
+You have two ways to get the data:
+
+- Use [`@singi-labs/sifa-sdk`](https://github.com/singi-labs/sifa-sdk). It gives you types, schemas, and fetchers for Sifa data.
+- Read your `id.sifa.*` records directly from your PDS. [Lexicons and integrations](/docs/lexicons-and-integrations) lists the record types. [Your data on a provider](/docs/your-data-on-a-provider) shows what a record looks like.
+
+### Examples
+
+These people built their own sites on their Sifa data:
+
+<SifaDrivenSites />
 
 ## Want to go deeper
 
