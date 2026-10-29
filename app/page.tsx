@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { HomeSearch } from '../components/home-search'
 import { SiteFooter } from '../components/site-footer'
 
 const sections = [
@@ -66,6 +67,7 @@ export default function HomePage() {
           <p className="max-w-lg text-fd-muted-foreground">
             Documentation for Sifa, the decentralized professional network on the AT Protocol.
           </p>
+          <HomeSearch />
         </div>
 
         <div className="mt-12 grid w-full max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
