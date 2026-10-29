@@ -68,6 +68,9 @@ exclude = [
   # /_next/image?url=..., but the route handler isn't materialized as
   # a file (images are pre-optimized at build).
   "/_next/image",
+  # Umami tracker. Caddy proxies /u/* to the self-hosted Umami on
+  # docs.sifa.id, so the file is never in the static export.
+  "/u/script\\.js$",
   # Absolute self-references to docs.sifa.id. Relative links in HTML
   # are already resolved against the local out/ directory via the
   # --root-dir flag in the workflow, so absolute self-references would

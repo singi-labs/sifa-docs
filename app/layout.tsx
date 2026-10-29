@@ -1,9 +1,14 @@
 import { RootProvider } from 'fumadocs-ui/provider/next'
 import { Source_Code_Pro } from 'next/font/google'
+import Script from 'next/script'
 import localFont from 'next/font/local'
 import type { ReactNode } from 'react'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
+
+// Self-hosted Umami (cookieless, aggregate page views), proxied same-origin
+// under /u by Caddy. data-domains keeps local dev and previews out of the stats.
+const UMAMI_WEBSITE_ID = 'bbae6816-1b97-416c-88a3-51d28be94c87'
 
 const sourceCodePro = Source_Code_Pro({
   subsets: ['latin'],
@@ -120,6 +125,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         >
           {children}
         </RootProvider>
+        <Script
+          src="/u/script.js"
+          data-website-id={UMAMI_WEBSITE_ID}
+          data-domains="docs.sifa.id"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   )
