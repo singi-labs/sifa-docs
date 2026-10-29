@@ -48,7 +48,7 @@
   --color-fd-accent: var(--cyan-4);
   --color-fd-accent-foreground: var(--cyan-12);
   --color-fd-ring: #4385be;
-  --color-fd-overlay: hsla(0, 0%, 0%, 0.2);
+  --color-fd-overlay: hsla(0, 0%, 0%, 0.5);
 }
 
 .dark {
@@ -69,7 +69,7 @@
   --color-fd-accent: var(--cyan-dark-4);
   --color-fd-accent-foreground: var(--cyan-dark-12);
   --color-fd-ring: #4385be;
-  --color-fd-overlay: hsla(0, 0%, 0%, 0.4);
+  --color-fd-overlay: hsla(0, 0%, 0%, 0.75);
 }
 
 .dark #nd-sidebar {
