@@ -34,6 +34,16 @@ Sifa is the main writer today. Everything in your profile editor makes `id.sifa.
 
 If you build something that reads or writes `id.sifa.*` records, [open an issue](https://github.com/singi-labs/sifa-lexicons/issues). We will add it here.
 
+### Records that other apps write
+
+Sifa shows every record that is valid against its lexicon. It does not matter which app wrote the record. A record from your app appears on the Sifa profile in a few seconds, through the same firehose that carries Sifa's own records. This is also true when the user's account is on a provider other than Bluesky.
+
+Sifa does not show a record that is not valid against its lexicon. Before you write a record, validate it against the lexicon. Check these points:
+
+- The record has all the fields that the lexicon needs.
+- Each text field is in its limits. A lexicon gives two limits for most text fields: `maxGraphemes` counts the characters that a person sees, and `maxLength` counts UTF-8 bytes. A text must be in both limits.
+- The record has a `createdAt` value in datetime format.
+
 ### Personal websites
 
 Some people build their own personal website on their `id.sifa.*` records, so their CV or career page stays in sync with their profile. For examples, and for the ready-made option that needs no code, see [Personal website](/docs/personal-website#build-your-own).
