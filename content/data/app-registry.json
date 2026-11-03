@@ -195,8 +195,8 @@
     "category": "Reviews",
     "description": "Reading tracker and reviews on the AT Protocol.",
     "externallySourced": false,
-    "homepage": "https://bookhive.buzz",
-    "homepageDownSince": null,
+    "homepage": null,
+    "homepageDownSince": "2026-11-03",
     "logo": "https://sifa.id/api/company/favicon/bookhive.buzz"
   },
   {
@@ -695,8 +695,8 @@
     "category": "Social",
     "description": "Social spaces on the AT Protocol.",
     "externallySourced": false,
-    "homepage": "https://roomy.space",
-    "homepageDownSince": null,
+    "homepage": null,
+    "homepageDownSince": "2026-11-03",
     "logo": "https://sifa.id/api/company/favicon/roomy.space"
   },
   {
