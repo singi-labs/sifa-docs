@@ -65,9 +65,9 @@
     "category": "Social",
     "description": "National AT Protocol community commons in Europe.",
     "externallySourced": false,
-    "homepage": null,
-    "homepageDownSince": "2026-10-06",
-    "logo": null
+    "homepage": "https://atcommons.eu",
+    "homepageDownSince": null,
+    "logo": "https://sifa.id/api/company/favicon/atcommons.eu"
   },
   {
     "id": "atfund",
