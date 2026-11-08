@@ -77,28 +77,28 @@ Every external PDS, app, tool, or spec mentioned in body prose gets a markdown l
 
 Canonical-URL table for the entities that show up most often:
 
-| Entity                                                               | URL                                                         |
-| -------------------------------------------------------------------- | ----------------------------------------------------------- |
-| AT Protocol                                                          | https://atproto.com                                         |
-| Atmosphere (general intro)                                           | https://atmosphereaccount.com                               |
-| Bluesky                                                              | https://bsky.app                                            |
-| Eurosky                                                              | https://eurosky.social                                      |
-| Tangled                                                              | https://tangled.org                                         |
-| Blacksky                                                             | https://blacksky.community                                  |
-| Leaflet                                                              | https://leaflet.pub                                         |
-| WhiteWind                                                            | https://whtwnd.com                                          |
-| Smoke Signal                                                         | https://smokesignal.events                                  |
-| Offprint                                                             | https://offprint.pub                                        |
-| pckt.blog                                                            | https://pckt.blog                                           |
-| pdsls.dev                                                            | https://pdsls.dev                                           |
-| PDSmoover                                                            | https://pdsmoover.com                                       |
-| goat CLI                                                             | https://github.com/bluesky-social/indigo/tree/main/cmd/goat |
-| Standard.site                                                        | https://standard.site                                       |
-| ORCID                                                                | https://orcid.org                                           |
-| Keyoxide                                                             | https://keyoxide.org                                        |
-| Substack                                                             | https://substack.com                                        |
-| Mastodon                                                             | https://joinmastodon.org                                    |
-| NetNewsWire, Reeder, Feedly, Inoreader, FreshRSS, Miniflux, NewsBlur | (see existing pages for URLs)                               |
+| Entity                                                               | URL                                    |
+| -------------------------------------------------------------------- | -------------------------------------- |
+| AT Protocol                                                          | https://atproto.com                    |
+| Atmosphere (general intro)                                           | https://atmosphereaccount.com          |
+| Bluesky                                                              | https://bsky.app                       |
+| Eurosky                                                              | https://eurosky.social                 |
+| Tangled                                                              | https://tangled.org                    |
+| Blacksky                                                             | https://blacksky.community             |
+| Leaflet                                                              | https://leaflet.pub                    |
+| WhiteWind                                                            | https://whtwnd.com                     |
+| Smoke Signal                                                         | https://smokesignal.events             |
+| Offprint                                                             | https://offprint.pub                   |
+| pckt.blog                                                            | https://pckt.blog                      |
+| pdsls.dev                                                            | https://pdsls.dev                      |
+| PDSmoover                                                            | https://pdsmoover.com                  |
+| goat CLI                                                             | https://github.com/bluesky-social/goat |
+| Standard.site                                                        | https://standard.site                  |
+| ORCID                                                                | https://orcid.org                      |
+| Keyoxide                                                             | https://keyoxide.org                   |
+| Substack                                                             | https://substack.com                   |
+| Mastodon                                                             | https://joinmastodon.org               |
+| NetNewsWire, Reeder, Feedly, Inoreader, FreshRSS, Miniflux, NewsBlur | (see existing pages for URLs)          |
 
 If you mention an entity not in this table, look up the canonical URL and link the first mention. Don't invent URLs; if you can't verify, leave the term bare and flag it in PR review.
 
