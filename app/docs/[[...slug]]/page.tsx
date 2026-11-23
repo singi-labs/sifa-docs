@@ -89,13 +89,15 @@ export default async function Page(props: { params: Promise<{ slug?: string[] }>
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <DocsPage toc={page.data.toc} full={page.data.full}>
-        <DocsTitle>{page.data.title}</DocsTitle>
-        <DocsDescription>{page.data.description}</DocsDescription>
-        <DocsBody>
-          <MDX components={getMDXComponents()} />
-        </DocsBody>
-      </DocsPage>
+      <main id="main-content" tabIndex={-1} className="contents focus:outline-none">
+        <DocsPage toc={page.data.toc} full={page.data.full}>
+          <DocsTitle>{page.data.title}</DocsTitle>
+          <DocsDescription>{page.data.description}</DocsDescription>
+          <DocsBody>
+            <MDX components={getMDXComponents()} />
+          </DocsBody>
+        </DocsPage>
+      </main>
     </>
   )
 }

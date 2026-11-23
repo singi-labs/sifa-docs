@@ -86,11 +86,21 @@ After the migration you may have to **sign out of Sifa and sign in again** for a
 
 Whichever tool you used, run through these to verify the move worked end-to-end:
 
-- **Resolve your username.** `curl -s "https://api.bsky.app/xrpc/com.atproto.identity.resolveHandle?handle=alice.eurosky.social"` should return your DID.
-- **Inspect your new PDS.** `curl -s "https://eurosky.social/xrpc/com.atproto.repo.listRecords?repo=<your-did>&collection=id.sifa.profile.position"` should return your Sifa positions.
+- **Resolve your username.** Run this command. It should return your DID.
+
+  ```bash
+  curl -s "https://api.bsky.app/xrpc/com.atproto.identity.resolveHandle?handle=alice.eurosky.social"
+  ```
+
+- **Inspect your new PDS.** Run this command. It should return your Sifa positions.
+
+  ```bash
+  curl -s "https://eurosky.social/xrpc/com.atproto.repo.listRecords?repo=<your-did>&collection=id.sifa.profile.position"
+  ```
+
 - **Sign into Sifa with the new username.** Profile should render exactly as before.
 - **Check your [Bluesky](https://bsky.app) timeline.** Posts, follows, and followers should be intact.
-- **Check your Atom feed.** [`https://sifa.id/p/<new-username>/activity.atom`](https://sifa.id/p/alice.eurosky.social/activity.atom) should resolve and show the same entries as before.
+- **Check your Atom feed.** Open `https://sifa.id/p/alice.example.org/activity.atom`, with your own username in place of `alice.example.org`. It should resolve and show the same entries as before.
 
 <Screenshot
   src="public-profile-activity-feed.png"
@@ -113,6 +123,8 @@ Rare, but possible if your old provider had a record the protocol considers inva
 
 **"I want to roll back."**  
 You can. While your old provider still holds the deactivated account, the protocol can re-activate it. Contact your old provider's support. The operation is reversible for a limited window.
+
+To report a security problem, email [security@sifa.id](mailto:security@sifa.id).
 
 ## Sifa-specific notes
 

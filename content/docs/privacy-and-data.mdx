@@ -64,7 +64,12 @@ Three levels of "delete":
 
 **Delete one record.** Open the item in your profile editor. Remove it. Your provider then deletes the `id.sifa.profile.*` record. The AppView sees the deletion on the firehose and drops it from your profile within seconds.
 
-**Delete everything Sifa-specific.** [Account settings](https://sifa.id/settings/account) holds a delete-Sifa-data button. It walks every `id.sifa.*` collection on your account and removes each record. It leaves your Atmosphere account alone, on [Bluesky](https://bsky.app), [Eurosky](https://eurosky.social) or anywhere else. Only the records in the Sifa namespace go.
+**Delete or reset your Sifa data.** Open [Account settings](https://sifa.id/settings/account). Scroll to **Danger zone**. It has two actions:
+
+- **Reset my profile** clears your Sifa profile data and opens the import page, so you can start again.
+- **Delete my account** clears your profile data and your Sifa settings. Then it signs you out.
+
+Each action asks if you want to delete the `id.sifa.*` records on your data server or keep them. If you choose delete, Sifa walks every `id.sifa.*` collection on your account and removes each record. If you choose keep, the records stay on your provider. The Danger zone also has an option to stop your profile from showing again as an unclaimed profile. Your Atmosphere account stays as it is, on [Bluesky](https://bsky.app), [Eurosky](https://eurosky.social) or anywhere else. Only the records in the Sifa namespace go.
 
 **Delete your Atmosphere account.** This is a provider-level action. You do it on your provider's settings page, not on Sifa. Your provider deactivates your DID and releases every record, across every app. The Sifa AppView sees the deactivation and stops rendering your profile.
 
@@ -96,6 +101,8 @@ A short outage is smaller than a shutdown. If Sifa ID has an outage in one of it
 You need no request. The data already sits on your provider, and you reach it directly. [Your data on a provider](/docs/your-data-on-a-provider) shows how to inspect it or export it with [pdsls.dev](https://pdsls.dev) or the AT Protocol API.
 
 Do you need a copy of Sifa-side metadata, such as session logs or analytics, for compliance? [Send feedback](https://sifa.id/feedback) or email the team. EU users have GDPR rights of access and erasure. We honour both.
+
+To report a security problem, email [security@sifa.id](mailto:security@sifa.id).
 
 ## Want to go deeper
 
