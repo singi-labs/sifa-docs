@@ -45,7 +45,11 @@ const sections = [
 export default function HomePage() {
   return (
     <>
-      <main className="flex flex-1 flex-col items-center px-4 py-16">
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className="focus:outline-none flex flex-1 flex-col items-center px-4 py-16"
+      >
         <div className="flex flex-col items-center gap-4 text-center">
           <Image
             src="/sifa-logo-light.svg"
